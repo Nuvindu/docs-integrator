@@ -12,8 +12,7 @@ Start a new integration project using the WSO2 Integrator wizard in VS Code. Cho
 
 Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and select **WSO2 Integrator: New Integration** to launch the wizard.
 
-<!-- TODO: Screenshot of the New Integration wizard showing template selection -->
-
+![Open Command Palette and select New Integration](/img/create-new-integration/launch-the-wizard.gif)
 ### Step 1: Choose a Template
 
 The wizard presents a list of templates organized by category:
@@ -37,8 +36,7 @@ Enter the following details:
 - **Organization** -- Your Ballerina Central organization (e.g., `mycompany`).
 - **Location** -- The directory where the project will be created.
 
-<!-- TODO: Screenshot of the project configuration step -->
-
+![Fill in project details and create the integration](/img/create-new-integration/configure-and-create.gif)
 ### Step 3: Review and Create
 
 The wizard shows a summary of the project that will be created. Click **Create** to generate the project files and open them in VS Code.
