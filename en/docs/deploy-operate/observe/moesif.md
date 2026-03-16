@@ -165,5 +165,5 @@ In the Moesif dashboard:
 ## What's Next
 
 - [Prometheus](prometheus.md) -- Self-managed metrics collection
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture
 - [API Security](../secure/api-security.md) -- Secure your API endpoints

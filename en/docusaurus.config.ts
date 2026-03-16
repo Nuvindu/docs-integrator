@@ -139,11 +139,10 @@ const config: Config = {
         {
           title: 'Develop',
           items: [
-            {label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts'},
+            {label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/overview'},
             {label: 'Transform', to: '/docs/develop/transform/data-mapper'},
-            {label: 'Test', to: '/docs/develop/test/try-it'},
-            {label: 'Connectors', to: '/docs/connectors'},
-            {label: 'GenAI', to: '/docs/genai'},
+            {label: 'Connectors', to: '/docs/connectors/ai-llms'},
+            {label: 'GenAI', to: '/docs/genai/getting-started/setup'},
           ],
         },
         {

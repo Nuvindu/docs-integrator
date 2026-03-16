@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Capacity Planning
 description: Capacity planning overview and sizing guidelines for WSO2 Integrator deployments.
 ---

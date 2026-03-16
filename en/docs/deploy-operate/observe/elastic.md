@@ -198,4 +198,4 @@ volumes:
 
 - [OpenSearch](opensearch.md) -- Alternative open-source search and analytics
 - [Logging & Structured Logs](logging.md) -- Configure Ballerina logging
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture

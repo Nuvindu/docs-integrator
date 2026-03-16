@@ -167,5 +167,5 @@ bal pull wso2/healthcare_integration
 
 ## What's Next
 
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand the artifact types in your imported project
-- [Design Logic](/docs/develop/design-logic) -- Build the integration logic for your imported stubs
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your imported project
+- [Design Logic](/docs/develop/design-logic/overview) -- Build the integration logic for your imported stubs

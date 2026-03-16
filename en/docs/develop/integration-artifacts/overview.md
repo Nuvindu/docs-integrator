@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Integration Artifacts
 description: "Understand the different types of integration artifacts: services, event handlers, file handlers, automations, and more."
 ---
@@ -97,4 +98,4 @@ Every artifact follows the same lifecycle:
 
 - [HTTP Service](service/http-service.md) -- Build REST APIs and HTTP services
 - [Kafka](event/kafka.md) -- React to messages from Apache Kafka
-- [Design Logic](/docs/develop/design-logic) -- Build the logic inside your artifacts
+- [Design Logic](/docs/develop/design-logic/overview) -- Build the logic inside your artifacts

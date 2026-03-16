@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+sidebar_label: Overview
 title: Project Views
 description: Understand the Workspace, Integration, and Library views in WSO2 Integrator.
 ---
@@ -63,5 +64,5 @@ Use the view selector in the WSO2 Integrator sidebar to switch between Workspace
 
 ## What's Next
 
-- [Create Integrations](/docs/develop/create-integrations) -- Create new integration packages
+- [Create Integrations](/docs/develop/create-integrations/overview) -- Create new integration packages
 - [Organize Code](/docs/develop/organize-code/packages-modules) -- Structure packages and modules

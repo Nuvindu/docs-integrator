@@ -1,4 +1,6 @@
 ---
+sidebar_position: 1
+sidebar_label: Overview
 title: Sample Projects
 description: Clone-and-run sample projects demonstrating WSO2 Integrator features.
 ---

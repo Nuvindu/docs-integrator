@@ -164,4 +164,4 @@ If you build an integration that could benefit others, consider contributing it 
 ## What's Next
 
 - [Import External Integrations](import-external.md) -- Bring in integrations from other tools
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand the building blocks of an integration
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the building blocks of an integration

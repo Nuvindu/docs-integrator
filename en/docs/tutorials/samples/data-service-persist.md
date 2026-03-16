@@ -339,4 +339,4 @@ resource function get [int productId]/reviews() returns Review[]|error {
 - [Event-Driven Microservices](event-driven-microservices.md) -- Build microservices with Kafka
 - [RESTful API with Data Mapper](restful-api-data-mapper.md) -- Use the visual data mapper for transformations
 - [Data Transformation](../../develop/transform/data-mapper.md) -- Learn about data mapping features
-- [Connectors Reference](../../connectors/index.md) -- Explore all available connectors
+- [Connector catalog](../../connectors/ai-llms) -- Explore all available connectors

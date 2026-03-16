@@ -46,8 +46,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Create Integrations',
-      link: {type: 'doc', id: 'develop/create-integrations/index'},
       items: [
+        'develop/create-integrations/overview',
         'develop/create-integrations/create-new-integration',
         'develop/create-integrations/open-integration',
         'develop/create-integrations/explore-samples',
@@ -58,8 +58,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Project Views',
-      link: {type: 'doc', id: 'develop/project-views/index'},
       items: [
+        'develop/project-views/overview',
         'develop/project-views/workspace-view',
         'develop/project-views/integration-view',
         'develop/project-views/library-view',
@@ -68,8 +68,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Integration Artifacts',
-      link: {type: 'doc', id: 'develop/integration-artifacts/index'},
       items: [
+        'develop/integration-artifacts/overview',
         {
           type: 'category',
           label: 'Automation',
@@ -130,8 +130,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Design Integration Logic',
-      link: {type: 'doc', id: 'develop/design-logic/index'},
       items: [
+        'develop/design-logic/overview',
         'develop/design-logic/flow-designer',
         'develop/design-logic/connections',
         'develop/design-logic/control-flow',
@@ -163,8 +163,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Debugging & Troubleshooting',
-      link: {type: 'doc', id: 'develop/debugging/index'},
       items: [
+        'develop/debugging/overview',
         'develop/debugging/editor-debugging',
         'develop/debugging/remote-debugging',
         'develop/debugging/strand-dumps',
@@ -174,8 +174,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Organize Code',
-      link: {type: 'doc', id: 'develop/organize-code/index'},
       items: [
+        'develop/organize-code/overview',
         'develop/organize-code/packages-modules',
         'develop/organize-code/package-references',
         'develop/organize-code/manage-dependencies',
@@ -478,8 +478,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Pre-Built Integration Samples',
-      link: {type: 'doc', id: 'tutorials/pre-built/index'},
       items: [
+        'tutorials/pre-built/overview',
         'tutorials/pre-built/google-sheets-salesforce',
         'tutorials/pre-built/github-email-summary',
         'tutorials/pre-built/google-drive-onedrive',
@@ -495,8 +495,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Sample Projects',
-      link: {type: 'doc', id: 'tutorials/samples/index'},
       items: [
+        'tutorials/samples/overview',
         'tutorials/samples/hospital-service',
         'tutorials/samples/ecommerce-order-service',
         'tutorials/samples/event-driven-microservices',
@@ -551,8 +551,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Observe',
-      link: {type: 'doc', id: 'deploy-operate/observe/index'},
       items: [
+        'deploy-operate/observe/overview',
         'deploy-operate/observe/logging',
         'deploy-operate/observe/metrics',
         'deploy-operate/observe/tracing',
@@ -585,8 +585,8 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Capacity Planning',
-      link: {type: 'doc', id: 'deploy-operate/capacity-planning/index'},
       items: [
+        'deploy-operate/capacity-planning/overview',
         'deploy-operate/capacity-planning/performance-reports',
       ],
     },

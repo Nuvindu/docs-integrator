@@ -138,4 +138,4 @@ The WSO2 Integrator VS Code extension provides inline API documentation:
 
 - [Standard Library Functions](/reference/language/stdlib.md) -- Functions by category
 - [Protocols Reference](/reference/protocols.md) -- Supported protocols and modules
-- [Connectors Index](/connectors/index.md) -- Connector guides and configuration
+- [Connector catalog](../../connectors/ai-llms) -- Connector guides and configuration

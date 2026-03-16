@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Design Logic
 description: "Design your integration logic using the visual flow designer, code editor, or a combination of both."
 ---
@@ -107,5 +108,5 @@ In the visual flow designer, this same logic appears as a sequence of connected 
 
 ## What's Next
 
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand the artifact types that contain your logic
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types that contain your logic
 - [Test](/docs/develop/test/try-it) -- Validate your logic with the built-in Try-It tool

@@ -188,4 +188,4 @@ spec:
 
 - [Zipkin](zipkin.md) -- Alternative distributed tracing with Zipkin
 - [Grafana](grafana.md) -- Visualize trace data alongside metrics
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture

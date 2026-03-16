@@ -195,4 +195,4 @@ function getOwnerName(string ownerId) returns string|error {
 
 - [Kafka to Salesforce Price Book](kafka-salesforce-pricebook.md) -- Stream pricing updates to Salesforce
 - [Shopify to Outlook Welcome Email](shopify-outlook-email.md) -- Send welcome emails for new customers
-- [Connectors Reference](../../connectors/index.md) -- Explore all available connectors
+- [Connector catalog](../../connectors/ai-llms) -- Explore all available connectors

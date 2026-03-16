@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Pre-Built Integration Samples
 description: "Ready-to-run integration samples that connect popular services. Clone, configure, and deploy in minutes."
 ---
@@ -54,6 +55,6 @@ bal run
 
 ## What's Next
 
-- [Sample Projects](../samples/index.md) -- Larger sample projects with multiple features
+- [Sample Projects](../samples/overview.md) -- Larger sample projects with multiple features
 - [End-to-End Walkthroughs](../walkthroughs/content-based-routing.md) -- Step-by-step tutorials
-- [Connectors](../../connectors/index.md) -- Browse the full connector catalog
+- [Connector catalog](../../connectors/ai-llms) -- Browse the full connector catalog

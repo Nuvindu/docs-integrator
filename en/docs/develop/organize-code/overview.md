@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Organize Code
 description: "How do I structure, manage, and maintain my integration codebase?"
 ---

@@ -368,4 +368,4 @@ service /api/customers on new http:Listener(9091) {
 - [Data Service with bal persist](data-service-persist.md) -- Build a full CRUD data service
 - [Event-Driven Microservices](event-driven-microservices.md) -- Build microservices with Kafka
 - [Visual Data Mapper Guide](../../develop/transform/data-mapper.md) -- Learn more about the data mapper
-- [Connectors Reference](../../connectors/index.md) -- Explore all available connectors
+- [Connector catalog](../../connectors/ai-llms) -- Explore all available connectors

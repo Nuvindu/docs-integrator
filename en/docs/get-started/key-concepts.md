@@ -6,7 +6,7 @@ description: The vocabulary you need to understand WSO2 Integrator.
 
 # Key Concepts
 
-This page introduces every major product component in 2–3 sentences. Think of it as your vocabulary guide — it gives you the map. The [Develop](/docs/develop) section is the territory.
+This page introduces every major product component in 2–3 sentences. Think of it as your vocabulary guide — it gives you the map. The [Develop](/docs/develop/create-integrations/overview) section is the territory.
 
 ## Services
 
@@ -30,7 +30,7 @@ Intelligent artifacts backed by large language models (LLMs). Agents can reason,
 
 ## Connectors
 
-Pre-built modules for connecting to external systems — Salesforce, databases, Kafka, OpenAI, and 200+ more. Each connector handles authentication, serialization, and error handling. → [Connectors](/docs/connectors)
+Pre-built modules for connecting to external systems — Salesforce, databases, Kafka, OpenAI, and 200+ more. Each connector handles authentication, serialization, and error handling. → [Connectors](/docs/connectors/ai-llms)
 
 ## Visual Data Mapper
 

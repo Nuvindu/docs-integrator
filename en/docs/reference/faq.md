@@ -29,4 +29,4 @@ Yes. Any package on Ballerina Central can be imported and used.
 
 ### Where can I deploy?
 
-Docker, Kubernetes, AWS, Azure, GCP, or WSO2 Devant (iPaaS). See [Deploy & Operate](/docs/deploy-operate).
+Docker, Kubernetes, AWS, Azure, GCP, or WSO2 Devant (iPaaS). See [Deploy & Operate](/docs/deploy-operate/deploy/local).

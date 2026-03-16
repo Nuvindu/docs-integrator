@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 title: Observability Overview
 description: Overview of observability capabilities for WSO2 Integrator -- metrics, logging, and distributed tracing.
 ---

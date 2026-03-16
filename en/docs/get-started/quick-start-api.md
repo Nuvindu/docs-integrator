@@ -80,4 +80,4 @@ You can also use the built-in **Try It** panel in VS Code to test the endpoint i
 - [Quick Start: Automation](quick-start-automation.md) -- Build a scheduled job
 - [Quick Start: AI Agent](quick-start-ai-agent.md) -- Build an intelligent agent
 - [Quick Start: Event Integration](quick-start-event.md) -- React to messages from Kafka or RabbitMQ
-- [Tutorials](/docs/tutorials) -- End-to-end walkthroughs and patterns
+- [Tutorials](/docs/tutorials/salesforce-db-sync) -- End-to-end walkthroughs and patterns
