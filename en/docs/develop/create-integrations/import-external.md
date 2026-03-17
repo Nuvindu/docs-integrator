@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Import External Integrations
 description: Import integration projects from WSO2 MI, OpenAPI specifications, AsyncAPI documents, and other external sources.
 ---

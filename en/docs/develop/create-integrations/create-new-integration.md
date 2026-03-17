@@ -1,153 +1,56 @@
 ---
-sidebar_position: 1
-title: Create a New Integration
-description: Create a new integration project from scratch or use a pre-built template to get started quickly.
+sidebar_position: 2
 ---
 
-# Create a New Integration
+# Create a new integration
 
-Start a new integration project using the WSO2 Integrator wizard in VS Code. Choose from a blank project or a pre-built template that scaffolds the boilerplate code for common integration scenarios.
+WSO2 Integrator provides a guided wizard to create a new integration project from scratch. Use this approach when you want to initialize a new project without starting from a sample.
 
-## Using the New Integration Wizard
+## Starting the wizard
 
-Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and select **WSO2 Integrator: New Integration** to launch the wizard.
+In the WSO2 Integrator panel, click **Create**.
 
-![Open Command Palette and select New Integration](/img/create-new-integration/launch-the-wizard.gif)
-### Step 1: Choose a Template
+<!-- TODO: add screenshot — initial view -->
 
-The wizard presents a list of templates organized by category:
+The **Create Integration** form opens.
 
-| Category | Templates |
-|---|---|
-| **Services** | HTTP Service, GraphQL Service, gRPC Service, WebSocket Service, WebSub Hub |
-| **Event Handlers** | Kafka Consumer, RabbitMQ Consumer, MQTT Subscriber |
-| **Automations** | Scheduled Task, Manual Trigger |
-| **File Handlers** | FTP File Processor, SFTP File Processor, Local File Watcher |
-| **Data** | Database CRUD Service, Data Persistence Service |
-| **AI** | AI Agent, RAG Application |
+## Configuring the project
 
-Select **Blank Project** if you want to start from an empty Ballerina project.
+Fill in the following fields to configure your project:
 
-### Step 2: Configure the Project
+- **Project name** — enter a name for your integration. This is used as the display name and as the default Ballerina package name.
+- **Location** — select the directory where the project folder will be created.
+- **Ballerina package name** — automatically set to match the project name. The package name determines the directory name and must use lowercase letters, digits, and underscores. You can change it if needed.
 
-Enter the following details:
+The following fields are optional and are useful when creating a project as part of a workspace:
 
-- **Project Name** -- A descriptive name (e.g., `order-sync-service`). This becomes the Ballerina package name.
-- **Organization** -- Your Ballerina Central organization (e.g., `mycompany`).
-- **Location** -- The directory where the project will be created.
+- **Organization** — the Ballerina organization that owns this package. Required if you plan to publish the package to Ballerina Central.
+- **Package version** — the initial version of the package (for example, `1.0.0`).
 
-![Fill in project details and create the integration](/img/create-new-integration/configure-and-create.gif)
-### Step 3: Review and Create
+After filling in the required fields, click **Create Integration**.
 
-The wizard shows a summary of the project that will be created. Click **Create** to generate the project files and open them in VS Code.
+<!-- TODO: add screenshot — initialization view -->
 
-## What Gets Generated
+WSO2 Integrator generates the project files and opens the new project in VS Code.
 
-For an HTTP Service template, the wizard generates:
+## What gets generated
 
-```ballerina
-// main.bal
-import ballerina/http;
-
-configurable int port = 8090;
-
-service /api on new http:Listener(port) {
-
-    resource function get greeting() returns string {
-        return "Hello, WSO2 Integrator!";
-    }
-
-    resource function post orders(http:Request req) returns http:Created|http:BadRequest {
-        // TODO: Add your integration logic here
-        return http:CREATED;
-    }
-}
-```
-
-The generated `Ballerina.toml` includes the project metadata:
-
-```toml
-[package]
-org = "mycompany"
-name = "order_sync_service"
-version = "0.1.0"
-distribution = "2201.10.0"
-
-[build-options]
-observabilityIncluded = true
-```
-
-And a starter `Config.toml` for runtime configuration:
-
-```toml
-port = 8090
-```
-
-## Creating from the Command Line
-
-You can also create projects using the Ballerina CLI:
-
-```bash
-# Create a new Ballerina package
-bal new order-sync-service
-
-# Create from a specific template
-bal new -t service order-sync-service
-```
-
-After creating the project, open it in VS Code to use the visual designer and WSO2 Integrator tooling.
-
-## Creating a Multi-Module Project
-
-For larger integrations, organize your code into multiple Ballerina modules within a single package:
-
-```bash
-# Create the main package
-bal new inventory-system
-
-# Add modules
-cd inventory-system
-bal add products
-bal add orders
-bal add notifications
-```
-
-This produces the following structure:
+The wizard creates a Ballerina project with the following structure:
 
 ```
-inventory-system/
-├── Ballerina.toml
-├── Config.toml
-├── main.bal
-├── modules/
-│   ├── products/
-│   │   └── products.bal
-│   ├── orders/
-│   │   └── orders.bal
-│   └── notifications/
-│       └── notifications.bal
+<project-name>/
+├── Ballerina.toml     # Package metadata, organization, and version
+├── main.bal           # Entry point for your integration logic
 └── tests/
-    └── main_test.bal
+    └── main_test.bal  # Starter test file
 ```
 
-Modules can import each other using the package-qualified name:
+## Learn more
 
-```ballerina
-import mycompany/inventory_system.products;
-import mycompany/inventory_system.orders;
-```
+- [Ballerina packages and modules](../organize-code/packages-modules.md) — understand how Ballerina packages and modules are structured
+- [Workspaces](../organize-code/workspaces.md) — organize multiple related packages together in a single VS Code workspace
 
-## Project Naming Conventions
+## What's next
 
-Follow these conventions for consistent, discoverable projects:
-
-- Use lowercase with hyphens for project directories: `order-sync-service`
-- Use underscores in Ballerina package names: `order_sync_service`
-- Prefix with the integration domain: `crm-contact-sync`, `erp-order-export`
-- Keep names concise but descriptive
-
-## What's Next
-
-- [Open an Existing Integration](open-integration.md) -- Work with projects already on disk
-- [Explore Sample Integrations](explore-samples.md) -- Learn from built-in examples
-- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your project
+- [Open an existing integration](open-integration.md) — open a project you already have on disk or in version control
+- [Explore sample integrations](explore-samples.md) — browse built-in samples to see common integration patterns

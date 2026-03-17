@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: Create a Library
 description: Create reusable library packages for sharing common integration logic across projects.
 ---

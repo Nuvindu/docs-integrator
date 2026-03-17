@@ -1,134 +1,147 @@
 ---
-sidebar_position: 2
-title: Open an Existing Integration
-description: Open and work with existing integration projects from your local filesystem or version control.
+sidebar_position: 3
 ---
 
-# Open an Existing Integration
+# Open integration
 
-Open integration projects that already exist on your filesystem, clone them from a Git repository, or restore a recently used workspace. WSO2 Integrator automatically detects Ballerina projects and activates its tooling.
+This page explains how to open an existing WSO2 Integrator (Ballerina-based) project in VS Code, whether it's stored locally, in version control, or was recently opened.
 
-## Opening a Local Project
+## Opening a local project
 
-### From VS Code
+You can open an existing integration project using the VS Code file browser or the command line.
 
-1. Go to **File > Open Folder** (or `Ctrl+K Ctrl+O` / `Cmd+K Cmd+O`).
-2. Navigate to the directory containing a `Ballerina.toml` file.
+**From the VS Code UI:**
+
+1. Select **File** > **Open Folder** (or press **Ctrl+K Ctrl+O** on Windows/Linux, **Cmd+K Cmd+O** on macOS).
+2. Navigate to the directory that contains the `Ballerina.toml` file for your integration project.
 3. Select the folder and click **Open**.
 
-<!-- TODO: Screenshot of VS Code with an opened integration project showing the explorer panel -->
+When VS Code detects a `Ballerina.toml` file, WSO2 Integrator activates and enables:
 
-WSO2 Integrator detects the `Ballerina.toml` file and activates:
-
-- The visual flow designer in the editor panel
+- The visual flow designer for building and viewing integration logic
 - IntelliSense and code completion for Ballerina
-- The WSO2 Integrator sidebar with project artifacts
-- The Try-It tool for testing endpoints
+- The WSO2 Integrator sidebar showing project artifacts (services, connectors, configurations)
+- The Try-It tool for testing endpoints directly from VS Code
 
-### From the Command Line
+<!-- TODO: add screenshot — VS Code with an opened integration project showing the explorer panel and visual flow designer -->
+
+**From the command line:**
+
+To open a project folder directly in VS Code, run:
 
 ```bash
-# Open a project directory in VS Code
 code /path/to/my-integration
+```
 
-# Or navigate to the directory and open it
+Alternatively, navigate to the project directory first, then open it:
+
+```bash
 cd /path/to/my-integration
 code .
 ```
 
-## Cloning from Version Control
+## Cloning from version control
 
-### Clone via VS Code
+To clone a Git repository and open it as a WSO2 Integrator project:
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Select **Git: Clone**.
-3. Enter the repository URL and choose a local directory.
-4. When prompted, click **Open** to open the cloned project.
+1. Open the Command Palette by pressing **Ctrl+Shift+P** (Windows/Linux) or **Cmd+Shift+P** (macOS).
+2. Type `Git: Clone` and select it from the list.
+3. Paste the repository URL and press **Enter**.
+4. Select a local directory where the repository will be cloned.
+5. When prompted, click **Open** to open the cloned project in VS Code.
 
-### Clone via CLI
+<!-- TODO: add screenshot — Command Palette showing Git: Clone command with a repository URL entered -->
 
-```bash
-# Clone and open
-git clone https://github.com/myorg/order-sync-service.git
-code order-sync-service
-```
+**From the command line:**
 
-## Opening Recent Projects
-
-VS Code tracks recently opened folders. Access them quickly:
-
-- **File > Open Recent** shows your project history.
-- The WSO2 Integrator **Welcome** tab lists recent integration projects.
-
-<!-- TODO: Screenshot of the Welcome tab showing recent integrations -->
-
-## Project Detection and Validation
-
-When you open a folder, WSO2 Integrator validates the project structure:
-
-| Check | What It Verifies |
-|---|---|
-| `Ballerina.toml` exists | Confirms this is a Ballerina package |
-| Distribution version | Checks compatibility with the installed Ballerina distribution |
-| Dependencies | Validates that declared dependencies can be resolved |
-| Syntax | Runs an initial syntax check on `.bal` files |
-
-If any issues are found, the **Problems** panel shows actionable diagnostics with quick-fix suggestions.
-
-## Resolving Dependencies
-
-After opening a project, pull its dependencies:
+You can also clone and open a repository using the terminal:
 
 ```bash
-# Pull all dependencies declared in Ballerina.toml
-bal pull
+git clone <repo-url>
+code <directory>
 ```
 
-VS Code performs this step automatically when you open a Ballerina project. If dependencies fail to resolve, check your network connection and verify the package names in `Ballerina.toml`.
+## Opening recent projects
 
-## Working with Multi-Module Projects
+To reopen a project you worked on previously:
 
-For projects with multiple modules, the WSO2 Integrator sidebar displays each module as a collapsible section. You can navigate between modules and view their artifacts independently.
+- Select **File** > **Open Recent** (or press **Ctrl+R** / **Cmd+R**) and choose from the list of recently opened folders.
+- Alternatively, open the WSO2 Integrator **Welcome** tab, which displays recently opened projects for quick access.
+
+## Project detection and validation
+
+When you open a folder, WSO2 Integrator performs the following checks:
+
+- **Ballerina.toml presence** — the folder must contain a `Ballerina.toml` file at the root for WSO2 Integrator to recognize it as an integration project.
+- **Distribution version compatibility** — the installed Ballerina distribution version is checked against the version declared in `Ballerina.toml`.
+- **Dependency resolution** — all packages imported in the project are verified to be available.
+- **Syntax checking** — Ballerina source files are validated for syntax errors.
+
+Any issues found during these checks appear in the **Problems** panel (**Ctrl+Shift+M** / **Cmd+Shift+M**) as errors or warnings, often with quick-fix suggestions.
+
+## Resolving dependencies
+
+When you open a project, WSO2 Integrator automatically pulls all dependencies listed in `Ballerina.toml` from Ballerina Central.
+
+To pull dependencies manually, run the following command from your project directory:
+
+```bash
+bal pull <package-name>
+```
+
+**If dependencies fail to resolve:**
+
+1. Check your network connectivity and confirm you can reach Ballerina Central.
+2. Verify that the package name and version in `Ballerina.toml` are correct.
+3. Clear the local package cache and retry:
+
+   ```bash
+   bal clean
+   ```
+
+## Working with multi-module projects
+
+Multi-module Ballerina projects appear in the WSO2 Integrator sidebar with each module displayed as a collapsible section, letting you navigate between modules easily.
+
+A typical multi-module project structure looks like this:
 
 ```
 my-integration/
 ├── Ballerina.toml
-├── main.bal                    # Root module
-├── modules/
-│   ├── api/                    # API module
-│   │   └── service.bal
-│   ├── transform/              # Transformation module
-│   │   └── mapper.bal
-│   └── persist/                # Persistence module
-│       └── store.bal
-└── tests/
+├── main.bal
+└── modules/
+    ├── auth/
+    │   └── auth.bal
+    └── data/
+        └── data.bal
 ```
 
-Click on any `.bal` file to open it in both the code editor and the visual flow designer.
+Each subdirectory under `modules/` is treated as a separate module. The WSO2 Integrator sidebar reflects this structure, grouping artifacts (services, functions, types) under their respective modules.
 
 ## Troubleshooting
 
-### Project Not Detected
+**Project not detected:**
 
-If WSO2 Integrator does not activate after opening a folder:
+- Confirm that a `Ballerina.toml` file exists in the root of the opened folder. Without it, WSO2 Integrator does not activate.
+- Check that the WSO2 Integrator extension is enabled. Open the Extensions view (**Ctrl+Shift+X** / **Cmd+Shift+X**), search for WSO2 Integrator, and ensure it is enabled.
 
-1. Verify that `Ballerina.toml` exists in the root of the opened folder.
-2. Ensure the WSO2 Integrator IDE is installed and enabled.
-3. Check the **Output** panel (select **WSO2 Integrator** from the dropdown) for error messages.
+**Incompatible distribution version:**
 
-### Incompatible Distribution
+If the Ballerina distribution version declared in `Ballerina.toml` doesn't match the installed version, update your distribution:
 
-If the project requires a different Ballerina distribution version:
+- List available distributions:
 
-```bash
-# Check current distribution
-bal dist list
+  ```bash
+  bal dist list
+  ```
 
-# Update to the required version
-bal dist update
-```
+- Update to the latest compatible version:
 
-## What's Next
+  ```bash
+  bal dist update
+  ```
 
-- [Explore Sample Integrations](explore-samples.md) -- Learn from built-in example projects
-- [Import External Integrations](import-external.md) -- Bring in projects from other tools
+## What's next
+
+- [Explore sample integrations](explore-samples.md) — browse and import pre-built integration samples to get started quickly.
+- [Import an external project](import-external.md) — bring in projects from other tools and formats into WSO2 Integrator.

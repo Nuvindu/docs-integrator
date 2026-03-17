@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Explore Sample Integrations
 description: Browse, run, and learn from built-in sample integrations that demonstrate common patterns and use cases.
 ---
