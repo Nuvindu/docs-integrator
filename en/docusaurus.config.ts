@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   url: 'https://integrator.docs.wso2.com',
-  baseUrl: '/',
+  baseUrl: process.env.BASE_URL || '/',
 
   organizationName: 'wso2',
   projectName: 'docs-integrator',
