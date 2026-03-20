@@ -146,6 +146,6 @@ curl http://localhost:8080/employees/1
 
 ## What's Next
 
-- [Data Persistence](../develop/integration-artifacts/data-persistence.md) — Deep dive into `bal persist`
-- [Services](../develop/integration-artifacts/services.md) — Advanced service configuration
+- [Data Persistence](../develop/integration-artifacts/supporting/data-persistence.md) — Deep dive into `bal persist`
+- [Services](../develop/integration-artifacts/overview.md) — Advanced service configuration
 - [Quick Start: Build an AI Agent](quick-start-ai-agent.md) — Add AI capabilities

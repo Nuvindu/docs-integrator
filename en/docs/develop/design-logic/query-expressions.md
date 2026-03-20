@@ -383,4 +383,4 @@ function generateMonthlySalesReport(Order[] orders) returns MonthlySales[] {
 
 - [Expressions](expressions.md) -- Inline expressions used within query clauses
 - [Functions](functions.md) -- Wrap query expressions in reusable functions
-- [Data Persistence](/docs/develop/integration-artifacts/data-persistence) -- Query over persisted data
+- [Data Persistence](/docs/develop/integration-artifacts/supporting/data-persistence) -- Query over persisted data

@@ -275,4 +275,4 @@ function sendWelcomeEmail(ShopifyCustomer customer) returns error? {
 
 - [HubSpot to Google Contacts](hubspot-google-contacts.md) -- Sync CRM contacts to Google Contacts
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS on Salesforce events
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

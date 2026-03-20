@@ -187,6 +187,6 @@ All benchmarks follow this methodology:
 
 ## What's Next
 
-- [Capacity Planning](index.md) -- Use these results for sizing your deployments
+- [Capacity Planning](overview.md) -- Use these results for sizing your deployments
 - [Scaling & High Availability](../deploy/scaling-ha.md) -- Scale based on throughput requirements
 - [GraalVM Native Images](../deploy/graalvm.md) -- Build native images for lower resource usage

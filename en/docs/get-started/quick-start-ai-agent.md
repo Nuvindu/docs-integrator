@@ -91,7 +91,7 @@ curl -X POST http://localhost:8080/graphql \
 
 ## What's Next
 
-- [GenAI Overview](/docs/genai) -- Full guide to AI capabilities
+- [GenAI Overview](/docs/genai/overview) -- Full guide to AI capabilities
 - [Chat Agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
 - [MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
 - [RAG Applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents

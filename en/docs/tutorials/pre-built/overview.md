@@ -56,4 +56,4 @@ bal run
 
 - [Sample Projects](../samples/overview.md) -- Larger sample projects with multiple features
 - [End-to-End Walkthroughs](../walkthroughs/content-based-routing.md) -- Step-by-step tutorials
-- [Connectors](../../connectors/overview.md) -- Browse the full connector catalog
+- [Connectors](../../connectors/overview) -- Browse the full connector catalog

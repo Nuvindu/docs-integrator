@@ -72,6 +72,6 @@ Hover over an integration name in the workspace panel and click the **delete** i
 
 ## What's Next
 
-- [Integration View](../project-views) -- The primary development interface
+- [Integration View](integration-view.md) -- The primary development interface
 - [Manage Dependencies](/docs/develop/organize-code/manage-dependencies) -- Handle package dependencies
 - [Workspaces](/docs/develop/organize-code/workspaces) -- Advanced workspace configuration

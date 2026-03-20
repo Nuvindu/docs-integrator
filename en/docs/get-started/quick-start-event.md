@@ -74,4 +74,4 @@ service on orderListener {
 
 - [Quick Start: File Integration](quick-start-file.md) -- Process files from FTP or local directories
 - [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Event Handlers](/docs/develop/integration-artifacts/event-handlers) -- Advanced event-driven patterns
+- [Event Handlers](/docs/develop/integration-artifacts/overview) -- Advanced event-driven patterns

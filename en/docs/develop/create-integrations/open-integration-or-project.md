@@ -131,4 +131,4 @@ bal dist update
 ## What's Next
 
 - [Explore Sample Integrations](explore-samples.md) -- Learn from built-in example projects
-- [Import External Integrations](import-external.md) -- Bring in projects from other tools
+- [Import External Integrations](migrate-3rd-party-integrations.md) -- Bring in projects from other tools

@@ -95,7 +95,7 @@ List all Boomi processes grouped by type:
 For each Boomi connector used, find the equivalent WSO2 Integrator connector:
 - Most common connectors (Salesforce, databases, Kafka, FTP, HTTP) have direct equivalents.
 - For connectors without a direct match, use the generic HTTP connector or write a custom Ballerina client.
-- Check the [Connectors](/docs/connectors) page for the full list.
+- Check the [Connectors](/docs/connectors/overview) page for the full list.
 
 ### 3. Migrate Data Maps
 

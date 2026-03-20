@@ -282,4 +282,4 @@ function processNewEmails() returns error? {
 
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet rows to CRM contacts
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS notifications on Salesforce events
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

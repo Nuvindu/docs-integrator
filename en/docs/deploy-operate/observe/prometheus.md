@@ -182,5 +182,5 @@ groups:
 ## What's Next
 
 - [Grafana](grafana.md) -- Visualize Prometheus metrics with dashboards
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture
 - [Datadog](datadog.md) -- Forward Prometheus metrics to Datadog

@@ -150,6 +150,6 @@ Follow these conventions for consistent, discoverable projects:
 
 ## What's Next
 
-- [Open an Existing Integration](open-integration.md) -- Work with projects already on disk
+- [Open an Existing Integration](open-integration-or-project.md) -- Work with projects already on disk
 - [Explore Sample Integrations](explore-samples.md) -- Learn from built-in examples
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand the artifact types in your project
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your project

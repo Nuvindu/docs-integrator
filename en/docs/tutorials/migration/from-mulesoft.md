@@ -179,7 +179,7 @@ For each MuleSoft connector:
 - **File/FTP** --> `ballerina/ftp`, `ballerina/io`
 - **JMS** --> `ballerinax/java.jms` or migrate to Kafka
 - **Email** --> `ballerina/email`
-- Check the [Connectors](/docs/connectors) page for the full list.
+- Check the [Connectors](/docs/connectors/overview) page for the full list.
 
 ### 4. Convert Flow Logic
 
