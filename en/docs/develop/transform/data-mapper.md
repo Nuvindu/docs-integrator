@@ -4,6 +4,9 @@ title: Visual Data Mapper
 description: Drag-and-drop data transformation tool for mapping between schemas.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Visual Data Mapper
 
 The visual data mapper lets you transform data between source and target schemas using a drag-and-drop interface in VS Code. It generates type-safe Ballerina code from your visual mappings, keeping the source code as the single source of truth.
@@ -12,7 +15,15 @@ The visual data mapper lets you transform data between source and target schemas
 
 There are two ways to launch the data mapper from the WSO2 Integrator VS Code extension.
 
-### From a CodeLens hint
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Open the **Ballerina Visualizer** panel in VS Code.
+2. Click **+ Add Artifact** and select **Data Mapper** under **Other Artifacts**.
+3. Choose the source and target types from your project.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 Define an expression-bodied function with a placeholder return value, and click the **Visualize** CodeLens that appears above it:
 
@@ -35,15 +46,22 @@ function transform(Input input) returns Output => {
 };
 ```
 
-### From the Visualizer
-
-1. Open the **Ballerina Visualizer** panel in VS Code.
-2. Click **+ Add Artifact** and select **Data Mapper** under **Other Artifacts**.
-3. Choose the source and target types from your project.
+</TabItem>
+</Tabs>
 
 ## Source and Target Schema Definition
 
 The data mapper derives its source and target panels from Ballerina record types. Define closed records with explicit field types so the mapper can display all available fields.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Navigate to **Types** in the sidebar and click **+** to add a new type.
+2. Define your source and target records to use in the data mapper.
+3. Once both types are defined, the mapper shows input fields on the left and output fields on the right.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Source schema — incoming order from an external API
@@ -75,14 +93,21 @@ type LineItem record {|
 |};
 ```
 
-Once both types are defined, the mapper shows input fields on the left and output fields on the right.
+</TabItem>
+</Tabs>
 
 ## Field-Level Mapping
 
 Click an input field and then click the corresponding output field to create a mapping connection. A solid line appears between compatible fields. If the field types match directly, no additional transformation is needed.
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
 - **Direct mapping** -- click `customerEmail` on the left, then `contact` on the right to connect them.
 - **Type mismatch** -- a red line indicates incompatible types. Hover over the error indicator and select **Fix by editing expression** to open the inline expression editor.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Generated code from a direct field mapping
@@ -94,9 +119,18 @@ function transform(OrderRequest input) returns InternalOrder => {
 };
 ```
 
+</TabItem>
+</Tabs>
+
 ## Conditional Mappings
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
 Use the expression editor to add conditional logic within a mapping. The mapper supports Ballerina's ternary operator and `match` expressions.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Conditional mapping: apply discount based on item quantity
@@ -109,9 +143,20 @@ function mapLineItem(OrderLine line) returns LineItem => {
 };
 ```
 
+</TabItem>
+</Tabs>
+
 ## Array and Collection Handling
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
 When mapping arrays, the data mapper uses Ballerina query expressions under the hood. You can flatten, filter, or reshape array elements.
+
+The mapper supports `where`, `let`, `limit`, `order by`, `join`, and `outer join` clauses for array transformations.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function transform(OrderRequest input) returns InternalOrder => {
@@ -129,11 +174,18 @@ function transform(OrderRequest input) returns InternalOrder => {
 };
 ```
 
-The mapper supports `where`, `let`, `limit`, `order by`, `join`, and `outer join` clauses for array transformations.
+</TabItem>
+</Tabs>
 
 ## Nested Object Mapping
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
 For deeply nested structures, the mapper lets you expand parent fields to reveal child fields. Connect child fields individually, or map an entire nested record at once when the structures align.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 type Address record {|
@@ -167,9 +219,20 @@ function flatten(SourceCustomer input) returns FlatCustomer => {
 };
 ```
 
+</TabItem>
+</Tabs>
+
 ## Custom Transformation Functions
 
 You can reference helper functions from within the data mapper. Define reusable transformation logic as separate Ballerina functions and invoke them in mapping expressions.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Reference your custom functions (e.g., `formatPhone()`) in the expression editor when mapping a field.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Helper function for formatting phone numbers
@@ -182,7 +245,8 @@ function formatPhone(string raw) returns string {
 }
 ```
 
-Reference `formatPhone()` in the expression editor when mapping a phone number field.
+</TabItem>
+</Tabs>
 
 ## Generated Code
 

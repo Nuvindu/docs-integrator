@@ -4,6 +4,9 @@ title: EDI Processing
 description: Parse, transform, and generate EDI documents.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # EDI Processing
 
 Work with Electronic Data Interchange (EDI) formats used in supply chain, healthcare, and financial integrations. Ballerina provides the `ballerina/edi` module for parsing and serializing EDI data, and the `bal edi` CLI tool for generating type-safe code from EDI schemas.
@@ -59,6 +62,15 @@ bal edi convertEdifactSchema -i edifact/ORDERS_D96A.sef -o schemas/edifact_order
 
 Once you have generated code from a schema, parse EDI text into typed Ballerina records.
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add an Action or Variable step** — In the flow designer, use the generated `fromEdiString()` function to parse EDI content into a typed record.
+2. Select the EDI text input and assign the output to your defined record type.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
 ```ballerina
 import ballerina/io;
 import generated/purchase_order as po;
@@ -79,9 +91,21 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Generating EDI Output
 
 Build EDI documents from Ballerina records and serialize them to the standard text format.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Construct the Record** — In the flow designer, use a **Variable** step to define the record that holds your EDI data.
+2. **Serialize to EDI** — Add an **Action** step and call the generated `toEdiString()` function to convert the record into an EDI text string.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -107,9 +131,21 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Low-Level EDI Processing
 
 For dynamic or schema-less scenarios, use the `ballerina/edi` module directly to parse EDI into JSON.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Load Schema** — Add a **Variable** step in the flow designer to read your schema JSON and initialize the `edi:EdiSchema`.
+2. **Parse to JSON** — Use an **Action** step to call `edi:fromEdiString()` with your dynamic schema to parse the EDI content into JSON.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/edi;
@@ -127,9 +163,21 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## EDI to JSON/XML Conversion
 
 A common integration pattern is converting EDI documents to JSON or XML for downstream systems.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Parse EDI** — Use an **Action** step to parse the EDI text into a typed record using the generated function.
+2. **Convert to JSON/XML** — Add a **Variable** step and use the `.toJson()` method or the `xmldata:toXml()` function to convert the parsed record into JSON or XML.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -150,6 +198,9 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Creating EDI Packages
 
 Bundle multiple EDI schemas into a reusable Ballerina package so other teams can parse EDI messages with a single import.
@@ -161,11 +212,23 @@ bal edi packagegen -i schemas/ -o edi_library/
 
 Consumers of the package can then parse EDI documents in a single line:
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Import the Package** — Ensure your generated EDI package is available in your workspace.
+2. **Use the Parser** — In the flow designer, add an **Action** step referencing the imported package's `fromEdiString()` function to parse the EDI content.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
 ```ballerina
 import acme/edi_library.purchase_order as po;
 
 po:PurchaseOrder order = check po:fromEdiString(ediContent);
 ```
+
+</TabItem>
+</Tabs>
 
 ## Best Practices
 
