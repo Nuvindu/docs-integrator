@@ -311,6 +311,6 @@ function processOrderIdempotent(Order order) returns error? {
 
 ## What's Next
 
-- [Data Persistence](data-persistence.md) -- Store and retrieve data from your automations
+- [Data Persistence](supporting/data-persistence.md) -- Store and retrieve data from your automations
 - [Configuration Management](/docs/develop/design-logic/configuration-management) -- Environment-specific scheduling
 - [Error Handling](/docs/develop/design-logic/error-handling) -- Handle automation failures

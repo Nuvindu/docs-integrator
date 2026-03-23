@@ -131,4 +131,4 @@ docker run -d --name zipkin \
 
 - [Jaeger](jaeger.md) -- Alternative distributed tracing with Jaeger
 - [Elastic Stack](elastic.md) -- Use Elasticsearch for trace storage and log aggregation
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture

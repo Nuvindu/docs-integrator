@@ -1,0 +1,115 @@
+.breadcrumbRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.breadcrumbLink {
+  color: var(--ifm-breadcrumb-color-active, var(--ifm-font-color-base));
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  transition: background-color 0.15s ease;
+}
+
+.breadcrumbLink:hover {
+  background-color: var(--ifm-breadcrumb-item-background-active, rgba(0, 0, 0, 0.05));
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+}
+
+.separator {
+  color: var(--ifm-color-emphasis-500, #999);
+  margin: 0 0.15rem;
+  user-select: none;
+}
+
+/* Version dropdown wrapper */
+.versionDropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.versionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ifm-color-emphasis-300, #ccc);
+  border-radius: 8px;
+  background: var(--ifm-background-color, #fff);
+  color: var(--ifm-font-color-base);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1.4;
+}
+
+.versionButton:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary);
+}
+
+.chevron {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Floating dropdown menu */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  min-width: 120px;
+  padding: 0.35rem 0;
+  background: var(--ifm-background-color, #fff);
+  border: 1px solid var(--ifm-color-emphasis-300, #ccc);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  margin: 0;
+}
+
+.dropdownItem {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  white-space: nowrap;
+  color: var(--ifm-font-color-base);
+}
+
+.dropdownItem:hover {
+  background-color: var(--ifm-color-emphasis-100, rgba(0, 0, 0, 0.04));
+}
+
+.dropdownItemActive {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  background-color: rgba(255, 103, 0, 0.06);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .versionButton {
+  border-color: var(--ifm-color-emphasis-400, #555);
+}
+
+[data-theme='dark'] .dropdownMenu {
+  border-color: var(--ifm-color-emphasis-400, #555);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}

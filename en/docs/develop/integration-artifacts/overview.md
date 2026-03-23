@@ -98,6 +98,6 @@ Every artifact follows the same lifecycle:
 
 ## What's Next
 
-- [Services](services.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
-- [Event Handlers](event-handlers.md) -- React to messages from brokers and external systems
+- [Services](service/http-service.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
+- [Event Handlers](event/kafka.md) -- React to messages from brokers and external systems
 - [Design Logic](/docs/develop/design-logic/overview) -- Build the logic inside your artifacts

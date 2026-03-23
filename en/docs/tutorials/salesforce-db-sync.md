@@ -39,7 +39,7 @@ A bidirectional sync integration that keeps Salesforce contacts in sync with a P
 - WSO2 Integrator VS Code extension installed
 - Salesforce developer account with API access and CDC enabled for the Contact object
 - PostgreSQL database
-- Basic familiarity with [Connectors](/docs/connectors)
+- Basic familiarity with [Connectors](/docs/connectors/overview)
 
 **Time estimate:** 30--45 minutes
 

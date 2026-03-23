@@ -137,4 +137,4 @@ Create alert policies in New Relic:
 
 - [Datadog](datadog.md) -- Alternative full-stack observability platform
 - [Prometheus](prometheus.md) -- Self-managed metrics collection
-- [Observability Overview](index.md) -- Full observability architecture
+- [Observability Overview](overview.md) -- Full observability architecture

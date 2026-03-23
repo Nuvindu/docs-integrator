@@ -386,4 +386,4 @@ function sendFailureNotification(InventoryReservedEvent event) returns error? {
 - [Data Service with bal persist](data-service-persist.md) -- Build a full CRUD data service
 - [RESTful API with Data Mapper](restful-api-data-mapper.md) -- Use the visual data mapper for transformations
 - [Kafka Event Processing Pipeline](../kafka-event-pipeline.md) -- End-to-end Kafka walkthrough
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

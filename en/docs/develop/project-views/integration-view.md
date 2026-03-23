@@ -52,5 +52,5 @@ All views stay synchronized in real time.
 
 ## What's Next
 
-- [Design Integration Logic](/docs/develop/design-logic) -- Build logic using the flow designer
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand artifact types
+- [Design Integration Logic](/docs/develop/design-logic/overview) -- Build logic using the flow designer
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand artifact types

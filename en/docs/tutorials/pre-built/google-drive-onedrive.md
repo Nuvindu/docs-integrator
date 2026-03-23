@@ -257,4 +257,4 @@ function hasMatchingChecksum(map<string> checksums, SyncFile file) returns boole
 
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet data to your CRM
 - [FTP EDI to Salesforce Opportunity](ftp-edi-salesforce.md) -- Process files from FTP servers
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

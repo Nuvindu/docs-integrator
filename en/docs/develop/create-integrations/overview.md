@@ -53,11 +53,11 @@ The `Ballerina.toml` file identifies the project and declares its dependencies. 
 ## Guides
 
 - [Create a New Integration](create-new-integration.md) -- Start a new project from scratch or from a template
-- [Open an Existing Integration](open-integration.md) -- Open and work with projects on disk or from version control
+- [Open an Existing Integration](open-integration-or-project.md) -- Open and work with projects on disk or from version control
 - [Explore Sample Integrations](explore-samples.md) -- Browse and learn from built-in examples
-- [Import External Integrations](import-external.md) -- Import projects from other tools or formats
+- [Import External Integrations](migrate-3rd-party-integrations.md) -- Import projects from other tools or formats
 
 ## What's Next
 
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Learn about the different artifact types you can create
-- [Design Logic](/docs/develop/design-logic) -- Build your integration logic visually or in code
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Learn about the different artifact types you can create
+- [Design Logic](/docs/develop/design-logic/overview) -- Build your integration logic visually or in code

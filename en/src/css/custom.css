@@ -550,6 +550,11 @@ table td, table th {
   transition: background-color 0.15s ease;
 }
 
+/* Hide versioned connector docs from the sidebar */
+.menu__list-item.hidden {
+  display: none;
+}
+
 .breadcrumbs__link:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }

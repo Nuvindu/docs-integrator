@@ -176,4 +176,4 @@ function transform(SheetContactRow row) returns SalesforceContact => {
 
 - [Gmail to Salesforce Leads](gmail-salesforce-leads.md) -- Parse incoming emails and create leads with AI
 - [MySQL to Salesforce Products](mysql-salesforce-products.md) -- Sync database records to Salesforce
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

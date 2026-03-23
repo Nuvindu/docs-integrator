@@ -336,4 +336,4 @@ function lookupPricebookEntry(string productCode) returns string?|error {
 
 - [Shopify to Outlook Welcome Email](shopify-outlook-email.md) -- Send welcome emails for new customers
 - [MySQL to Salesforce Products](mysql-salesforce-products.md) -- Sync product catalogs from a database
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors

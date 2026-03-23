@@ -216,4 +216,4 @@ function processPricingEvent(PricingEvent event) returns error? {
 
 - [MySQL to Salesforce Products](mysql-salesforce-products.md) -- Sync product catalogs from a database
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS on Salesforce events
-- [Connectors Reference](../../connectors/overview.md) -- Explore all available connectors
+- [Connectors Reference](../../connectors/overview) -- Explore all available connectors
