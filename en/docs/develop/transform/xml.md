@@ -15,6 +15,22 @@ Work with XML data -- common in enterprise and legacy system integrations. Balle
 
 Create XML values directly in Ballerina code using backtick templates. The `xml` type covers elements, text nodes, comments, and processing instructions.
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step** — In the flow designer, click **+** and select **Variable**. Set the type to `xml` and enter an XML backtick template as the expression.
+
+2. **Use embedded expressions** — Reference variables inside XML templates using `${variableName}` syntax. Each XML variable appears as a separate **Declare Variable** step in the flow.
+
+   ![Flow designer showing Declare Variable steps for XML literal construction including dynamic expressions](/img/develop/transform/xml/xml-literals-flow.png)
+
+3. **Configure the expression** — Click a variable node to view and edit the XML template expression in the side panel.
+
+   ![Side panel showing the dynamic XML variable with embedded expression](/img/develop/transform/xml/xml-literals-dynamic-panel.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
 ```ballerina
 import ballerina/io;
 
@@ -43,7 +59,20 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ### XML text and comments
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Add **Variable** steps with the type set to `xml` for each XML node type — text, comment, or processing instruction. Each appears as a **Declare Variable** step in the flow.
+
+![Flow designer showing Declare Variable steps for XML text, comment, and processing instruction nodes](/img/develop/transform/xml/xml-text-comments-flow.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Text node
@@ -56,9 +85,32 @@ xml comment = xml `<!--Processing complete-->`;
 xml pi = xml `<?xml-stylesheet type="text/xsl" href="style.xsl"?>`;
 ```
 
+</TabItem>
+</Tabs>
+
 ## Navigating XML
 
 Access child elements, attributes, and text content using Ballerina's XML navigation methods.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Navigate child elements** — Add a **Variable** step with the expression `catalog/<product>` to select child elements by name, or `catalog/*` to select all children.
+
+2. **Access text content** — Use `.data()` in a variable expression (for example, `(firstProduct/<name>).data()`) to extract text content from an element.
+
+3. **Access attributes** — Use `.getAttributes()["attributeName"]` to read element attributes.
+
+4. **Filter descendants** — Use `catalog/**/<name>` to find all matching elements at any depth.
+
+   ![Flow designer showing Declare Variable steps for XML navigation including child access, text content, attributes, and descendant filtering](/img/develop/transform/xml/xml-navigating-flow.png)
+
+5. **View the expression** — Click a variable node to see the navigation expression in the side panel.
+
+   ![Side panel showing the products variable with catalog child access expression](/img/develop/transform/xml/xml-navigating-child-panel.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -97,9 +149,24 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## XML Namespaces
 
 Handle namespaced XML using `xmlns` declarations in Ballerina.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Declare namespace bindings** — The `xmlns` declarations in the code appear implicitly in the flow. Add **Variable** steps that use namespace-prefixed XML templates and navigation expressions.
+
+2. **Navigate namespaced elements** — Use the namespace prefix in navigation expressions (for example, `nsOrder/<cmn:customer>`).
+
+   ![Flow designer showing Declare Variable steps for namespaced XML construction and navigation](/img/develop/transform/xml/xml-namespaces-flow.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 public function main() {
@@ -116,9 +183,31 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Iterating Over XML
 
 Use `foreach` or query expressions to process XML sequences.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Foreach step** — Click **+** and select **Foreach** under **Control**. In the configuration panel, specify:
+
+   | Field | Description |
+   |---|---|
+   | **Collection** | The XML sequence to iterate over (for example, `items/<item>`) |
+   | **Variable** | The loop variable name bound to each XML element |
+
+2. **Add steps inside the loop** — Add **Variable** steps inside the loop body to extract data using XML navigation expressions like `(item/<sku>).data()`.
+
+3. **Use query expressions** — For filtering, add a **Variable** step with a query expression as the value.
+
+   ![Flow designer showing a Foreach node iterating over XML items with variable extraction steps inside the loop body](/img/develop/transform/xml/xml-iterating-flow.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -146,9 +235,24 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## XML Mutation
 
 Modify XML structures by setting children or attributes.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step** — Create a **Variable** step with the type set to `xml:Element` and initialize it with the XML literal.
+
+2. **Add a Custom Expression step** — Click **+** and select **Custom Expression**. Enter the mutation expression (for example, `doc.setChildren(xml '...')`). The `setChildren` call appears as a **Custom Expression** node in the flow.
+
+   ![Flow designer showing a Declare Variable step for the XML document followed by a Custom Expression step for setChildren](/img/develop/transform/xml/xml-mutation-flow.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 public function main() {
@@ -158,6 +262,9 @@ public function main() {
     doc.setChildren(xml `<status>completed</status><updatedAt>2025-01-15</updatedAt>`);
 }
 ```
+
+</TabItem>
+</Tabs>
 
 ## XML to record conversion
 
