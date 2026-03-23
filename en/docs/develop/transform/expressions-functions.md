@@ -4,6 +4,9 @@ title: Expressions & Functions
 description: String, date/time, math, and collection functions for data transformation.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Expressions & Functions
 
 Use built-in expressions and functions to transform data within your integrations. Ballerina provides a rich standard library for string manipulation, date/time processing, math operations, and collection handling.
@@ -21,6 +24,30 @@ Ballerina expressions can be used wherever a value is expected -- in variable as
 ## String Functions
 
 The `ballerina/lang.string` module (available as `string:` prefix) provides functions for common text operations.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the input string** — In the flow designer, click **+** and select **Variable**. Set the type to `string` and the expression to `"  Hello, World!  "`.
+
+2. **Add Variable steps for each string operation** — Click **+** and select **Variable** for each operation:
+
+   - **Trim** — Set the type to `string` and the expression to `input.trim()`.
+   - **Upper case** — Set the type to `string` and the expression to `"hello".toUpperAscii()`.
+   - **Lower case** — Set the type to `string` and the expression to `"HELLO".toLowerAscii()`.
+   - **Substring** — Set the type to `string` and the expression to `"Hello, World!".substring(7)`.
+   - **Starts with** — Set the type to `boolean` and the expression to `"order-123".startsWith("order")`.
+   - **Ends with** — Set the type to `boolean` and the expression to `"file.csv".endsWith(".csv")`.
+   - **Index of** — Set the type to `int?` and the expression to `"Hello, World!".indexOf("World")`.
+   - **Includes** — Set the type to `boolean` and the expression to `"integration".includes("grat")`.
+   - **Split** — Set the type to `string[]` and the expression to `"a,b,c".split(",")`.
+   - **Join** — Set the type to `string` and the expression to `string:'join("-", "x", "y", "z")`.
+   - **Length** — Set the type to `int` and the expression to `"Hello".length()`.
+
+   <!-- ![Flow designer showing Variable steps for string function operations](/img/develop/transform/expressions-functions/expressions-string-functions-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -55,9 +82,32 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ### Regular expressions
 
 Ballerina supports regex patterns with the `re` literal prefix for matching, replacing, and splitting.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the input string** — Click **+** and select **Variable**. Set the type to `string` and the expression to `"Order: ORD-12345, Date: 2025-03-15"`.
+
+2. **Add a Variable step for the regex pattern** — Click **+** and select **Variable**. Set the type to `regexp:RegExp` and the expression to `` re `ORD-\d+` ``.
+
+3. **Add a Variable step for find** — Click **+** and select **Variable**. Set the type to `regexp:Span?` and the expression to `orderPattern.find(input)`.
+
+4. **Add an If step to check the match** — Click **+** and select **If**. Set the condition to `match is regexp:Span`. Inside the **If** block, add a **Variable** step with type `string` and expression `match.substring()`.
+
+5. **Add a Variable step for replaceAll** — Click **+** and select **Variable**. Set the type to `string` and the expression to `` re `\D`.replaceAll("abc-123-def-456", "") ``.
+
+6. **Add a Variable step for split** — Click **+** and select **Variable**. Set the type to `string[]` and the expression to `` re `,\s*`.split("one, two,three ,  four") ``.
+
+   <!-- ![Flow designer showing Variable steps for regex operations](/img/develop/transform/expressions-functions/expressions-regex-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/lang.regexp;
@@ -81,9 +131,30 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Date and Time Functions
 
 The `ballerina/time` module handles time zones, formatting, parsing, and arithmetic on timestamps.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the current UTC time** — Click **+** and select **Variable**. Set the type to `time:Utc` and the expression to `time:utcNow()`.
+
+2. **Add a Variable step to parse an ISO 8601 string** — Click **+** and select **Variable**. Set the type to `time:Civil` and the expression to `check time:civilFromString("2025-03-15T10:30:00Z")`.
+
+3. **Add a Variable step to format a civil time** — Click **+** and select **Variable**. Set the type to `string` and the expression to `check time:civilToString(civil)`.
+
+4. **Add a Variable step for time arithmetic** — Click **+** and select **Variable**. Set the type to `time:Utc` and the expression to `time:utcAddSeconds(now, 3600)`.
+
+5. **Add a Variable step for the time difference** — Click **+** and select **Variable**. Set the type to `decimal` and the expression to `time:utcDiffSeconds(later, now)`.
+
+   <!-- ![Flow designer showing Variable steps for date and time operations](/img/develop/transform/expressions-functions/expressions-datetime-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/time;
@@ -112,7 +183,22 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ### Working with time zones
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step to parse the UTC time** — Click **+** and select **Variable**. Set the type to `time:Civil` and the expression to `check time:civilFromString("2025-03-15T10:00:00Z")`.
+
+2. **Add a Variable step for the timezone-converted time** — Click **+** and select **Variable**. Set the type to `time:Civil` and the expression to a `time:Civil` record literal with `utcOffset: {hours: -8, minutes: 0}` for PST.
+
+   <!-- ![Flow designer showing Variable steps for timezone conversion](/img/develop/transform/expressions-functions/expressions-timezone-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/time;
@@ -133,9 +219,46 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Math Functions
 
 The `ballerina/lang.int`, `ballerina/lang.float`, and `ballerina/lang.decimal` modules provide numeric operations.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add Variable steps for parsing numbers from strings** — Click **+** and select **Variable** for each:
+
+   - **Integer** — Set the type to `int` and the expression to `check intLib:fromString("42")`.
+   - **Float** — Set the type to `float` and the expression to `check floatLib:fromString("3.14")`.
+   - **Decimal** — Set the type to `decimal` and the expression to `check decimalLib:fromString("29.99")`.
+
+2. **Add Variable steps for integer operations** — Click **+** and select **Variable** for each:
+
+   - **Absolute value** — Set the type to `int` and the expression to `intLib:abs(-42)`.
+   - **Max** — Set the type to `int` and the expression to `intLib:max(10, 20)`.
+   - **Min** — Set the type to `int` and the expression to `intLib:min(10, 20)`.
+
+3. **Add Variable steps for float operations** — Click **+** and select **Variable** for each:
+
+   - **Round** — Set the type to `float` and the expression to `floatLib:round(3.7)`.
+   - **Floor** — Set the type to `float` and the expression to `floatLib:floor(3.7)`.
+   - **Ceiling** — Set the type to `float` and the expression to `floatLib:ceiling(3.2)`.
+   - **Square root** — Set the type to `float` and the expression to `floatLib:sqrt(16.0)`.
+
+4. **Add Variable steps for decimal operations** — Click **+** and select **Variable** for each:
+
+   - **Subtotal** — Set the type to `decimal` and the expression to `99.99d`.
+   - **Tax** — Set the type to `decimal` and the expression to `subtotal * 0.08d`.
+   - **Total** — Set the type to `decimal` and the expression to `subtotal + tax`.
+   - **Rounded total** — Set the type to `decimal` and the expression to `decimalLib:round(total, 2)`.
+
+   <!-- ![Flow designer showing Variable steps for math operations](/img/develop/transform/expressions-functions/expressions-math-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/lang.'int as intLib;
@@ -169,9 +292,32 @@ public function main() returns error? {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Collection Functions
 
 Ballerina provides functional-style operations on arrays and maps through `ballerina/lang.array` and `ballerina/lang.map`.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the numbers array** — Click **+** and select **Variable**. Set the type to `int[]` and initialize it with `[3, 1, 4, 1, 5, 9, 2, 6]`.
+
+2. **Add Variable steps for each collection operation** — Click **+** and select **Variable** for each:
+
+   - **Sort** — Set the type to `int[]` and the expression to `numbers.sort()`.
+   - **Reverse** — Set the type to `int[]` and the expression to `numbers.reverse()`.
+   - **Length** — Set the type to `int` and the expression to `numbers.length()`.
+   - **Map** — Set the type to `string[]` and the expression to `` numbers.map(n => string `#${n}`) ``.
+   - **Filter** — Set the type to `int[]` and the expression to `numbers.filter(n => n > 4)`.
+   - **Reduce** — Set the type to `int` and the expression to `numbers.reduce(function(int acc, int n) returns int => acc + n, 0)`.
+   - **Slice** — Set the type to `int[]` and the expression to `numbers.slice(2, 5)`.
+
+   <!-- ![Flow designer showing Variable steps for collection operations](/img/develop/transform/expressions-functions/expressions-collections-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
@@ -204,7 +350,28 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ### Map operations
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the inventory map** — Click **+** and select **Variable**. Set the type to `map<int>` and initialize it with `{"widget": 50, "gadget": 12, "gizmo": 0}`.
+
+2. **Add Variable steps for map operations** — Click **+** and select **Variable** for each:
+
+   - **Keys** — Set the type to `string[]` and the expression to `inventory.keys()`.
+   - **Values** — Set the type to `int[]` and the expression to `inventory.toArray()`.
+   - **Has key** — Set the type to `boolean` and the expression to `inventory.hasKey("widget")`.
+
+3. **Add a Foreach step to iterate entries** — Click **+** and select **Foreach**. Set the collection expression to `inventory.entries()` and the iteration variable to `[string, int] [name, qty]`. Add steps inside the loop body to process each entry.
+
+   <!-- ![Flow designer showing Variable steps and Foreach for map operations](/img/develop/transform/expressions-functions/expressions-map-ops-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 public function main() {
@@ -224,9 +391,30 @@ public function main() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Writing Custom Functions
 
 Define reusable transformation functions to keep your integration logic modular.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Custom functions appear under **Functions** in the sidebar. To create and use them:
+
+1. **Navigate to Functions** — In the sidebar, click **Functions** to view the list of helper functions in your project.
+
+2. **Add the `maskEmail` function** — Click **+** to add a new function. Name it `maskEmail`, set the parameter to `string email`, and the return type to `string`. Implement the logic to mask the email prefix — use `email.indexOf("@")` to find the `@` position, then construct the masked result with `email.substring(0, 2) + "***" + email.substring(atIndex)`.
+
+3. **Add the `formatCurrency` function** — Click **+** to add a new function. Name it `formatCurrency`, set the parameters to `decimal amount` and `string symbol = "$"`, and the return type to `string`. Set the expression to `` string `${symbol}${decimalRound(amount, 2)}` ``.
+
+4. **Add the `decimalRound` helper function** — Click **+** to add a new function. Name it `decimalRound`, set the parameters to `decimal val` and `int places`, and the return type to `decimal`. Implement the rounding logic using a factor-based approach.
+
+   <!-- ![Functions sidebar showing maskEmail, formatCurrency, and decimalRound functions](/img/develop/transform/expressions-functions/expressions-custom-functions-flow.png) -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Mask sensitive data
@@ -253,6 +441,9 @@ function decimalRound(decimal val, int places) returns decimal {
     return <decimal>(<int>(val * factor + 0.5d)) / factor;
 }
 ```
+
+</TabItem>
+</Tabs>
 
 ## Using Expressions in the Visual Designer
 
