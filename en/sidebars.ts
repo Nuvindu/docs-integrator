@@ -16,20 +16,19 @@ import { connectorVersionedDocs } from './src/utils/sidebarUtils';
  *   Reference         — "What's the exact syntax / config / API for Z?"
  */
 const sidebars: SidebarsConfig = {
-  // ─────────────────────────────────────────────
-  // GET STARTED
-  // "I'm new — what is this and how do I begin?"
-  // ─────────────────────────────────────────────
-  getStartedSidebar: [
-        {
-          type: 'category',
-          label: 'What is WSO2 Integrator?',
-          items: [
-            'get-started/overview',
-            'get-started/why-wso2-integrator',
-            'get-started/key-concepts',
-          ],
-        },
+  mainSidebar: [
+    // ─────────────────────────────────────────────
+    // GET STARTED
+    // "I'm new — what is this and how do I begin?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Get Started',
+      collapsed: true,
+      link: { type: 'doc', id: 'get-started/overview' },
+      items: [
+        'get-started/why-wso2-integrator',
+        'get-started/key-concepts',
         {
           type: 'category',
           label: 'Set Up',
@@ -53,13 +52,19 @@ const sidebars: SidebarsConfig = {
             'get-started/quick-start-ai-agent',
           ],
         },
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // DEVELOP
-  // "How do I build, transform, and test X?"
-  // ─────────────────────────────────────────────
-  developSidebar: [
+    // ─────────────────────────────────────────────
+    // DEVELOP
+    // "How do I build, transform, and test X?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Develop',
+      collapsed: true,
+      link: { type: 'doc', id: 'develop/overview' },
+      items: [
         // 6.1 Create Integrations
         {
           type: 'category',
@@ -243,14 +248,19 @@ const sidebars: SidebarsConfig = {
             'develop/tools/scan-tool',
           ],
         },
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // CONNECTORS
-  // "Can I connect to Y?"
-  // ─────────────────────────────────────────────
-  connectorsSidebar: [
-    { type: 'doc', id: 'connectors/overview' },
+    // ─────────────────────────────────────────────
+    // CONNECTORS
+    // "Can I connect to Y?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Connectors',
+      collapsed: true,
+      link: { type: 'doc', id: 'connectors/overview' },
+      items: [
     // ── Connector Catalog ──
     {
       type: 'category',
@@ -1517,14 +1527,19 @@ const sidebars: SidebarsConfig = {
         'connectors/build-your-own/custom-development',
       ],
     }
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // GENAI
-  // "How do I build AI agents, RAG, or MCP?"
-  // ─────────────────────────────────────────────
-  genaiSidebar: [
-        'genai/overview',
+    // ─────────────────────────────────────────────
+    // GENAI
+    // "How do I build AI agents, RAG, or MCP?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'GenAI',
+      collapsed: true,
+      link: { type: 'doc', id: 'genai/overview' },
+      items: [
         // Getting Started
         {
           type: 'category',
@@ -1729,13 +1744,19 @@ const sidebars: SidebarsConfig = {
             'genai/reference/troubleshooting',
           ],
         },
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // TUTORIALS
-  // "Show me a complete, real example"
-  // ─────────────────────────────────────────────
-  tutorialsSidebar: [
+    // ─────────────────────────────────────────────
+    // TUTORIALS
+    // "Show me a complete, real example"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Tutorials',
+      collapsed: true,
+      link: { type: 'doc', id: 'tutorials/overview' },
+      items: [
         // Walkthroughs
         {
           type: 'category',
@@ -1817,13 +1838,19 @@ const sidebars: SidebarsConfig = {
             'tutorials/migration/from-boomi',
           ],
         },
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // DEPLOY & OPERATE
-  // "How do I ship, run, and secure this?"
-  // ─────────────────────────────────────────────
-  deployOperateSidebar: [
+    // ─────────────────────────────────────────────
+    // DEPLOY & OPERATE
+    // "How do I ship, run, and secure this?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Deploy & Operate',
+      collapsed: true,
+      link: { type: 'doc', id: 'deploy-operate/overview' },
+      items: [
         // Deploy
         {
           type: 'category',
@@ -1899,13 +1926,19 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/capacity-planning/performance-reports',
           ],
         },
-  ],
+      ],
+    },
 
-  // ─────────────────────────────────────────────
-  // REFERENCE
-  // "What's the exact syntax / config / API for Z?"
-  // ─────────────────────────────────────────────
-  referenceSidebar: [
+    // ─────────────────────────────────────────────
+    // REFERENCE
+    // "What's the exact syntax / config / API for Z?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Reference',
+      collapsed: true,
+      link: { type: 'doc', id: 'reference/overview' },
+      items: [
         // Language
         {
           type: 'category',
@@ -1975,6 +2008,8 @@ const sidebars: SidebarsConfig = {
             'reference/release-notes',
           ],
         },
+      ],
+    },
   ],
 };
 

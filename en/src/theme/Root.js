@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from '@docusaurus/router';
 import { Prism } from 'prism-react-renderer';
 
 // Make Prism available globally so extensions can reach it
@@ -45,6 +46,36 @@ Prism.languages.ballerina = {
   punctuation: /[{}[\];(),.:]/,
 };
 
+// Fix navbar active state for unified sidebar — only highlight the
+// tab whose path matches the current URL.
+const sectionPaths = [
+  '/docs/get-started',
+  '/docs/develop',
+  '/docs/connectors',
+  '/docs/genai',
+  '/docs/tutorials',
+  '/docs/deploy-operate',
+  '/docs/reference',
+];
+
+function useNavbarActiveState() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const links = document.querySelectorAll('.navbar__items .navbar__link');
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || !sectionPaths.some((p) => href.startsWith(p))) return;
+      const section = sectionPaths.find((p) => href.startsWith(p));
+      if (section && pathname.startsWith(section)) {
+        link.classList.add('navbar__link--active');
+      } else {
+        link.classList.remove('navbar__link--active');
+      }
+    });
+  }, [pathname]);
+}
+
 export default function Root({ children }) {
+  useNavbarActiveState();
   return <>{children}</>;
 }
