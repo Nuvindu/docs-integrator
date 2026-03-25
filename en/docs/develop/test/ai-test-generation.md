@@ -1,12 +1,15 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: AI-Generated Test Cases
 description: Use AI to automatically generate test cases for your integrations.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # AI-Generated Test Cases
 
-Let AI analyze your integration code and generate test cases automatically. The WSO2 Integrator extension for VS Code uses AI to produce Ballerina test functions based on your service definitions, resource functions, and data transformation logic.
+Let AI analyze your integration code and generate test cases automatically. WSO2 Integrator uses AI to produce Ballerina test functions based on your service definitions, resource functions, and data transformation logic.
 
 ## How AI Test Generation Works
 
@@ -21,21 +24,32 @@ The generated tests use the standard `ballerina/test` framework, so they integra
 
 ## Generating Tests for a Service
 
-### Step 1: Open Your Service File
+### Step 1: Open your service
 
-Open the Ballerina source file that contains the service or functions you want to test.
+Open the service you want to test in the visual designer or the code editor.
 
-### Step 2: Trigger AI Test Generation
+### Step 2: Trigger AI test generation
 
 Use one of these methods:
 
-- **CodeLens** -- Click the **Generate Tests** link that appears above a service or function definition.
-- **Command Palette** -- Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **WSO2 Integrator: Generate Tests**.
-- **Right-click menu** -- Right-click inside a function body and select **Generate Tests** from the context menu.
+1. **Visual designer** -- In the Service Designer, click **Generate Tests** in the toolbar or from the resource action menu.
+2. **Code editor** -- Click the **Generate Tests** CodeLens link that appears above a service or function definition.
 
-### Step 3: Review the Generated Output
+:::tip Other ways to trigger generation
+You can also press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **WSO2 Integrator: Generate Tests**, or right-click inside a function body and select **Generate Tests** from the context menu.
+:::
+
+### Step 3: Review the generated output
 
 The AI creates a new test file (or appends to an existing one) in the `tests/` directory. For a service like:
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+In the Service Designer, the service shows its Listener (`http:Listener` on port `9090`), Base Path (`/api`), and a list of resources — `GET /orders` and `POST /orders`. Each resource function appears as a selectable item in the designer.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/http;
@@ -52,6 +66,9 @@ service /api on new http:Listener(9090) {
     }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 The AI might generate:
 
@@ -178,6 +195,6 @@ Use the coverage report to guide where you write additional manual tests to comp
 
 ## What's Next
 
-- [Debugging in VS Code](debugging.md) -- Debug failing tests step-by-step
+- [Debugging](/docs/develop/debugging/editor-debugging) -- Debug failing tests step-by-step
 - [Code Coverage](code-coverage.md) -- Measure and improve test coverage
 - [Unit Testing](unit-testing.md) -- Test framework fundamentals and assertions

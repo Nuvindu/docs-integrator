@@ -1,12 +1,18 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 title: Execute Tests
-description: Run Ballerina tests from CLI and IDE, configure parallel execution, and manage test output.
+description: Run Ballerina tests from the visual designer, CLI, and code editor, configure parallel execution, and manage test output.
 ---
 
 # Execute Tests
 
-Run your integration tests using the Ballerina CLI or directly from VS Code. This page covers all the ways to execute tests, control parallelism, filter test runs, and interpret results.
+Run your integration tests from the visual designer, the Ballerina CLI, or the code editor. This page covers all the ways to execute tests, control parallelism, filter test runs, and interpret results.
+
+## Running Tests from the Visual Designer
+
+Open your project in WSO2 Integrator and click **Run** (▷) in the toolbar to build and execute all tests. Test results appear in the terminal panel below the designer.
+
+<!-- TODO: Screenshot of visual designer test execution -->
 
 ## Running Tests from the CLI
 
@@ -23,16 +29,20 @@ bal test --module transforms
 bal test mypackage
 ```
 
-## Running Tests from VS Code
+## Running Tests from the Code Editor
 
-The WSO2 Integrator extension for VS Code provides integrated test execution.
+The WSO2 Integrator code editor provides integrated test execution.
 
-<!-- TODO: Screenshot of VS Code test runner panel -->
+<!-- TODO: Screenshot of code editor test runner panel -->
 
-1. **Run a single test** -- Click the green play button next to any `@test:Config` function
-2. **Run all tests in a file** -- Click the play button at the top of a test file
-3. **Run all tests** -- Use the Testing panel in the sidebar, or press `Ctrl+Shift+P` and search for "Ballerina: Run All Tests"
-4. **Debug a test** -- Click the debug icon next to a test function to run it with breakpoints enabled
+1. **Run a single test** -- Click the green play button next to any `@test:Config` function.
+2. **Run all tests in a file** -- Click the play button at the top of a test file.
+3. **Run all tests** -- Use the Testing panel in the sidebar.
+4. **Debug a test** -- Click the debug icon next to a test function to run it with breakpoints enabled.
+
+:::tip
+You can also press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Run All Tests**.
+:::
 
 ## Filtering Tests
 
@@ -254,4 +264,4 @@ The `bal test` command returns a non-zero exit code when any test fails, which n
 
 - [Code Coverage](code-coverage.md) -- Measure and improve test coverage
 - [Test Groups & Selective Execution](test-groups.md) -- Organize tests with groups
-- [Debugging in VS Code](/docs/develop/debugging/editor-debugging) -- Debug failing tests step-by-step
+- [Debugging](/docs/develop/debugging/editor-debugging) -- Debug failing tests step-by-step

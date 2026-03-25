@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Unit Testing
 description: Write and run Ballerina test functions for your integrations.
 ---
@@ -142,6 +142,10 @@ function afterEachTest() {
 
 ## Running Tests
 
+### From the visual designer
+
+Open your project in WSO2 Integrator and use the **Run** (▷) button in the toolbar to build and execute your tests. Test results appear in the terminal panel.
+
 ### From the CLI
 
 ```bash
@@ -155,11 +159,14 @@ bal test --tests testAdd
 bal test --groups unit
 ```
 
-### From VS Code
+### From the code editor
 
 1. Click the green **Run** icon that appears above any `@test:Config` function.
 2. Use the **Testing** panel in the sidebar to run or debug all tests at once.
-3. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Run All Tests**.
+
+:::tip
+You can also press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Run All Tests**.
+:::
 
 ## Best Practices
 

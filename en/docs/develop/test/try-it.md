@@ -1,23 +1,35 @@
 ---
 sidebar_position: 1
 title: Built-in Try-It Tool
-description: Send test requests to running services directly from the IDE.
+description: Send test requests to running services directly from WSO2 Integrator.
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Built-in Try-It Tool
 
-The Try-It tool lets you send HTTP requests to your running services without leaving VS Code. It auto-detects your service endpoints and provides a graphical interface for composing requests, setting headers, and inspecting responses.
+The Try-It tool lets you send HTTP requests to your running services directly from WSO2 Integrator. It auto-detects your service endpoints and provides a graphical interface for composing requests, setting headers, and inspecting responses.
 
 ## Opening the Try-It Tool
 
-There are several ways to launch Try-It in VS Code:
+### From the visual designer
 
-1. **CodeLens link** -- When you open a Ballerina service file, a **Try It** CodeLens link appears above each service definition. Click it to open the Try-It panel for that service.
-2. **Command Palette** -- Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Try It** to launch the tool.
-3. **Editor context menu** -- Right-click inside a service definition and select **Try It** from the context menu.
+In the Service Designer or flow diagram view, click **Try It** in the toolbar (next to **Configure** and **More**). A Try-It panel opens on the right side.
+
+<!-- TODO: Screenshot: Service Designer toolbar showing Try It button -->
+<!-- /img/develop/test/try-it/try-it-service-designer-toolbar.png -->
+
+### From the code editor
+
+In the code editor, click the **Try It** CodeLens link that appears above the service definition.
+
+:::tip Other ways to launch Try-It
+You can also launch the Try-It tool from the Command Palette — press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Try It**. Alternatively, right-click inside a service definition and select **Try It** from the context menu.
+:::
 
 :::note
-Your service must be running before you can send requests. Start the service by clicking **Run** in VS Code or executing `bal run` in the terminal.
+Your service must be running before you can send requests. Click **Run** (▷) in the toolbar, or execute `bal run` in the terminal.
 :::
 
 ## Sending Requests to HTTP Services
@@ -26,7 +38,18 @@ Once the Try-It panel opens, it lists all resource functions defined in your ser
 
 ### Selecting an Endpoint
 
-The tool reads your service definition and presents each resource function as a selectable endpoint. For a service like:
+The tool reads your service definition and presents each resource function as a selectable endpoint.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+In the Service Designer, the service displays its Listener, Base Path, and a list of resources. Each resource function appears as a selectable endpoint. Click a resource to open the flow diagram (Start → steps → Error Handler → End) where you can also access the **Try It** button.
+
+<!-- TODO: Screenshot: Service Designer showing resources list -->
+<!-- /img/develop/test/try-it/try-it-service-resources.png -->
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/http;
@@ -47,6 +70,9 @@ service /api on new http:Listener(9090) {
     }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 The Try-It panel displays three endpoints: `GET /api/orders`, `POST /api/orders`, and `GET /api/orders/{id}`.
 
@@ -111,9 +137,10 @@ For services that use WebSocket or other event-driven patterns, the Try-It tool 
 
 WSO2 Integrator automations (scheduled tasks and event-triggered flows) can be tested by triggering them manually:
 
-1. Open the automation source file in VS Code.
-2. Click the **Run** CodeLens above the automation definition.
-3. The automation executes once immediately, and you can inspect the output in the terminal or debug console.
+1. Open the automation in the visual designer and click **Run** (▷) in the toolbar.
+2. The automation executes once immediately, and you can inspect the output in the terminal or debug console.
+
+Alternatively, run `bal run` in the terminal to execute the automation.
 
 This avoids waiting for a scheduled trigger during development.
 
@@ -123,9 +150,9 @@ This avoids waiting for a scheduled trigger during development.
 - **Use the auto-generated payloads** as a starting point and modify specific fields for your test scenario.
 - **Test error paths** -- Send malformed payloads or missing required fields to verify your error handling.
 - **Check response headers** -- Verify that your service returns correct `Content-Type`, caching, and CORS headers.
-- **Combine with debugging** -- Set breakpoints in your service code, then send a request via Try-It to step through the execution.
+- **Combine with debugging** -- Set breakpoints in your service code, then send a request via Try-It to step through the execution. See [Debugging](/docs/develop/debugging/editor-debugging) for details.
 
 ## What's Next
 
 - [Unit Testing](unit-testing.md) -- Automated test suites with assertions
-- [Debugging in VS Code](debugging.md) -- Step through code while testing with Try-It
+- [Debugging](/docs/develop/debugging/editor-debugging) -- Step through code while testing with Try-It

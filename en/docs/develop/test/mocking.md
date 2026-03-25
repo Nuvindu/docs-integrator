@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 7
 title: Mocking External Services
 description: Create mock services and test doubles for isolated testing.
 ---

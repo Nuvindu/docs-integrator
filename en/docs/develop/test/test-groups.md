@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 6
 title: Test Groups & Selective Execution
 description: Organize tests into groups and selectively run subsets during development and CI/CD.
 ---

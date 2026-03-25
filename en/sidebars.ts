@@ -179,6 +179,7 @@ const sidebars: SidebarsConfig = {
           label: 'Try & Test',
           items: [
             'develop/test/try-it',
+            'develop/test/ai-test-generation',
             'develop/test/unit-testing',
             'develop/test/test-services-clients',
             'develop/test/data-driven-tests',
@@ -186,7 +187,6 @@ const sidebars: SidebarsConfig = {
             'develop/test/mocking',
             'develop/test/execute-tests',
             'develop/test/code-coverage',
-            'develop/test/ai-test-generation',
           ],
         },
         // 6.7 Debugging & Troubleshooting

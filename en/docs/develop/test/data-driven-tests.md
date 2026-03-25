@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 5
 title: Data-Driven Tests
 description: Run parameterized tests with multiple data sets using Ballerina data providers.
 ---

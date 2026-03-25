@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 4
 title: Test Services & Clients
 description: Write integration tests for HTTP services, clients, and listener-based components.
 ---
