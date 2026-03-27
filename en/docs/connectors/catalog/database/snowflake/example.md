@@ -1,4 +1,4 @@
-# Snowflake Connector Example
+# Example
 
 ## What you'll build
 
