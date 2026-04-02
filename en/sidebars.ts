@@ -356,6 +356,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/database/aws.redshift/setup-guide',
             'connectors/catalog/database/aws.redshift/action-reference',
+            'connectors/catalog/database/aws-redshift/example',
           ],
         },
         {
