@@ -39,7 +39,7 @@ On the canvas, click **+ Add Connection** (or the **+** button in the Connection
 
 ## Configuring the OracleDB connection
 
-### Step 3: Bind connection parameters to Configurable variables
+### Step 3: Bind connection parameters to configurable variables
 
 In the **Configure OracleDB** dialog, scroll down to the **Advanced Configurations** section and expand it. Bind each of the following fields to a Configurable variable so values can be supplied at runtime:
 
