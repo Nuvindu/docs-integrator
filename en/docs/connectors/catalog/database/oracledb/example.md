@@ -63,11 +63,11 @@ In the **Configure OracleDB** dialog, scroll down to the **Advanced Configuratio
 1. In the left panel, click **Configurations** (at the bottom of the project tree, under Data Mappers).
 2. Set a value for each configurable listed below:
 
-- **oracleHost** — string — hostname or IP address of your Oracle Database server
-- **oraclePort** — int — port on which Oracle Database listens (commonly 1521)
-- **oracleDatabase** — string — Oracle service name or SID (for example, `ORCL`)
-- **oracleUser** — string — database username
-- **oraclePassword** — string — database password
+- **oracleHost** : string : hostname or IP address of your Oracle Database server
+- **oraclePort** : int : port on which Oracle Database listens (commonly 1521)
+- **oracleDatabase** : string : Oracle service name or SID (for example, `ORCL`)
+- **oracleUser** : string : database username
+- **oraclePassword** : string : database password
 
 ## Configuring the OracleDB execute operation
 
