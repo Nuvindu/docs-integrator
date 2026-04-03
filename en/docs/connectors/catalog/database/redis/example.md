@@ -41,13 +41,13 @@ In the left sidebar of the WSO2 Integrator panel, click **Connections**, then cl
 
 ## Configuring the Redis connection
 
-### Step 3: Bind Redis connection parameters to Configurable variables
+### Step 3: Bind Redis connection parameters to configurable variables
 
 The Redis connector uses a **Connection URI** approach. Click **Expand** under "Advanced Configurations" to reveal all connection parameters. For each connection parameter field, open the helper panel beside the field, navigate to the **Configurables** tab, and either select an existing configurable or click **+ New Configurable**—supply a descriptive camelCase name and the appropriate type, then click Save. The configurable is automatically injected into the field. Repeat this for every field before saving.
 
-- **`connectionUri`** — the full Redis connection URI; configures the host, port, and authentication in a single URI string
-- **`connectionPooling`** — whether to enable connection pooling for the Redis client
-- **`isClusterConnection`** — whether this connection targets a Redis cluster rather than a single standalone node
+- **`connectionUri`**: the full Redis connection URI; configures the host, port, and authentication in a single URI string
+- **`connectionPooling`**: whether to enable connection pooling for the Redis client
+- **`isClusterConnection`**: whether this connection targets a Redis cluster rather than a single standalone node
 
 ![Redis connection form showing all parameters bound to Configurable variables before saving](/img/connectors/catalog/database/redis/redis_screenshot_02_connection_form.png)
 
@@ -61,13 +61,13 @@ Click **Save Connection** to persist the Redis connection configuration. The Red
 
 In the left panel of WSO2 Integrator, click **Configurations** (listed at the bottom of the project tree, under Data Mappers) to open the Configurations panel. Set a value for each configurable listed below:
 
-- **`redisConnectionUri`** (string) — the full Redis connection URI for your server
-- **`redisConnectionPooling`** (boolean) — set to `true` to enable connection pooling, or `false` to disable it
-- **`redisIsClusterConnection`** (boolean) — set to `true` if connecting to a Redis cluster, or `false` for a standalone server
+- **`redisConnectionUri`** (string): the full Redis connection URI for your server
+- **`redisConnectionPooling`** (boolean): set to `true` to enable connection pooling, or `false` to disable it
+- **`redisIsClusterConnection`** (boolean): set to `true` if connecting to a Redis cluster, or `false` for a standalone server
 
 ## Configuring the Redis set operation
 
-### Step 6: Add an Automation trigger
+### Step 6: Add an automation trigger
 
 1. In the left sidebar, hover over **Entry Points** and click the **Add Entry Point** button (**+** icon).
 2. In the artifact picker, click **Automation** to add a new Automation entry point.
@@ -83,8 +83,8 @@ In the left panel of WSO2 Integrator, click **Configurations** (listed at the bo
 3. Scroll down in the operations list and click **Set** to open its configuration panel.
 4. Fill in the operation fields and set the result variable name to `setResult` to capture the operation's return value.
 
-- **`key`** — the Redis key to write; identifies the entry in the data store
-- **`value`** — the string value to store at the specified key
+- **`key`**: the Redis key to write; identifies the entry in the data store
+- **`value`**: the string value to store at the specified key
 
 ![Redis set operation configuration panel showing key and value fields filled](/img/connectors/catalog/database/redis/redis_screenshot_05_operation_filled.png)
 
