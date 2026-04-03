@@ -16,7 +16,7 @@ You design integrations visually in the [WSO2 Integrator IDE](https://wso2.com/i
 
 The platform follows a three-layer architecture:
 
-1. Design time : WSO2 Integrator IDE with visual designer, code editor, and AI assistance.
+1. Design time : WSO2 Integrator IDE with a visual designer and a code editor (both enhanced by AI assistance).
 2. Runtime : Ballerina-powered execution engine with built-in networking, concurrency, and type safety.
 3. Deployment : Deploy anywhere: Docker, Kubernetes, cloud providers, or as a SaaS.
 
@@ -45,7 +45,7 @@ This is the key differentiator. Every integration can be built two ways, and bot
 - Low-code (visual designer) : Drag-and-drop components, configure properties visually, see the flow as a diagram
 - Pro-code (Ballerina editor) : Write code directly with full IDE support, auto-complete, and type checking
 
-Changes in one view are instantly reflected in the other. There's no "export" step and no loss of fidelity.
+Changes in one view are instantly reflected in the other. There's no "export" step and no loss of fidelity. Both experiences are further enhanced by AI assistance to speed up development.
 
 ## Powered by Ballerina
 
