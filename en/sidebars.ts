@@ -1545,6 +1545,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/communication/twilio/setup-guide',
             'connectors/catalog/communication/twilio/action-reference',
             ...connectorVersionedDocs('connectors/catalog/communication/twilio'),
+            'connectors/catalog/communication/twilio/example',
           ],
         },
         {
