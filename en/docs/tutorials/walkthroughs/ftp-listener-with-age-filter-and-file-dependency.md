@@ -90,10 +90,6 @@ configurable int ftpPort = 21;
 configurable string ftpUser = "admin";
 configurable string ftpPassword = "admin";
 
-configurable string watchPath = "/orders/";
-configurable string processedPath = "/processed/orders/";
-configurable string failedPath = "/failed/orders/";
-
 configurable decimal minAgeSeconds = 30;
 configurable decimal maxAgeSeconds = 3600;
 ```
