@@ -1307,6 +1307,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/database/postgresql/setup-guide',
             'connectors/catalog/database/postgresql/action-reference',
             'connectors/catalog/database/postgresql/trigger-reference',
+            'connectors/catalog/database/postgresql/example',
           ],
         },
         {
