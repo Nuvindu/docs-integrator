@@ -1620,6 +1620,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/zoom.meetings/setup-guide',
             'connectors/catalog/communication/zoom.meetings/action-reference',
+            'connectors/catalog/communication/zoom.meetings/example',
           ],
         },
         {
