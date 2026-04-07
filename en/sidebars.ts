@@ -1477,6 +1477,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/security-identity/scim/setup-guide',
             'connectors/catalog/security-identity/scim/action-reference',
+            'connectors/catalog/security-identity/scim/example',
           ],
         },
         {
