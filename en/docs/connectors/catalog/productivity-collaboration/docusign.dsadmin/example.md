@@ -101,7 +101,7 @@ Try this sample in WSO2 Integration Platform.
 The DocuSign Admin connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-docusign.dsadmin/tree/main/examples).
 
 1. [Manage user information with DocuSign Admin](https://github.com/ballerina-platform/module-ballerinax-docusign.dsadmin/tree/main/examples/manage-user-information)
-    This example shows how to use DocuSign Admin API to to create users and retrieve user informations related to eSignature tasks.
+    This example shows how to use the DocuSign Admin API to create users and retrieve user information related to eSignature tasks.
 
 2. [Access permissions in user accounts](https://github.com/ballerina-platform/module-ballerinax-docusign.dsadmin/tree/main/examples/permissions-in-organizations)
-    This example shows how to use DocuSign Admin API to to view permission details of the user accounts.
+    This example shows how to use the DocuSign Admin API to view permission details of user accounts.
