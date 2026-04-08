@@ -1477,6 +1477,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/marketing-social/salesforce.marketingcloud/setup-guide',
             'connectors/catalog/marketing-social/salesforce.marketingcloud/action-reference',
+            'connectors/catalog/marketing-social/salesforce.marketingcloud/example',
           ],
         },
         {
