@@ -4,6 +4,9 @@ title: Persist tool
 description: Generate type-safe data persistence clients for multiple data stores using bal persist.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Persist tool
 
 The `bal persist` tool generates type-safe client APIs for data persistence across multiple data stores. You define your data model using Ballerina record types, and the tool generates the client code to perform CRUD operations without writing store-specific queries.
@@ -19,7 +22,79 @@ The `bal persist` tool generates type-safe client APIs for data persistence acro
 | Google Sheets | `ballerinax/persist.googlesheets` |
 | Redis | `ballerinax/persist.redis` |
 
-## Initialize a persist project
+## Connect to a database
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+The Visual Designer provides a guided wizard to connect to an existing database, introspect its tables, and generate a type-safe connection.
+
+### Step 1: Add a connection
+
+1. In the **Artifacts** page, click **Connection** under **Other Artifacts**.
+2. In the **Add Connection** panel, select **Connect to a Database**. The supported database systems are **MySQL**, **MSSQL**, and **PostgreSQL**.
+
+   ![Add connection panel](/img/develop/tools/persist-tool/add-connection.png)
+
+### Step 2: Introspect database
+
+1. Select the **Database System** (MySQL, MSSQL, or PostgreSQL).
+2. Enter the database credentials:
+   - **Host** — Database server host address.
+   - **Port** — Database server port (for example, `3306` for MySQL).
+   - **Database** — Name of the database to connect.
+   - **User** — Database username.
+   - **Password** — Database user password.
+3. Click **Connect & Introspect Database**.
+
+   ![Introspect database credentials](/img/develop/tools/persist-tool/introspect-database.png)
+
+### Step 3: Select tables
+
+1. Choose which tables to include in this connector. You can search for tables or click **Select All**.
+2. Click **Continue to Connection Details**.
+
+   ![Select database tables](/img/develop/tools/persist-tool/select-tables.png)
+
+### Step 4: Create connection
+
+1. Enter a **Connection Name** (for example, `MySQLDatabase`).
+2. Review the **Connection Configurables** — configurable variables are generated for the connection host, port, username, password, and database name with default values.
+3. Click **Save**.
+
+   ![Connection name and configurables](/img/develop/tools/persist-tool/connection-name.png)
+
+### Working with the connection
+
+Once the connection is saved, it appears in the design view as a connection artifact.
+
+   ![Design view showing database connection](/img/develop/tools/persist-tool/design-view-connection.png)
+
+Click **Edit** on the connection to update connection details. From the edit panel, you can:
+
+- Click **Edit Connector** to modify the underlying database connector.
+- Click **View ER Diagram** to visualize the entity relationships between the selected tables.
+- Update connection settings such as **Host**, **Port**, **User**, **Password**, and **Database**.
+
+   ![Edit connection panel](/img/develop/tools/persist-tool/edit-connection.png)
+
+### Use connection functions in integration logic
+
+When designing integration logic in the flow diagram, the connection functions appear in the **Connections** panel. These provide pre-built CRUD operations for each selected table, such as:
+
+- Get rows / Get row
+- Insert rows
+- Update row
+- Delete row
+
+   ![Connection functions in flow designer](/img/develop/tools/persist-tool/connection-functions.png)
+
+Each function provides advanced configuration options where you can set **Where Clause**, **Order By Clause**, **Limit Clause**, **Result** variable name, and **Target Type** to select specific fields from the table.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Initialize a persist project
 
 ```bash
 # Add persist support to an existing project
@@ -31,7 +106,7 @@ bal persist init
 
 This creates a `persist` directory with a `model.bal` file where you define your data model.
 
-## Define a data model
+### Define a data model
 
 Define entities as Ballerina record types in `persist/model.bal`. Mark primary key fields as `readonly`:
 
@@ -50,7 +125,7 @@ type Department record {|
 |};
 ```
 
-## Generate the client
+### Generate the client
 
 ```bash
 # Generate client API (integrates with build)
@@ -60,16 +135,12 @@ bal persist generate --datastore mysql
 bal persist pull --datastore mysql --host localhost --port 3306 --user root --database mydb
 ```
 
-## Use the generated client
+### Use the generated client
 
 The generated client provides type-safe resource methods for CRUD operations:
 
 ```ballerina
 import ballerina/persist;
-
-configurable string dbHost = ?;
-configurable string dbUser = ?;
-configurable string dbPassword = ?;
 
 final Client sClient = check new ();
 
@@ -90,6 +161,9 @@ Employee|error deleted = sClient->/employees/1.delete();
 // List all records
 stream<Employee, error?> employees = sClient->/employees;
 ```
+
+</TabItem>
+</Tabs>
 
 ## Command reference
 
