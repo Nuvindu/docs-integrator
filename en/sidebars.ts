@@ -1586,6 +1586,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/marketing-social/twitter/setup-guide',
             'connectors/catalog/marketing-social/twitter/action-reference',
+            'connectors/catalog/marketing-social/twitter/example',
           ],
         },
         {
