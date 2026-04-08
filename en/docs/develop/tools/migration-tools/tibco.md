@@ -4,6 +4,9 @@ title: Migrate from TIBCO BusinessWorks
 description: Migrate TIBCO BusinessWorks integrations to WSO2 Integrator with automated code generation.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Migrate from TIBCO BusinessWorks
 
 ## Overview
@@ -11,6 +14,59 @@ description: Migrate TIBCO BusinessWorks integrations to WSO2 Integrator with au
 The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Ballerina code. It handles process flows, activities, transitions, shared resources, and error handling configurations.
 
 ## Run the TIBCO migration tool
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+The migration wizard guides you through a 3-step process to convert your TIBCO BusinessWorks project into a WSO2 Integrator project.
+
+### Step 1: Select source project
+
+1. Open WSO2 Integrator and select **Migrate External Integration**.
+2. Select **TIBCO** as the source platform.
+3. Under **Select Your Project Folder**, click **Browse** and select your TIBCO BusinessWorks project folder or main configuration file.
+4. Under **Configure TIBCO Settings**, set the following:
+   - **Migrate Multiple Projects** — Enable this option to process all TIBCO projects in the selected folder.
+5. Click **Start Migration**.
+
+   ![Select TIBCO source project](/img/develop/tools/migration-tools/tibco-select-source.png)
+
+### Step 2: Static migration progress
+
+After the migration completes, the wizard displays a summary of the migration coverage:
+
+- **Migration Coverage** — Percentage of activities that were automatically migrated.
+- **Total Projects** — Number of TIBCO projects analyzed.
+- **Total activities** — Total number of TIBCO activities analyzed.
+- **Migratable activities** — Activities successfully converted to Ballerina.
+- **Non-migratable activities** — Activities that require manual attention.
+
+   ![Migration progress showing coverage statistics](/img/develop/tools/migration-tools/tibco-migration-progress.png)
+
+Click **View Aggregate Report** to see a detailed migration report. The report includes:
+
+- **Overview** — Number of projects analyzed, total lines of code generated, and average automated migration coverage.
+- **Manual Work Estimation** — Estimated effort for completing non-migratable items.
+- **Per-project breakdown** — Individual coverage and manual work estimation for each migrated project.
+- **Currently Unsupported Elements** — List of elements that could not be automatically migrated.
+
+   ![Full migration report](/img/develop/tools/migration-tools/tibco-migration-report.png)
+
+Click **Save Reports** to download the report for future reference, then click **Next**.
+
+### Step 3: Configure project
+
+1. Under **Select Path**, click **Browse** and choose where to save the migrated integrations.
+2. Enable **Create a new folder for the packages** to organize migrated projects, and enter a **Folder Name**.
+3. Under **AI Enhancement**, select one of the following:
+   - **Enable AI Enhancement** — AI automatically resolves unmapped elements, fixes build errors, and improves the quality of the migration.
+   - **Skip for Now – Enhance Later** — Open the project as-is. You can trigger AI enhancement later from the BI Copilot.
+4. Click **Create and Start AI Enhancement** (or **Create** if you chose to skip AI enhancement).
+
+   ![Configure migrated project](/img/develop/tools/migration-tools/tibco-configure-project.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```bash
 # Migrate a TIBCO BusinessWorks project
@@ -22,6 +78,9 @@ bal migrate tibco -i /path/to/tibco-project/ --version 6 -o migrated/
 # Generate report only
 bal migrate tibco -i /path/to/tibco-project/ --report-only
 ```
+
+</TabItem>
+</Tabs>
 
 ## Component mapping
 
@@ -47,9 +106,47 @@ bal migrate tibco -i /path/to/tibco-project/ --report-only
 
 ## Example: TIBCO process to Ballerina service
 
-**TIBCO BusinessWorks process:**
+**TIBCO BusinessWorks process (XML):**
+```xml
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003"
+                       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <pd:name>GetOrder</pd:name>
+    <pd:startName>HTTP Receiver</pd:startName>
+    <pd:endName>Send HTTP Response</pd:endName>
 
-A typical TIBCO process that receives an HTTP request, queries a database, transforms the result, and returns a response.
+    <pd:activity name="HTTP Receiver">
+        <pd:type>com.tibco.plugin.http.HTTPEventSource</pd:type>
+        <config>
+            <sharedChannel>/SharedResources/HTTP Connection.sharedhttp</sharedChannel>
+            <outputMode>String</outputMode>
+            <Methods>GET</Methods>
+            <ResourceURI>/api/orders/{orderId}</ResourceURI>
+        </config>
+    </pd:activity>
+
+    <pd:activity name="Log Request">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <config>
+            <message>Processing order request</message>
+        </config>
+    </pd:activity>
+
+    <pd:activity name="Query Database">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <config>
+            <jdbcSharedConfig>/SharedResources/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>SELECT name, total FROM orders WHERE id = ?</statement>
+        </config>
+    </pd:activity>
+
+    <pd:activity name="Send HTTP Response">
+        <pd:type>com.tibco.plugin.http.HTTPSendResponseActivity</pd:type>
+        <config>
+            <responseCode>200</responseCode>
+        </config>
+    </pd:activity>
+</pd:ProcessDefinition>
+```
 
 **Generated Ballerina code:**
 ```ballerina
@@ -80,26 +177,4 @@ service /api/orders on new http:Listener(8090) {
         };
     }
 }
-```
-
-## Migration report
-
-After migration, the tool generates a report listing successfully migrated components, items needing manual review, and unsupported features that require manual implementation.
-
-```
-Migration Report: OrderProcessing
-===================================
-
-Migrated Successfully:
-  - Process: GetOrder.process -> get_order_service.bal
-  - HTTP Receiver: /api/orders -> http:Listener resource
-  - JDBC Query: OrderLookup -> mysql:Client query
-
-Requires Manual Review:
-  - Shared Connection: JDBC_Connection -> Needs Config.toml configuration
-  - Custom Java Activity: com.example.Transform -> Rewrite or use Java interop
-
-Unsupported (Manual Migration Required):
-  - RV Transport: EventPublisher -> Replace with appropriate messaging connector
-  - XSLT Transformation: OrderTransform -> Replace with Ballerina data mapping
 ```
