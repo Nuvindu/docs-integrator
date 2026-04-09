@@ -1369,6 +1369,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap/setup-guide',
             'connectors/catalog/erp-business/sap/action-reference',
+            'connectors/catalog/erp-business/sap/example',
           ],
         },
         {
