@@ -1461,6 +1461,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/example',
           ],
         },
         {
