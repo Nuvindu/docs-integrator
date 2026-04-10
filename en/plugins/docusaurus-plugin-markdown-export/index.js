@@ -32,7 +32,7 @@ module.exports = function pluginMarkdownExport(context, options = {}) {
   async function exportAllDocs(outputBaseDir) {
     let totalExported = 0;
     const docsDir = path.join(siteDir, 'docs');
-    
+
     if (!fs.existsSync(docsDir)) {
       console.warn('[markdown-export] docs directory not found');
       return 0;
@@ -65,6 +65,14 @@ module.exports = function pluginMarkdownExport(context, options = {}) {
 
   return {
     name: 'docusaurus-plugin-markdown-export',
+
+    // Generate during development
+    async loadContent() {
+      console.log('[markdown-export] Generating markdown files for development...');
+      const staticDocsDir = path.join(siteDir, 'static');
+      const totalExported = await exportAllDocs(staticDocsDir);
+      console.log(`[markdown-export] Exported ${totalExported} markdown files to static/docs/`);
+    },
 
     // Generate during build
     async postBuild({ outDir }) {
