@@ -106,7 +106,7 @@ const config: Config = {
         },
         {
           to: '/docs/genai/overview',
-          label: 'GenAI',
+          label: 'AI Integrations',
           position: 'left',
           activeBaseRegex: '/docs/genai(/|$)',
         },
@@ -153,7 +153,7 @@ const config: Config = {
             { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
             { label: 'Connectors', to: '/docs/connectors/overview' },
-            { label: 'GenAI', to: '/docs/genai/overview' },
+            { label: 'AI Integrations', to: '/docs/genai/overview' },
           ],
         },
         {
