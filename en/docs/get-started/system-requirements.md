@@ -1,14 +1,14 @@
 ---
 sidebar_position: 1
-title: System Requirements & Prerequisites
+title: System Requirements and Prerequisites
 description: Hardware, software, and network requirements for WSO2 Integrator development.
 ---
 
-# System Requirements & Prerequisites
+# System Requirements and Prerequisites
 
 Before you install WSO2 Integrator, make sure your development environment meets these requirements.
 
-## Hardware Requirements
+## Hardware requirements
 
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
@@ -16,7 +16,7 @@ Before you install WSO2 Integrator, make sure your development environment meets
 | **Memory (Heap)** | 512 MB | 1 GB+ |
 | **Disk Space** | 2 GB free | 5+ GB free |
 
-## Supported Operating Systems
+## Supported operating systems
 
 | OS | Minimum Version |
 |---|---|
@@ -27,7 +27,7 @@ Before you install WSO2 Integrator, make sure your development environment meets
 
 ARM architectures are supported, including Apple Silicon (M1/M2/M3/M4) and ARM-based Linux.
 
-## Software Requirements
+## Software requirements
 
 | Software | Version | Notes |
 |----------|---------|-------|
@@ -35,7 +35,7 @@ ARM architectures are supported, including Apple Silicon (M1/M2/M3/M4) and ARM-b
 | **Java Runtime (JRE)** | 21 | Required for the Ballerina runtime |
 | **Docker** | 20.10+ | Optional -- for containerized deployment |
 
-### Supported Java Distributions
+### Supported Java distributions
 
 Any JRE 21 distribution works. Tested distributions:
 
@@ -46,7 +46,7 @@ Any JRE 21 distribution works. Tested distributions:
 | OpenJRE | 21 |
 | Oracle JRE | 21 |
 
-### Java Setup
+### Java setup
 
 Install a supported JDK/JRE:
 
@@ -77,7 +77,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ```
 
-## Network Requirements
+## Network requirements
 
 The development environment needs internet access for:
 
@@ -88,6 +88,6 @@ The development environment needs internet access for:
 
 If you're behind a corporate proxy, configure proxy settings in VS Code and in your terminal environment.
 
-## What's Next
+## Next steps
 
 - [Install WSO2 Integrator](install.md) -- Install the VS Code extension and set up Ballerina

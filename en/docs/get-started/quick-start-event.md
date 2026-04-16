@@ -1,12 +1,12 @@
 ---
 sidebar_position: 8
-title: "Quick Start: Event Integration"
+title: "Quick Start: Event-Driven Integration"
 description: Build an event-driven integration that reacts to messages from a message broker.
 ---
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Quick Start: Event Integration
+# Build an Event-Driven Integration
 
 **Time:** Under 10 minutes | **What you'll build:** An event-driven integration that consumes messages from RabbitMQ and processes them.
 
@@ -108,8 +108,9 @@ Event integrations are ideal for reactive workflows triggered by messages from K
 | **Salesforce** | `ballerinax/salesforce` |
 | **GitHub Webhooks** | `ballerinax/github` |
 
-## What's Next
+## Next steps
 
-- [Quick Start: File Integration](quick-start-file.md) -- Process files from FTP or local directories
-- [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Event Handlers](/docs/develop/integration-artifacts/overview) -- Advanced event-driven patterns
+- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
+- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
+- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
+- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories

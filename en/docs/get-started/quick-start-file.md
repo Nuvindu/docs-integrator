@@ -1,13 +1,13 @@
 ---
 sidebar_position: 9
-title: "Quick Start: File Integration"
+title: "Quick Start: File-Driven Integration"
 description: Process files from FTP, SFTP, or local directories.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Quick Start: File Integration
+# Build a File-Driven Integration
 
 **Time:** Under 10 minutes. **What you'll build:** A file integration that adds an `onModify` handler to track file changes and uses `printInfo` to log file modification events.
 
@@ -91,8 +91,9 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 | **FTPS** | FTP over TLS | Secure legacy file exchange |
 | **SFTP** | SSH File Transfer | Secure file exchange |
 
-## What's next
+## Next steps
 
-- [Quick start: Automation](quick-start-automation.md): Build scheduled jobs.
-- [Quick start: Integration as API](quick-start-api.md): Build an HTTP service.
-- [File handlers](/docs/develop/integration-artifacts/overview): Advanced file processing patterns.
+- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
+- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
+- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
+- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers

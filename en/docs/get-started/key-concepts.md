@@ -14,19 +14,23 @@ A workspace that contains your integration code, dependencies, configuration, an
 
 ## Integration
 
-A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator—you compose them from [Services](#services), [Automations](#automations), [Event handlers](#event-handlers), and more.
+A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator—you compose them from [Automations](#automations), [AI agents](#ai-agents), [Services](#services), [Event handlers](#event-handlers), and [File processors](#file-processors).
 
 ## Library
 
 A shareable collection of reusable components, functions, and connectors packaged for distribution. Libraries let you build once and use across multiple projects or share with your team. For more information, see [Organize code](/docs/develop/organize-code/).
 
-## Services
-
-Expose your integrations over HTTP, GraphQL, gRPC, WebSocket, or TCP. Services are the most common artifact—they define endpoints that external systems call.
-
 ## Automations
 
 Scheduled or manually triggered integrations that run without an external request. Use automations for periodic data synchronization, cleanup tasks, or report generation.
+
+## AI agents
+
+Intelligent artifacts backed by large language models (LLMs). Agents can reason, use tools, maintain conversation memory, and orchestrate multi-step workflows.
+
+## Services
+
+Expose your integrations over HTTP, GraphQL, gRPC, WebSocket, or TCP. Services are the most common artifact—they define endpoints that external systems call.
 
 ## Event handlers
 
@@ -35,10 +39,6 @@ Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, or MQTT.
 ## File processors
 
 Integrations triggered by file arrival on FTP, SFTP, or local directories. Process CSV, JSON, XML, or fixed-width files in batch or one at a time.
-
-## AI agents
-
-Intelligent artifacts backed by large language models (LLMs). Agents can reason, use tools, maintain conversation memory, and orchestrate multi-step workflows.
 
 ## Connectors
 

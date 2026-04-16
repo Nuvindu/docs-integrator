@@ -85,7 +85,7 @@ const config: Config = {
       items: [
         {
           to: '/docs/get-started/overview-&-architecture',
-          label: 'Get Started',
+          label: 'Get started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
         },
@@ -136,17 +136,17 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Get Started',
+          title: 'Get started',
           items: [
             { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
             { label: 'Install', to: '/docs/get-started/install' },
-            { label: 'Quick Starts', to: '/docs/get-started/quick-start-api' },
+            { label: 'Quick starts', to: '/docs/get-started/quick-start-automation' },
           ],
         },
         {
           title: 'Develop',
           items: [
-            { label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/overview' },
+            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts/overview' },
             { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
             { label: 'Connectors', to: '/docs/connectors/overview' },
@@ -154,9 +154,9 @@ const config: Config = {
           ],
         },
         {
-          title: 'Deploy & Operate',
+          title: 'Deploy and operate',
           items: [
-            { label: 'Docker & Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
+            { label: 'Docker and Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
             { label: 'CI/CD', to: '/docs/deploy-operate/cicd/github-actions' },
             { label: 'Observe', to: '/docs/deploy-operate/observe/icp' },
             { label: 'Secure', to: '/docs/deploy-operate/secure/authentication' },
