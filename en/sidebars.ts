@@ -664,6 +664,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.automation.actions/setup-guide',
             'connectors/catalog/crm-sales/hubspot.automation.actions/action-reference',
+            'connectors/catalog/crm-sales/hubspot.automation.actions/example',
           ],
         },
         {
