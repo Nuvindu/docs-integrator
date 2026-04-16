@@ -813,6 +813,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagements.email/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagements.email/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagements.email/example',
           ],
         },
         {
