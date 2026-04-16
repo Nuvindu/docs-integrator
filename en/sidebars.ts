@@ -334,15 +334,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'AWS Lambda',
-          link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/aws.lambda/overview' },
-          items: [
-            'connectors/catalog/cloud-infrastructure/aws.lambda/setup-guide',
-            'connectors/catalog/cloud-infrastructure/aws.lambda/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'AWS Marketplace MPE',
           link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/aws.marketplace.mpe/overview' },
           items: [
@@ -438,15 +429,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/azure.ai.search.index/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search.index/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Azure Functions',
-          link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/azure.functions/overview' },
-          items: [
-            'connectors/catalog/cloud-infrastructure/azure.functions/setup-guide',
-            'connectors/catalog/cloud-infrastructure/azure.functions/trigger-reference',
           ],
         },
         {
@@ -1025,15 +1007,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'IDE Trace Provider',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/idetraceprovider/overview' },
-          items: [
-            'connectors/catalog/developer-tools/idetraceprovider/setup-guide',
-            'connectors/catalog/developer-tools/idetraceprovider/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Java JDBC',
           link: { type: 'doc', id: 'connectors/catalog/database/java.jdbc/overview' },
           items: [
@@ -1140,15 +1113,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Moesif',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/moesif/overview' },
-          items: [
-            'connectors/catalog/developer-tools/moesif/setup-guide',
-            'connectors/catalog/developer-tools/moesif/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'MongoDB',
           link: { type: 'doc', id: 'connectors/catalog/database/mongodb/overview' },
           items: [
@@ -1186,15 +1150,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/nats/setup-guide',
             'connectors/catalog/messaging/nats/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'New Relic',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/newrelic/overview' },
-          items: [
-            'connectors/catalog/developer-tools/newrelic/setup-guide',
-            'connectors/catalog/developer-tools/newrelic/action-reference',
           ],
         },
         {
