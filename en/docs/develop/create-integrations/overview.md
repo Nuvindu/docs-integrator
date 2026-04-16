@@ -20,16 +20,14 @@ WSO2 Integrator supports several project types, each tailored to a specific inte
 | **File Handler** | Processes files from FTP, SFTP, or local directories | ETL pipelines, file-based integrations |
 | **AI Agent** | Orchestrates LLM calls with tool functions | Intelligent assistants, RAG applications |
 
-## Creating Your First Project
+## Creating your first project
 
-The fastest way to start is through the **New Integration** wizard in VS Code:
+The fastest way to start is through the creation wizard on the WSO2 Integrator home screen:
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Select **WSO2 Integrator: New Integration**.
-3. Choose a project type and template.
-4. Specify the project name and location.
-
-<!-- TODO: Screenshot of the New Integration wizard -->
+1. Open WSO2 Integrator.
+2. Click **Create** on the **Create New Integration** card.
+3. Enter the integration name and select a directory.
+4. Click **Create Integration**.
 
 The wizard generates a complete Ballerina project with the correct directory structure, dependencies, and a starter template.
 
@@ -39,16 +37,20 @@ Every integration project follows the standard Ballerina project layout:
 
 ```
 my-integration/
+├── .vscode/
+├── .gitignore
+├── agents.bal              # AI agent definitions
+├── automation.bal          # Scheduled and manual automations
 ├── Ballerina.toml          # Project metadata and dependencies
-├── Config.toml             # Runtime configuration
-├── main.bal                # Entry point / service definition
-├── types.bal               # Shared type definitions
+├── config.bal              # Configuration variables
 ├── connections.bal          # Connection configurations
-└── tests/
-    └── main_test.bal       # Unit tests
+├── data_mappings.bal       # Data transformation mappings
+├── functions.bal           # Reusable functions
+├── main.bal                # Entry point / service definition
+└── types.bal               # Shared type definitions
 ```
 
-The `Ballerina.toml` file identifies the project and declares its dependencies. The `Config.toml` file holds environment-specific configuration values such as endpoints, credentials, and feature flags.
+The `Ballerina.toml` file identifies the project and declares its dependencies.
 
 ## Guides
 

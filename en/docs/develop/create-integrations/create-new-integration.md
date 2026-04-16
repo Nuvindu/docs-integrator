@@ -1,155 +1,123 @@
 ---
 sidebar_position: 1
 title: Create a New Integration
-description: Create a new integration project from scratch or use a pre-built template to get started quickly.
+description: Create a new integration using the WSO2 Integrator creation wizard.
 ---
 
-# Create a New Integration
+# Create a new integration
 
-Start a new integration project using the WSO2 Integrator wizard in VS Code. Choose from a blank project or a pre-built template that scaffolds the boilerplate code for common integration scenarios.
+WSO2 Integrator provides a creation wizard to set up new integration projects. Launch it from the home screen and configure the project details to generate a ready-to-use Ballerina project.
 
-## Using the New Integration Wizard
+## Open the creation wizard
 
-Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and select **WSO2 Integrator: New Integration** to launch the wizard.
+When you open WSO2 Integrator, the home screen displays three options for getting started.
 
-<!-- TODO: Screenshot of the New Integration wizard showing template selection -->
+![WSO2 Integrator home screen](/img/create-new-integration/home-screen.png)
 
-### Step 1: Choose a Template
+Click **Create** on the **Create New Integration** card to open the creation wizard.
 
-The wizard presents a list of templates organized by category:
+## Configure the integration
 
-| Category | Templates |
+The creation wizard prompts you to provide the basic details for your integration.
+
+![Create Integration form](/img/create-new-integration/create-integration-form.png)
+
+| Field | Description |
 |---|---|
-| **Services** | HTTP Service, GraphQL Service, gRPC Service, WebSocket Service, WebSub Hub |
-| **Event Handlers** | Kafka Consumer, RabbitMQ Consumer, MQTT Subscriber |
-| **Automations** | Scheduled Task, Manual Trigger |
-| **File Handlers** | FTP File Processor, SFTP File Processor, Local File Watcher |
-| **Data** | Database CRUD Service, Data Persistence Service |
-| **AI** | AI Agent, RAG Application |
+| **Integration Name** | A descriptive name for your integration (e.g., `order-sync-service`). |
+| **Project Name** | The name of the project that contains this integration. |
+| **Create within a project** | Enabled by default. Creates a project workspace that can hold multiple integrations and libraries in a single repository. Uncheck this to create a standalone integration. |
+| **Select Path** | The directory where the integration files are created. Click **Browse** to choose a folder. The full path preview appears below the field. |
 
-Select **Blank Project** if you want to start from an empty Ballerina project.
+### Create within a project
 
-### Step 2: Configure the Project
+By default, the **Create within a project** checkbox is enabled. In this mode, WSO2 Integrator creates a project workspace that can contain multiple integrations and libraries with shared dependencies.
 
-Enter the following details:
+1. Enter the **Integration Name**.
+2. Enter the **Project Name**.
+3. Select the directory using **Browse**.
+4. Click **Create Integration**.
 
-- **Project Name** -- A descriptive name (e.g., `order-sync-service`). This becomes the Ballerina package name.
-- **Organization** -- Your Ballerina Central organization (e.g., `mycompany`).
-- **Location** -- The directory where the project will be created.
-
-<!-- TODO: Screenshot of the project configuration step -->
-
-### Step 3: Review and Create
-
-The wizard shows a summary of the project that will be created. Click **Create** to generate the project files and open them in VS Code.
-
-## What Gets Generated
-
-For an HTTP Service template, the wizard generates:
-
-```ballerina
-// main.bal
-import ballerina/http;
-
-configurable int port = 8090;
-
-service /api on new http:Listener(port) {
-
-    resource function get greeting() returns string {
-        return "Hello, WSO2 Integrator!";
-    }
-
-    resource function post orders(http:Request req) returns http:Created|http:BadRequest {
-        // TODO: Add your integration logic here
-        return http:CREATED;
-    }
-}
-```
-
-The generated `Ballerina.toml` includes the project metadata:
-
-```toml
-[package]
-org = "mycompany"
-name = "order_sync_service"
-version = "0.1.0"
-distribution = "2201.10.0"
-
-[build-options]
-observabilityIncluded = true
-```
-
-And a starter `Config.toml` for runtime configuration:
-
-```toml
-port = 8090
-```
-
-## Creating from the Command Line
-
-You can also create projects using the Ballerina CLI:
-
-```bash
-# Create a new Ballerina package
-bal new order-sync-service
-
-# Create from a specific template
-bal new -t service order-sync-service
-```
-
-After creating the project, open it in VS Code to use the visual designer and WSO2 Integrator tooling.
-
-## Creating a Multi-Module Project
-
-For larger integrations, organize your code into multiple Ballerina modules within a single package:
-
-```bash
-# Create the main package
-bal new inventory-system
-
-# Add modules
-cd inventory-system
-bal add products
-bal add orders
-bal add notifications
-```
-
-This produces the following structure:
+WSO2 Integrator generates the project structure and opens the [project view](../project-views/project-view.md). The file structure for a project contains a root `Ballerina.toml` and a subdirectory for each integration package:
 
 ```
-inventory-system/
+project-name/
+├── .choreo/
+├── .vscode/
+├── integration-name/
+│   ├── .vscode/
+│   ├── .gitignore
+│   ├── agents.bal
+│   ├── automation.bal
+│   ├── Ballerina.toml
+│   ├── config.bal
+│   ├── connections.bal
+│   ├── data_mappings.bal
+│   ├── functions.bal
+│   ├── main.bal
+│   └── types.bal
+└── Ballerina.toml
+```
+
+You can add more integrations and libraries to the project from the project view.
+
+### Create a standalone integration
+
+Uncheck the **Create within a project** checkbox to create a single integration package without a project wrapper.
+
+1. Enter the **Integration Name**.
+2. Uncheck **Create within a project**.
+3. Select the directory using **Browse**.
+4. Click **Create Integration**.
+
+WSO2 Integrator generates the integration files and opens the [integration view](../project-views/integration-view.md). The file structure for a standalone integration contains the Ballerina source files directly:
+
+```
+integration-name/
+├── .vscode/
+├── .gitignore
+├── agents.bal
+├── automation.bal
 ├── Ballerina.toml
-├── Config.toml
+├── config.bal
+├── connections.bal
+├── data_mappings.bal
+├── functions.bal
 ├── main.bal
-├── modules/
-│   ├── products/
-│   │   └── products.bal
-│   ├── orders/
-│   │   └── orders.bal
-│   └── notifications/
-│       └── notifications.bal
-└── tests/
-    └── main_test.bal
+└── types.bal
 ```
 
-Modules can import each other using the package-qualified name:
+The integration view sidebar organizes these files into logical categories: **Entry Points**, **Listeners**, **Connections**, **Types**, **Functions**, **Data Mappers**, and **Configurations**.
 
-```ballerina
-import mycompany/inventory_system.products;
-import mycompany/inventory_system.orders;
-```
+:::tip
+You can convert a standalone integration into a project at any time by clicking the **+** button in the WSO2 Integrator sidebar. This adds a new integration package and wraps both in a project structure.
+:::
 
-## Project Naming Conventions
+## Advanced configurations
 
-Follow these conventions for consistent, discoverable projects:
+Expand the **Advanced Configurations** section to customize the module ID and Ballerina package settings.
 
-- Use lowercase with hyphens for project directories: `order-sync-service`
-- Use underscores in Ballerina package names: `order_sync_service`
-- Prefix with the integration domain: `crm-contact-sync`, `erp-order-export`
-- Keep names concise but descriptive
+![Advanced Configurations](/img/create-new-integration/advanced-configurations.png)
 
-## What's Next
+### Module ID
+
+| Field | Description |
+|---|---|
+| **Project ID** | A unique identifier for your project used in various contexts. This value cannot be changed after creation. |
+
+### Ballerina package
+
+The integration is generated as a Ballerina package. Use these fields to configure the package metadata.
+
+| Field | Description |
+|---|---|
+| **Package Name** | The Ballerina package name. Defaults to the integration name. |
+| **Organization Name** | Your Ballerina Central organization name. Click **Sign In** to pick from your registered organizations. |
+| **Package Version** | The initial version of the package. Defaults to `0.1.0`. |
+
+## What's next
 
 - [Open an Existing Integration](open-integration-or-project.md) -- Work with projects already on disk
-- [Explore Sample Integrations](explore-samples.md) -- Learn from built-in examples
-- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your project
+- [Explore Sample Integrations](explore-samples.md) -- Browse and learn from built-in examples
+- [Project View](../project-views/project-view.md) -- Manage multi-package workspaces
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types you can create
