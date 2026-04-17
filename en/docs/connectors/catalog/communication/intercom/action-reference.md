@@ -3,11 +3,11 @@ title: "Action Reference"
 description: "Full reference for all operations available in the Intercom connector — parameters, return types, and sample code."
 ---
 
-# Action reference
+# Actions
 
 This reference covers all operations exposed by the `ballerinax/intercom` connector. All operations are available on the `intercom:Client`.
 
-## Initialise the client
+## Initialize the client
 
 ```ballerina
 import ballerinax/intercom;

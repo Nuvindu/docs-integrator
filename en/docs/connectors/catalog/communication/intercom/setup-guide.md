@@ -3,7 +3,7 @@ title: "Setup Guide"
 description: "Create an Intercom app and obtain the access token required to use the Intercom connector."
 ---
 
-# Setup guide
+# Setup Guide
 
 This guide walks you through creating an Intercom app and obtaining the access token required to use the Intercom connector.
 
