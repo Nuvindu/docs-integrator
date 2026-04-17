@@ -1023,6 +1023,15 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'Intercom',
+          link: { type: 'doc', id: 'connectors/catalog/communication/intercom/overview' },
+          items: [
+            'connectors/catalog/communication/intercom/setup-guide',
+            'connectors/catalog/communication/intercom/action-reference',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Java JDBC',
           link: { type: 'doc', id: 'connectors/catalog/database/java.jdbc/overview' },
           items: [
