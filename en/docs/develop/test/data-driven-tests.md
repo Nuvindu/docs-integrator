@@ -1,244 +1,99 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 title: Data-Driven Tests
 description: Run parameterized tests with multiple data sets using Ballerina data providers.
 ---
 
-# Data-Driven Tests
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Eliminate repetitive test functions by running the same test logic against multiple input-output combinations. Ballerina's data provider feature feeds different data sets into a single test function, improving coverage while keeping your test code concise.
+Run the same test logic against multiple inputs by attaching a data provider function to a test. The framework calls the test function once per data entry, reporting each case individually so failures are easy to pinpoint.
 
-## Data Providers Overview
+## Configuring a data provider
 
-A data provider is a function that returns a set of test data. You attach it to a test function using the `dataProvider` field in the `@test:Config` annotation. The test framework runs the test function once for each data entry.
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Create a test function as described in [Unit Testing](unit-testing.md). In the **Create New Test** form, expand **Advanced Configurations**.
+
+   ![Advanced Configurations form showing the Data Provider field at the bottom](/img/develop/test/data-driven-tests/data-provider-field.png)
+
+2. In the **Data Provider** field, click the function selector (**fx**) to open the function picker.
+
+   ![Data Provider function selector dropdown showing Inputs, Variables, Configurables, and Functions options](/img/develop/test/data-driven-tests/data-provider-function-select.png)
+
+3. From the dropdown, select **Functions** to pick an existing data provider function from your test file. To create a new one, click **+ New Function**, fill in the function name and return type, then click **Create**.
+
+4. Click **Save**. The selected function is set as the data provider for this test.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+Use the `dataProvider` field in the `@test:Config` annotation to attach a data provider function to a test.
+
+**Array-based data provider** — the framework runs the test once per row. Use this for simple, ordered cases.
 
 ```ballerina
 import ballerina/test;
 
-// Data provider function returns a 2D array of arguments
-function statusCodeData() returns string[][] {
+function dataGen() returns string[][] {
     return [
-        ["completed", "green"],
-        ["pending", "yellow"],
-        ["cancelled", "red"],
-        ["failed", "red"]
+        ["1", "2", "3"],
+        ["10", "20", "30"],
+        ["5", "6", "11"]
     ];
 }
 
 @test:Config {
-    dataProvider: statusCodeData
+    dataProvider: dataGen
 }
-function testStatusToColor(string status, string expectedColor) {
-    string result = getStatusColor(status);
-    test:assertEquals(result, expectedColor);
-}
-
-function getStatusColor(string status) returns string {
-    match status {
-        "completed" => { return "green"; }
-        "pending" => { return "yellow"; }
-        _ => { return "red"; }
-    }
+function stringDataProviderTest(string fValue, string sValue, string result) {
+    int a = checkpanic int:fromString(fValue);
+    int b = checkpanic int:fromString(sValue);
+    test:assertEquals(a + b, checkpanic int:fromString(result));
 }
 ```
 
-## Map-Based Data Providers
-
-Use a map-based data provider for named test cases, making failures easier to identify.
+**Map-based data provider** — each entry has a string key. When a case fails, the report shows the key (e.g., `fruitsDataProviderTest["banana"]`), making it clear which scenario failed.
 
 ```ballerina
 import ballerina/test;
 
-function emailValidationData() returns map<[string, boolean]> {
-    return {
-        "valid_simple": ["user@example.com", true],
-        "valid_subdomain": ["user@mail.example.com", true],
-        "missing_at_sign": ["userexample.com", false],
-        "missing_domain": ["user@", false],
-        "empty_string": ["", false],
-        "valid_with_plus": ["user+tag@example.com", true]
+function dataGen() returns map<[int, int, string]>|error {
+    map<[int, int, string]> dataSet = {
+        "banana": [10, 10, "banana"],
+        "cherry": [5, 5, "cherry"]
     };
+    return dataSet;
 }
 
 @test:Config {
-    dataProvider: emailValidationData
+    dataProvider: dataGen
 }
-function testEmailValidation(string email, boolean expected) {
-    boolean result = isValidEmail(email);
-    test:assertEquals(result, expected,
-        msg = string `Email "${email}" validation failed`);
-}
-
-function isValidEmail(string email) returns boolean {
-    // Simplified validation logic
-    return email.includes("@") && email.length() > 3;
+function fruitsDataProviderTest(int a, int b, string fruit) {
+    test:assertEquals(a + b, 20, msg = fruit);
 }
 ```
 
-When a map-based test case fails, the test report shows the case name (e.g., `testEmailValidation[missing_at_sign]`), making it clear which scenario broke.
+</TabItem>
+</Tabs>
 
-## Record-Based Data Providers
+## Running specific cases
 
-For complex test data, use records to keep data organized and self-documenting.
+To run a single case from a data-driven test, reference the test name and the case identifier:
 
-```ballerina
-import ballerina/test;
+```bash
+# Map-based: use the key name in double quotes
+bal test --tests fruitsDataProviderTest#"banana"
 
-type OrderTestCase record {|
-    string description;
-    decimal subtotal;
-    decimal taxRate;
-    decimal discount;
-    decimal expectedTotal;
-|};
-
-function orderCalculationData() returns map<[OrderTestCase]> {
-    return {
-        "basic_order": [{
-            description: "Basic order with tax, no discount",
-            subtotal: 100.00,
-            taxRate: 0.08,
-            discount: 0.00,
-            expectedTotal: 108.00
-        }],
-        "discounted_order": [{
-            description: "Order with 10% discount",
-            subtotal: 200.00,
-            taxRate: 0.08,
-            discount: 20.00,
-            expectedTotal: 194.40
-        }],
-        "zero_tax": [{
-            description: "Tax-exempt order",
-            subtotal: 50.00,
-            taxRate: 0.00,
-            discount: 0.00,
-            expectedTotal: 50.00
-        }]
-    };
-}
-
-@test:Config {
-    dataProvider: orderCalculationData
-}
-function testOrderTotalCalculation(OrderTestCase tc) returns error? {
-    decimal result = calculateTotal(tc.subtotal, tc.taxRate, tc.discount);
-    test:assertEquals(result, tc.expectedTotal,
-        msg = tc.description);
-}
-
-function calculateTotal(decimal subtotal, decimal taxRate, decimal discount)
-        returns decimal {
-    decimal afterDiscount = subtotal - discount;
-    return afterDiscount + (afterDiscount * taxRate);
-}
+# Array-based: use the row index (zero-based)
+bal test --tests stringDataProviderTest#1
 ```
 
-## Testing HTTP Endpoints with Data Providers
+Wildcard patterns also work — `fruitsDataProviderTest#"b*"` runs all cases whose key starts with `b`.
 
-Combine data providers with service tests to validate multiple request-response scenarios.
+## What's next
 
-```ballerina
-import ballerina/http;
-import ballerina/test;
-
-http:Client testClient = check new ("http://localhost:9090");
-
-function endpointTestData() returns map<[string, string, int]> {
-    return {
-        "valid_user": ["/api/users/U001", "GET", 200],
-        "missing_user": ["/api/users/INVALID", "GET", 404],
-        "health_check": ["/api/health", "GET", 200],
-        "invalid_path": ["/api/nonexistent", "GET", 404]
-    };
-}
-
-@test:Config {
-    dataProvider: endpointTestData
-}
-function testEndpointStatusCodes(string path, string method, int expectedStatus)
-        returns error? {
-    http:Response response = check testClient->execute(method, path, ());
-    test:assertEquals(response.statusCode, expectedStatus,
-        msg = string `${method} ${path} returned unexpected status`);
-}
-```
-
-## Data Providers with External Files
-
-Load test data from JSON files for large or frequently updated test datasets.
-
-```ballerina
-import ballerina/io;
-import ballerina/test;
-
-type TransformTestCase record {|
-    string name;
-    json input;
-    json expectedOutput;
-|};
-
-function transformTestData() returns map<[TransformTestCase]>|error {
-    json rawData = check io:fileReadJson("tests/resources/transform-cases.json");
-    TransformTestCase[] cases = check rawData.fromJsonWithType();
-
-    map<[TransformTestCase]> dataMap = {};
-    foreach TransformTestCase tc in cases {
-        dataMap[tc.name] = [tc];
-    }
-    return dataMap;
-}
-
-@test:Config {
-    dataProvider: transformTestData
-}
-function testDataTransformation(TransformTestCase tc) returns error? {
-    json result = check transformPayload(tc.input);
-    test:assertEquals(result, tc.expectedOutput, msg = tc.name);
-}
-
-function transformPayload(json input) returns json|error {
-    // Transformation logic under test
-    return input;
-}
-```
-
-## Combining Data Providers with Test Groups
-
-Tag data-driven tests with groups for selective execution.
-
-```ballerina
-import ballerina/test;
-
-function criticalPathData() returns string[][] {
-    return [
-        ["create", "201"],
-        ["read", "200"],
-        ["update", "200"],
-        ["delete", "204"]
-    ];
-}
-
-@test:Config {
-    dataProvider: criticalPathData,
-    groups: ["critical", "crud"]
-}
-function testCrudOperations(string operation, string expectedCode) {
-    // Test CRUD operations
-    test:assertTrue(true);
-}
-```
-
-## Best Practices
-
-- **Use map-based providers** over array-based when possible -- named test cases produce clearer failure messages
-- **Keep data providers focused** -- each provider should serve a single test concern
-- **Extract large datasets to files** -- JSON or CSV resource files are easier to maintain than inline arrays
-- **Add descriptive names** to each test case so failures are immediately understandable
-- **Combine with test groups** to run subsets of data-driven tests during development
-
-## What's Next
-
-- [Test Groups & Selective Execution](test-groups.md) -- Organize and filter tests
-- [Test Services & Clients](test-services-clients.md) -- End-to-end service testing
-- [Execute Tests](execute-tests.md) -- Run tests from CLI and IDE
+- [Test Groups](test-groups.md) — run subsets of tests by group tag
+- [Execute Tests](execute-tests.md) — all options for running tests and viewing results
+- [Ballerina — Data-Driven Tests](https://ballerina.io/learn/test-ballerina-code/define-data-driven-tests/) — Ballerina language reference for data providers

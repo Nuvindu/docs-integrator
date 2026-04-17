@@ -7,8 +7,6 @@ description: Use AI to automatically generate test cases for your integrations.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# AI-Generated Test Cases
-
 Let AI analyze your integration code and generate test cases automatically. WSO2 Integrator uses AI to produce Ballerina test functions based on your service definitions, resource functions, and data transformation logic.
 
 ## How AI Test Generation Works

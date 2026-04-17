@@ -33,6 +33,7 @@ const config: Config = {
 
   plugins: [
     './src/plugins/connector-versions',
+    './plugins/docusaurus-plugin-markdown-export',
   ],
 
   themes: [
@@ -57,7 +58,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/wso2/docs-integrator/tree/main/',
+          editUrl: 'https://github.com/wso2/docs-integrator/tree/main/en/',
           showLastUpdateTime: true,
         },
         blog: false,

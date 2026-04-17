@@ -1,158 +1,115 @@
 ---
 sidebar_position: 1
 title: Built-in Try-It Tool
-description: Send test requests to running services directly from WSO2 Integrator.
+description: Test running integrations directly from WSO2 Integrator.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-# Built-in Try-It Tool
+The built-in Try-It tool lets you test your integrations directly from WSO2 Integrator without switching to an external client. It detects your service endpoints and provides an interface for composing requests, setting parameters and headers, and inspecting responses.
 
-The Try-It tool lets you send HTTP requests to your running services directly from WSO2 Integrator. It auto-detects your service endpoints and provides a graphical interface for composing requests, setting headers, and inspecting responses.
+The Try-It tool supports the following integration types:
 
-## Opening the Try-It Tool
+- **HTTP service** — test REST APIs and HTTP resources
+- **MCP server** — test Model Context Protocol servers
+- **Chat agent** — test AI agents through a conversational interface
+- **GraphQL service** — test GraphQL queries through a built-in GraphiQL editor
 
-### From the visual designer
+Clicking **Try It** or **Chat** automatically starts the integration if it is not already running.
 
-In the Service Designer or flow diagram view, click **Try It** in the toolbar (next to **Configure** and **More**). A Try-It panel opens on the right side.
+## Testing HTTP services
 
-<!-- TODO: Screenshot: Service Designer toolbar showing Try It button -->
-<!-- /img/develop/test/try-it/try-it-service-designer-toolbar.png -->
+### Opening the Try-It panel
 
-### From the code editor
+You can open the Try-It panel from the visual designer or directly from the code editor:
 
-In the code editor, click the **Try It** CodeLens link that appears above the service definition.
+- **Service Designer view** — Click **Try It** in the service header toolbar (next to **Configure** and **More**). This opens the Try-It panel listing all resources defined in the service.
+- **Flow diagram view** — Open a specific resource in the flow diagram, then click **Try It** in the toolbar. This opens the Try-It panel scoped to that resource.
+- **Code editor (CodeLens)** — When viewing `main.bal` in the editor, a CodeLens action bar appears above the service declaration showing **Run | Debug | Visualize | Try it**. Click **Try it** to open the Try-It panel without leaving the code editor.
 
-:::tip Other ways to launch Try-It
-You can also launch the Try-It tool from the Command Palette — press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and search for **Ballerina: Try It**. Alternatively, right-click inside a service definition and select **Try It** from the context menu.
-:::
+![Service Designer toolbar with Try It button and Try-It panel open on the right](/img/develop/test/try-it/http-service-tryit-panel.png)
 
-:::note
-Your service must be running before you can send requests. Click **Run** (▷) in the toolbar, or execute `bal run` in the terminal.
-:::
+The Try-It panel on the right lists each resource as a collapsible section with its HTTP method, path, and a request form.
 
-## Sending Requests to HTTP Services
+### Composing and sending a request
 
-Once the Try-It panel opens, it lists all resource functions defined in your service. Select an endpoint to compose a request.
+For each resource, fill in the request details before sending:
 
-### Selecting an Endpoint
+- **Path parameters** — For endpoints with path segments such as `/orders/{id}`, an input field appears for each parameter.
+- **Query parameters** — For endpoints that accept query parameters, dedicated input fields appear below the path.
+- **Headers** — Use the **Headers** section to add `Authorization`, `Content-Type`, or any custom header your service requires.
+- **Request body** — For `POST`, `PUT`, and `PATCH` resources, a body editor appears. The tool auto-generates a sample payload based on your resource's parameter types — edit it to match your test scenario.
 
-The tool reads your service definition and presents each resource function as a selectable endpoint.
+Click the run icon next to the endpoint to dispatch the request.
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-In the Service Designer, the service displays its Listener, Base Path, and a list of resources. Each resource function appears as a selectable endpoint. Click a resource to open the flow diagram (Start → steps → Error Handler → End) where you can also access the **Try It** button.
-
-<!-- TODO: Screenshot: Service Designer showing resources list -->
-<!-- /img/develop/test/try-it/try-it-service-resources.png -->
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-import ballerina/http;
-
-service /api on new http:Listener(9090) {
-
-    resource function get orders() returns json[] {
-        return [{orderId: "ORD-001", status: "pending"}];
-    }
-
-    resource function post orders(http:Request req) returns json|error {
-        json payload = check req.getJsonPayload();
-        return {orderId: "ORD-002", status: "created"};
-    }
-
-    resource function get orders/[string id]() returns json {
-        return {orderId: id, status: "completed"};
-    }
-}
-```
-
-</TabItem>
-</Tabs>
-
-The Try-It panel displays three endpoints: `GET /api/orders`, `POST /api/orders`, and `GET /api/orders/{id}`.
-
-### Setting Path Parameters
-
-For endpoints with path parameters (such as `/api/orders/{id}`), the Try-It tool displays input fields where you fill in each parameter value before sending the request.
-
-### Configuring Headers
-
-Add custom request headers using the **Headers** section in the Try-It panel. Common use cases include:
-
-- `Authorization` -- Bearer tokens or basic auth credentials for secured endpoints.
-- `Content-Type` -- Override the default content type when needed.
-- Custom headers required by your service logic.
-
-### Composing the Request Body
-
-For `POST`, `PUT`, and `PATCH` methods, the Try-It tool provides a body editor. The tool auto-generates a sample payload based on your resource function's parameter types.
-
-```json
-{
-    "itemName": "Laptop Stand",
-    "quantity": 2,
-    "unitPrice": 29.99
-}
-```
-
-Edit the generated payload to match your test scenario, then click **Send**.
-
-### Adding Query Parameters
-
-For endpoints that accept query parameters, the Try-It tool displays dedicated input fields. For example, a resource function `resource function get orders(string? status)` shows a `status` field in the panel.
-
-## Viewing Responses
+### Viewing the response
 
 After sending a request, the response panel displays:
 
-- **Status code** -- The HTTP status code (e.g., `200 OK`, `404 Not Found`).
-- **Response body** -- Formatted JSON, XML, or plain text output with syntax highlighting.
-- **Response headers** -- All headers returned by the service.
-- **Elapsed time** -- How long the request took, useful for spotting performance issues.
+- **Status code** — The HTTP status code (e.g., `200 OK`, `404 Not Found`)
+- **Response body** — Formatted JSON, XML, or plain text with syntax highlighting
+- **Response headers** — All headers returned by the service
+- **Elapsed time** — How long the request took
 
-## Testing with Different Content Types
+## Testing MCP servers
 
-The Try-It tool supports multiple content types for request bodies:
+The Try-It experience for MCP servers follows the same pattern as HTTP services. Open the MCP server in the Service Designer or flow diagram view, then click **Try It** in the toolbar. The panel lists all available MCP tools and lets you invoke them with input parameters.
 
-| Content Type                  | Use Case                          |
-|-------------------------------|-----------------------------------|
-| `application/json`            | JSON payloads (default)           |
-| `application/xml`             | XML message payloads              |
-| `application/x-www-form-urlencoded` | Form submissions           |
-| `multipart/form-data`         | File uploads with form fields     |
-| `text/plain`                  | Plain text messages               |
+## Testing chat agents
 
-Select the appropriate content type from the dropdown before composing your request body.
+For AI chat agents, the Try-It experience is replaced by a conversational chat interface.
 
-## Testing Event-Driven Integrations
+### Opening the chat panel
 
-For services that use WebSocket or other event-driven patterns, the Try-It tool allows you to simulate events. Connect to a WebSocket endpoint and send messages directly from the panel to verify your event handler logic processes messages correctly.
+1. Open the chat agent in the flow diagram view.
+2. Click **Chat** in the toolbar (next to **Tracing: Off**).
 
-## Testing Automations
+![AI Chat Agent flow diagram with Chat button and Agent Chat panel open on the right](/img/develop/test/try-it/chat-agent-chat-panel.png)
 
-WSO2 Integrator automations (scheduled tasks and event-triggered flows) can be tested by triggering them manually:
+The **Agent Chat** panel opens on the right with a text input field at the bottom.
 
-1. Open the automation in the visual designer and click **Run** (▷) in the toolbar.
-2. The automation executes once immediately, and you can inspect the output in the terminal or debug console.
+### Sending messages
 
-Alternatively, run `bal run` in the terminal to execute the automation.
+Type your message in the input field and press **Enter** or click the send icon. The agent processes the message and returns a response in the chat panel. Use this interface to:
 
-This avoids waiting for a scheduled trigger during development.
+- Validate the agent's conversational behavior and response quality
+- Test edge cases and unexpected inputs
+- Refine the agent's system prompt based on observed responses
 
-## Tips for Effective Try-It Testing
+## Testing GraphQL services
 
-- **Start your service first** -- Try-It cannot send requests to a service that is not running.
-- **Use the auto-generated payloads** as a starting point and modify specific fields for your test scenario.
-- **Test error paths** -- Send malformed payloads or missing required fields to verify your error handling.
-- **Check response headers** -- Verify that your service returns correct `Content-Type`, caching, and CORS headers.
-- **Combine with debugging** -- Set breakpoints in your service code, then send a request via Try-It to step through the execution. See [Debugging](/docs/develop/debugging/editor-debugging) for details.
+The GraphQL Try-It experience uses a built-in GraphiQL editor. The entry point is different from HTTP and MCP services.
 
-## What's Next
+### Opening the GraphiQL editor
 
-- [Unit Testing](unit-testing.md) -- Automated test suites with assertions
-- [Debugging](/docs/develop/debugging/editor-debugging) -- Step through code while testing with Try-It
+1. Run the integration by clicking the green play button in the toolbar. After the integration starts, a popup appears asking whether you want to open the Try-It panel — click **Yes**.
+2. If the popup does not appear, open the Command Palette (`Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on Windows/Linux), type **Try It**, and select the command. Choose the correct service and port from the list.
+
+![GraphQL Diagram view showing a GraphQL service](/img/develop/test/try-it/graphql-diagram-view.png)
+
+The **GraphQL Try It** tab opens with:
+
+- **Explorer** (left panel) — browse available queries and mutations
+- **Query editor** (center) — write your GraphQL query
+- **Response panel** (right) — view the query result
+- **Variables** and **Headers** tabs (bottom of the query editor)
+
+![GraphQL Try It panel showing the built-in GraphiQL editor](/img/develop/test/try-it/graphql-tryit-panel.png)
+
+Click the pink run button to execute the query.
+
+:::note
+The schema Explorer may show **No Schema Available** if schema introspection is not supported by your service configuration. You can still write and execute queries manually in the query editor.
+:::
+
+## Tips for effective testing
+
+- **Try It starts the integration automatically** — you do not need to run the integration separately before clicking **Try It** or **Chat**.
+- **Use auto-generated payloads** as a starting point, then modify specific fields for your test scenario.
+- **Test error paths** — send malformed payloads or omit required fields to verify your error handling logic.
+- **Check response headers** — verify that your service returns the correct `Content-Type`, caching, and CORS headers.
+- **Combine with debugging** — set breakpoints in your integration code, then send a request via Try-It to step through the execution. See [Debugging](/docs/develop/debugging/editor-debugging) for details.
+
+## What's next
+
+- [Unit testing](unit-testing.md) — automated test suites with assertions
+- [Debugging](/docs/develop/debugging/editor-debugging) — step through code while testing with Try-It

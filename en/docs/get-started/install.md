@@ -12,14 +12,11 @@ WSO2 Integrator is a 100% open-source IDE that enables you to connect AI agents,
 
 ## Download options
 
-WSO2 Integrator is available in multiple editions to suit different use cases:
+WSO2 Integrator is available in multiple profiles to suit different use cases:
 
 - **WSO2 Integrator**: Full-featured IDE with low-code and pro-code capabilities
 - **WSO2 Integrator: MI**: Low-code graphical interface for integration development
 - **WSO2 Integrator: SI**: Visual stream flow designer for streaming integrations
-- **WSO2 Integrator: ICP**: Control plane for monitoring and managing deployments
-
-For development, start with **WSO2 Integrator** (also called **WSO2 Integrator: BI**).
 
 ## System requirements
 
@@ -28,7 +25,6 @@ Before installation, ensure your system meets the requirements listed on the [Sy
 - **Operating system**: Windows 10+, macOS 14.6+, or Ubuntu 24.04 LTS and later
 - **Memory**: 512 MB minimum (1 GB+ recommended)
 - **Disk space**: 2 GB free space for installation and projects
-- **Java**: JRE 21 or later
 
 For detailed information, see [System requirements and prerequisites](system-requirements.md).
 
@@ -38,9 +34,9 @@ For detailed information, see [System requirements and prerequisites](system-req
 
 1. Visit the [WSO2 Integrator Downloads page](https://wso2.com/products/downloads/?product=wso2integrator).
 2. Select your operating system: Windows, macOS, or Linux.
-3. Download the installer for **WSO2 Integrator: BI**.
+3. Download the installer for **WSO2 Integrator**.
 
-### Step 2: Install the IDE
+### Step 2: Install WSO2 Integrator
 
 **Windows**
 - Run the `.exe` installer and follow the installation wizard.
@@ -66,7 +62,7 @@ After installation, launch the IDE:
 
 ## Verify installation
 
-After launching **WSO2 Integrator**:
+After launching WSO2 Integrator:
 
 1. The main IDE interface displays the project explorer.
 2. Create a new project or open an existing one to verify that everything is working.

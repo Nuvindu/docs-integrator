@@ -1,20 +1,24 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Strand Dump Analysis
-description: Analyze strand dumps to diagnose concurrency, deadlock, and blocking issues in Ballerina services.
+description: Capture and analyze strand dumps to diagnose concurrency, deadlock, and blocking issues in Ballerina services.
 ---
 
-# Strand Dump Analysis
+# Strand dump analysis
 
-Diagnose concurrency issues in your Ballerina integrations by capturing and analyzing strand dumps. A strand dump shows the state of all active strands (Ballerina's lightweight execution units) at a point in time, helping you identify deadlocks, blocked operations, and concurrency bottlenecks.
+Diagnose concurrency issues in your integrations by capturing and analyzing strand dumps. A strand dump shows the status of all currently running strands and strand groups at a point in time, helping you troubleshoot runtime errors, find data races, race conditions, livelocks, and deadlocks, and inspect strand and strand group status.
 
-## Understanding Strands
+:::note
+The strand dump tool uses the `SIGTRAP` POSIX signal and is **not available on Windows**.
+:::
 
-Ballerina uses strands as its concurrency primitive. A strand is a lightweight execution unit (similar to a green thread or coroutine) that runs on the Ballerina scheduler. Multiple strands can run concurrently, and the scheduler multiplexes them onto OS threads.
+## Understanding strands
+
+Ballerina uses strands as its concurrency primitive. A strand is a lightweight execution unit (similar to a green thread or coroutine) that runs on the Ballerina scheduler. Multiple strands can run concurrently, and the scheduler multiplexes them onto OS threads. Strands are organized into strand groups.
 
 ```ballerina
 import ballerina/http;
-import ballerina/io;
+import ballerina/log;
 
 // Each incoming HTTP request runs on its own strand
 service /api on new http:Listener(9090) {
@@ -37,99 +41,152 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-## Capturing a Strand Dump
+## Capturing a strand dump
 
-### Using a Signal (Linux/macOS)
+### Step 1: Find the process ID
 
-Send a `SIGUSR1` signal to the running Ballerina process to trigger a strand dump.
-
-```bash
-# Find the Ballerina process ID
-ps aux | grep ballerina
-
-# Send SIGUSR1 to capture a strand dump
-kill -SIGUSR1 <PID>
-
-# The strand dump is printed to stderr
-```
-
-### Using the Admin API
-
-Ballerina provides a built-in admin endpoint for runtime diagnostics when enabled.
+Use the `jps` tool to find the process ID (PID) of the running Ballerina program:
 
 ```bash
-# Start the service with the admin API enabled
-bal run --experimental --admin-port 9190
-
-# Request a strand dump via HTTP
-curl http://localhost:9190/strand-dump
+jps
 ```
+
+Look for:
+- `$_init` — for a running service
+- `BTestMain` — for a test run (`bal test`)
+
+### Step 2: Send the SIGTRAP signal
+
+```bash
+kill -SIGTRAP <PID>
+# or equivalently:
+kill -5 <PID>
+```
+
+The strand dump is printed to the **standard output** of the program in text format.
+
+:::tip
+Redirect output to a file if you need to capture the strand dump for later analysis:
+```bash
+bal run . > output.log 2>&1
+```
+:::
 
 ### In Docker/Kubernetes
 
 ```bash
 # Docker: send signal to the container process
-docker kill --signal=SIGUSR1 <container_id>
+docker kill --signal=SIGTRAP <container_id>
 docker logs <container_id> 2>&1 | grep -A 100 "strand dump"
 
 # Kubernetes: exec into the pod and send signal
-kubectl exec <pod_name> -- kill -SIGUSR1 1
+kubectl exec <pod_name> -- kill -SIGTRAP 1
 kubectl logs <pod_name> | grep -A 100 "strand dump"
 ```
 
-## Reading a Strand Dump
+## Reading a strand dump
 
-A strand dump lists every active strand with its current state and call stack.
+A strand dump begins with a header showing the overall state, followed by detailed information for each strand group and strand.
+
+### Dump header
+
+The header provides a summary:
 
 ```
-=== Strand Dump ===
-Total strands: 5
-
-Strand [id=1, name=main, state=WAITING]
-    at mypackage:service_listener.bal:15
-    waiting on: http:Listener.start
-
-Strand [id=2, name=http-worker-1, state=RUNNING]
-    at mypackage:order_service.bal:28 (processOrder)
-    at mypackage:order_service.bal:35 (validateOrder)
-
-Strand [id=3, name=http-worker-2, state=BLOCKED]
-    at mypackage:order_service.bal:42 (getOrdersFromDB)
-    waiting on: database connection from pool
-    blocked for: 15.2s
-
-Strand [id=4, name=async-notification, state=WAITING]
-    at mypackage:notifications.bal:12 (sendEmail)
-    waiting on: SMTP response
-
-Strand [id=5, name=http-worker-3, state=BLOCKED]
-    at mypackage:order_service.bal:42 (getOrdersFromDB)
-    waiting on: database connection from pool
-    blocked for: 14.8s
+=== Ballerina Strand Dump [2024-03-15 10:30:00] ===
+Total strand groups: 4
+Total strands: 8
+Active strand groups: 2
+Active strands: 5
 ```
 
-### Strand States
+### Strand group states
+
+Each strand group has one of the following states:
 
 | State | Meaning |
 |-------|---------|
-| **RUNNING** | Actively executing code |
-| **WAITING** | Paused on an async I/O operation (normal) |
-| **BLOCKED** | Waiting on a resource that is not available (potential issue) |
-| **PAUSED** | Suspended by the scheduler |
+| **RUNNABLE** | Strand group is ready to run or is currently running |
+| **QUEUED** | Strand group execution is blocked, completed, or it comprises new strands that are not yet scheduled to run |
 
-## Diagnosing Common Issues
+### Strand states
+
+Each individual strand has one of the following states:
+
+| State | Meaning |
+|-------|---------|
+| **RUNNABLE** | Strand is ready to run or is currently running |
+| **WAITING** | Strand is blocked due to a `wait` action |
+| **WAITING FOR LOCK** | Strand is waiting to acquire a `lock` |
+| **BLOCKED** | Strand is blocked by sleep, an external call, or other reasons |
+| **BLOCKED ON WORKER MESSAGE SEND** | Strand is blocked on a synchronous worker message send |
+| **BLOCKED ON WORKER MESSAGE RECEIVE** | Strand is blocked waiting to receive a worker message |
+| **BLOCKED ON WORKER MESSAGE FLUSH** | Strand is blocked on a worker message flush operation |
+| **DONE** | Strand has completed execution |
+
+### Strand entry details
+
+Each strand entry shows:
+
+```
+Strand [id=3, name=http-worker-2, state=BLOCKED]
+    module: myorg/mypackage:0.1.0
+    parent: strand 1
+    at mypackage:order_service.bal:42 (getOrdersFromDB)
+    waiting on: database connection from pool
+```
+
+- **id** — unique strand identifier
+- **name** — optional strand name
+- **state** — current strand state (see table above)
+- **module** — the module that initiated the strand
+- **parent** — the parent strand ID
+- **Stack trace** — shows where the strand is currently executing or blocked
+
+### Example strand dump
+
+```
+=== Ballerina Strand Dump [2024-03-15 10:30:00] ===
+Total strand groups: 3
+Total strands: 5
+Active strand groups: 2
+Active strands: 4
+
+Strand Group [id=1, state=RUNNABLE, strands=2]
+  Strand [id=1, name=main, state=WAITING]
+      at mypackage:service_listener.bal:15
+      waiting on: http:Listener.start
+
+  Strand [id=2, name=http-worker-1, state=RUNNABLE]
+      at mypackage:order_service.bal:28 (processOrder)
+      at mypackage:order_service.bal:35 (validateOrder)
+
+Strand Group [id=2, state=QUEUED, strands=2]
+  Strand [id=3, name=http-worker-2, state=BLOCKED]
+      at mypackage:order_service.bal:42 (getOrdersFromDB)
+      waiting on: database connection from pool
+
+  Strand [id=4, name=http-worker-3, state=BLOCKED]
+      at mypackage:order_service.bal:42 (getOrdersFromDB)
+      waiting on: database connection from pool
+
+Strand Group [id=3, state=QUEUED, strands=1]
+  Strand [id=5, name=async-notification, state=DONE]
+```
+
+## Diagnosing common issues
 
 ### Deadlocks
 
-A deadlock occurs when two or more strands are waiting on each other. Look for circular dependencies in the strand dump.
+A deadlock occurs when two or more strands are waiting on each other. Look for multiple strands in `WAITING FOR LOCK` state with circular dependencies.
 
 ```
-Strand [id=10, state=BLOCKED]
+Strand [id=10, state=WAITING FOR LOCK]
     at lock_a.bal:5
     holding: lockB
     waiting on: lockA
 
-Strand [id=11, state=BLOCKED]
+Strand [id=11, state=WAITING FOR LOCK]
     at lock_b.bal:8
     holding: lockA
     waiting on: lockB
@@ -149,16 +206,36 @@ lock {
 }
 ```
 
-### Connection Pool Exhaustion
+### Worker channel deadlocks
 
-When many strands are blocked waiting for database or HTTP connections, the pool may be exhausted.
+When using Ballerina workers, channel sends/receives can deadlock if not balanced. Look for strands in `BLOCKED ON WORKER MESSAGE SEND` or `BLOCKED ON WORKER MESSAGE RECEIVE` state.
+
+```ballerina
+// Bad: potential deadlock if worker A sends before worker B is ready
+worker A {
+    int x = 5;
+    x -> B;           // Send to B
+    int y = <- B;     // Receive from B (deadlock if B never sends)
+}
+
+worker B {
+    int y = <- A;     // Receive from A
+    y + 1 -> A;       // Send back to A
+}
+```
+
+**Fix:** Ensure every worker send (`->`) has a matching receive (`<-`) and that send/receive pairs are balanced.
+
+### Connection pool exhaustion
+
+When many strands are `BLOCKED` waiting for database or HTTP connections, the pool may be exhausted.
 
 ```
-Strand [id=20, state=BLOCKED] waiting on: database connection from pool (15.2s)
-Strand [id=21, state=BLOCKED] waiting on: database connection from pool (14.8s)
-Strand [id=22, state=BLOCKED] waiting on: database connection from pool (12.1s)
-Strand [id=23, state=BLOCKED] waiting on: database connection from pool (11.5s)
-Strand [id=24, state=BLOCKED] waiting on: database connection from pool (10.2s)
+Strand [id=20, state=BLOCKED] waiting on: database connection from pool
+Strand [id=21, state=BLOCKED] waiting on: database connection from pool
+Strand [id=22, state=BLOCKED] waiting on: database connection from pool
+Strand [id=23, state=BLOCKED] waiting on: database connection from pool
+Strand [id=24, state=BLOCKED] waiting on: database connection from pool
 ```
 
 **Fix:** Increase the connection pool size or optimize slow queries.
@@ -178,18 +255,11 @@ postgresql:Client dbClient = check new (
 );
 ```
 
-### Stuck Strands
+### Stuck strands
 
-A strand blocked for an unusually long time may indicate a slow external call or network issue.
+A strand in `BLOCKED` state for an unusually long time may indicate a slow external call or network issue.
 
-```
-Strand [id=30, state=BLOCKED]
-    at mypackage:payment.bal:55 (chargeCard)
-    waiting on: HTTP response from payments.example.com
-    blocked for: 120.5s
-```
-
-**Fix:** Add timeouts to external calls.
+**Fix:** Add timeouts to all external calls to prevent strands from blocking indefinitely.
 
 ```ballerina
 import ballerina/http;
@@ -199,77 +269,25 @@ http:Client paymentClient = check new ("https://payments.example.com",
 );
 ```
 
-### Worker Channel Deadlocks
+### Program hangs without deadlock
 
-When using Ballerina workers, channel sends/receives can deadlock if not balanced.
+If the strand dump shows strands in `BLOCKED` or `WAITING` state but no deadlock pattern (no circular lock dependencies):
 
-```ballerina
-// Bad: potential deadlock if worker A sends before worker B is ready
-worker A {
-    int x = 5;
-    x -> B;           // Send to B
-    int y = <- B;     // Receive from B (deadlock if B never sends)
-}
+1. Check the file and line numbers — these strands are typically waiting on an external call (HTTP, database, etc.).
+2. Verify the upstream service or database is responding.
+3. Add timeouts to all external calls.
 
-worker B {
-    int y = <- A;     // Receive from A
-    y + 1 -> A;       // Send back to A
-}
-```
+## Best practices
 
-## Automated Strand Monitoring
-
-Set up periodic strand dump capture for proactive monitoring.
-
-```bash
-#!/bin/bash
-# Capture a strand dump every 60 seconds for diagnostics
-PID=$(pgrep -f "ballerina")
-while true; do
-    echo "=== $(date) ===" >> strand-dumps.log
-    kill -SIGUSR1 $PID
-    sleep 60
-done
-```
-
-## Analyzing Strand Dumps Programmatically
-
-Parse strand dumps to detect patterns and trigger alerts.
-
-```ballerina
-import ballerina/io;
-import ballerina/regex;
-
-// Parse strand dump output to count blocked strands
-public function analyzeStrandDump(string dump) returns map<int> {
-    string[] lines = regex:split(dump, "\n");
-    map<int> stateCounts = {};
-
-    foreach string line in lines {
-        if line.includes("state=BLOCKED") {
-            stateCounts["blocked"] = (stateCounts["blocked"] ?: 0) + 1;
-        } else if line.includes("state=WAITING") {
-            stateCounts["waiting"] = (stateCounts["waiting"] ?: 0) + 1;
-        } else if line.includes("state=RUNNING") {
-            stateCounts["running"] = (stateCounts["running"] ?: 0) + 1;
-        }
-    }
-
-    return stateCounts;
-}
-```
-
-## Best Practices
-
-- **Capture multiple dumps** -- take 2-3 dumps a few seconds apart to distinguish transient waits from genuine blocks
-- **Look for patterns** -- a single blocked strand is normal; many strands blocked on the same resource indicates a bottleneck
-- **Set timeouts on all external calls** -- prevent strands from blocking indefinitely
-- **Size connection pools appropriately** -- match pool size to expected concurrency
+- **Capture multiple dumps** — take 2-3 dumps a few seconds apart to distinguish transient waits from genuine blocks
+- **Look for patterns** — a single blocked strand is normal; many strands blocked on the same resource indicates a bottleneck
+- **Set timeouts on all external calls** — prevent strands from blocking indefinitely
+- **Size connection pools appropriately** — match pool size to expected concurrency
 - **Monitor strand counts** in production to detect trends before they become outages
 - **Use consistent lock ordering** to prevent deadlocks
 
-## What's Next
+## What's next
 
-- [Performance Profiling](performance-profiling.md) -- Profile execution time to find bottlenecks
-- [Editor Debugging](editor-debugging.md) -- Step through concurrency issues in the debugger
-- [Remote Debugging](remote-debugging.md) -- Attach to remote services for live diagnosis
+- [Performance Profiling](performance-profiling.md) — Profile execution time to find bottlenecks
+- [Editor Debugging](editor-debugging.md) — Step through concurrency issues in the debugger
+- [Remote Debugging](remote-debugging.md) — Attach to remote services for live diagnosis

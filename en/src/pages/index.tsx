@@ -1,12 +1,132 @@
-import type {ReactNode} from 'react';
-import {useState, useEffect, useRef, useCallback} from 'react';
+import type { ReactNode } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from '@docusaurus/Link';
-import {useHistory} from '@docusaurus/router';
+import { useHistory } from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import DocSidebar from '@theme/DocSidebar';
+import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
+
 
 import styles from './index.module.css';
+
+/* ------------------------------------------------------------------ */
+/*  Sidebar items (mirrors mainSidebar from sidebars.ts)               */
+/* ------------------------------------------------------------------ */
+const homeSidebarItems: PropSidebarItem[] = [
+  {
+    type: 'category',
+    label: 'Get Started',
+    collapsed: false,
+    collapsible: true,
+    href: '/docs/get-started/overview-&-architecture',
+    items: [
+      { type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture' },
+      { type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator' },
+      { type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts' },
+      {
+        type: 'category',
+        label: 'Set Up',
+        collapsed: true,
+        collapsible: true,
+        items: [
+          { type: 'link', label: 'System Requirements', href: '/docs/get-started/system-requirements' },
+          { type: 'link', label: 'Install', href: '/docs/get-started/install' },
+          { type: 'link', label: 'First Project', href: '/docs/get-started/first-project' },
+          { type: 'link', label: 'Understand the IDE', href: '/docs/get-started/understand-the-ide' },
+        ],
+      },
+      {
+        type: 'category',
+        label: 'Quick Starts',
+        collapsed: false,
+        collapsible: true,
+        items: [
+          { type: 'link', label: 'Quick Start: API', href: '/docs/get-started/quick-start-api' },
+          { type: 'link', label: 'Quick Start: Event', href: '/docs/get-started/quick-start-event' },
+          { type: 'link', label: 'Quick Start: File', href: '/docs/get-started/quick-start-file' },
+          { type: 'link', label: 'Quick Start: Automation', href: '/docs/get-started/quick-start-automation' },
+          { type: 'link', label: 'Quick Start: Data Service', href: '/docs/get-started/quick-start-data-service' },
+          { type: 'link', label: 'Quick Start: AI Agent', href: '/docs/get-started/quick-start-ai-agent' },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Develop',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/develop/overview',
+    items: [
+      { type: 'link', label: 'Create Integrations', href: '/docs/develop/create-integrations/create-new-integration' },
+      { type: 'link', label: 'Project Views', href: '/docs/develop/project-views/project-view' },
+      { type: 'link', label: 'Integration Artifacts', href: '/docs/develop/integration-artifacts/automation' },
+      { type: 'link', label: 'Design Integration Logic', href: '/docs/develop/design-logic/overview' },
+      { type: 'link', label: 'Transform', href: '/docs/develop/transform/data-mapper' },
+      { type: 'link', label: 'Try & Test', href: '/docs/develop/test/try-it' },
+      { type: 'link', label: 'Debugging & Troubleshooting', href: '/docs/develop/debugging/overview' },
+      { type: 'link', label: 'Organize Code', href: '/docs/develop/organize-code/packages-modules' },
+      { type: 'link', label: 'Tools', href: '/docs/develop/tools/overview' },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Connectors',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/connectors/overview',
+    items: [
+      { type: 'link', label: 'Connector Catalog', href: '/docs/connectors/catalog/index' },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'GenAI',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/genai/overview',
+    items: [
+      { type: 'link', label: 'Getting Started', href: '/docs/genai/getting-started/setup' },
+      { type: 'link', label: 'Key Concepts', href: '/docs/genai/key-concepts/what-is-llm' },
+      { type: 'link', label: 'Develop AI Applications', href: '/docs/genai/overview' },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Tutorials',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/tutorials/overview',
+    items: [
+      { type: 'link', label: 'Integration Patterns', href: '/docs/tutorials/integration-patterns' },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Deploy & Operate',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/deploy-operate/overview',
+    items: [
+      { type: 'link', label: 'Deploy', href: '/docs/deploy-operate/deploy/docker-kubernetes' },
+      { type: 'link', label: 'Security', href: '/docs/deploy-operate/security/security-checklist' },
+      { type: 'link', label: 'Operate', href: '/docs/deploy-operate/operate/observability-and-monitoring' },
+    ],
+  },
+  {
+    type: 'category',
+    label: 'Reference',
+    collapsed: true,
+    collapsible: true,
+    href: '/docs/reference/overview',
+    items: [
+      { type: 'link', label: 'CLI Commands', href: '/docs/reference/cli-commands' },
+      { type: 'link', label: 'API Reference', href: '/docs/reference/api-reference' },
+    ],
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /*  Clean SVG Icon Components                                          */
@@ -160,10 +280,10 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  {label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api'},
-  {label: 'Connectors Catalog', to: '/docs/connectors'},
-  {label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent'},
-  {label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes'},
+  { label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api' },
+  { label: 'Connectors Catalog', to: '/docs/connectors' },
+  { label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent' },
+  { label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -208,7 +328,7 @@ function SearchBar(): ReactNode {
   }, []);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query.trim()) {
         history.push(`/search?q=${encodeURIComponent(query.trim())}`);
@@ -273,6 +393,7 @@ function HomepageHeader(): ReactNode {
   return (
     <header className={styles.heroBanner}>
       <div className="container">
+
         <Heading as="h1">WSO2 Integrator</Heading>
         <p className={styles.heroSubtitle}>
           Build integrations with low-code simplicity and pro-code power.
@@ -370,14 +491,26 @@ function WhatsNew(): ReactNode {
 /*  Home page                                                          */
 /* ------------------------------------------------------------------ */
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title="Home" description={siteConfig.tagline}>
-      <HomepageHeader />
-      <main>
-        <SectionCards />
-        <WhatsNew />
-      </main>
+      <div className={styles.pageLayout}>
+        <aside className={styles.sidebarCol}>
+          <DocSidebar
+            sidebar={homeSidebarItems}
+            path="/none"
+            onCollapse={() => {}}
+            isHidden={false}
+          />
+        </aside>
+        <div className={styles.mainContent}>
+          <HomepageHeader />
+          <main>
+            <SectionCards />
+            <WhatsNew />
+          </main>
+        </div>
+      </div>
     </Layout>
   );
 }

@@ -1,232 +1,198 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 title: Test Services & Clients
-description: Write integration tests for HTTP services, clients, and listener-based components.
+description: Write integration tests for HTTP services and clients using WSO2 Integrator.
 ---
 
-# Test Services & Clients
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Validate your integration endpoints end-to-end by testing HTTP services, clients, and listener-based components. Ballerina's test framework lets you start services within tests and send real requests against them, giving you confidence that your integration behaves correctly at the network boundary.
 
-## Testing HTTP Services
+Test your services end-to-end by invoking real endpoints from within a test function, and test your client code by mocking the responses it depends on. The same test infrastructure from [Unit Testing](unit-testing.md) applies — create a test function, open it in the flow diagram, and build your test logic from there.
 
-Start your service in a test and send requests using an HTTP test client.
+## Testing a service
 
-```ballerina
-import ballerina/http;
-import ballerina/test;
+Any services defined in your package start automatically on their configured ports when tests run and shut down after all tests complete.
 
-// The service under test
-service /api on new http:Listener(9090) {
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-    resource function get greeting(string name) returns string {
-        return "Hello, " + name + "!";
-    }
+1. Create a test function as described in [Unit Testing](unit-testing.md) and open it in the flow diagram view.
 
-    resource function post orders(http:Request req) returns http:Created|error {
-        json payload = check req.getJsonPayload();
-        // Process order...
-        return http:CREATED;
-    }
-}
+2. In the flow diagram, click the **+** placeholder node to add a step, then select **Add Connection** from the node panel. The **Add Connection** dialog opens.
 
-// Test client targeting the service
-http:Client testClient = check new ("http://localhost:9090");
+   ![Add Connection dialog showing pre-built connectors including HTTP, GraphQL, WebSocket, TCP, UDP, and FTP](/img/develop/test/test-services-clients/add-connection-dialog.png)
 
-@test:Config {}
-function testGreetingEndpoint() returns error? {
-    string response = check testClient->/api/greeting(name = "Alice");
-    test:assertEquals(response, "Hello, Alice!");
-}
+3. In the **Add Connection** dialog, select the pre-built connector that matches your service type. For an HTTP service, select **HTTP** (`ballerina/http`).
 
-@test:Config {}
-function testCreateOrder() returns error? {
-    json orderPayload = {
-        "item": "Widget",
-        "quantity": 5
-    };
+4. Configure the connection — provide the service base URL (for example, `http://localhost:9090`) and any other required settings. Click **Save**.
 
-    http:Response response = check testClient->/api/orders.post(orderPayload);
-    test:assertEquals(response.statusCode, 201);
-}
-```
+5. The connector appears in the flow diagram. Add action nodes from the connector (for example, `http:get` or `http:post`) to invoke the endpoint you want to test.
 
-## Testing Response Status Codes and Headers
+   ![Test flow diagram showing Start node connected to an http:get action node linked to the httpClient connection](/img/develop/test/test-services-clients/test-flow-with-connection.png)
 
-Verify HTTP response details beyond the body.
+6. Add assertion nodes from the **Test** category to verify the response. See [Unit Testing — Assertions](unit-testing.md#assertions) for available assertion nodes.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+Declare the service and an `http:Client` targeting it in the same test file. The test framework starts the service before tests run.
+
+**`main.bal`** — service under test:
 
 ```ballerina
 import ballerina/http;
-import ballerina/test;
 
-http:Client testClient = check new ("http://localhost:9090");
+service http:Service /foo on new http:Listener(9090) {
 
-@test:Config {}
-function testNotFoundResponse() returns error? {
-    http:Response response = check testClient->/api/orders/["INVALID-ID"];
-    test:assertEquals(response.statusCode, 404);
-
-    json body = check response.getJsonPayload();
-    test:assertEquals(body.message, "Order not found");
-}
-
-@test:Config {}
-function testResponseHeaders() returns error? {
-    http:Response response = check testClient->/api/greeting(name = "Bob");
-
-    string contentType = check response.getHeader("Content-Type");
-    test:assertTrue(contentType.startsWith("text/plain"));
-}
-```
-
-## Testing with Mock Backend Services
-
-When your service calls an upstream API, create a mock backend for deterministic tests.
-
-```ballerina
-import ballerina/http;
-import ballerina/test;
-
-// Mock backend service that simulates an external API
-service /mock\-api on new http:Listener(9095) {
-
-    resource function get users/[string id]() returns json {
-        return {
-            "id": id,
-            "name": "Test User",
-            "email": "test@example.com"
-        };
+    resource function get bar(int value) returns http:Ok|http:BadRequest {
+        if value < 0 {
+            return <http:BadRequest>{body: "Incorrect ID value"};
+        }
+        return <http:Ok>{body: "Retrieved ID " + value.toString()};
     }
 }
-
-// Configure the service under test to point to the mock
-@test:Config {}
-function testServiceWithMockBackend() returns error? {
-    // Service under test calls localhost:9095 instead of the real upstream
-    http:Client client = check new ("http://localhost:9090");
-
-    json response = check client->/api/enriched\-users/["U123"];
-    test:assertEquals(response.name, "Test User");
-}
 ```
 
-## Testing WebSocket Services
-
-Test bidirectional WebSocket communication.
-
-```ballerina
-import ballerina/websocket;
-import ballerina/test;
-import ballerina/lang.runtime;
-
-@test:Config {}
-function testWebSocketEcho() returns error? {
-    websocket:Client wsClient = check new ("ws://localhost:9090/ws/echo");
-
-    // Send a message
-    check wsClient->writeMessage("Hello WebSocket");
-
-    // Read the echoed response
-    string response = check wsClient->readMessage();
-    test:assertEquals(response, "Hello WebSocket");
-
-    // Clean up
-    check wsClient->close();
-}
-```
-
-## Testing Client Connectors
-
-Test outbound client calls by verifying request construction and response handling.
+**`tests/main_test.bal`** — test using an HTTP client:
 
 ```ballerina
 import ballerina/http;
 import ballerina/test;
 
-// Client wrapper under test
-public function getOrderStatus(http:Client client, string orderId)
-        returns string|error {
-    json response = check client->/orders/[orderId]/status;
-    return check response.status;
-}
-
-// Mock service for the client test
-service /orders on new http:Listener(9096) {
-
-    resource function get [string orderId]/status() returns json {
-        return {"status": "shipped", "trackingId": "TRK-12345"};
-    }
-}
+http:Client testClient = check new ("http://localhost:9090/foo");
 
 @test:Config {}
-function testGetOrderStatus() returns error? {
-    http:Client mockClient = check new ("http://localhost:9096");
-    string status = check getOrderStatus(mockClient, "ORD-001");
-    test:assertEquals(status, "shipped");
+public function testGet() returns error? {
+    http:Response response = check testClient->/bar.get(value = 10);
+    test:assertEquals(response.statusCode, http:STATUS_OK);
+    test:assertEquals(response.getTextPayload(), "Retrieved ID 10");
+
+    response = check testClient->/bar.get(value = -5);
+    test:assertEquals(response.statusCode, http:STATUS_BAD_REQUEST);
+    test:assertEquals(response.getTextPayload(), "Incorrect ID value");
 }
 ```
 
-## Testing Error Scenarios
+To use a configurable port — useful when running multiple service tests on different ports:
 
-Validate that your services handle errors correctly.
+```toml
+# tests/Config.toml
+hostName = "http://localhost:9091/foo"
+port = 9091
+```
+
+</TabItem>
+</Tabs>
+
+## Testing a client
+
+To test client code, use object mocking to stub the responses that the client would receive from an external service. This lets you test your client logic without depending on a live external API.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+
+
+The following example tests a function that calls the Chuck Norris API and replaces "Chuck Norris" with a given name. Instead of calling the real API, the test mocks the HTTP client to return a controlled response.
+
+![Flow diagram showing test:mock, test:thenReturn, http:get, http:getJsonPayload, and test:assertEquals nodes for a client test](/img/develop/test/test-services-clients/test-client-mock-flow.png)
+
+For a complete guide to object and function mocking, see [Mocking](mocking.md).
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+
+**`main.bal`** — function that uses an HTTP client:
 
 ```ballerina
 import ballerina/http;
-import ballerina/test;
-
-@test:Config {}
-function testBadRequestHandling() returns error? {
-    http:Client client = check new ("http://localhost:9090");
-
-    // Send malformed payload
-    http:Response response = check client->/api/orders.post("not-valid-json");
-    test:assertEquals(response.statusCode, 400);
-}
-
-@test:Config {}
-function testTimeoutHandling() returns error? {
-    // Configure a client with a short timeout
-    http:Client client = check new ("http://localhost:9090",
-        timeout = 1
-    );
-
-    // Call an endpoint that takes too long
-    json|error response = client->/api/slow\-endpoint;
-    test:assertTrue(response is error);
-}
-```
-
-## Setup and Teardown for Service Tests
-
-Use before/after suite functions to manage test infrastructure.
-
-```ballerina
-import ballerina/test;
 import ballerina/io;
 
-@test:BeforeSuite
-function setupTestEnvironment() {
-    io:println("Setting up test database...");
-    // Initialize test data, seed database, etc.
-}
+http:Client clientEndpoint = check new ("https://api.chucknorris.io/jokes/");
 
-@test:AfterSuite
-function teardownTestEnvironment() {
-    io:println("Cleaning up test data...");
-    // Remove test data, close connections, etc.
+function getRandomJoke(string name) returns string|error {
+    http:Response response = check clientEndpoint->/random;
+
+    if response.statusCode != http:STATUS_OK {
+        string errorMsg = "error occurred while sending GET request";
+        io:println(errorMsg, ", status code: ", response.statusCode);
+        return error(errorMsg);
+    }
+
+    json payload = check response.getJsonPayload().ensureType();
+    string joke = check payload.value;
+    return re `Chuck Norris`.replaceAll(joke, name);
 }
 ```
 
-## Best Practices
+**`tests/main_test.bal`** — test with a mocked client:
 
-- **Use unique ports** for mock services to avoid conflicts with the service under test
-- **Test the full request-response cycle** -- verify status codes, headers, and body content
-- **Test error paths** as thoroughly as success paths -- validate 4xx and 5xx responses
-- **Clean up resources** in `@test:AfterSuite` to prevent port conflicts between test runs
-- **Use configurable URLs** in your services so tests can point to mock backends without code changes
+```ballerina
+import ballerina/http;
+import ballerina/test;
 
-## What's Next
+@test:Config {}
+public function testGetRandomJoke() returns error? {
+    clientEndpoint = test:mock(http:Client);
 
-- [Data-Driven Tests](data-driven-tests.md) -- Run the same test with multiple input sets
-- [Mocking External Services](mocking.md) -- Isolate tests with mock objects and function stubs
-- [Unit Testing](unit-testing.md) -- Test individual functions and logic
+    test:prepare(clientEndpoint).whenResource("::path")
+        .withPathParameters({path: ["random"]})
+        .onMethod("get").thenReturn(getMockResponse());
+
+    http:Response result = check clientEndpoint->/random;
+    json payload = check result.getJsonPayload();
+
+    test:assertEquals(payload, {"value": "When Chuck Norris wants an egg, he cracks open a chicken."});
+}
+
+function getMockResponse() returns http:Response {
+    http:Response mockResponse = new;
+    mockResponse.setPayload({"value": "When Chuck Norris wants an egg, he cracks open a chicken."});
+    return mockResponse;
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::note
+`test:mock` is not currently supported in the Visual Designer. To test a `final` client, extract the client initialization into a separate function and mock that function using `@test:Mock`:
+:::
+
+For `final` clients that cannot be reassigned, extract the initialization into a separate function and mock it with `@test:Mock`:
+
+```ballerina
+// main.bal
+final http:Client clientEndpoint = check intializeClient();
+
+function intializeClient() returns http:Client|error {
+    return new ("https://api.chucknorris.io/jokes/");
+}
+```
+
+```ballerina
+// tests/main_test.bal
+@test:Mock { functionName: "intializeClient" }
+function getMockClient() returns http:Client|error {
+    return test:mock(http:Client);
+}
+```
+
+
+
+## Best practices
+
+- **Use unique ports** for each service under test to avoid conflicts when multiple services run during the same test suite.
+- **Test both success and error paths** — send valid inputs and malformed or out-of-range values to verify your error handling.
+- **Use `Config.toml` in `tests/`** to define test-specific hosts and ports so your test client points to the local test service rather than a deployed environment.
+- **Mock external clients** rather than calling live APIs in tests — this keeps tests fast, deterministic, and independent of network availability.
+- **Extract `final` client initialization** into a separate function so you can swap it out with a mock during testing.
+
+## What's next
+
+- [Unit Testing](unit-testing.md) — create test functions with assertions
+- [Mocking](mocking.md) — complete guide to object and function mocking
+- [Execute Tests](execute-tests.md) — run tests and view results
+- [Ballerina — Test Services and Clients](https://ballerina.io/learn/test-ballerina-code/test-services-and-clients/) — Ballerina language reference for service and client testing

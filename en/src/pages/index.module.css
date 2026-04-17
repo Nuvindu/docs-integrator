@@ -9,15 +9,75 @@
  */
 
 /* ================================================================
+   TWO-COLUMN PAGE LAYOUT (sidebar + content)
+   ================================================================ */
+.pageLayout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sidebarCol {
+  width: var(--doc-sidebar-width, 300px);
+  flex-shrink: 0;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  height: calc(100vh - var(--ifm-navbar-height));
+  background-color: var(--wso2-sidebar-bg);
+  border-right: 1px solid var(--wso2-surface-border);
+  z-index: 10;
+  overflow-y: auto;
+}
+
+/* Add a small top padding for a premium, balanced look */
+.sidebarCol > :global(div) {
+  padding-top: 1rem !important;
+}
+
+/* Remove redundant top padding from the internal menu component */
+.sidebarCol :global(.menu) {
+  padding-top: 0;
+}
+
+/* Reset list padding/margin */
+.sidebarCol :global(.menu__list) {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.sidebarCol :global(.menu__list-item:first-child) {
+  margin-top: 0;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .sidebarCol {
+    display: none;
+  }
+}
+
+/* ================================================================
    HERO — Light blue in light theme, dark navy in dark theme
    ================================================================ */
 .heroBanner {
   padding: 4.5rem 0 3.5rem;
   text-align: center;
   position: relative;
-  overflow: hidden;
   background: linear-gradient(180deg, #0F172A 0%, #1B2A49 100%);
   color: #FFFFFF;
+}
+
+.heroTopActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5.5rem;
+  margin-bottom: -1.5rem;
+  position: relative;
+  z-index: 20;
 }
 
 .heroBanner h1 {

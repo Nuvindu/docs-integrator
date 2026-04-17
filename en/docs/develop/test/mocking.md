@@ -1,27 +1,32 @@
 ---
-sidebar_position: 7
-title: Mocking External Services
-description: Create mock services and test doubles for isolated testing.
+sidebar_position: 6
+title: Mocking
+description: Replace external clients and functions with controlled stubs for isolated, deterministic tests.
 ---
 
-# Mocking External Services
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Isolate your integration tests by replacing external dependencies with mock implementations. Ballerina's test framework provides built-in support for mocking client objects and functions so your tests run reliably without calling real services.
 
-## Why Mock External Services
+Mocking replaces real clients and functions with controlled stubs so tests run in isolation, without live services or side effects. The `ballerina/test` module supports two approaches: stubbing object methods and replacing functions with `@test:Mock`.
 
-Integration code typically depends on HTTP endpoints, databases, and third-party APIs. Calling these during tests introduces problems:
+## Mocking objects
 
-- **Flakiness** -- network issues or service downtime cause test failures unrelated to your code.
-- **Slow execution** -- real HTTP calls add latency to every test run.
-- **Side effects** -- tests may create real orders, send emails, or modify production data.
-- **Cost** -- pay-per-call APIs accumulate charges during development.
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-Mocking removes these variables so tests verify your logic in isolation.
+In the test flow diagram, use nodes from the **Test** category to stub method behavior. Add a `test:mock` node to create the mock object, then chain `test:prepare` and `thenReturn` nodes to control what each method returns.
 
-## Object Mocking with Stubbing
+![PLACEHOLDER: Flow diagram showing test:mock and test:prepare nodes used to stub an HTTP client method](/img/develop/test/mocking/flow-diagram.png)
 
-Use `test:prepare()` to stub specific methods on a client object. This approach lets you control return values without replacing the entire client.
+:::note
+`test:mock` is not fully supported in the Visual Designer for `final` clients. For those, extract client initialization into a separate function and mock it with `@test:Mock` (see [Mocking functions](#mocking-functions)).
+:::
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+**Stubbing** — use `test:prepare()` to control return values without replacing the entire client. Prefer this approach for simple cases.
 
 ```ballerina
 import ballerina/http;
@@ -31,69 +36,30 @@ http:Client backendClient = check new ("http://localhost:9090");
 
 @test:Config {}
 function testGetOrder() returns error? {
-    // Stub the get method to return a mock response
     http:Response mockResponse = new;
     mockResponse.statusCode = 200;
     mockResponse.setJsonPayload({orderId: "ORD-001", status: "completed"});
 
+    // Basic return
     test:prepare(backendClient).when("get").thenReturn(mockResponse);
 
-    // Call your integration logic that uses backendClient
-    http:Response result = check backendClient->get("/orders/ORD-001");
-    json payload = check result.getJsonPayload();
-    test:assertEquals(payload.orderId, "ORD-001");
-}
-```
-
-### Stubbing with Argument Matching
-
-Provide specific arguments to return different values based on input.
-
-```ballerina
-@test:Config {}
-function testGetOrderByPath() returns error? {
-    http:Response foundResponse = new;
-    foundResponse.statusCode = 200;
-
+    // Argument-matched returns
     http:Response notFoundResponse = new;
     notFoundResponse.statusCode = 404;
+    test:prepare(backendClient).when("get").withArguments("/orders/ORD-001").thenReturn(mockResponse);
+    test:prepare(backendClient).when("get").withArguments("/orders/INVALID").thenReturn(notFoundResponse);
 
-    test:prepare(backendClient)
-        .when("get").withArguments("/orders/ORD-001").thenReturn(foundResponse);
-    test:prepare(backendClient)
-        .when("get").withArguments("/orders/INVALID").thenReturn(notFoundResponse);
-
-    http:Response result = check backendClient->get("/orders/INVALID");
-    test:assertEquals(result.statusCode, 404);
-}
-```
-
-### Returning a Sequence of Values
-
-Use `thenReturnSequence()` to return different values on successive calls -- useful for testing retry logic.
-
-```ballerina
-@test:Config {}
-function testRetryBehavior() returns error? {
+    // Sequential returns — useful for testing retry logic
     http:Response errorResponse = new;
     errorResponse.statusCode = 503;
+    test:prepare(backendClient).when("get").thenReturnSequence(errorResponse, mockResponse);
 
-    http:Response successResponse = new;
-    successResponse.statusCode = 200;
-
-    // First call returns 503, second call returns 200
-    test:prepare(backendClient).when("get")
-        .thenReturnSequence(errorResponse, successResponse);
-
-    // Your retry logic should eventually succeed
-    http:Response result = check callWithRetry(backendClient, "/api/data");
-    test:assertEquals(result.statusCode, 200);
+    // Do nothing — suppress side effects such as sending email
+    test:prepare(smtpClient).when("sendMessage").doNothing();
 }
 ```
 
-## Object Mocking with Test Doubles
-
-For full control, create a mock class that replaces the real client. Pass it to `test:mock()` to substitute the original.
+**Test doubles** — create a custom mock class and pass it to `test:mock()` for full control over behavior.
 
 ```ballerina
 import ballerina/http;
@@ -101,7 +67,6 @@ import ballerina/test;
 
 http:Client orderClient = check new ("http://localhost:9090");
 
-// Mock class implementing the methods your code calls
 client class MockOrderClient {
     resource function get orders/[string id]() returns json|error {
         return {orderId: id, status: "pending", total: 49.99};
@@ -114,7 +79,6 @@ client class MockOrderClient {
 
 @test:Config {}
 function testWithMockClient() returns error? {
-    // Replace the real client with the mock
     orderClient = test:mock(http:Client, new MockOrderClient());
 
     json result = check orderClient->/orders/["ORD-001"];
@@ -122,31 +86,62 @@ function testWithMockClient() returns error? {
 }
 ```
 
-## Function Mocking
+**Stubbing resource methods** — for resource-based client stubs, use `whenResource`. More specific stubs take precedence over general ones.
 
-Mock standalone functions using the `@test:Mock` annotation. This is useful for replacing utility functions or imported module functions.
+```ballerina
+// General stub
+test:prepare(empClient).whenResource("employee/welcome/:id")
+    .onMethod("get").thenReturn("Welcome — general stub");
+
+// Path-parameter-specific stub
+test:prepare(empClient).whenResource("employee/welcome/:id")
+    .onMethod("get").withPathParameters({id: "emp014"})
+    .thenReturn("Welcome — emp014");
+
+// Most specific (path + arguments) — takes precedence over the above
+test:prepare(empClient).whenResource("employee/welcome/:id")
+    .onMethod("get").withPathParameters({id: "emp014"})
+    .withArguments("vijay", "kumar")
+    .thenReturn("Welcome — most specific");
+```
+
+</TabItem>
+</Tabs>
+
+## Mocking functions
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+The `@test:Mock` annotation is defined in code. In the flow diagram, nodes downstream of the mocked function behave normally — the mock transparently replaces what the function does when called during the test.
+
+![PLACEHOLDER: Flow diagram showing a test function whose mocked dependency returns a controlled value via thenReturn](/img/develop/test/mocking/function-mock-flow.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+Declare a `test:MockFunction` with `@test:Mock`, then use `test:when()` to define behavior.
 
 ```ballerina
 import ballerina/test;
-import ballerina/time;
 
-// Mock a function in the current module
 @test:Mock {functionName: "getCurrentTimestamp"}
 test:MockFunction getCurrentTimestampMock = new ();
 
 @test:Config {}
 function testTimeSensitiveLogic() {
-    // Return a fixed timestamp for deterministic testing
+    // Return a fixed value for all calls
     test:when(getCurrentTimestampMock).thenReturn("2025-01-15T10:00:00Z");
+
+    // Override for specific arguments
+    test:when(getCurrentTimestampMock).withArguments(0, 0).thenReturn("1970-01-01T00:00:00Z");
 
     string result = formatEventTime();
     test:assertEquals(result, "Event scheduled at 2025-01-15T10:00:00Z");
 }
 ```
 
-### Mocking Imported Functions
-
-Specify the `moduleName` to mock functions from external modules.
+**Mock imported functions** — specify `moduleName` to mock functions from external modules:
 
 ```ballerina
 import ballerina/test;
@@ -158,61 +153,43 @@ test:MockFunction printlnMock = new ();
 @test:Config {}
 function testWithMockedPrintln() {
     test:when(printlnMock).doNothing();
-    // Calls to io:println will now do nothing during this test
     processAndLog("test data");
 }
 ```
 
-### Calling an Alternate Function
-
-Redirect a mocked function to a different implementation.
+**Call an alternate function** — redirect a mocked function to a different implementation:
 
 ```ballerina
 @test:Mock {functionName: "sendNotification"}
 test:MockFunction sendNotificationMock = new ();
 
 function mockSendNotification(string to, string message) returns error? {
-    // Log instead of sending a real notification
-    return;
+    return; // no-op instead of sending a real notification
 }
 
 @test:Config {}
 function testNotificationFlow() returns error? {
     test:when(sendNotificationMock).call("mockSendNotification");
-
-    // sendNotification() now calls mockSendNotification()
     check processOrder("ORD-001");
 }
 ```
 
-## Test-Specific Configuration
-
-Provide mock URLs and settings in a `tests/Config.toml` file so your integration connects to local stubs instead of real services.
-
-```toml
-# tests/Config.toml
-backendUrl = "http://localhost:9095/mock"
-apiKey = "test-key-not-real"
-maxRetries = 1
-```
+**Call the original function** — restore real behavior after using a mock:
 
 ```ballerina
-configurable string backendUrl = ?;
-configurable string apiKey = ?;
+test:when(intAddMockFn).call("mockIntAdd");
+test:assertEquals(addValues(11, 6), 5); // calls mock
 
-// These values come from tests/Config.toml during test execution
+test:when(intAddMockFn).callOriginal();
+test:assertEquals(addValues(11, 6), 17); // calls real function
 ```
 
-## Best Practices
+</TabItem>
+</Tabs>
 
-- **Prefer stubbing over test doubles** when you only need to control a few methods -- it requires less boilerplate.
-- **Use test doubles** when mock logic is complex or when you need to track call counts.
-- **Mock at the boundary** -- mock HTTP clients and connectors, not your own business logic functions.
-- **Keep mocks simple** -- a mock that reimplements real logic defeats the purpose of isolation.
-- **Use `tests/Config.toml`** to swap connection URLs and credentials for testing.
+## What's next
 
-## What's Next
-
-- [AI-Generated Test Cases](ai-test-generation.md) -- Auto-generate tests for your integrations
-- [Test Services & Clients](test-services-clients.md) -- End-to-end service testing patterns
-- [Unit Testing](unit-testing.md) -- Test framework fundamentals and assertions
+- [Test Services & Clients](test-services-clients.md) — end-to-end service testing using real HTTP clients
+- [Unit Testing](unit-testing.md) — test framework fundamentals and assertions
+- [Execute Tests](execute-tests.md) — all options for running and filtering tests
+- [Ballerina — Mocking](https://ballerina.io/learn/test-ballerina-code/mocking/) — Ballerina language reference for mocking

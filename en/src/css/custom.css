@@ -33,13 +33,13 @@
    ================================================================ */
 :root {
   /* === Primary — Brand Blue === */
-  --ifm-color-primary: #0077B6;
-  --ifm-color-primary-dark: #006AA3;
-  --ifm-color-primary-darker: #00639A;
-  --ifm-color-primary-darkest: #00527F;
-  --ifm-color-primary-light: #0084C9;
-  --ifm-color-primary-lighter: #008BD2;
-  --ifm-color-primary-lightest: #009FED;
+  --ifm-color-primary: #2B8CF7;
+  --ifm-color-primary-dark: #157EF5;
+  --ifm-color-primary-darker: #0A75F4;
+  --ifm-color-primary-darkest: #0860D4;
+  --ifm-color-primary-light: #4499F8;
+  --ifm-color-primary-lighter: #50A1F9;
+  --ifm-color-primary-lightest: #75B6FA;
 
   /* === Brand Tokens === */
   --wso2-navy: #1B2A49;
@@ -62,7 +62,7 @@
   --wso2-text-muted: #94A3B8;
 
   /* === Code === */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 119, 182, 0.06);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   /* === Typography — Inter === */
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -88,36 +88,37 @@
   --ifm-button-border-radius: 10px;
   --ifm-card-border-radius: 12px;
   --ifm-code-border-radius: 8px;
-  --ifm-code-font-size: 93%;
+  --ifm-code-font-size: 95%;
 
-  /* === Navbar === */
-  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  /* === Navbar & Navigation === */
+  --ifm-navbar-background-color: rgba(240, 247, 255, 0.85); /* Subtle Light Blue Background */
+  --wso2-sidebar-bg: #F0F7FF;
   --ifm-navbar-shadow: 0 1px 0 #E2E8F0;
   --ifm-navbar-height: 4rem;
   --ifm-navbar-padding-vertical: 0;
 
   /* === Sidebar === */
   --ifm-menu-color: #475569;
-  --ifm-menu-color-active: #0077B6;
+  --ifm-menu-color-active: #2B8CF7;
   --doc-sidebar-width: 280px;
 
   /* === Link color === */
-  --ifm-link-color: #0077B6;
-  --ifm-link-hover-color: #005F8F;
+  --ifm-link-color: #2B8CF7;
+  --ifm-link-hover-color: #157EF5;
 }
 
 /* ================================================================
    DARK THEME
    ================================================================ */
 [data-theme='dark'] {
-  /* === Primary — Bright Sky Blue === */
-  --ifm-color-primary: #38BDF8;
-  --ifm-color-primary-dark: #1AAFE6;
-  --ifm-color-primary-darker: #0FA5DB;
-  --ifm-color-primary-darkest: #0C87B4;
-  --ifm-color-primary-light: #5ECBFA;
-  --ifm-color-primary-lighter: #7AD5FB;
-  --ifm-color-primary-lightest: #A5E3FC;
+  /* === Primary — Responsive Sky Blue === */
+  --ifm-color-primary: #4499F8;
+  --ifm-color-primary-dark: #2B8CF7;
+  --ifm-color-primary-darker: #2080F2;
+  --ifm-color-primary-darkest: #157EF5;
+  --ifm-color-primary-light: #5DA7F9;
+  --ifm-color-primary-lighter: #69AFFA;
+  --ifm-color-primary-lightest: #8EC4FB;
 
   /* === Accent — warm orange (CTAs, badges) === */
   --wso2-accent: #FB923C;
@@ -138,10 +139,11 @@
   --wso2-text-muted: #64748B;
 
   /* === Code === */
-  --docusaurus-highlighted-code-line-bg: rgba(56, 189, 248, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  /* === Navbar — transparent to blend with hero === */
+  /* === Navbar === */
   --ifm-navbar-background-color: rgba(11, 17, 32, 0.6);
+  --wso2-sidebar-bg: #151E31;
   --ifm-navbar-shadow: none;
 
   /* === Sidebar === */
@@ -150,8 +152,8 @@
   --ifm-color-emphasis-600: #CBD5E1;
 
   /* === Link color === */
-  --ifm-link-color: #38BDF8;
-  --ifm-link-hover-color: #7DD3FC;
+  --ifm-link-color: #4499F8;
+  --ifm-link-hover-color: #5DA7F9;
 }
 
 /* ================================================================
@@ -191,14 +193,14 @@
 }
 
 .navbar__link--active {
-  color: #0077B6;
+  color: #2B8CF7;
   font-weight: 600;
-  background-color: rgba(0, 119, 182, 0.06);
+  background-color: rgba(43, 140, 247, 0.08);
 }
 
 [data-theme='dark'] .navbar__link--active {
-  color: #38BDF8;
-  background-color: rgba(56, 189, 248, 0.08);
+  color: #4499F8;
+  background-color: rgba(68, 153, 248, 0.1);
 }
 
 /* ================================================================
@@ -220,15 +222,15 @@
 }
 
 .menu__link--active:not(.menu__link--sublist) {
-  background-color: rgba(0, 119, 182, 0.06);
+  background-color: rgba(43, 140, 247, 0.08);
   font-weight: 600;
-  border-left: 3px solid #0077B6;
+  border-left: 3px solid #2B8CF7;
   padding-left: calc(0.75rem - 3px);
 }
 
 [data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
-  background-color: rgba(56, 189, 248, 0.08);
-  border-left-color: #38BDF8;
+  background-color: rgba(68, 153, 248, 0.1);
+  border-left-color: #4499F8;
 }
 
 .menu__list-item-collapsible:hover {
@@ -251,26 +253,26 @@
 }
 
 .button--primary {
-  background: #0077B6;
+  background: #2B8CF7;
   border-color: transparent;
   color: #FFFFFF;
 }
 
 .button--primary:hover {
-  background: #005F8F;
-  box-shadow: 0 4px 16px rgba(0, 119, 182, 0.25);
+  background: #157EF5;
+  box-shadow: 0 4px 16px rgba(43, 140, 247, 0.25);
   transform: translateY(-1px);
   color: #FFFFFF;
 }
 
 [data-theme='dark'] .button--primary {
-  background: #38BDF8;
+  background: #4499F8;
   color: #0B1120;
 }
 
 [data-theme='dark'] .button--primary:hover {
-  background: #7DD3FC;
-  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+  background: #5DA7F9;
+  box-shadow: 0 4px 16px rgba(68, 153, 248, 0.25);
   color: #0B1120;
 }
 
@@ -558,12 +560,12 @@ table td, table th {
 }
 
 .table-of-contents__link--active {
-  color: #0077B6;
+  color: #2B8CF7;
   font-weight: 600;
 }
 
 [data-theme='dark'] .table-of-contents__link--active {
-  color: #38BDF8;
+  color: #4499F8;
 }
 
 /* Breadcrumbs */
@@ -587,13 +589,13 @@ table td, table th {
 }
 
 .breadcrumbs__item--active .breadcrumbs__link {
-  background-color: rgba(0, 119, 182, 0.06);
-  color: #0077B6;
+  background-color: rgba(43, 140, 247, 0.08);
+  color: #2B8CF7;
 }
 
 [data-theme='dark'] .breadcrumbs__item--active .breadcrumbs__link {
-  background-color: rgba(56, 189, 248, 0.08);
-  color: #38BDF8;
+  background-color: rgba(68, 153, 248, 0.1);
+  color: #4499F8;
 }
 
 /* Pagination */
@@ -626,11 +628,11 @@ table td, table th {
 }
 
 .pagination-nav__label {
-  color: #0077B6;
+  color: #2B8CF7;
 }
 
 [data-theme='dark'] .pagination-nav__label {
-  color: #38BDF8;
+  color: #4499F8;
 }
 
 /* Search input (navbar) */
@@ -775,19 +777,19 @@ table td, table th {
 }
 
 .tabs__item--active {
-  color: #0077B6;
+  color: #2B8CF7;
   background: #FFFFFF;
   font-weight: 600;
   border-color: #E2E8F0;
-  border-top: 2px solid #0077B6;
+  border-top: 2px solid #2B8CF7;
   border-bottom-color: #FFFFFF;
 }
 
 [data-theme='dark'] .tabs__item--active {
-  color: #38BDF8;
+  color: #4499F8;
   background: #0B1120;
   border-color: #1E293B;
-  border-top: 2px solid #38BDF8;
+  border-top: 2px solid #4499F8;
   border-bottom-color: #0B1120;
 }
 
@@ -820,3 +822,16 @@ hr {
   background: linear-gradient(90deg, #1E293B, transparent 80%);
 }
 
+
+/* ================================================================
+   SIDEBAR BACKGROUND OVERRIDE
+   ================================================================ */
+.theme-doc-sidebar-container {
+  background-color: var(--wso2-sidebar-bg);
+  border-right: 1px solid var(--wso2-surface-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  border-right-color: rgba(255, 255, 255, 0.06);
+}

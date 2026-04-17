@@ -4,91 +4,95 @@ title: "Quick Start: Build an AI Agent"
 description: Create an intelligent AI agent powered by LLMs with tool calling.
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Quick Start: Build an AI Agent
 
-**Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to queries through a GraphQL endpoint.
+**Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to user queries in chat.
 
 ## Prerequisites
 
 - [WSO2 Integrator extension installed](install.md)
-- An OpenAI API key
+- Optional: An API key for your LLM provider (recommended to avoid provider API restrictions)
+
+If you use an API key, configure it before running the integration, either in `Config.toml` or through environment variables.
 
 ## Architecture
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant Service as GraphQL Service<br/>localhost:8080
+    participant User
+    participant Agent as AI Chat Agent
     participant LLM as LLM (OpenAI)
 
-    Client->>Service: mutation Task(query)
-    Service->>LLM: prompt + tools
-    LLM-->>Service: response
-    Service-->>Client: { data: { task: "..." } }
+    User->>Agent: Send message ("Hello")
+    Agent->>LLM: Instructions + prompt
+    LLM-->>Agent: Generated response
+    Agent-->>User: Chat reply
 ```
 
 ## Step 1: Create the Project
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `AIAgent`).
+1. Open WSO2 Integrator.
+2. Select **Create**.
+3. Set **Integration Name** to `AI Agent`.
+4. Set **Project Name** to `Quick_Start`.
+5. Select **Browse**.
+6. Select the project location and select **Open**.
+7. Select **Create Integration**.
 
-## Step 2: Add a GraphQL Service
+<ThemedImage
+    alt="Create the Project"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-ai-agent/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/create-the-project-dark.gif'),
+    }}
+/>
 
-1. Add a **GraphQL Service** artifact.
-2. Add a mutation named `task` that accepts a `query: string` parameter.
+## Step 2: Add an AI Chat Agent
 
-## Step 3: Configure the Inline Agent
+1. Select **AI Agent**.
+2. In the design view, select **+ Add Artifact**.
+3. Scroll down and select **AI Chat Agent** under **AI Integration**.
+4. Set **Name** to `Wso2 Integrator Assistant`.
+5. Select **Create**.
 
-1. Inside the mutation, implement an **Inline Agent**.
-2. Configure the model provider (WSO2 default or OpenAI).
-3. Set up agent memory and tools.
+<ThemedImage
+    alt="Add an AI Chat Agent"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-dark.gif'),
+    }}
+/>
 
-In code:
+## Step 3: Configure the AI Agent
 
-```ballerina
-import ballerina/graphql;
-import ballerinax/ai.agent;
-import ballerinax/ai.provider.openai;
+1. Select **AI Agent**.
+2. Set **Instructions** to `You are a highly skilled WSO2 Integration Architect. Your goal is to assist developers in building, debugging, and optimizing integration flows.`.
+3. Select **Save**.
 
-configurable string openaiKey = ?;
+<ThemedImage
+    alt="Configure the AI Agent"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-ai-agent/configure-the-ai-agent-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/configure-the-ai-agent-dark.gif'),
+    }}
+/>
 
-service /graphql on new graphql:Listener(8080) {
-    remote function task(string query) returns string|error {
-        openai:Client model = check new ({
-            auth: {token: openaiKey},
-            model: "gpt-4o"
-        });
+## Step 4: Run and test
 
-        agent:InlineAgent inlineAgent = check new (
-            model: model,
-            systemPrompt: "You are a helpful assistant.",
-            tools: []
-        );
+1. Select **Run**.
+2. Select **Chat**.
+3. Type `Hello` to check if it works.
 
-        return check inlineAgent.run(query);
-    }
-}
-```
-
-## Step 4: Configure the API Key
-
-Create a `Config.toml` file:
-
-```toml
-openaiKey = "<your-openai-api-key>"
-```
-
-## Step 5: Run and Test
-
-1. Click **Run** in the toolbar.
-2. Test with curl:
-
-```bash
-curl -X POST http://localhost:8080/graphql \
-  -H "Content-Type: application/json" \
-  -d '{"query": "mutation Task { task(query: \"What is WSO2 Integrator?\") }"}'
-```
+<ThemedImage
+    alt="Run and test"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-ai-agent/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/run-and-test-dark.gif'),
+    }}
+/>
 
 ## What's Next
 

@@ -1,96 +1,85 @@
 ---
 title: Create a Library
-description: Create reusable library packages for sharing common integration logic across projects.
+description: Create reusable library packages for sharing common logic across integrations.
 ---
 
-# Create a Library
+# Create a library
 
-Libraries let you package reusable integration logic — connectors, utility functions, data types, and transformations — so multiple integration projects can share and depend on them.
+A library is a reusable package of shared logic — utility functions, type definitions, data mappers, and connections — that you can use across multiple integrations. Instead of duplicating common code in each integration, create a library once and import it wherever needed.
 
-## Prerequisites
+## Open the creation wizard
 
-- WSO2 Integrator VS Code extension installed
-- Ballerina installed
+On the WSO2 Integrator home screen, click **More Actions** to reveal additional options.
 
-## When to Use a Library
+![Home screen with More Actions expanded](/img/create-library/home-screen-more-actions.png)
 
-| Use Case | Example |
-|----------|---------|
-| **Shared data types** | Common record definitions used across services |
-| **Utility functions** | Date formatting, ID generation, validation helpers |
-| **Custom connectors** | Organization-specific API wrappers |
-| **Transformation logic** | Reusable data mapping functions |
+Click **Create Library** to open the library creation wizard.
 
-## Create a Library Project
+## Configure the library
 
-1. Open VS Code and press **Ctrl/Cmd + Shift + P** to open the command palette.
-2. Select **WSO2 Integrator: Create New Project**.
-3. Choose **Library** as the project type.
-4. Enter a name for your library (e.g., `my_org_utils`).
-5. Select the project location.
+The creation wizard prompts you to provide the basic details for your library.
 
-The extension creates a library project with the following structure:
+![Create Library form](/img/create-library/create-library-form.png)
+
+| Field | Description |
+|---|---|
+| **Library Name** | A descriptive name for your library (e.g., `common-utils`). |
+| **Project Name** | The name of the project that contains this library. |
+| **Create within a project** | Enabled by default. Creates a project workspace that can hold multiple integrations and libraries in a single repository. Uncheck this to create a standalone library. |
+| **Select Path** | The directory where the library files are created. Click **Browse** to choose a folder. The full path preview appears below the field. |
+
+Fill in the required fields and click **Create Library**.
+
+WSO2 Integrator generates the library project and opens the [library view](../project-views/library-view.md). The file structure for a library within a project contains a root `Ballerina.toml` and a subdirectory for the library package:
 
 ```
-my_org_utils/
-├── Ballerina.toml
-├── Module.md
-├── lib.bal
-└── tests/
-    └── lib_test.bal
+project-name/
+├── .choreo/
+├── .vscode/
+├── library-name/
+│   ├── .vscode/
+│   ├── .gitignore
+│   ├── agents.bal
+│   ├── Ballerina.toml
+│   ├── config.bal
+│   ├── connections.bal
+│   ├── data_mappings.bal
+│   ├── functions.bal
+│   ├── lib.bal
+│   └── types.bal
+└── Ballerina.toml
 ```
 
-## Define Public APIs
+Note that a library package includes a `lib.bal` file instead of `main.bal`, since libraries expose shared logic rather than executable entry points.
 
-In a library, only `public` functions, types, and constants are accessible to consumers:
+:::tip
+You can add integrations to the same project by clicking the **+** button in the WSO2 Integrator sidebar. This lets you build integrations that consume your library within a single project workspace.
+:::
 
-```ballerina
-// Public function — accessible to consumers
-public function formatDate(time:Utc utc) returns string {
-    // ...
-}
+## Advanced configurations
 
-// Public type — accessible to consumers
-public type OrderRecord record {|
-    string orderId;
-    string customerName;
-    decimal amount;
-|};
+Expand the **Advanced Configurations** section to customize the project and Ballerina package settings.
 
-// Private function — internal to the library
-function validateInternal(string input) returns boolean {
-    // ...
-}
-```
+![Advanced Configurations](/img/create-library/advanced-configurations.png)
 
-## Build and Publish
+### Project
 
-### Build locally
+| Field | Description |
+|---|---|
+| **Organization Name** | The organization that owns this project. Click **Sign In** to pick from your registered organizations. |
+| **Project ID** | A unique identifier for your project used in various contexts. |
 
-```bash
-bal pack
-```
+### Ballerina package
 
-### Push to Ballerina Central
+The library is generated as a Ballerina package. Use these fields to configure the package metadata.
 
-```bash
-bal push
-```
+| Field | Description |
+|---|---|
+| **Package Name** | The Ballerina package name. Defaults to the library name. |
+| **Package Version** | The initial version of the package. Defaults to `0.1.0`. |
 
-### Use as a local dependency
+## What's next
 
-In the consuming project's `Ballerina.toml`:
-
-```toml
-[[dependency]]
-org = "my_org"
-name = "my_org_utils"
-version = "1.0.0"
-repository = "local"
-```
-
-## What's Next
-
-- [Manage Dependencies](/docs/develop/organize-code/manage-dependencies) — add libraries as dependencies
-- [Package References](/docs/develop/organize-code/package-references) — understand package structure
-- [Publish to Central](/docs/connectors/publish-to-central) — share with the community
+- [Library View](../project-views/library-view.md) -- Learn how to manage and configure your library project
+- [Create a New Integration](create-new-integration.md) -- Create an integration that uses your library
+- [Manage Dependencies](/docs/develop/organize-code/manage-dependencies) -- Add libraries as dependencies to your integrations

@@ -74,6 +74,8 @@ const sidebars: SidebarsConfig = {
             'develop/create-integrations/open-integration-or-project',
             'develop/create-integrations/explore-samples',
             'develop/create-integrations/create-library',
+            'develop/create-integrations/create-project',
+            'develop/create-integrations/open-project',
             'develop/create-integrations/migrate-3rd-party-integrations',
           ],
         },
@@ -126,7 +128,18 @@ const sidebars: SidebarsConfig = {
               type: 'category', label: 'File Integration',
               collapsed: true,
               items: [
-                'develop/integration-artifacts/file/ftp-sftp',
+                {
+                  type: 'category', label: 'Remote Servers (FTP/SFTP)',
+                  collapsed: true,
+                  link: { type: 'doc', id: 'develop/integration-artifacts/file/ftp-sftp' },
+                  items: [
+                    'develop/integration-artifacts/file/csv-fault-tolerance',
+                    'develop/integration-artifacts/file/file-dependency-triggers',
+                    'develop/integration-artifacts/file/streaming-large-files',
+                    'develop/integration-artifacts/file/resiliency',
+                    'develop/integration-artifacts/file/high-availability',
+                  ],
+                },
                 'develop/integration-artifacts/file/local-files',
               ],
             },
@@ -198,6 +211,7 @@ const sidebars: SidebarsConfig = {
           label: 'Debugging & Troubleshooting',
           items: [
             'develop/debugging/overview',
+            'develop/debugging/errors-and-stack-traces',
             'develop/debugging/editor-debugging',
             'develop/debugging/remote-debugging',
             'develop/debugging/strand-dumps',
@@ -334,15 +348,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'AWS Lambda',
-          link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/aws.lambda/overview' },
-          items: [
-            'connectors/catalog/cloud-infrastructure/aws.lambda/setup-guide',
-            'connectors/catalog/cloud-infrastructure/aws.lambda/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'AWS Marketplace MPE',
           link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/aws.marketplace.mpe/overview' },
           items: [
@@ -438,15 +443,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/azure.ai.search.index/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search.index/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Azure Functions',
-          link: { type: 'doc', id: 'connectors/catalog/cloud-infrastructure/azure.functions/overview' },
-          items: [
-            'connectors/catalog/cloud-infrastructure/azure.functions/setup-guide',
-            'connectors/catalog/cloud-infrastructure/azure.functions/trigger-reference',
           ],
         },
         {
@@ -664,6 +660,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/guidewire.insnow/setup-guide',
             'connectors/catalog/erp-business/guidewire.insnow/action-reference',
+            'connectors/catalog/erp-business/guidewire.insnow/example',
           ],
         },
         {
@@ -1011,6 +1008,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/ibm.ctg/setup-guide',
             'connectors/catalog/erp-business/ibm.ctg/action-reference',
+            'connectors/catalog/erp-business/ibm.ctg/example',
           ],
         },
         {
@@ -1025,11 +1023,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'IDE Trace Provider',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/idetraceprovider/overview' },
+          label: 'Intercom',
+          link: { type: 'doc', id: 'connectors/catalog/communication/intercom/overview' },
           items: [
-            'connectors/catalog/developer-tools/idetraceprovider/setup-guide',
-            'connectors/catalog/developer-tools/idetraceprovider/action-reference',
+            'connectors/catalog/communication/intercom/setup-guide',
+            'connectors/catalog/communication/intercom/action-reference',
           ],
         },
         {
@@ -1140,15 +1138,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Moesif',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/moesif/overview' },
-          items: [
-            'connectors/catalog/developer-tools/moesif/setup-guide',
-            'connectors/catalog/developer-tools/moesif/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'MongoDB',
           link: { type: 'doc', id: 'connectors/catalog/database/mongodb/overview' },
           items: [
@@ -1186,15 +1175,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/nats/setup-guide',
             'connectors/catalog/messaging/nats/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'New Relic',
-          link: { type: 'doc', id: 'connectors/catalog/developer-tools/newrelic/overview' },
-          items: [
-            'connectors/catalog/developer-tools/newrelic/setup-guide',
-            'connectors/catalog/developer-tools/newrelic/action-reference',
           ],
         },
         {
@@ -1367,6 +1347,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap/setup-guide',
             'connectors/catalog/erp-business/sap/action-reference',
+            'connectors/catalog/erp-business/sap/example',
           ],
         },
         {
@@ -1386,6 +1367,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.salesarea-0001/example',
           ],
         },
         {
@@ -1395,6 +1377,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_salesdistrict_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_salesdistrict_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-salesdistrict-srv/example',
           ],
         },
         {
@@ -1404,6 +1387,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/example',
           ],
         },
         {
@@ -1422,6 +1406,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/example',
           ],
         },
         {
@@ -1431,6 +1416,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/example',
           ],
         },
         {
@@ -1440,6 +1426,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_salesorganization_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_salesorganization_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-salesorganization-srv/example',
           ],
         },
         {
@@ -1449,6 +1436,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/example',
           ],
         },
         {
@@ -1458,6 +1446,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/example',
           ],
         },
         {
@@ -1467,6 +1456,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/example',
           ],
         },
         {
@@ -1925,6 +1915,8 @@ const sidebars: SidebarsConfig = {
             'tutorials/walkthroughs/edi-ftp-processing',
             'tutorials/walkthroughs/csv-ftp-processing',
             'tutorials/walkthroughs/ftp-listener-with-age-filter-and-file-dependency',
+            'tutorials/walkthroughs/local-file-watcher',
+            'tutorials/walkthroughs/streaming-csv-sftp',
             'tutorials/data-reconciliation',
           ],
         },

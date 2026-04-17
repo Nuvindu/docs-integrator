@@ -1,116 +1,55 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Remote Debugging
-description: Attach a debugger to Ballerina services running in remote environments.
+description: Attach the debugger to integrations running on remote environments.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Remote Debugging
+# Remote debugging
 
-Attach the VS Code debugger to Ballerina services running in Docker containers, Kubernetes pods, or remote servers. Remote debugging lets you investigate issues that only occur in specific environments without adding log statements and redeploying.
+Attach the WSO2 Integrator debugger to integrations running on remote servers, containers, or other environments. Remote debugging lets you investigate issues that only occur in specific environments without adding log statements and redeploying.
 
-## How Remote Debugging Works
+## How remote debugging works
 
-Ballerina supports the Debug Adapter Protocol (DAP) over a TCP connection. When you start a Ballerina program in debug mode, it listens on a specified port for a debugger to attach. You then connect VS Code to that port to set breakpoints and inspect state.
+When you start a Ballerina program with the `--debug` flag, it opens a debug port and waits for a debugger to connect. WSO2 Integrator then attaches to that port over TCP to provide the same debugging experience as local debugging — breakpoints, stepping, variable inspection, and expression evaluation.
 
-## Starting a Service in Debug Mode
+## Start the integration in debug mode
 
-### On a Remote Server
+Run one of the following commands on the machine where the integration is deployed:
 
-Start your Ballerina service with the `--debug` flag to enable the debug listener.
+| Command | Description |
+|---------|-------------|
+| `bal run --debug <PORT> <BAL_FILE_OR_PACKAGE>` | Debug a Ballerina package or file |
+| `bal run --debug <PORT> <JAR_FILE>` | Debug a Ballerina executable JAR |
+| `bal test --debug <PORT> <PACKAGE>` | Debug Ballerina tests |
+
+**Example:**
 
 ```bash
-# Start with debug port 5005
 bal run --debug 5005
 
-# The service starts and waits for a debugger connection
-# Output: Listening for transport dt_socket at address: 5005
+# Output:
+# Listening for transport dt_socket at address: 5005
 ```
 
-### In a Docker Container
+The program starts and waits for a debugger connection before proceeding.
 
-Expose the debug port in your Dockerfile and Docker run command.
-
-```dockerfile
-FROM ballerina/ballerina:2201.11.0
-
-COPY . /app
-WORKDIR /app
-
-# Expose both the service port and debug port
-EXPOSE 9090 5005
-
-# Start with debug mode enabled
-CMD ["bal", "run", "--debug", "5005"]
-```
-
-```bash
-# Run the container with debug port mapped
-docker run -p 9090:9090 -p 5005:5005 my-integration:latest
-```
-
-### In Kubernetes
-
-Add the debug port to your service definition and create a port-forward.
-
-```yaml
-# deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: order-service
-spec:
-  replicas: 1  # Use 1 replica for debugging
-  template:
-    spec:
-      containers:
-        - name: order-service
-          image: my-integration:debug
-          ports:
-            - containerPort: 9090
-              name: http
-            - containerPort: 5005
-              name: debug
-          command: ["bal", "run", "--debug", "5005"]
-```
-
-```bash
-# Forward the debug port to your local machine
-kubectl port-forward deployment/order-service 5005:5005
-```
-
-:::caution Production Debugging
-Never leave debug ports open in production. Use separate debug-enabled deployments or enable debug mode temporarily. Always use a single replica when debugging to ensure your breakpoints are hit.
+:::caution
+Never leave debug ports open in production. Enable debug mode only temporarily and ensure the port is not publicly accessible.
 :::
 
-## Connecting VS Code
+## Configure the remote debug session
 
-### Configure launch.json
-
-Add a remote attach configuration to `.vscode/launch.json`.
+Add a remote attach configuration to `launch.json`:
 
 ```json
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Ballerina Remote Debug",
-            "type": "ballerina",
-            "request": "attach",
-            "debuggeeHost": "127.0.0.1",
-            "debuggeePort": 5005
-        },
-        {
-            "name": "Remote Debug (Docker)",
-            "type": "ballerina",
-            "request": "attach",
-            "debuggeeHost": "127.0.0.1",
-            "debuggeePort": 5005
-        },
-        {
-            "name": "Remote Debug (Kubernetes)",
+            "name": "Ballerina Remote",
             "type": "ballerina",
             "request": "attach",
             "debuggeeHost": "127.0.0.1",
@@ -120,12 +59,14 @@ Add a remote attach configuration to `.vscode/launch.json`.
 }
 ```
 
-### Attach to the Remote Service
+Set `debuggeeHost` and `debuggeePort` to match the host and port where the integration is running.
+
+## Attach to the remote integration
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Open your project in VS Code (the source code must match the deployed version).
+1. Open your project in WSO2 Integrator (the source code must match the deployed version).
 2. Open your integration in the design view and set breakpoints on the flow nodes you want to inspect.
 3. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS) and select **Ballerina: Attach to Remote**.
 4. Enter the remote host and port (for example, `127.0.0.1:5005`).
@@ -137,83 +78,22 @@ Once attached, the debugger pauses at your breakpoints and highlights the active
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-1. Open your project in VS Code (the source code must match the deployed version).
+1. Open your project in WSO2 Integrator (the source code must match the deployed version).
 2. Set breakpoints in your source files.
-3. Open the Run and Debug panel (`Ctrl+Shift+D`).
-4. Select the remote debug configuration.
-5. Click the green play button to attach.
+3. Open the **Run and Debug** panel (`Ctrl+Shift+D` or `Cmd+Shift+D` on macOS).
+4. Select **Ballerina Remote** from the configuration dropdown.
+5. Click the green play button or press `F5` to attach.
 
-<!-- TODO: Screenshot of VS Code Run and Debug panel with remote config selected -->
+<!-- TODO: Screenshot showing Run and Debug panel with Ballerina Remote selected -->
 
 </TabItem>
 </Tabs>
 
-Once attached, the debugger behaves the same as local debugging -- you can step through code, inspect variables, and evaluate expressions.
+Once attached, the debugger behaves the same as local debugging — you can step through code, inspect variables, and evaluate expressions in the **Debug Console**.
 
-## Debugging in Docker Compose
+## Source mapping
 
-For multi-service debugging with Docker Compose, expose debug ports for each service.
-
-```yaml
-# docker-compose.debug.yaml
-version: '3.8'
-services:
-  order-service:
-    build: ./order-service
-    ports:
-      - "9090:9090"
-      - "5005:5005"
-    command: ["bal", "run", "--debug", "5005"]
-
-  inventory-service:
-    build: ./inventory-service
-    ports:
-      - "9091:9091"
-      - "5006:5005"
-    command: ["bal", "run", "--debug", "5005"]
-
-  payment-service:
-    build: ./payment-service
-    ports:
-      - "9092:9092"
-      - "5007:5005"
-    command: ["bal", "run", "--debug", "5005"]
-```
-
-Create separate launch configurations for each service:
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Debug Order Service",
-            "type": "ballerina",
-            "request": "attach",
-            "debuggeeHost": "127.0.0.1",
-            "debuggeePort": 5005
-        },
-        {
-            "name": "Debug Inventory Service",
-            "type": "ballerina",
-            "request": "attach",
-            "debuggeeHost": "127.0.0.1",
-            "debuggeePort": 5006
-        },
-        {
-            "name": "Debug Payment Service",
-            "type": "ballerina",
-            "request": "attach",
-            "debuggeeHost": "127.0.0.1",
-            "debuggeePort": 5007
-        }
-    ]
-}
-```
-
-## Source Mapping
-
-For remote debugging to work correctly, the source code in VS Code must match the version deployed to the remote environment.
+For remote debugging to work correctly, the source code in WSO2 Integrator must match the version deployed to the remote environment.
 
 ```bash
 # Verify the deployed version matches your local code
@@ -225,23 +105,22 @@ git log --oneline -1
 
 If source code is out of sync, breakpoints may appear on wrong lines or variables may show incorrect values.
 
-## Security Considerations
+## Security considerations
 
-- **Never expose debug ports publicly** -- use SSH tunnels or port forwarding
-- **Use network policies** in Kubernetes to restrict access to the debug port
-- **Remove debug flags** before production deployment
-- **Limit debug sessions** -- long-paused breakpoints can cause request timeouts and health check failures
+- **Never expose debug ports publicly** — use SSH tunnels or port forwarding to access remote debug ports securely.
+- **Remove debug flags** before deploying to production.
+- **Limit debug sessions** — long-paused breakpoints can cause request timeouts and health check failures.
 
-### SSH Tunnel for Remote Servers
+### SSH tunnel for remote servers
 
 ```bash
 # Create an SSH tunnel to the debug port on a remote server
 ssh -L 5005:localhost:5005 user@remote-server
 
-# Then attach VS Code to localhost:5005
+# Then attach WSO2 Integrator to localhost:5005
 ```
 
-## Troubleshooting Remote Debugging
+## Troubleshooting remote debugging
 
 | Issue | Solution |
 |-------|----------|
@@ -251,16 +130,16 @@ ssh -L 5005:localhost:5005 user@remote-server
 | Debugger disconnects | Check network stability; increase timeout settings |
 | Slow stepping | Remote network latency affects step-through speed; consider debugging locally with mocked dependencies |
 
-## Best Practices
+## Best practices
 
-- **Match source to deployment** -- always debug with the exact code version that is deployed
-- **Use a single replica** when debugging in Kubernetes to ensure your requests hit the debugged pod
-- **Set a debug timeout** -- do not leave breakpoints paused for more than a few minutes to avoid cascading failures
+- **Match source to deployment** — always debug with the exact code version that is deployed
+- **Use a single replica** when debugging in containerized environments to ensure your requests hit the debugged instance
+- **Set a debug timeout** — do not leave breakpoints paused for more than a few minutes to avoid cascading failures
 - **Use SSH tunnels** instead of exposing debug ports directly
-- **Debug in staging, not production** -- replicate the issue in a non-production environment whenever possible
+- **Debug in staging, not production** — replicate the issue in a non-production environment whenever possible
 
-## What's Next
+## What's next
 
-- [Editor Debugging](editor-debugging.md) -- Local debugging fundamentals
-- [Strand Dump Analysis](strand-dumps.md) -- Diagnose concurrency issues
-- [Performance Profiling](performance-profiling.md) -- Identify performance bottlenecks
+- [Editor Debugging](editor-debugging.md) — Local debugging fundamentals
+- [Strand Dump Analysis](strand-dumps.md) — Diagnose concurrency issues
+- [Performance Profiling](performance-profiling.md) — Identify performance bottlenecks

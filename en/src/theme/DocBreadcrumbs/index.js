@@ -4,28 +4,30 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import { useSidebarBreadcrumbs } from '@docusaurus/plugin-content-docs/client';
 import { useLocation, useHistory } from '@docusaurus/router';
 import { usePluginData } from '@docusaurus/useGlobalData';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import { useConnectorVersion } from '@site/src/utils/connectorVersion';
+import MarkdownButton from './MarkdownButton';
 import styles from './styles.module.css';
 
 const CATEGORY_TAGS = {
   'built-in':                   { label: 'Built-in',                    color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
-  'ai-ml':                      { label: 'AI & Machine Learning',       color: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe' },
+  'ai-ml':                      { label: 'AI & ML',                      color: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe' },
   'cloud-infrastructure':       { label: 'Cloud & Infrastructure',       color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
   'communication':              { label: 'Communication',                color: '#0d9488', bg: '#f0fdfa', border: '#99f6e4' },
   'crm-sales':                  { label: 'CRM & Sales',                  color: '#ea580c', bg: '#fff7ed', border: '#fed7aa' },
   'database':                   { label: 'Database',                     color: '#0891b2', bg: '#ecfeff', border: '#a5f3fc' },
   'developer-tools':            { label: 'Developer Tools',              color: '#475569', bg: '#f8fafc', border: '#cbd5e1' },
   'ecommerce':                  { label: 'E-Commerce',                   color: '#db2777', bg: '#fdf2f8', border: '#f9a8d4' },
-  'erp-business':               { label: 'ERP & Business Operations',    color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
+  'erp-business':               { label: 'ERP & Business',               color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
   'finance-accounting':         { label: 'Finance & Accounting',         color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
   'healthcare':                 { label: 'Healthcare',                   color: '#0f766e', bg: '#f0fdfa', border: '#99f6e4' },
   'hrms':                       { label: 'HRMS',                         color: '#7e22ce', bg: '#faf5ff', border: '#e9d5ff' },
-  'marketing-social':           { label: 'Marketing & Social Media',     color: '#e11d48', bg: '#fff1f2', border: '#fecdd3' },
+  'marketing-social':           { label: 'Marketing & Social',           color: '#e11d48', bg: '#fff1f2', border: '#fecdd3' },
   'messaging':                  { label: 'Messaging',                    color: '#ca8a04', bg: '#fefce8', border: '#fef08a' },
   'productivity-collaboration': { label: 'Productivity & Collaboration',  color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe' },
   'security-identity':          { label: 'Security & Identity',          color: '#dc2626', bg: '#fef2f2', border: '#fecaca' },
-  'storage-file':               { label: 'Storage & File Management',    color: '#64748b', bg: '#f8fafc', border: '#e2e8f0' },
+  'storage-file':               { label: 'Storage & Files',              color: '#64748b', bg: '#f8fafc', border: '#e2e8f0' },
 };
 
 function CategoryBadge({ categorySlug }) {
@@ -139,6 +141,32 @@ export default function DocBreadcrumbsWrapper(props) {
   const location = useLocation();
   const history = useHistory();
 
+  // URL for the raw markdown content
+  const getMarkdownUrl = () => {
+    const path = location.pathname;
+    const docsBaseUrl = useBaseUrl('/docs');
+
+    // Only generate markdown URLs for docs pages
+    if (!path.startsWith(docsBaseUrl)) {
+      return null;
+    }
+
+    // Ensure it matches /docs/ or /docs exactly (avoid matching /docs-something)
+    const nextChar = path[docsBaseUrl.length];
+    if (nextChar && nextChar !== '/') {
+      return null;
+    }
+
+    let markdownPath = path;
+    if (markdownPath.endsWith('/')) {
+      markdownPath += 'index.md';
+    } else {
+      markdownPath += '.md';
+    }
+    return markdownPath;
+  };
+  const markdownUrl = getMarkdownUrl();
+
   // Read connector version data from the plugin's global data.
   let allConnectorVersions = {};
   try {
@@ -249,19 +277,25 @@ export default function DocBreadcrumbsWrapper(props) {
   // Not a versioned connector page — render default breadcrumbs + badge.
   if (!isConnector || !hasMultipleVersions) {
     return (
-      <>
-        <DocBreadcrumbs {...props} />
-        {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
-      </>
+      <div className={styles.breadcrumbRow}>
+        <div className={styles.breadcrumbsLeft}>
+          <DocBreadcrumbs {...props} />
+          {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
+        </div>
+        {markdownUrl && <MarkdownButton markdownUrl={markdownUrl} />}
+      </div>
     );
   }
 
   if (!breadcrumbs || breadcrumbs.length === 0) {
     return (
-      <>
-        <DocBreadcrumbs {...props} />
-        {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
-      </>
+      <div className={styles.breadcrumbRow}>
+        <div className={styles.breadcrumbsLeft}>
+          <DocBreadcrumbs {...props} />
+          {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
+        </div>
+        {markdownUrl && <MarkdownButton markdownUrl={markdownUrl} />}
+      </div>
     );
   }
 
@@ -304,43 +338,44 @@ export default function DocBreadcrumbsWrapper(props) {
   const afterConnector = isOverviewPage ? [] : allAfterConnector;
 
   return (
-    <>
-    {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
-    <nav className={styles.breadcrumbRow} aria-label="Breadcrumbs">
-      {beforeConnector.map((crumb, i) => (
-        <React.Fragment key={i}>
-          <span className={styles.breadcrumbItem}>
-            {crumb.href ? (
-              <Link className={styles.breadcrumbLink} to={crumb.href}>
-                {crumb.label}
-              </Link>
-            ) : (
-              <span className={styles.breadcrumbLink}>{crumb.label}</span>
-            )}
-          </span>
-          <span className={styles.separator}>/</span>
-        </React.Fragment>
-      ))}
-
-      <span className={styles.breadcrumbItem}>
-        <VersionDropdown
-          versions={availableVersions}
-          currentVersion={displayVersion}
-          onSelect={handleVersionSelect}
-        />
-      </span>
-
-      {afterConnector.map((crumb, i) => (
-        <React.Fragment key={`after-${i}`}>
-          <span className={styles.separator}>/</span>
-          <span className={styles.breadcrumbItem}>
-            <span className={styles.breadcrumbLink}>
-              <strong>{crumb.label}</strong>
+    <div className={styles.breadcrumbRow}>
+      <nav className={styles.breadcrumbsLeft} aria-label="Breadcrumbs">
+        {pageSlug === 'overview' && <CategoryBadge categorySlug={categorySlug} />}
+        {beforeConnector.map((crumb, i) => (
+          <React.Fragment key={i}>
+            <span className={styles.breadcrumbItem}>
+              {crumb.href ? (
+                <Link className={styles.breadcrumbLink} to={crumb.href}>
+                  {crumb.label}
+                </Link>
+              ) : (
+                <span className={styles.breadcrumbLink}>{crumb.label}</span>
+              )}
             </span>
-          </span>
-        </React.Fragment>
-      ))}
-    </nav>
-    </>
+            <span className={styles.separator}>/</span>
+          </React.Fragment>
+        ))}
+
+        <span className={styles.breadcrumbItem}>
+          <VersionDropdown
+            versions={availableVersions}
+            currentVersion={displayVersion}
+            onSelect={handleVersionSelect}
+          />
+        </span>
+
+        {afterConnector.map((crumb, i) => (
+          <React.Fragment key={`after-${i}`}>
+            <span className={styles.separator}>/</span>
+            <span className={styles.breadcrumbItem}>
+              <span className={styles.breadcrumbLink}>
+                <strong>{crumb.label}</strong>
+              </span>
+            </span>
+          </React.Fragment>
+        ))}
+      </nav>
+      {markdownUrl && <MarkdownButton markdownUrl={markdownUrl} />}
+    </div>
   );
 }

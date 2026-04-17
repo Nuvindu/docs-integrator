@@ -1,171 +1,164 @@
 ---
 sidebar_position: 4
-title: Import External Integrations
-description: Import integrations from OpenAPI specifications, AsyncAPI documents, WSO2 MI projects, and other external sources.
+title: Migrate Third-Party Integrations
+description: Migrate existing TIBCO BusinessWorks and MuleSoft integrations to WSO2 Integrator.
 ---
 
-# Import External Integrations
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Bring existing integrations into WSO2 Integrator from external sources. Import from OpenAPI specifications, AsyncAPI documents, Protocol Buffer definitions, database schemas, or migrate from WSO2 MI projects.
+# Migrate third-party integrations
 
-## Import from OpenAPI Specification
+WSO2 Integrator includes built-in migration tools that convert existing integration projects from other platforms into Ballerina code. The migration wizard analyzes your source project, generates equivalent Ballerina code, and provides a detailed report of the migration coverage.
 
-Generate an HTTP service skeleton from an OpenAPI (Swagger) definition:
+Currently supported platforms:
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Select **WSO2 Integrator: Import from OpenAPI**.
-3. Provide the path to the OpenAPI file (YAML or JSON) or a URL.
-4. Choose the target directory for the generated project.
+- **TIBCO BusinessWorks** — Converts process definitions, activities, transitions, shared resources, and error handling configurations.
+- **MuleSoft** — Converts Anypoint flows, HTTP connectors, DataWeave transformations, routers, and error handling patterns.
 
-<!-- TODO: Screenshot of the OpenAPI import wizard -->
+## Open the migration wizard
 
-The importer generates a complete Ballerina service with typed resources for each API operation:
+On the WSO2 Integrator home screen, click **Migrate Integrations from Other Vendors** to open the migration wizard.
 
-```ballerina
-// Generated from petstore.yaml
-import ballerina/http;
+## Migrate from MuleSoft
 
-type Pet record {|
-    int id;
-    string name;
-    string status;
-|};
+The migration wizard guides you through a 3-step process to convert your MuleSoft project into a WSO2 Integrator project.
 
-service /v1 on new http:Listener(8090) {
+### Step 1: Select source project
 
-    resource function get pets(string? status) returns Pet[]|error {
-        // TODO: Implement - List all pets, optionally filtered by status
-        return [];
-    }
+1. Select **MuleSoft** as the source platform.
+2. Under **Select Your Project Folder**, click **Browse** and select your MuleSoft project's root folder or main configuration XML file.
+3. Under **Configure MuleSoft Settings**, set the following:
+   - **Force Version** — Select a specific Mule version or use **Auto Detect** to let the tool determine it from your project.
+   - **Migrate Multiple Projects** — Enable this option to process all MuleSoft projects in the selected folder.
+4. Click **Start Migration**.
 
-    resource function get pets/[int petId]() returns Pet|http:NotFound|error {
-        // TODO: Implement - Find pet by ID
-        return http:NOT_FOUND;
-    }
+   ![Select MuleSoft source project](/img/develop/tools/migration-tools/mule-select-source.png)
 
-    resource function post pets(Pet pet) returns http:Created|http:BadRequest|error {
-        // TODO: Implement - Create a new pet
-        return http:CREATED;
-    }
-}
-```
+### Step 2: Review migration progress
 
-### CLI Alternative
+After the migration completes, the wizard displays a summary of the migration coverage:
 
-```bash
-# Generate a Ballerina service from an OpenAPI spec
-bal openapi -i petstore.yaml --mode service -o petstore-service
-```
+- **Migration Coverage** — Percentage of code lines that were automatically migrated.
+- **Total code lines** — Total number of source code lines analyzed.
+- **Migratable code lines** — Lines successfully converted to Ballerina.
+- **Non-migratable code lines** — Lines that require manual attention.
 
-## Import from AsyncAPI Document
+   ![Migration progress showing coverage statistics](/img/develop/tools/migration-tools/mule-migration-progress.png)
 
-Generate event handler stubs from an AsyncAPI specification:
+Click **View Full Report** to see a detailed migration report. The report includes:
 
-1. Open the Command Palette.
-2. Select **WSO2 Integrator: Import from AsyncAPI**.
-3. Provide the AsyncAPI document path or URL.
+- **Migration Coverage Overview** — Overall coverage percentage with a breakdown of total, migratable, and non-migratable code lines.
+- **Breakdown Components** — Separate coverage for Mule Elements and DataWeave expressions.
+- **Manual Work Estimation** — Estimated effort (best, average, and worst case) for completing non-migratable items.
+- **Currently Unsupported Elements** — List of elements that could not be automatically migrated.
+- **Element Blocks that Require Manual Conversion** — Specific code blocks that need manual implementation.
 
-The importer creates listener services for each channel defined in the document, with typed message payloads.
+   ![Full migration report](/img/develop/tools/migration-tools/mule-migration-report.png)
 
-## Import from Protocol Buffers (gRPC)
+Click **Save Report** to download the report for future reference, then click **Next**.
 
-Generate a gRPC service from `.proto` files:
+### Step 3: Configure project
 
-```bash
-# Generate Ballerina stubs from a proto file
-bal grpc --input order_service.proto --output order-grpc-service
-```
+1. Enter an **Integration Name** for your migrated project.
+2. Configure the project settings:
+   - **Project Name** — Name of the project.
+   - **Create within a project** — Enable project mode to manage multiple integrations and libraries within a single repository.
+   - **Select Path** — Choose where to create the migrated project.
+3. Under **AI Enhancement**, select one of the following:
+   - **Enable AI Enhancement** — AI automatically resolves unmapped elements, fixes build errors, and improves the quality of the migration.
+   - **Skip for Now – Enhance Later** — Open the project as-is. You can trigger AI enhancement later from the BI Copilot.
+4. Click **Create and Start AI Enhancement** (or **Create** if you chose to skip AI enhancement).
 
-This produces:
+   ![Configure migrated project](/img/develop/tools/migration-tools/mule-configure-project.png)
 
-- A service skeleton with all RPC methods stubbed out
-- Message types as Ballerina records
-- A client stub for testing
+### MuleSoft component mapping
 
-```ballerina
-// Generated gRPC service skeleton
-import ballerina/grpc;
-
-@grpc:Descriptor {value: ORDER_SERVICE_DESC}
-service "OrderService" on new grpc:Listener(9090) {
-
-    remote function createOrder(Order request) returns OrderResponse|error {
-        // TODO: Implement order creation
-        return {orderId: "", status: "PENDING"};
-    }
-
-    remote function getOrder(OrderRequest request) returns Order|error {
-        // TODO: Implement order retrieval
-        return error("Not implemented");
-    }
-}
-```
-
-## Import from Database Schema
-
-Generate a data service from an existing database schema:
-
-1. Open the Command Palette.
-2. Select **WSO2 Integrator: Import from Database**.
-3. Enter database connection details (host, port, credentials, database name).
-4. Select the tables to include.
-
-The importer introspects the schema and generates:
-
-- Ballerina record types matching table structures
-- A CRUD HTTP service with endpoints for each selected table
-- Connection configuration in `Config.toml`
-
-## Migrate from WSO2 MI
-
-If you have existing WSO2 MI projects (Synapse XML) that you want to bring into WSO2 Integrator, you can use the built-in migration wizard. For MI-specific documentation, see [mi.docs.wso2.com](https://mi.docs.wso2.com).
-
-1. Open the Command Palette.
-2. Select **WSO2 Integrator: Migrate from MI**.
-3. Select the MI project directory or CAR file.
-4. Review the migration report.
-
-<!-- TODO: Screenshot of the migration wizard showing artifact mapping -->
-
-### What Gets Migrated
-
-| MI Artifact | WSO2 Integrator Equivalent |
+| MuleSoft component | Ballerina equivalent |
 |---|---|
-| API / Proxy Service | HTTP Service |
-| Inbound Endpoint (Kafka/RabbitMQ) | Event Handler |
-| Scheduled Task | Automation |
-| Sequences / Mediators | Functions and Flow Logic |
-| Data Services | Database Service with `bal persist` |
-| Message Stores / Processors | Connector-based patterns |
+| HTTP Listener | `http:Listener` + service |
+| HTTP Request | `http:Client` |
+| Database Connector | `mysql:Client` / `postgresql:Client` |
+| Transform (DataWeave) | Ballerina query expressions + data mapper |
+| Flow Reference | Function call |
+| Choice Router | `if/else` or `match` |
+| For Each | `foreach` |
+| Scatter-Gather | Workers (parallel execution) |
+| Try | `do/on fail` |
+| Object Store | Configurable state management |
+| Scheduler | `task:Listener` |
 
-:::info Migration Notes
-Some MI-specific mediators may require manual conversion. The migration tool generates `// TODO: Manual migration required` comments for any artifacts it cannot automatically convert. Review the migration report for details.
-:::
+## Migrate from TIBCO BusinessWorks
 
-## Import from Ballerina Central
+The migration wizard guides you through a 3-step process to convert your TIBCO BusinessWorks project into a WSO2 Integrator project.
 
-Pull an existing integration package from Ballerina Central and use it as a starting point:
+### Step 1: Select source project
 
-```bash
-# Search for packages
-bal search healthcare
+1. Select **TIBCO** as the source platform.
+2. Under **Select Your Project Folder**, click **Browse** and select your TIBCO BusinessWorks project folder or main configuration file.
+3. Under **Configure TIBCO Settings**, set the following:
+   - **Migrate Multiple Projects** — Enable this option to process all TIBCO projects in the selected folder.
+4. Click **Start Migration**.
 
-# Pull a package to inspect it
-bal pull wso2/healthcare_integration
-```
+   ![Select TIBCO source project](/img/develop/tools/migration-tools/tibco-select-source.png)
 
-## Supported Import Formats
+### Step 2: Review migration progress
 
-| Format | Extension | Import Type |
-|---|---|---|
-| OpenAPI 3.x | `.yaml`, `.json` | HTTP Service |
-| AsyncAPI 2.x | `.yaml`, `.json` | Event Handler |
-| Protocol Buffers | `.proto` | gRPC Service |
-| GraphQL Schema | `.graphql` | GraphQL Service |
-| WSDL | `.wsdl` | SOAP-compatible Service |
-| WSO2 MI Project | directory / `.car` | Full Migration |
+After the migration completes, the wizard displays a summary of the migration coverage:
 
-## What's Next
+- **Migration Coverage** — Percentage of activities that were automatically migrated.
+- **Total Projects** — Number of TIBCO projects analyzed.
+- **Total activities** — Total number of TIBCO activities analyzed.
+- **Migratable activities** — Activities successfully converted to Ballerina.
+- **Non-migratable activities** — Activities that require manual attention.
 
-- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your imported project
-- [Design Logic](/docs/develop/design-logic/overview) -- Build the integration logic for your imported stubs
+   ![Migration progress showing coverage statistics](/img/develop/tools/migration-tools/tibco-migration-progress.png)
+
+Click **View Aggregate Report** to see a detailed migration report. The report includes:
+
+- **Overview** — Number of projects analyzed, total lines of code generated, and average automated migration coverage.
+- **Manual Work Estimation** — Estimated effort for completing non-migratable items.
+- **Per-project breakdown** — Individual coverage and manual work estimation for each migrated project.
+- **Currently Unsupported Elements** — List of elements that could not be automatically migrated.
+
+   ![Full migration report](/img/develop/tools/migration-tools/tibco-migration-report.png)
+
+Click **Save Reports** to download the report for future reference, then click **Next**.
+
+### Step 3: Configure project
+
+1. Under **Select Path**, click **Browse** and choose where to save the migrated integrations.
+2. Enable **Create a new folder for the packages** to organize migrated projects, and enter a **Folder Name**.
+3. Under **AI Enhancement**, select one of the following:
+   - **Enable AI Enhancement** — AI automatically resolves unmapped elements, fixes build errors, and improves the quality of the migration.
+   - **Skip for Now – Enhance Later** — Open the project as-is. You can trigger AI enhancement later from the BI Copilot.
+4. Click **Create and Start AI Enhancement** (or **Create** if you chose to skip AI enhancement).
+
+   ![Configure migrated project](/img/develop/tools/migration-tools/tibco-configure-project.png)
+
+### TIBCO component mapping
+
+| TIBCO component | Ballerina equivalent |
+|---|---|
+| Process Definition | Ballerina service / function |
+| HTTP Receiver | `http:Listener` + service |
+| HTTP Request | `http:Client` |
+| JDBC Connection | `mysql:Client` / `postgresql:Client` |
+| JDBC Query / Update | Database query functions |
+| XML Parse / Render | XML data binding / record types |
+| Mapper Activity | Data transformation expressions |
+| Choice (If/Else) | `if/else` |
+| Iterate / Loop | `foreach` / `while` |
+| Group (Transaction) | `transaction` block |
+| Catch / Fault Handler | `do/on fail` error handler |
+| Timer | `task:Listener` with scheduled job |
+| JMS Receiver / Sender | JMS connector client |
+| File Read / Write | File I/O functions |
+| Log Activity | `log:printInfo()` / `log:printError()` |
+| Sub-Process | Function call |
+| Shared Variable | Module-level variable / `isolated` variable |
+
+## What's next
+
+- [Project View](../project-views/project-view.md) -- Run, edit, and debug your migrated project
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types in your migrated project
