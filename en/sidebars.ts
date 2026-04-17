@@ -1467,6 +1467,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/crm-sales/salesforce/setup-guide',
             'connectors/catalog/crm-sales/salesforce/action-reference',
             'connectors/catalog/crm-sales/salesforce/trigger-reference',
+            'connectors/catalog/crm-sales/salesforce/example',
           ],
         },
         {
