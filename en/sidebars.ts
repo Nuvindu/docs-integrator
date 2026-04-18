@@ -434,6 +434,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/azure.ai.search/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search/action-reference',
+            'connectors/catalog/ai-ml/azure.ai.search/example',
           ],
         },
         {
