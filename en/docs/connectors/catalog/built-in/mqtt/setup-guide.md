@@ -20,7 +20,7 @@ This guide walks you through setting up an MQTT broker that the Ballerina MQTT c
 
 1. Download and install [Eclipse Mosquitto](https://mosquitto.org/download/) for your platform.
 2. Start the broker with the default configuration:
-    ```
+    ```bash
     mosquitto
     ```
    By default, the broker listens on `tcp://localhost:1883`.
@@ -69,12 +69,18 @@ Store certificates and private keys securely. Do not commit them to source contr
 
 Test that your broker is reachable:
 
-1. Use an MQTT client tool such as [MQTTX](https://mqttx.app/) or the Mosquitto CLI clients:
-    ```
-    mosquitto_pub -h localhost -t "test/topic" -m "hello"
+1. Use an MQTT client tool such as [MQTTX](https://mqttx.app/) or the Mosquitto CLI clients. Start the subscriber first (in one terminal):
+    ```bash
     mosquitto_sub -h localhost -t "test/topic"
     ```
-2. Confirm that messages published to a topic are received by subscribers.
+   Then, in a second terminal, publish a test message:
+    ```bash
+    mosquitto_pub -h localhost -t "test/topic" -m "hello"
+    ```
+   :::note
+   Start the subscriber before publishing. Non-retained messages are delivered only to active subscribers — if you publish first, the message will be missed.
+   :::
+2. Confirm that the message `hello` appears in the subscriber terminal.
 
 
 ## Next steps
