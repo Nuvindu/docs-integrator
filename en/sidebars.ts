@@ -292,24 +292,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'AI Devant',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.devant/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.devant/setup-guide',
-            'connectors/catalog/ai-ml/ai.devant/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'AI Memory MSSQL',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.memory.mssql/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.memory.mssql/setup-guide',
-            'connectors/catalog/ai-ml/ai.memory.mssql/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Alfresco',
           link: { type: 'doc', id: 'connectors/catalog/storage-file/alfresco/overview' },
           items: [
@@ -325,15 +307,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/amp/setup-guide',
             'connectors/catalog/developer-tools/amp/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Anthropic LLM',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.anthropic/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.anthropic/setup-guide',
-            'connectors/catalog/ai-ml/ai.anthropic/action-reference',
           ],
         },
         {
@@ -447,15 +420,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Azure OpenAI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.azure/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.azure/setup-guide',
-            'connectors/catalog/ai-ml/ai.azure/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Azure Service Bus',
           link: { type: 'doc', id: 'connectors/catalog/messaging/asb/overview' },
           items: [
@@ -516,15 +480,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/copybook/setup-guide',
             'connectors/catalog/developer-tools/copybook/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'DeepSeek',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.deepseek/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.deepseek/setup-guide',
-            'connectors/catalog/ai-ml/ai.deepseek/action-reference',
           ],
         },
         {
@@ -1158,15 +1113,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Mistral AI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.mistral/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.mistral/setup-guide',
-            'connectors/catalog/ai-ml/ai.mistral/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'MongoDB',
           link: { type: 'doc', id: 'connectors/catalog/database/mongodb/overview' },
           items: [
@@ -1208,38 +1154,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'NP',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/np/overview' },
-          items: [
-            'connectors/catalog/ai-ml/np/setup-guide',
-            'connectors/catalog/ai-ml/np/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Ollama',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.ollama/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.ollama/setup-guide',
-            'connectors/catalog/ai-ml/ai.ollama/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'OpenAI',
           link: { type: 'doc', id: 'connectors/catalog/ai-ml/openai/overview' },
           items: [
             'connectors/catalog/ai-ml/openai/setup-guide',
             'connectors/catalog/ai-ml/openai/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'OpenAI (AI)',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.openai/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.openai/setup-guide',
-            'connectors/catalog/ai-ml/ai.openai/action-reference',
           ],
         },
         {
@@ -1318,24 +1237,6 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/hrms/peoplehr/setup-guide',
             'connectors/catalog/hrms/peoplehr/action-reference',
             'connectors/catalog/hrms/peoplehr/example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'pgvector',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pgvector/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pgvector/setup-guide',
-            'connectors/catalog/ai-ml/ai.pgvector/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Pinecone',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pinecone/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pinecone/setup-guide',
-            'connectors/catalog/ai-ml/ai.pinecone/action-reference',
           ],
         },
         {
@@ -1617,15 +1518,6 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/marketing-social/twitter/setup-guide',
             'connectors/catalog/marketing-social/twitter/action-reference',
             'connectors/catalog/marketing-social/twitter/example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Weaviate',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.weaviate/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.weaviate/setup-guide',
-            'connectors/catalog/ai-ml/ai.weaviate/action-reference',
           ],
         },
         {
