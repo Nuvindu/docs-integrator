@@ -99,7 +99,7 @@ WSO2 Integrator supports three primary integration types:
 - **Automations:** Scheduled or manually triggered jobs that run without an external request (cron-based, interval-based, or one-time)
 - **Event Handlers:** Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, MQTT, or other event sources
 
-### What is the Integration Control Plane (ICP)?
+### What is the integration control plane (ICP)?
 
 The ICP is a monitoring and management dashboard for deployed integrations. It provides:
 
@@ -166,7 +166,7 @@ Yes. WSO2 provides migration guides and tooling to help transition from other in
 
 Yes. The two products use different runtimes and can coexist in the same environment. This allows you to adopt WSO2 Integrator for new projects while continuing to run your existing MI deployments. You can also migrate MI integrations incrementally using the [migration tools](/docs/develop/tools/migration-tools). For MI-specific guidance, refer to the [MI documentation](https://mi.docs.wso2.com).
 
-## What's Next
+## What's next
 
 - [Get Started](/docs/get-started/install) -- Install and set up WSO2 Integrator
 - [Quick Start Guide](/docs/get-started/quick-start-api) -- Build your first integration

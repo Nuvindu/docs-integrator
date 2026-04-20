@@ -8,11 +8,11 @@ description: Best practices for writing effective system prompts, tool descripti
 
 Prompt engineering determines how well your agents, natural functions, and natural expressions perform. A well-crafted prompt turns an unpredictable LLM into a reliable integration component. Unlike chatbot prompts, integration prompts must produce consistent, structured, machine-parseable output that downstream systems can consume.
 
-## System Prompt Design
+## System prompt design
 
 The system prompt defines your agent's role, constraints, and behavior. It is the single most important configuration for any agent.
 
-### Structure of a Good System Prompt
+### Structure of a good system prompt
 
 ```ballerina
 final agent:ChatAgent supportAgent = check new (
@@ -41,7 +41,7 @@ Tools:
 );
 ```
 
-### Key Elements
+### Key elements
 
 | Element | Purpose | Example |
 |---------|---------|---------|
@@ -52,11 +52,11 @@ Tools:
 | **Tool guidance** | When to use which tool | "Always check inventory before confirming availability" |
 | **Output format** | How to structure responses | "Respond with a numbered list of steps" |
 
-## Tool Description Best Practices
+## Tool description best practices
 
 Tool descriptions guide the LLM's decision about when and how to call a tool. They are a form of prompt engineering.
 
-### Clear and Specific
+### Clear and specific
 
 ```ballerina
 // Poor: the LLM does not know when to use this
@@ -72,7 +72,7 @@ Tool descriptions guide the LLM's decision about when and how to call a tool. Th
 }
 ```
 
-### Parameter Descriptions
+### Parameter descriptions
 
 ```ballerina
 @agent:Tool {
@@ -88,11 +88,11 @@ isolated function searchProducts(
 }
 ```
 
-## Prompts for Structured Output
+## Prompts for structured output
 
 When the LLM must return data for downstream processing, be explicit about the expected format.
 
-### Natural Function Descriptions
+### Natural function descriptions
 
 ```ballerina
 // Weak: vague instruction
@@ -107,7 +107,7 @@ When the LLM must return data for downstream processing, be explicit about the e
 isolated function analyzeInvoice(Invoice invoice) returns InvoiceAnalysis|error = external;
 ```
 
-### Classification Prompts
+### Classification prompts
 
 ```ballerina
 @ai:NaturalFunction {
@@ -116,7 +116,7 @@ isolated function analyzeInvoice(Invoice invoice) returns InvoiceAnalysis|error 
 isolated function classifyTicket(string ticketText) returns TicketClassification|error = external;
 ```
 
-## Few-Shot Examples in Prompts
+## Few-Shot examples in prompts
 
 Include examples in system prompts to guide consistent behavior.
 
@@ -139,7 +139,7 @@ Action: Refuse. Explain that only SELECT queries are allowed for safety.`,
 );
 ```
 
-## Chain-of-Thought for Complex Tasks
+## Chain-of-Thought for complex tasks
 
 For multi-step reasoning, instruct the model to think step by step.
 
@@ -150,7 +150,7 @@ For multi-step reasoning, instruct the model to think step by step.
 isolated function analyzeComplaint(string complaint) returns ComplaintResolution|error = external;
 ```
 
-## Guardrail Prompts
+## Guardrail prompts
 
 Build safety constraints directly into your prompts.
 
@@ -165,7 +165,7 @@ Boundaries:
 - If data is unavailable, say so instead of guessing.`
 ```
 
-## Prompt Templates
+## Prompt templates
 
 Create reusable prompt templates for common patterns.
 
@@ -189,7 +189,7 @@ Return only the category name, nothing else.`;
 isolated function classifyTicket(string text) returns string|error = external;
 ```
 
-## Testing Prompts
+## Testing prompts
 
 When a prompt produces inconsistent results:
 
@@ -212,7 +212,7 @@ function testTicketClassification() returns error? {
 }
 ```
 
-## What's Next
+## What's next
 
 - [Configuring Providers](/docs/genai/develop/direct-llm/configuring-providers) -- Choose the right model for your prompts
 - [Handling Responses](/docs/genai/develop/direct-llm/handling-responses) -- Stream and process LLM output

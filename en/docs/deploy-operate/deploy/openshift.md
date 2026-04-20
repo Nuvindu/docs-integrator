@@ -17,7 +17,7 @@ Red Hat OpenShift provides an enterprise Kubernetes platform with built-in CI/CD
 | Ballerina | Distribution installed locally |
 | Registry | Access to the internal OpenShift registry or an external registry |
 
-## Step 1 -- Build the Container Image
+## Step 1 -- build the container image
 
 Build the Ballerina project with Docker support:
 
@@ -27,13 +27,13 @@ bal build --cloud=docker
 
 This generates a `Dockerfile` and the application JAR in the `target/` directory.
 
-## Step 2 -- Create an OpenShift Project
+## Step 2 -- create an OpenShift project
 
 ```bash
 oc new-project wso2-integrations
 ```
 
-## Step 3 -- Deploy Using Source-to-Image (S2I)
+## Step 3 -- deploy using Source-to-Image (S2I)
 
 OpenShift S2I builds the container image directly from source:
 
@@ -57,7 +57,7 @@ docker push \
 oc new-app wso2-integrations/order-service:latest --name=order-service
 ```
 
-## Step 4 -- Configure with ConfigMaps and Secrets
+## Step 4 -- configure with ConfigMaps and secrets
 
 Create a ConfigMap for `Config.toml`:
 
@@ -130,7 +130,7 @@ Apply it:
 oc apply -f deploymentconfig.yaml
 ```
 
-## Step 5 -- Expose a Route
+## Step 5 -- expose a route
 
 Create an OpenShift Route to expose the service externally:
 
@@ -191,19 +191,19 @@ oc apply -f buildconfig.yaml
 
 ## Scaling and Auto-Scaling
 
-### Manual Scaling
+### Manual scaling
 
 ```bash
 oc scale dc/order-service --replicas=3
 ```
 
-### Horizontal Pod Autoscaler
+### Horizontal pod autoscaler
 
 ```bash
 oc autoscale dc/order-service --min=2 --max=10 --cpu-percent=70
 ```
 
-## Network Policies
+## Network policies
 
 Restrict traffic between integration services:
 
@@ -226,7 +226,7 @@ spec:
           port: 9090
 ```
 
-## What's Next
+## What's next
 
 - [Docker & Kubernetes](docker-kubernetes.md) -- General Kubernetes deployment guide
 - [Scaling & High Availability](scaling-ha.md) -- Multi-replica and HA patterns

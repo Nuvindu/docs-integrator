@@ -647,7 +647,7 @@ All write operations accept a `ftp:FileWriteOption` third argument to control ov
 | `caller->mkdir(path)` | `Error?` | Create a directory |
 | `caller->exists(path)` | `boolean\|Error` | Check whether a path exists on the server |
 
-### Post-processing: moving or deleting files
+### Post-processing: Moving or deleting files
 
 Use the `@ftp:FunctionConfig` annotation on a handler to automatically move or delete the file after processing, without manually calling `caller->` operations.
 

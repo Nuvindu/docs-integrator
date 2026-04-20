@@ -9,13 +9,13 @@ The `ballerinax/aws.redshiftdata` package exposes the following clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Executes SQL statements, retrieves results, and monitors execution status via the Redshift Data API. |
+| [`Client`](#client) | Executes SQL statements, retrieves results, and monitors execution status via the Redshift data API. |
 
 ---
 
 ## Client
 
-Executes SQL statements, retrieves results, and monitors execution status via the Redshift Data API.
+Executes SQL statements, retrieves results, and monitors execution status via the Redshift data API.
 
 ### Configuration
 
@@ -231,7 +231,7 @@ Sample response:
 
 <div>
 
-Gracefully closes the AWS Redshift Data API client and releases associated resources.
+Gracefully closes the AWS Redshift data API client and releases associated resources.
 
 
 Returns: `Error?`

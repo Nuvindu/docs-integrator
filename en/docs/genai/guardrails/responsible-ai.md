@@ -10,7 +10,7 @@ Building AI-powered integrations carries responsibilities beyond technical corre
 
 Responsible AI is not a separate feature you add at the end -- it is a set of principles that inform design decisions throughout development.
 
-## Core Principles
+## Core principles
 
 ### Transparency
 
@@ -76,7 +76,7 @@ function logDecision(AiDecisionLog decision) returns error? {
 }
 ```
 
-### Human Oversight
+### Human oversight
 
 For consequential decisions, keep a human in the loop.
 
@@ -102,9 +102,9 @@ isolated function submitRefund(
 }
 ```
 
-## Bias Mitigation
+## Bias mitigation
 
-### Prompt-Level Bias Reduction
+### Prompt-Level bias reduction
 
 ```ballerina
 systemPrompt: string `You are a hiring assistant that helps screen job applications.
@@ -117,7 +117,7 @@ Bias mitigation requirements:
 - Apply the same evaluation criteria consistently across all candidates.`
 ```
 
-### Output Auditing for Bias
+### Output auditing for bias
 
 ```ballerina
 final guardrails:OutputGuardrail biasAudit = new guardrails:CustomOutputGuardrail(
@@ -139,9 +139,9 @@ final guardrails:OutputGuardrail biasAudit = new guardrails:CustomOutputGuardrai
 );
 ```
 
-## Handling Uncertainty
+## Handling uncertainty
 
-### Confidence-Aware Responses
+### Confidence-Aware responses
 
 Instruct agents to communicate uncertainty rather than guessing.
 
@@ -156,7 +156,7 @@ When you are uncertain:
 - Prefer "I don't have that information" over a plausible-sounding guess.`
 ```
 
-### Fallback to Human Agents
+### Fallback to human agents
 
 ```ballerina
 function chatWithEscalation(string message, string sessionId) returns string|error {
@@ -181,9 +181,9 @@ function chatWithEscalation(string message, string sessionId) returns string|err
 }
 ```
 
-## User Consent and Disclosure
+## User consent and disclosure
 
-### AI Disclosure
+### AI disclosure
 
 ```ballerina
 service /chat on new http:Listener(8090) {
@@ -198,7 +198,7 @@ service /chat on new http:Listener(8090) {
 }
 ```
 
-### Data Usage Consent
+### Data usage consent
 
 ```ballerina
 resource function post chat(@http:Payload ChatRequest request) returns ChatResponse|error {
@@ -216,7 +216,7 @@ resource function post chat(@http:Payload ChatRequest request) returns ChatRespo
 }
 ```
 
-## Responsible AI Checklist
+## Responsible AI checklist
 
 | Area | Check | Status |
 |------|-------|--------|
@@ -233,7 +233,7 @@ resource function post chat(@http:Payload ChatRequest request) returns ChatRespo
 | **Oversight** | High-stakes decisions require human approval | |
 | **Oversight** | Regular review of AI behavior scheduled | |
 
-## What's Next
+## What's next
 
 - [AI Usage Guidelines](ai-usage-guidelines.md) -- Organizational policies for AI deployments
 - [Input/Output Guardrails](input-output-guardrails.md) -- Enforce responsible AI in code

@@ -8,7 +8,7 @@ description: "Sample project: Build event-driven microservices with Kafka — or
 
 Build a set of loosely coupled microservices that communicate through Apache Kafka events. This sample project implements three services -- an Order Service that accepts HTTP orders, an Inventory Service that reserves stock, and a Notification Service that sends order confirmations -- all coordinated through Kafka topics.
 
-## What You'll Learn
+## What you'll learn
 
 - Designing event-driven architectures with Kafka topics as communication channels
 - Building Ballerina HTTP services that produce Kafka events
@@ -24,7 +24,7 @@ Build a set of loosely coupled microservices that communicate through Apache Kaf
 
 **Time estimate:** 15-20 minutes to clone and run; 45-60 minutes for full code walkthrough
 
-## Clone and Run
+## Clone and run
 
 ```bash
 # Clone the samples repository
@@ -42,7 +42,7 @@ cp Config-example.toml Config.toml
 bal run
 ```
 
-### Testing the Flow
+### Testing the flow
 
 ```bash
 # Place an order
@@ -61,7 +61,7 @@ curl -X POST http://localhost:9090/orders \
 curl http://localhost:9090/orders/ORD-001
 ```
 
-## Project Structure
+## Project structure
 
 ```
 event-driven-microservices/
@@ -77,9 +77,9 @@ event-driven-microservices/
     └── integration_test.bal
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Shared Data Types
+### Shared data types
 
 The `types.bal` file defines the event schemas shared across all services:
 
@@ -140,7 +140,7 @@ type Order record {|
 |};
 ```
 
-### Order Service (HTTP Producer)
+### Order service (HTTP producer)
 
 The Order Service exposes an HTTP API, creates orders, and publishes `OrderPlacedEvent` messages to Kafka:
 
@@ -206,7 +206,7 @@ service /orders on new http:Listener(orderServicePort) {
 }
 ```
 
-### Inventory Service (Kafka Consumer and Producer)
+### Inventory service (Kafka consumer and producer)
 
 The Inventory Service consumes `OrderPlacedEvent` messages, checks stock availability, reserves inventory, and publishes an `InventoryReservedEvent`:
 
@@ -284,7 +284,7 @@ service on inventoryListener {
 }
 ```
 
-### Notification Service (Kafka Consumer)
+### Notification service (Kafka consumer)
 
 The Notification Service consumes `InventoryReservedEvent` messages and sends order confirmation or failure notifications:
 
@@ -374,14 +374,14 @@ function sendFailureNotification(InventoryReservedEvent event) returns error? {
 }
 ```
 
-### Key Points
+### Key points
 
 - **Choreography pattern**: Each service reacts to events independently without a central orchestrator. The Order Service publishes events, the Inventory Service processes them, and the Notification Service reacts to the result.
 - **Loose coupling**: Services communicate only through Kafka topics. Adding a new service (e.g., a shipping service) requires no changes to existing services -- just subscribe to the relevant topic.
 - **At-least-once delivery**: Manual Kafka offset commits ensure that events are not lost, even if a service crashes mid-processing.
 - **Graceful degradation**: The Notification Service works with or without SMTP configured, falling back to log-based notifications.
 
-## What's Next
+## What's next
 
 - [Data Service with bal persist](data-service-persist.md) -- Build a full CRUD data service
 - [RESTful API with Data Mapper](restful-api-data-mapper.md) -- Use the visual data mapper for transformations

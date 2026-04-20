@@ -8,11 +8,11 @@ description: "End-to-end walkthrough: Build a Change Data Capture (CDC) service 
 
 Build a service that captures inserts, updates, and deletes from a database and propagates those changes to downstream systems in near real time. Change Data Capture (CDC) is essential for keeping multiple systems in sync without tight coupling.
 
-## What You'll Build
+## What you'll build
 
 A CDC pipeline that monitors a MySQL orders table for changes and pushes those changes to both an Elasticsearch search index and a Kafka topic for downstream consumers. The service uses polling-based CDC with timestamp tracking.
 
-## What You'll Learn
+## What you'll learn
 
 - Polling-based Change Data Capture with Ballerina
 - Tracking change cursors using timestamps
@@ -47,7 +47,7 @@ flowchart LR
     CDC ----> Kafka
 ```
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
 ```bash
 bal new cdc_service
@@ -78,7 +78,7 @@ name = "kafka"
 version = "4.2.0"
 ```
 
-## Step 2: Prepare the Database
+## Step 2: Prepare the database
 
 Ensure your orders table has the necessary CDC columns:
 
@@ -99,7 +99,7 @@ CREATE TABLE orders (
 CREATE INDEX idx_orders_updated_at ON orders(updated_at);
 ```
 
-## Step 3: Define the Data Types
+## Step 3: Define the data types
 
 ```ballerina
 // types.bal
@@ -132,7 +132,7 @@ type CdcCursor record {|
 |};
 ```
 
-## Step 4: Build the Change Detector
+## Step 4: Build the change detector
 
 ```ballerina
 // change_detector.bal
@@ -206,7 +206,7 @@ function determineChangeType(Order 'order) returns string {
 }
 ```
 
-## Step 5: Build the Change Propagators
+## Step 5: Build the change propagators
 
 ```ballerina
 // propagators.bal
@@ -261,7 +261,7 @@ function publishToKafka(ChangeEvent event) returns error? {
 }
 ```
 
-## Step 6: Wire the CDC Loop
+## Step 6: Wire the CDC loop
 
 ```ballerina
 // main.bal
@@ -331,7 +331,7 @@ service /cdc on new http:Listener(8090) {
 }
 ```
 
-## Step 7: Test the CDC Service
+## Step 7: Test the CDC service
 
 Run the service:
 
@@ -364,14 +364,14 @@ Update a record and verify propagation:
 UPDATE orders SET status = 'shipped' WHERE id = 1;
 ```
 
-## Extend It
+## Extend it
 
 - **Use database log-based CDC** -- Replace polling with MySQL binlog for lower latency
 - **Add schema evolution handling** -- Detect and handle column additions gracefully
 - **Add exactly-once delivery** -- Use Kafka transactions for exactly-once semantics
 - **Add a dead letter table** -- Store failed change events for manual reprocessing
 
-## What's Next
+## What's next
 
 - [Databases Connectors](../../connectors/catalog/database) -- Database connector reference
 - [Messaging Connectors](../../connectors/catalog/messaging) -- Kafka, RabbitMQ, and more

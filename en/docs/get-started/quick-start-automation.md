@@ -80,7 +80,7 @@ Automations are ideal for data synchronization, report generation, and routine m
     }}
 />
 
-## Scheduling Automations
+## Scheduling automations
 
 For production use, configure a cron schedule to trigger the automation periodically:
 
@@ -98,7 +98,7 @@ service on timer {
 }
 ```
 
-## What's Next
+## What's next
 
 - [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
 - [Quick Start: Event Integration](quick-start-event.md) -- React to messages from brokers

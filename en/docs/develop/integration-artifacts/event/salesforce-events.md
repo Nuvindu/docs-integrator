@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Salesforce event integrations subscribe to Change Data Capture (CDC) channels and trigger handler functions as records are created, updated, deleted, or restored in your Salesforce org. Use them for real-time CRM synchronization, audit logging, and event-driven workflows that react to Salesforce record changes without polling.
 
-## Creating a Salesforce Events service
+## Creating a Salesforce events service
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>

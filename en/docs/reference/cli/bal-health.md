@@ -8,7 +8,7 @@ description: Reference for the bal health CLI tool — generate Ballerina code f
 
 The `bal health` tool generates Ballerina source code for working with HL7 FHIR (Fast Healthcare Interoperability Resources) standards. It produces type-safe Ballerina record types, API templates, and utility functions from FHIR Implementation Guides (IGs), enabling rapid development of healthcare integration solutions.
 
-## Commands Overview
+## Commands overview
 
 | Command | Description |
 |---------|-------------|
@@ -33,19 +33,19 @@ bal health fhir -m <mode> [options]
 | `--included-profile` | — | No | All profiles | Comma-separated profiles to include |
 | `--excluded-profile` | — | No | None | Comma-separated profiles to exclude |
 
-### Package Mode Flags
+### Package mode flags
 
 | Flag | Required | Default | Description |
 |------|----------|---------|-------------|
 | `-i`, `--input` | Yes | — | Path to the FHIR Implementation Guide directory or ZIP |
 
-### Template Mode Flags
+### Template mode flags
 
 | Flag | Required | Default | Description |
 |------|----------|---------|-------------|
 | `--dependent-package` | Yes | — | Path to the FHIR package to generate the API for |
 
-## Generate FHIR Resource Package
+## Generate FHIR resource package
 
 Generate Ballerina record types and utilities from a FHIR Implementation Guide.
 
@@ -65,7 +65,7 @@ bal health fhir -m package -i ./ig-uscore/ -o generated/ \
     --excluded-profile OperationDefinition,SearchParameter
 ```
 
-### Generated Package Structure
+### Generated package structure
 
 ```
 generated/
@@ -80,7 +80,7 @@ generated/
     utils.bal                     # Serialization and validation utilities
 ```
 
-### Generated Types Usage
+### Generated types usage
 
 ```ballerina
 import myorg/uscore;
@@ -118,7 +118,7 @@ public function main() returns error? {
 }
 ```
 
-## Generate FHIR API Template
+## Generate FHIR API template
 
 Generate a Ballerina HTTP service template with FHIR-compliant REST endpoints.
 
@@ -135,7 +135,7 @@ bal health fhir -m template -o api/ \
     --included-profile Patient,Observation
 ```
 
-### Generated API Template
+### Generated API template
 
 ```ballerina
 import ballerina/http;
@@ -174,7 +174,7 @@ service /fhir/r4 on new http:Listener(9090) {
 }
 ```
 
-## Supported FHIR Versions
+## Supported FHIR versions
 
 | FHIR Version | Status | Notes |
 |--------------|--------|-------|
@@ -182,7 +182,7 @@ service /fhir/r4 on new http:Listener(9090) {
 | R4B (4.3.0) | Supported | Minor update to R4 |
 | R5 (5.0.0) | Supported | Latest release |
 
-## Common Implementation Guides
+## Common implementation guides
 
 | Implementation Guide | Description |
 |---------------------|-------------|
@@ -194,7 +194,7 @@ service /fhir/r4 on new http:Listener(9090) {
 | mCODE | Minimal Common Oncology Data Elements |
 | AU Base | Australian base FHIR profiles |
 
-## See Also
+## See also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [Healthcare HL7/FHIR Tutorial](/docs/tutorials/healthcare-hl7-fhir) -- End-to-end healthcare integration

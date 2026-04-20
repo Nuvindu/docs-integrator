@@ -8,7 +8,7 @@ description: Build interactive chat agents and task agents with system prompts, 
 
 Chat agents are conversational AI components that maintain context across multiple user interactions. They combine an LLM's reasoning with tools and memory to create intelligent, interactive experiences within your integrations.
 
-## Creating a Basic Chat Agent
+## Creating a basic chat agent
 
 The simplest chat agent needs a model connection, a system prompt, and optionally tools and memory.
 
@@ -35,7 +35,7 @@ final agent:ChatAgent helpDeskAgent = check new (
 );
 ```
 
-## System Prompt Design
+## System prompt design
 
 The system prompt defines your agent's personality, capabilities, and constraints.
 
@@ -57,7 +57,7 @@ Response Format:
 - Summarize key takeaways at the end of each analysis.`;
 ```
 
-### System Prompt Best Practices
+### System prompt best practices
 
 | Practice | Example |
 |----------|---------|
@@ -67,7 +67,7 @@ Response Format:
 | Include constraints | "Never share customer personal data in responses" |
 | Add tool usage guidance | "Use the orderLookup tool before answering order questions" |
 
-## Multi-Turn Conversations
+## Multi-Turn conversations
 
 Chat agents automatically maintain conversation context through their memory component.
 
@@ -91,7 +91,7 @@ type ChatMessage record {|
 |};
 ```
 
-## Task Agents
+## Task agents
 
 Task agents complete a specific task and return a structured result. They are best for data extraction, classification, and automated processing.
 
@@ -105,9 +105,9 @@ final agent:TaskAgent classifierAgent = check new (
 TicketClassification result = check classifierAgent.run("I can't connect to the API");
 ```
 
-## Configuring Agent Behavior
+## Configuring agent behavior
 
-### Temperature and Creativity
+### Temperature and creativity
 
 ```ballerina
 final agent:ChatAgent preciseAgent = check new (
@@ -120,7 +120,7 @@ final agent:ChatAgent preciseAgent = check new (
 );
 ```
 
-### Maximum Iterations
+### Maximum iterations
 
 Limit how many reason-act-observe loops the agent can perform per request.
 
@@ -133,9 +133,9 @@ final agent:ChatAgent boundedAgent = check new (
 );
 ```
 
-## Session Management
+## Session management
 
-### Session Isolation
+### Session isolation
 
 Each session ID creates an independent conversation thread.
 
@@ -145,7 +145,7 @@ string r2 = check agent.chat("Hello!", "user-bob-session-1");
 string r3 = check agent.chat("Follow up", "user-alice-session-1");  // Only sees Alice's history
 ```
 
-### Session Cleanup
+### Session cleanup
 
 ```ballerina
 resource function delete session/[string sessionId]() returns http:Ok {
@@ -154,7 +154,7 @@ resource function delete session/[string sessionId]() returns http:Ok {
 }
 ```
 
-## Streaming Chat Responses
+## Streaming chat responses
 
 Stream agent responses token by token for a more responsive experience.
 
@@ -174,7 +174,7 @@ resource function post chat(@http:Payload ChatMessage request)
 }
 ```
 
-## Handling Errors
+## Handling errors
 
 Design tools to return descriptive error information so the LLM can communicate issues naturally.
 
@@ -196,7 +196,7 @@ isolated function getAccountBalance(string accountId) returns json|error {
 }
 ```
 
-## What's Next
+## What's next
 
 - [Adding Tools](/docs/genai/develop/agents/adding-tools) -- Connect agents to functions and APIs
 - [Adding Memory](/docs/genai/develop/agents/adding-memory) -- Configure conversation history

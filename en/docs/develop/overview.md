@@ -14,7 +14,7 @@ Everything you need to build, transform, test, and debug integrations on your lo
 If your code is still on your machine, you're in **Develop**. Once you're pushing it somewhere else, head to [Deploy & Operate](../deploy-operate/overview.md).
 :::
 
-## Create & Organize
+## Create & organize
 
 | | |
 |---|---|
@@ -30,7 +30,7 @@ If your code is still on your machine, you're in **Develop**. Once you're pushin
 | **[Design Integration Logic](design-logic/overview.md)** | Flow designer, connections, control flow, error handling, expressions, and Ballerina pro-code |
 | **[Transform](transform/data-mapper.md)** | Visual Data Mapper, JSON, XML, CSV, EDI, YAML/TOML processing |
 
-## Test & Debug
+## Test & debug
 
 | | |
 |---|---|

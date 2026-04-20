@@ -5,7 +5,7 @@ description: "End-to-end walkthrough: Build a Kafka event processing pipeline."
 
 # Kafka Event Processing Pipeline
 
-## What You'll Build
+## What you'll build
 
 A real-time event processing pipeline that consumes order events from Kafka, enriches them with customer data from a database, applies business rules (fraud detection, inventory checks), and publishes processed events to downstream topics.
 
@@ -25,7 +25,7 @@ flowchart LR
     Pipeline -- "on failure" --> DLQ
 ```
 
-## What You'll Learn
+## What you'll learn
 
 - Configuring a Kafka consumer and producer in WSO2 Integrator
 - Deserializing and validating event payloads
@@ -41,9 +41,9 @@ flowchart LR
 
 **Time estimate:** 30--45 minutes
 
-## Step-by-Step Walkthrough
+## Step-by-Step walkthrough
 
-### Step 1: Create the Project
+### Step 1: Create the project
 
 1. Open VS Code and run **WSO2 Integrator: Create New Project**.
 2. Name the project `kafka-event-pipeline`.
@@ -91,7 +91,7 @@ password = "admin"
 serviceUrl = "http://localhost:8085"
 ```
 
-### Step 2: Define the Data Types
+### Step 2: Define the data types
 
 Create `types.bal`:
 
@@ -158,7 +158,7 @@ type InventoryStatus record {|
 |};
 ```
 
-### Step 3: Build the Event Consumer
+### Step 3: Build the event consumer
 
 Create `consumer.bal`:
 
@@ -221,7 +221,7 @@ service on orderListener {
 }
 ```
 
-### Step 4: Build the Processing Logic
+### Step 4: Build the processing logic
 
 Create `processor.bal` with enrichment, fraud detection, and routing:
 
@@ -322,7 +322,7 @@ function checkInventory(OrderItem[] items) returns boolean|error {
 }
 ```
 
-### Step 5: Build the Producers
+### Step 5: Build the producers
 
 Create `producer.bal` for publishing to output topics:
 
@@ -373,7 +373,7 @@ function publishToDlq(byte[] originalPayload, string reason) returns error? {
 }
 ```
 
-### Step 6: Test It
+### Step 6: Test it
 
 1. Create the Kafka topics:
 
@@ -408,7 +408,7 @@ kafka-console-consumer --topic processed-orders --bootstrap-server localhost:909
 bal test
 ```
 
-## Extend It
+## Extend it
 
 - **Add Avro or Protobuf serialization** with a Schema Registry for type-safe event contracts.
 - **Implement windowed aggregation** to compute real-time order metrics per region.
@@ -416,7 +416,7 @@ bal test
 - **Connect a monitoring dashboard** that consumes from the processed-orders topic.
 - **Scale horizontally** by increasing consumer group instances and topic partitions.
 
-## Full Source Code
+## Full source code
 
 Find the complete working project on GitHub:
 [wso2/integrator-samples/kafka-event-pipeline](https://github.com/wso2/integrator-samples/tree/main/kafka-event-pipeline)

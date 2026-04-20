@@ -8,7 +8,7 @@ description: Manage configurations across environments with per-environment file
 
 WSO2 Integrator uses Ballerina's configuration system to externalize runtime settings. This page covers strategies for managing configurations across development, testing, staging, and production environments.
 
-## Configuration Sources
+## Configuration sources
 
 Ballerina resolves configuration values from multiple sources, with the following precedence (highest first):
 
@@ -19,7 +19,7 @@ Ballerina resolves configuration values from multiple sources, with the followin
 | 3 | `Config.toml` file(s) | `[myModule] port = 9090` |
 | 4 | Default values in code | `configurable int port = 8080;` |
 
-## Defining Configurable Values
+## Defining configurable values
 
 Declare configurable variables in your Ballerina code:
 
@@ -31,9 +31,9 @@ configurable string dbUser = ?;     // Required -- no default
 configurable string dbPassword = ?; // Required -- no default
 ```
 
-## Per-Environment Config Files
+## Per-Environment config files
 
-### Directory Structure
+### Directory structure
 
 Organize configuration files by environment:
 
@@ -54,7 +54,7 @@ my-integration/
       Config.toml       # Production environment
 ```
 
-### Development Config
+### Development config
 
 `config/dev/Config.toml`:
 
@@ -71,7 +71,7 @@ password = "dev_password"
 level = "DEBUG"
 ```
 
-### Production Config
+### Production config
 
 `config/prod/Config.toml`:
 
@@ -88,7 +88,7 @@ password = "encrypted:xxxxxx"
 level = "INFO"
 ```
 
-### Selecting the Config File at Runtime
+### Selecting the config file at runtime
 
 Use the `BAL_CONFIG_FILES` environment variable:
 
@@ -106,7 +106,7 @@ Supply multiple config files (merged in order, later files override earlier):
 BAL_CONFIG_FILES=config/base/Config.toml:config/prod/Config.toml java -jar my_integration.jar
 ```
 
-## Environment Variable Overrides
+## Environment variable overrides
 
 Override any configurable value using environment variables. The naming convention is:
 
@@ -122,9 +122,9 @@ java -jar my_integration.jar
 
 This is useful for container orchestrators and CI/CD pipelines.
 
-## Kubernetes ConfigMaps and Secrets
+## Kubernetes ConfigMaps and secrets
 
-### ConfigMap for Non-Sensitive Values
+### ConfigMap for Non-Sensitive values
 
 ```yaml
 apiVersion: v1
@@ -144,7 +144,7 @@ data:
     level = "INFO"
 ```
 
-### Secret for Sensitive Values
+### Secret for sensitive values
 
 ```yaml
 apiVersion: v1
@@ -157,7 +157,7 @@ stringData:
   BAL_API_KEY: "ak_xxxxxxxxxxxxx"
 ```
 
-### Mount in Deployment
+### Mount in deployment
 
 ```yaml
 containers:
@@ -178,7 +178,7 @@ volumes:
       name: integration-config
 ```
 
-## Consolidated Multi-Service Configuration
+## Consolidated Multi-Service configuration
 
 When running multiple integrations in a consolidated package, namespace each service's config:
 
@@ -209,7 +209,7 @@ host = "smtp.example.com"
 port = 587
 ```
 
-## Configuration Encryption
+## Configuration encryption
 
 Encrypt sensitive values in `Config.toml`:
 
@@ -233,7 +233,7 @@ At runtime, provide the decryption key:
 BAL_CONFIG_SECRET_KEY=my-secret-key java -jar my_integration.jar
 ```
 
-## Configuration Validation
+## Configuration validation
 
 Ballerina validates configurations at startup. If a required configurable has no value, the application fails to start with a clear error:
 
@@ -249,7 +249,7 @@ configurable string dbHost = ?;  // Required string
 configurable "DEBUG"|"INFO"|"WARN"|"ERROR" logLevel = "INFO"; // Enum constraint
 ```
 
-## Best Practices
+## Best practices
 
 | Practice | Description |
 |----------|-------------|
@@ -259,7 +259,7 @@ configurable "DEBUG"|"INFO"|"WARN"|"ERROR" logLevel = "INFO"; // Enum constraint
 | Layer configs | Use base + environment-specific files for DRY configuration |
 | Prefer env vars for secrets | Use environment variables for passwords and API keys in CI/CD |
 
-## What's Next
+## What's next
 
 - [Environments](environments.md) -- Manage Dev, Test, and Prod promotion workflows
 - [Secrets & Encryption](../secure/secrets-encryption.md) -- Advanced secrets management with Vault

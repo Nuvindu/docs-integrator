@@ -10,11 +10,11 @@ Tool binding connects your AI agent to the real world. By defining tools, you gi
 
 Tools are the mechanism that transforms an LLM from a text generator into an integration-capable agent that can look up data, trigger workflows, and interact with enterprise systems.
 
-## Defining Tools
+## Defining tools
 
 Tools are Ballerina functions annotated with `@agent:Tool`. The annotation provides metadata that the LLM uses to decide when and how to call the tool.
 
-### Basic Tool Definition
+### Basic tool definition
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -28,7 +28,7 @@ isolated function getCustomerDetails(string customerId) returns json|error {
 }
 ```
 
-### Parameter Descriptions
+### Parameter descriptions
 
 Add descriptions to parameters so the LLM understands what values to provide.
 
@@ -47,7 +47,7 @@ isolated function searchOrders(
 }
 ```
 
-### Typed Return Values
+### Typed return values
 
 Tools can return typed records for structured, predictable output.
 
@@ -73,9 +73,9 @@ isolated function checkInventory(string productId) returns InventoryResult|error
 }
 ```
 
-## Tool Categories
+## Tool categories
 
-### Data Retrieval Tools
+### Data retrieval tools
 
 Read-only tools that fetch information from external systems.
 
@@ -104,7 +104,7 @@ isolated function queryDatabase(
 }
 ```
 
-### Action Tools
+### Action tools
 
 Tools that perform write operations or trigger workflows.
 
@@ -137,7 +137,7 @@ isolated function sendNotification(
 }
 ```
 
-### Connector-Based Tools
+### Connector-Based tools
 
 Wrap existing WSO2 Integrator connectors as agent tools.
 
@@ -164,9 +164,9 @@ isolated function getSalesforceAccount(
 }
 ```
 
-## Registering Tools with Agents
+## Registering tools with agents
 
-### Static Tool Registration
+### Static tool registration
 
 Define tools at agent creation time.
 
@@ -183,7 +183,7 @@ final agent:ChatAgent myAgent = check new (
 );
 ```
 
-### Grouped Tool Registration
+### Grouped tool registration
 
 Organize tools into logical groups for clarity.
 
@@ -208,9 +208,9 @@ final agent:ChatAgent readOnlyAgent = check new (
 );
 ```
 
-## Tool Design Best Practices
+## Tool design best practices
 
-### Write Clear Descriptions
+### Write clear descriptions
 
 The tool description is the most important factor in whether the LLM uses the tool correctly.
 
@@ -228,7 +228,7 @@ The tool description is the most important factor in whether the LLM uses the to
 }
 ```
 
-### Return Informative Errors
+### Return informative errors
 
 Help the LLM recover gracefully by returning descriptive error information.
 
@@ -250,7 +250,7 @@ isolated function getCustomer(string customerId) returns json|error {
 }
 ```
 
-### Limit Tool Output Size
+### Limit tool output size
 
 Trim large responses to prevent exceeding context window limits.
 
@@ -271,7 +271,7 @@ isolated function searchProducts(string query) returns json|error {
 }
 ```
 
-## Advanced: Confirmation-Required Tools
+## Advanced: Confirmation-Required tools
 
 For tools that perform sensitive actions, require the agent to confirm with the user before executing.
 
@@ -290,7 +290,7 @@ isolated function cancelOrder(
 
 The agent will naturally ask for confirmation because the description instructs it to do so.
 
-## What's Next
+## What's next
 
 - [Natural Functions](natural-functions.md) — Use LLMs as typed function calls
 - [Multi-Agent Orchestration](multi-agent-orchestration.md) — Agents that call other agents

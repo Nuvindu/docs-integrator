@@ -10,9 +10,9 @@ WSO2 Integrator can act as an MCP client, connecting to external MCP servers and
 
 Instead of writing custom connectors for every external service, you connect to its MCP server and let your agent discover and call its tools through the standardized protocol.
 
-## Connecting to an MCP Server
+## Connecting to an MCP server
 
-### stdio Connection
+### Stdio connection
 
 Connect to a locally running MCP server that communicates over standard I/O.
 
@@ -27,7 +27,7 @@ final mcp:Client githubMcp = check new ({
 });
 ```
 
-### SSE Connection
+### SSE connection
 
 Connect to a remote MCP server running over SSE (Server-Sent Events).
 
@@ -37,7 +37,7 @@ final mcp:Client remoteMcp = check new ({
 });
 ```
 
-### Streamable HTTP Connection
+### Streamable HTTP connection
 
 Connect to an MCP server using the Streamable HTTP transport.
 
@@ -47,11 +47,11 @@ final mcp:Client streamableMcp = check new ({
 });
 ```
 
-## Using MCP Tools in Agents
+## Using MCP tools in agents
 
 The most common pattern is to pass MCP tools directly to an agent so the LLM can discover and call them during reasoning.
 
-### Single MCP Server
+### Single MCP server
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -71,7 +71,7 @@ final agent:ChatAgent devAgent = check new (
 );
 ```
 
-### Multiple MCP Servers
+### Multiple MCP servers
 
 Combine tools from several MCP servers into a single agent.
 
@@ -108,7 +108,7 @@ final agent:ChatAgent multiToolAgent = check new (
 );
 ```
 
-### Mixing MCP Tools with Local Tools
+### Mixing MCP tools with local tools
 
 Combine external MCP tools with locally defined agent tools.
 
@@ -142,7 +142,7 @@ final agent:ChatAgent hybridAgent = check new (
 );
 ```
 
-## Listing Available Tools
+## Listing available tools
 
 Before passing tools to an agent, you can inspect what an MCP server provides.
 
@@ -157,7 +157,7 @@ foreach mcp:ToolInfo tool in tools {
 }
 ```
 
-## Calling MCP Tools Directly
+## Calling MCP tools directly
 
 If you need to call an MCP tool outside of an agent context, use the `callTool` method directly.
 
@@ -173,7 +173,7 @@ json result = check githubMcp.callTool("list_issues", {
 io:println("Open bugs: ", result);
 ```
 
-## Reading MCP Resources
+## Reading MCP resources
 
 Access read-only data exposed by an MCP server.
 
@@ -185,7 +185,7 @@ mcp:ResourceInfo[] resources = check remoteMcp.listResources();
 json configData = check remoteMcp.readResource("config://app-settings");
 ```
 
-## Connection Lifecycle
+## Connection lifecycle
 
 ### Initialization
 
@@ -200,7 +200,7 @@ final mcp:Client mcpClient = check new ({
 });
 ```
 
-### Graceful Shutdown
+### Graceful shutdown
 
 Close the MCP connection when your service shuts down.
 
@@ -213,7 +213,7 @@ public function main() returns error? {
 }
 ```
 
-### Connection Error Handling
+### Connection error handling
 
 Handle connection failures gracefully, especially for remote MCP servers.
 
@@ -232,7 +232,7 @@ function connectWithRetry(mcp:ClientConfig config, int maxRetries) returns mcp:C
 }
 ```
 
-## Filtering and Selecting Tools
+## Filtering and selecting tools
 
 When an MCP server exposes many tools, you may want to pass only a subset to your agent.
 
@@ -250,7 +250,7 @@ final agent:ChatAgent readOnlyAgent = check new (
 );
 ```
 
-## What's Next
+## What's next
 
 - [Exposing MCP Servers](exposing-mcp-servers.md) -- Build your own MCP server
 - [MCP Security](mcp-security.md) -- Authenticate MCP connections

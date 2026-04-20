@@ -8,7 +8,7 @@ description: "Overview of the ballerina/email connector for WSO2 Integrator."
 Email is a fundamental communication protocol used across virtually every business and personal workflow. The Ballerina `ballerina/email` connector (v2.13.0) provides programmatic access to send emails via SMTP and receive emails via IMAP and POP3, enabling you to integrate email capabilities into your Ballerina integration flows.
 
 
-## Key Features
+## Key features
 
 - Send emails with text and HTML bodies, attachments, CC/BCC, and custom headers via SMTP
 - Receive emails from IMAP servers with configurable folder and timeout support

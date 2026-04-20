@@ -32,7 +32,7 @@ flowchart TD
     Prompt ----> DB & API & System
 ```
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
 Create a new WSO2 Integrator project and add the required dependencies.
 
@@ -56,7 +56,7 @@ org = "ballerinax"
 name = "mysql"
 ```
 
-## Step 2: Set Up Configuration
+## Step 2: Set up configuration
 
 ```toml
 # Config.toml
@@ -78,7 +78,7 @@ configurable string dbPassword = ?;
 configurable string dbName = ?;
 ```
 
-## Step 3: Define Data Types
+## Step 3: Define data types
 
 ```ballerina
 // types.bal
@@ -119,7 +119,7 @@ type SupportTicket record {|
 |};
 ```
 
-## Step 4: Create Database and API Clients
+## Step 4: Create database and API clients
 
 ```ballerina
 // clients.bal
@@ -136,7 +136,7 @@ final http:Client orderApi = check new ("http://localhost:8080/api");
 final http:Client ticketApi = check new ("http://localhost:8081/api");
 ```
 
-## Step 5: Define Agent Tools
+## Step 5: Define agent tools
 
 This is where you connect the agent to your enterprise systems. Each tool is a Ballerina function annotated with metadata that the LLM reads to decide when and how to call it.
 
@@ -206,7 +206,7 @@ isolated function createSupportTicket(
 }
 ```
 
-## Step 6: Create the Agent
+## Step 6: Create the agent
 
 ```ballerina
 // agent.bal
@@ -243,7 +243,7 @@ Guidelines:
 );
 ```
 
-## Step 7: Expose as an HTTP Service
+## Step 7: Expose as an HTTP service
 
 ```ballerina
 // service.bal
@@ -278,7 +278,7 @@ service /support on new http:Listener(8090) {
 }
 ```
 
-## Step 8: Run and Test
+## Step 8: Run and test
 
 1. Start the service:
    ```bash
@@ -303,7 +303,7 @@ service /support on new http:Listener(8090) {
      -d '{"message": "I received a damaged product and want a refund", "sessionId": "<session-id>", "customerId": "CUST-001"}'
    ```
 
-## Step 9: Add Guardrails
+## Step 9: Add guardrails
 
 Add input and output guardrails for production safety.
 
@@ -328,7 +328,7 @@ final agent:ChatAgent guardedSupportAgent = check new (
 );
 ```
 
-## What You Built
+## What you built
 
 You now have a customer support agent that:
 - Searches a product database for product information
@@ -337,7 +337,7 @@ You now have a customer support agent that:
 - Maintains conversation context across multiple turns
 - Protects against prompt injection and PII leakage
 
-## What's Next
+## What's next
 
 - [Multi-Agent Workflow](multi-agent-workflow.md) -- Split this into specialist agents
 - [RAG Knowledge Base](rag-knowledge-base.md) -- Add a knowledge base for FAQ answers

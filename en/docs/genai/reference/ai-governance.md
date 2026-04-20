@@ -8,9 +8,9 @@ description: Data handling policies, guardrails, and compliance considerations f
 
 When building AI-powered integrations, governance and security are critical concerns. This page covers data handling policies, model access controls, guardrails for input and output validation, and compliance best practices for deploying AI integrations in production.
 
-## Data Handling Policies
+## Data handling policies
 
-### What Data Goes to LLM Providers?
+### What data goes to LLM providers?
 
 When your integration calls an LLM API, the following data is sent to the provider:
 
@@ -22,7 +22,7 @@ When your integration calls an LLM API, the following data is sent to the provid
 | Conversation history | Yes (if memory enabled) | Use token limits and summarization |
 | API keys | No (header only) | Use environment variables |
 
-### Data Residency
+### Data residency
 
 For compliance requirements, choose providers that match your data residency needs:
 
@@ -30,7 +30,7 @@ For compliance requirements, choose providers that match your data residency nee
 - **AWS Bedrock** — Choose AWS regions for data processing
 - **Ollama** — Process locally, no data leaves your network
 
-## Input Guardrails
+## Input guardrails
 
 Validate and sanitize inputs before they reach the LLM.
 
@@ -52,7 +52,7 @@ function validateInput(string userMessage) returns string|error {
 }
 ```
 
-## Output Guardrails
+## Output guardrails
 
 Validate LLM outputs before returning them to users.
 
@@ -70,7 +70,7 @@ function validateOutput(string agentResponse) returns string {
 }
 ```
 
-## Token and Cost Management
+## Token and cost management
 
 Control LLM spending with token limits and monitoring.
 
@@ -89,7 +89,7 @@ listener agent:UsageListener usageMonitor = new ({
 });
 ```
 
-## Audit Logging
+## Audit logging
 
 Log all AI interactions for compliance and debugging.
 
@@ -108,14 +108,14 @@ function logAIInteraction(string sessionId, string input, string output, agent:U
 }
 ```
 
-## Access Controls
+## Access controls
 
 - **API key rotation** — Rotate LLM provider keys regularly
 - **Rate limiting** — Limit requests per user or session
 - **Role-based access** — Restrict which users can interact with AI agents
 - **Model access** — Control which models are available in each environment
 
-## Responsible AI Practices
+## Responsible AI practices
 
 - **Transparency** — Inform users they are interacting with an AI
 - **Human oversight** — Provide escalation paths to human agents
@@ -123,7 +123,7 @@ function logAIInteraction(string sessionId, string input, string output, agent:U
 - **Content moderation** — Filter harmful or inappropriate outputs
 - **Explainability** — Log reasoning steps for auditability
 
-## What's Next
+## What's next
 
 - [Ballerina Copilot Guide](copilot-guide.md) — AI-assisted development
 - [Troubleshooting](troubleshooting.md) — Common issues and solutions

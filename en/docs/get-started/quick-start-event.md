@@ -17,7 +17,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
 - [WSO2 Integrator extension installed](install.md)
 - A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:management`)
 
-## Step 1: Create a New Integration Project
+## Step 1: Create a new integration project
 
 1. Open WSO2 Integrator.
 2. Select **Create**.
@@ -35,7 +35,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
     }}
 />
 
-## Step 2: Add a RabbitMQ Event Integration Artifact
+## Step 2: Add a RabbitMQ event integration artifact
 
 1. Select **OrderProcessor**.
 2. In the design view, select **Add Artifact**.
@@ -49,7 +49,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
     }}
 />
 
-## Step 3: Configure the RabbitMQ Connection
+## Step 3: Configure the RabbitMQ connection
 
 1. Set **Queue Name** to `Orders`.
 2. Set **Host** to `localhost`.
@@ -64,7 +64,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
     }}
 />
 
-## Step 4: Add Message Processing Logic
+## Step 4: Add message processing logic
 
 1. Select **+ Add Handler**.
 2. Select **onMessage**.
@@ -83,7 +83,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
     }}
 />
 
-## Step 5: Run and Test the Integration
+## Step 5: Run and test the integration
 
 1. Select **Run**.
 2. The integration starts and listens for messages on the `Orders` queue.
@@ -97,7 +97,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
     }}
 />
 
-## Supported Event Sources
+## Supported event sources
 
 | Broker | Ballerina Package |
 |---|---|
@@ -108,7 +108,7 @@ Event integrations are ideal for reactive workflows triggered by messages from K
 | **Salesforce** | `ballerinax/salesforce` |
 | **GitHub Webhooks** | `ballerinax/github` |
 
-## What's Next
+## What's next
 
 - [Quick Start: File Integration](quick-start-file.md) -- Process files from FTP or local directories
 - [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service

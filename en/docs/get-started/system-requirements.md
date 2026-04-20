@@ -8,7 +8,7 @@ description: Hardware, software, and network requirements for WSO2 Integrator de
 
 Before you install WSO2 Integrator, make sure your development environment meets these requirements.
 
-## Hardware Requirements
+## Hardware requirements
 
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
@@ -16,7 +16,7 @@ Before you install WSO2 Integrator, make sure your development environment meets
 | **Memory (Heap)** | 512 MB | 1 GB+ |
 | **Disk Space** | 2 GB free | 5+ GB free |
 
-## Supported Operating Systems
+## Supported operating systems
 
 | OS | Minimum Version |
 |---|---|
@@ -29,7 +29,7 @@ Before you install WSO2 Integrator, make sure your development environment meets
 
 WSO2 Integrator is compatible with ARM processors. It can run on ARM-based systems, such as those with Apple Silicon or ARM-based Linux distributions.
 
-### Supported Java Distributions
+### Supported Java distributions
 
 A compatible JRE version will be automatically installed during the WSO2 Integrator installation process.
 Any JRE 21 distribution works. Tested distributions:
@@ -41,7 +41,7 @@ Any JRE 21 distribution works. Tested distributions:
 | OpenJRE | 21 |
 | Oracle JRE | 21 |
 
-## Network Requirements
+## Network requirements
 
 The development environment needs internet access for:
 
@@ -50,6 +50,6 @@ The development environment needs internet access for:
 
 If you're behind a corporate proxy, configure proxy settings in VS Code and in your terminal environment.
 
-## What's Next
+## What's next
 
 - [Install WSO2 Integrator](install.md)

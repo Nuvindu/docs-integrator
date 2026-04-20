@@ -13,7 +13,7 @@ description: "Integration pattern: Content-Based Router."
 
 <!-- The pattern described with a diagram -->
 
-## When to Use It
+## When to use it
 
 <!-- Concrete scenarios -->
 
@@ -25,6 +25,6 @@ description: "Integration pattern: Content-Based Router."
 
 <!-- Trade-offs, edge cases, common mistakes -->
 
-## Related Patterns
+## Related patterns
 
 <!-- Links to related patterns -->

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 Work with Electronic Data Interchange (EDI) formats used in supply chain, healthcare, and financial integrations. Ballerina provides the `ballerina/edi` module for parsing and serializing EDI data, and the `bal edi` CLI tool for generating type-safe code from EDI schemas.
 
-## EDI Standards Overview
+## EDI standards overview
 
 Ballerina supports the major EDI standards through schema-based processing:
 
@@ -21,7 +21,7 @@ Ballerina supports the major EDI standards through schema-based processing:
 
 All standards follow the same workflow: define a schema, generate Ballerina code, then parse or serialize EDI documents using typed records.
 
-## Setting Up the EDI Tool
+## Setting up the EDI tool
 
 Install the `bal edi` tool to generate Ballerina code from EDI schemas.
 
@@ -31,7 +31,7 @@ bal tool pull edi
 
 Once installed, the tool provides commands for code generation and schema conversion.
 
-## Generating Code from EDI Schemas
+## Generating code from EDI schemas
 
 The `bal edi` tool reads an EDI schema (in JSON format) and generates Ballerina record types and parser/serializer functions.
 
@@ -46,7 +46,7 @@ This produces:
 - **`fromEdiString()`** -- a parser function that reads EDI text into the generated records.
 - **`toEdiString()`** -- a serializer function that converts records back to EDI format.
 
-## Converting X12 and EDIFACT Schemas
+## Converting x12 and EDIFACT schemas
 
 Convert standard X12 or EDIFACT schema definitions into Ballerina's JSON schema format.
 
@@ -58,7 +58,7 @@ bal edi convertX12Schema -i x12/850.xsd -o schemas/purchase_order.json
 bal edi convertEdifactSchema -i edifact/ORDERS_D96A.sef -o schemas/edifact_order.json
 ```
 
-## Parsing EDI Documents
+## Parsing EDI documents
 
 Once you have generated code from a schema, parse EDI text into typed Ballerina records.
 
@@ -94,7 +94,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Generating EDI Output
+## Generating EDI output
 
 Build EDI documents from Ballerina records and serialize them to the standard text format.
 
@@ -134,7 +134,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Low-Level EDI Processing
+## Low-Level EDI processing
 
 For dynamic or schema-less scenarios, use the `ballerina/edi` module directly to parse EDI into JSON.
 
@@ -166,7 +166,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## EDI to JSON/XML Conversion
+## EDI to JSON/XML conversion
 
 A common integration pattern is converting EDI documents to JSON or XML for downstream systems.
 
@@ -201,7 +201,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Creating EDI Packages
+## Creating EDI packages
 
 Bundle multiple EDI schemas into a reusable Ballerina package so other teams can parse EDI messages with a single import.
 
@@ -230,13 +230,13 @@ po:PurchaseOrder order = check po:fromEdiString(ediContent);
 </TabItem>
 </Tabs>
 
-## Best Practices
+## Best practices
 
 - **Generate code from schemas** rather than parsing EDI manually -- the generated records and functions handle segment delimiters, escape characters, and validation
 - **Use packages for reuse** -- bundle frequently used EDI schemas into shared Ballerina packages
 - **Validate early** -- parse EDI at the integration boundary to catch format errors before business logic executes
 - **Convert to records immediately** -- work with typed records throughout your integration and serialize back to EDI only at the output boundary
 
-## What's Next
+## What's next
 
 - [Type System & Records](type-system.md) -- Define EDI record types

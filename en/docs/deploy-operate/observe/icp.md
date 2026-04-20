@@ -21,9 +21,9 @@ Key capabilities:
 - **Health status** -- See the health of each service instance and receive alerts on failures
 - **Deployment history** -- Track when services were deployed or updated
 
-## Setting Up ICP Connection
+## Setting up ICP connection
 
-### Configuring the Integration Node
+### Configuring the integration node
 
 Each WSO2 Integrator service connects to the ICP by adding configuration in `Config.toml`:
 
@@ -47,7 +47,7 @@ groupName = "order-service"
 | `nodeId` | Unique identifier for this service instance |
 | `groupName` | Logical group name for related service instances |
 
-### Kubernetes Deployment Configuration
+### Kubernetes deployment configuration
 
 When deploying on Kubernetes, pass ICP configuration via environment variables:
 
@@ -74,9 +74,9 @@ spec:
 
 Using `metadata.name` as the `nodeId` ensures each pod has a unique identifier.
 
-## Dashboard Walkthrough
+## Dashboard walkthrough
 
-### Service Overview
+### Service overview
 
 The main dashboard displays all registered services with the following information:
 
@@ -87,7 +87,7 @@ The main dashboard displays all registered services with the following informati
 - **Error rate** -- Percentage of 4xx and 5xx responses
 - **P99 latency** -- 99th percentile response time
 
-### Service Detail View
+### Service detail view
 
 Clicking on a service opens the detail view with:
 
@@ -97,13 +97,13 @@ Clicking on a service opens the detail view with:
 - **API endpoints** -- List of exposed resource functions with per-endpoint metrics
 - **Configuration** -- Current runtime configuration values (secrets are masked)
 
-### Topology View
+### Topology view
 
 The topology view shows the dependency graph of your integration services, displaying which services call which other services and external endpoints. This view is constructed from distributed trace data.
 
-## Managing Integrations via ICP
+## Managing integrations via ICP
 
-### Updating Configuration
+### Updating configuration
 
 Push configuration updates to running services without redeployment:
 
@@ -122,7 +122,7 @@ Or use the ICP dashboard:
 3. Edit the desired value
 4. Click **Apply** to push the change to all instances in the group
 
-### Service Lifecycle
+### Service lifecycle
 
 Control service instances from the ICP:
 
@@ -137,7 +137,7 @@ icp service stop --node order-service-prod-01
 icp service scale order-service --replicas 5 --env production
 ```
 
-### Alerts and Notifications
+### Alerts and notifications
 
 Configure alerts based on service metrics:
 
@@ -159,7 +159,7 @@ Alert conditions include:
 - Instance health changes (instance down)
 - Request rate anomalies
 
-## ICP API for Automation
+## ICP API for automation
 
 The ICP exposes a REST API for programmatic access, enabling integration with CI/CD pipelines, custom dashboards, and automation scripts.
 
@@ -172,7 +172,7 @@ curl -X POST https://icp.example.com/api/v1/auth/token \
   -d '{"username": "admin", "password": "admin"}'
 ```
 
-### Common API Endpoints
+### Common API endpoints
 
 **List all services:**
 
@@ -212,7 +212,7 @@ curl -H "Authorization: Bearer ${ICP_TOKEN}" \
   "https://icp.example.com/api/v1/services/order-service/logs?lines=100&level=ERROR"
 ```
 
-### CI/CD Integration
+### CI/CD integration
 
 Use the ICP API in your CI/CD pipeline to verify deployments:
 
@@ -233,7 +233,7 @@ Use the ICP API in your CI/CD pipeline to verify deployments:
     exit 1
 ```
 
-## What's Next
+## What's next
 
 - [Logging](logging.md) -- Configure structured logging
 - [Metrics](metrics.md) -- Prometheus metrics and Grafana dashboards

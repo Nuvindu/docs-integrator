@@ -8,11 +8,11 @@ description: "End-to-end walkthrough: Build a centralized email notification ser
 
 Build a centralized email notification service that other integrations can call to send templated, event-driven emails. This tutorial covers SMTP configuration, HTML email templates, retry logic, and handling bounce-backs.
 
-## What You'll Build
+## What you'll build
 
 A notification API that accepts event payloads (order confirmations, password resets, system alerts) and sends formatted HTML emails through SMTP. The service supports multiple templates, variable substitution, and delivery tracking.
 
-## What You'll Learn
+## What you'll learn
 
 - Configuring the Ballerina email connector for SMTP
 - Building reusable HTML email templates
@@ -50,14 +50,14 @@ flowchart LR
     SMTP ----> Inbox
 ```
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
 ```bash
 bal new notification_service
 cd notification_service
 ```
 
-## Step 2: Define the Notification Types
+## Step 2: Define the notification types
 
 ```ballerina
 // types.bal
@@ -85,7 +85,7 @@ type EmailTemplate record {|
 |};
 ```
 
-## Step 3: Build the Template Engine
+## Step 3: Build the template engine
 
 ```ballerina
 // templates.bal
@@ -169,7 +169,7 @@ function renderTemplate(EmailTemplate template, map<string> variables) returns E
 }
 ```
 
-## Step 4: Build the Notification Service
+## Step 4: Build the notification service
 
 ```ballerina
 // main.bal
@@ -269,7 +269,7 @@ fromAddress = "notifications@yourcompany.com"
 fromName = "Your Company"
 ```
 
-## Step 6: Test the Service
+## Step 6: Test the service
 
 Run the project:
 
@@ -313,14 +313,14 @@ curl -X POST http://localhost:8090/notifications/send \
 curl http://localhost:8090/notifications/templates
 ```
 
-## Extend It
+## Extend it
 
 - **Add async sending with queues** -- Use Kafka or RabbitMQ to decouple sending from the API response
 - **Add delivery webhooks** -- Track bounce-backs and delivery confirmations
 - **Add rate limiting** -- Prevent exceeding SMTP provider limits
 - **Add attachment support** -- Allow file attachments in notification requests
 
-## What's Next
+## What's next
 
 - [Communication Connectors](../../connectors/catalog/communication) -- Email, SMS, and Slack connectors
 - [Content-Based Routing](content-based-routing.md) -- Route notifications by type

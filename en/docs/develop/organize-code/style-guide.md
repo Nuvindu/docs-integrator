@@ -8,9 +8,9 @@ description: Follow Ballerina coding conventions for consistent, readable integr
 
 Write clean, consistent Ballerina integration code by following the community coding conventions. A consistent style across your team makes code reviews faster, onboarding easier, and maintenance less error-prone.
 
-## Naming Conventions
+## Naming conventions
 
-### Functions and Variables
+### Functions and variables
 
 Use `camelCase` for function names, variable names, and parameters.
 
@@ -30,7 +30,7 @@ function CalculateOrderTotal(Order order) returns decimal { ... }
 function calculate_order_total(Order order) returns decimal { ... }
 ```
 
-### Types and Records
+### Types and records
 
 Use `PascalCase` for type names, record names, and enum names.
 
@@ -49,7 +49,7 @@ type orderRequest record {| ... |};
 type order_request record {| ... |};
 ```
 
-### Constants and Enums
+### Constants and enums
 
 Use `SCREAMING_SNAKE_CASE` for constants.
 
@@ -67,7 +67,7 @@ public enum OrderPriority {
 }
 ```
 
-### Module and Package Names
+### Module and package names
 
 Use `snake_case` for package names and module names.
 
@@ -103,7 +103,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-### Line Length
+### Line length
 
 Keep lines under 120 characters. Break long lines at logical points.
 
@@ -145,7 +145,7 @@ if order.status == "pending" {
 }
 ```
 
-### Blank Lines
+### Blank lines
 
 Use blank lines to separate logical sections.
 
@@ -183,9 +183,9 @@ public function processOrder(Order order) returns error? {
 }
 ```
 
-## Record Types
+## Record types
 
-### Use Closed Records for Known Shapes
+### Use closed records for known shapes
 
 Use the `{| ... |}` syntax (closed records) when the record shape is fully known. This prevents unexpected fields.
 
@@ -204,7 +204,7 @@ type GenericPayload record {
 };
 ```
 
-### Optional vs Required Fields
+### Optional vs required fields
 
 ```ballerina
 type CustomerProfile record {|
@@ -216,9 +216,9 @@ type CustomerProfile record {|
 |};
 ```
 
-## Error Handling Style
+## Error handling style
 
-### Use `check` for Propagation
+### Use `check` for propagation
 
 ```ballerina
 // Good: concise error propagation with check
@@ -239,7 +239,7 @@ public function createOrder(json payload) returns Order|error {
 // }
 ```
 
-### Handle Errors Explicitly When Logic Differs
+### Handle errors explicitly when logic differs
 
 ```ballerina
 // Good: explicit handling when error requires specific action
@@ -257,9 +257,9 @@ public function fetchWithFallback(string id) returns json {
 }
 ```
 
-## Service Resource Style
+## Service resource style
 
-### Resource Function Naming
+### Resource function naming
 
 Resources map to HTTP semantics. Use the HTTP method as the function qualifier.
 
@@ -285,7 +285,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-## Documentation Comments
+## Documentation comments
 
 Use `#` comments for documenting public functions and types.
 
@@ -319,7 +319,7 @@ public type Order record {|
 |};
 ```
 
-## Import Organization
+## Import organization
 
 Group imports by category and separate with blank lines.
 
@@ -339,7 +339,7 @@ import myorg/shared_types;
 import myorg/order_service.db;
 ```
 
-## Best Practices
+## Best practices
 
 - **Run the Ballerina formatter** -- use `bal format` to auto-format your code before committing
 - **Be consistent within a project** -- if your team has a local convention, follow it even if it differs slightly from this guide
@@ -348,7 +348,7 @@ import myorg/order_service.db;
 - **Use query expressions** over manual loops for collection operations
 - **Keep functions short** -- aim for functions under 30 lines; extract complex logic into helper functions
 
-## What's Next
+## What's next
 
 - [Static Code Analysis](static-code-analysis.md) -- Automate code quality checks
 - [Generate Documentation](generate-documentation.md) -- Produce API docs from your code

@@ -200,7 +200,7 @@ do {
 
 ## CI/CD integration
 
-### GitHub Actions
+### GitHub actions
 
 ```yaml
 - name: Run Ballerina Scan

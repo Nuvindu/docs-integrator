@@ -8,7 +8,7 @@ description: Index of 200+ runnable Ballerina examples organized by category wit
 
 Ballerina by Example (BBE) is a collection of over 200 runnable code examples that demonstrate Ballerina language features and library capabilities. Each example includes source code, expected output, and can be executed directly. All examples are hosted on [ballerina.io/learn/by-example](https://ballerina.io/learn/by-example/).
 
-## Language Basics
+## Language basics
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -23,7 +23,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Foreach | Foreach loop iteration | [View](https://ballerina.io/learn/by-example/foreach/) |
 | Match Statement | Pattern matching | [View](https://ballerina.io/learn/by-example/match-statement/) |
 
-## Type System
+## Type system
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -36,7 +36,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Type Inference | Let type inference | [View](https://ballerina.io/learn/by-example/type-inference/) |
 | Covariance | Type covariance | [View](https://ballerina.io/learn/by-example/covariance/) |
 
-## Records and Maps
+## Records and maps
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -47,7 +47,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Maps | Map type and operations | [View](https://ballerina.io/learn/by-example/maps/) |
 | Record to JSON | Converting records to JSON | [View](https://ballerina.io/learn/by-example/converting-to-user-defined-type/) |
 
-## Arrays and Tuples
+## Arrays and tuples
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -56,7 +56,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | List Sub Typing | List type relationships | [View](https://ballerina.io/learn/by-example/list-sub-typing/) |
 | Table | Table type and operations | [View](https://ballerina.io/learn/by-example/table/) |
 
-## Error Handling
+## Error handling
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -91,7 +91,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Retry Transactions | Automatic retry | [View](https://ballerina.io/learn/by-example/retry-transaction-statement/) |
 | Transactional Functions | Participating functions | [View](https://ballerina.io/learn/by-example/transactional-qualifier/) |
 
-## Query Expressions
+## Query expressions
 
 | Example | Description | Link |
 |---------|-------------|------|
@@ -208,7 +208,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Gauge Metrics | Prometheus gauges | [View](https://ballerina.io/learn/by-example/gauge-metrics/) |
 | Tracing | Distributed tracing | [View](https://ballerina.io/learn/by-example/tracing/) |
 
-## Running Examples Locally
+## Running examples locally
 
 Each example can be run locally with:
 
@@ -225,7 +225,7 @@ bal run
 
 Alternatively, use the "Run" button on each example page at [ballerina.io/learn/by-example](https://ballerina.io/learn/by-example/).
 
-## See Also
+## See also
 
 - [Ballerina Syntax Quick Reference](/docs/reference/language/syntax) -- Language cheat sheet
 - [Ballerina API Documentation](api/ballerina-api-docs.md) -- Full API docs

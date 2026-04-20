@@ -10,7 +10,7 @@ Every LLM has a fixed context window -- the maximum number of tokens it can proc
 
 Managing context windows is essential for building reliable agents that handle long conversations, large documents, and complex tool interactions without running out of space.
 
-## Understanding Token Budgets
+## Understanding token budgets
 
 A typical agent request consumes tokens across several components:
 
@@ -32,7 +32,7 @@ flowchart TD
     Window -.-> Info
 ```
 
-### Token Estimation
+### Token estimation
 
 ```ballerina
 import ballerinax/ai;
@@ -45,11 +45,11 @@ ai:TokenUsage usage = check myAgent.estimateUsage("User message here", "session-
 io:println(string `System: ${usage.systemTokens}, History: ${usage.historyTokens}, Available: ${usage.availableTokens}`);
 ```
 
-## Memory-Based Context Management
+## Memory-Based context management
 
 The primary way to manage context is through agent memory configuration. See [Configure Agent Memory](/docs/genai/agents/memory-configuration) for full details.
 
-### Message Window
+### Message window
 
 Keep a fixed number of recent messages. Simple and predictable.
 
@@ -64,7 +64,7 @@ final agent:ChatAgent chatAgent = check new (
 );
 ```
 
-### Token Window
+### Token window
 
 Keep messages that fit within a token budget. More precise control over context size.
 
@@ -80,7 +80,7 @@ final agent:ChatAgent tokenAgent = check new (
 );
 ```
 
-### Summary Memory
+### Summary memory
 
 Compress older messages into a summary to retain context from long conversations.
 
@@ -96,11 +96,11 @@ final agent:ChatAgent longChatAgent = check new (
 );
 ```
 
-## Managing Large Inputs
+## Managing large inputs
 
 When processing large documents or datasets, the input itself can exceed the context window.
 
-### Chunking Large Documents
+### Chunking large documents
 
 Split large documents into smaller chunks and process them individually.
 
@@ -125,7 +125,7 @@ function processLargeDocument(string document) returns string|error {
 }
 ```
 
-### Map-Reduce Pattern
+### Map-Reduce pattern
 
 Process chunks in parallel and combine the results.
 
@@ -149,11 +149,11 @@ function mapReduceAnalysis(string[] documents) returns AnalysisResult|error {
 }
 ```
 
-## Managing Tool Output Size
+## Managing tool output size
 
 Large tool results can consume significant context space. Trim outputs before they enter the conversation.
 
-### Truncating Tool Results
+### Truncating tool results
 
 ```ballerina
 @agent:Tool {
@@ -189,7 +189,7 @@ function truncateText(string text, int maxChars) returns string {
 }
 ```
 
-### Summarizing Large Tool Results
+### Summarizing large tool results
 
 ```ballerina
 @agent:Tool {
@@ -218,7 +218,7 @@ isolated function getReport(string reportId) returns json|error {
 }
 ```
 
-## Context Window Sizing Guide
+## Context window sizing guide
 
 | Model | Context Window | Recommended Max History | Reserve for Response |
 |-------|---------------|------------------------|---------------------|
@@ -229,7 +229,7 @@ isolated function getReport(string reportId) returns json|error {
 | Gemini 2.0 Flash | 1M | 800K tokens | 8K tokens |
 | Llama 3 (8B) | 8K | 6K tokens | 1K tokens |
 
-## Monitoring Context Usage
+## Monitoring context usage
 
 Track context utilization to detect when conversations approach limits.
 
@@ -255,7 +255,7 @@ function chatWithMonitoring(string message, string sessionId) returns string|err
 }
 ```
 
-## What's Next
+## What's next
 
 - [Configure Agent Memory](/docs/genai/agents/memory-configuration) -- Detailed memory type configuration
 - [Token & Cost Management](/docs/genai/guardrails/token-cost-management) -- Control spending alongside context

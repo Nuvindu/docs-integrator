@@ -133,7 +133,7 @@ sequenceDiagram
     }}
 />
 
-## What's Next
+## What's next
 
 - [Quick Start: Automation](quick-start-automation.md) -- Build a scheduled job
 - [Quick Start: AI Agent](quick-start-ai-agent.md) -- Build an intelligent agent

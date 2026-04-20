@@ -8,7 +8,7 @@ description: Convert text chunks into vector embeddings using OpenAI, Cohere, an
 
 Embeddings convert text chunks into numerical vectors that capture semantic meaning. Similar content produces similar vectors, enabling semantic search in your RAG pipeline. This page covers supported embedding models, batch processing, and dimension reduction.
 
-## Supported Embedding Models
+## Supported embedding models
 
 | Model | Provider | Dimensions | Quality | Cost per 1M tokens |
 |-------|----------|------------|---------|---------------------|
@@ -17,7 +17,7 @@ Embeddings convert text chunks into numerical vectors that capture semantic mean
 | `embed-english-v3.0` | Cohere | 1024 | Good | $0.10 |
 | `text-embedding-004` | Google | 768 | Good | $0.025 |
 
-## OpenAI Embeddings
+## OpenAI embeddings
 
 ```ballerina
 import ballerinax/openai.embeddings;
@@ -49,7 +49,7 @@ function embedLarge(string[] texts) returns float[][]|error {
 }
 ```
 
-## Cohere Embeddings
+## Cohere embeddings
 
 ```ballerina
 import ballerinax/cohere;
@@ -68,7 +68,7 @@ function embedWithCohere(string[] texts) returns float[][]|error {
 }
 ```
 
-## Google Vertex AI Embeddings
+## Google vertex AI embeddings
 
 ```ballerina
 import ballerinax/googleapis.vertexai;
@@ -89,7 +89,7 @@ function embedWithVertex(string[] texts) returns float[][]|error {
 }
 ```
 
-## Batch Embedding
+## Batch embedding
 
 Process large document sets efficiently by batching embedding requests.
 
@@ -112,7 +112,7 @@ function batchEmbed(string[] texts, int batchSize = 100) returns float[][]|error
 }
 ```
 
-## Dimension Reduction
+## Dimension reduction
 
 Some models support reduced dimensions for faster search with slightly lower quality.
 
@@ -124,7 +124,7 @@ embeddings:EmbeddingResponse response = check openaiEmbeddings->createEmbedding(
 });
 ```
 
-## What's Next
+## What's next
 
 - [Chunking Documents](/docs/genai/develop/rag/chunking-documents) -- Chunking strategies for RAG
 - [Connecting to Vector Databases](/docs/genai/develop/rag/connecting-vector-dbs) -- Store embeddings for search

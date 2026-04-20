@@ -17,7 +17,7 @@ Synchronize your MySQL product catalog to Salesforce Product records on a schedu
 - Salesforce developer account with a connected app and OAuth 2.0 credentials
 - A custom external ID field on the Salesforce Product2 object (e.g., `External_Product_Id__c`)
 
-## Quick Run
+## Quick run
 
 ```bash
 # Clone the samples repository
@@ -55,9 +55,9 @@ pollingIntervalSeconds = 300
 batchSize = 200
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Project Structure
+### Project structure
 
 ```
 mysql-to-salesforce-products/
@@ -70,7 +70,7 @@ mysql-to-salesforce-products/
 └── types.bal
 ```
 
-### Defining the Data Types
+### Defining the data types
 
 ```ballerina
 // MySQL product record
@@ -104,7 +104,7 @@ type PricebookEntry record {|
 |};
 ```
 
-### Querying MySQL for Updated Products
+### Querying MySQL for updated products
 
 ```ballerina
 import ballerina/sql;
@@ -177,7 +177,7 @@ function transformProduct(Product product) returns SalesforceProduct => {
 };
 ```
 
-### Scheduled Sync Orchestration
+### Scheduled sync orchestration
 
 ```ballerina
 import ballerina/task;
@@ -217,20 +217,20 @@ function syncProducts() returns error? {
 }
 ```
 
-### Key Points
+### Key points
 
 - **Incremental sync**: The `lastSyncTimestamp` tracker ensures only rows modified since the last poll are processed.
 - **Upsert pattern**: Using an external ID field (`External_Product_Id__c`) allows the integration to insert new products and update existing ones without creating duplicates.
 - **Batch processing**: The configurable `batchSize` limits the number of records processed per cycle, preventing Salesforce API governor limit issues.
 
-## Customization Notes
+## Customization notes
 
 - **Add price book sync**: Extend the integration to also create `PricebookEntry` records in the standard price book, using the `PricebookEntry` type shown above.
 - **Support deletes**: Add a `deleted_at` soft-delete column in MySQL and deactivate the corresponding Salesforce product when a deletion is detected.
 - **Multi-currency**: If your Salesforce org uses multi-currency, include the `CurrencyIsoCode` field in the product mapping.
 - **Add CDC instead of polling**: Replace the polling mechanism with MySQL Change Data Capture (CDC) using the Debezium connector for near-real-time sync.
 
-## What's Next
+## What's next
 
 - [Kafka to Salesforce Price Book](kafka-salesforce-pricebook.md) -- Stream pricing events to Salesforce
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet data to CRM contacts

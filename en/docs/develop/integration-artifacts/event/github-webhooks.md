@@ -14,7 +14,7 @@ GitHub event integration is currently in **Beta**.
 
 GitHub event integrations receive webhook callbacks from GitHub and trigger handler functions as repository events occur. Use them to automate CI/CD workflows, sync issue trackers, enforce code review policies, and react to repository activity in real time.
 
-## Creating a GitHub Events service
+## Creating a GitHub events service
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>

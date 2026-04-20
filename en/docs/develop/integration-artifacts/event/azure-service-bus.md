@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Azure Service Bus event integrations consume messages from a queue or topic subscription and trigger event handlers as each message arrives. Use them for reliable enterprise messaging, decoupled service-to-service communication, and workflows that require ordered or transactional message delivery.
 
-## Creating an Azure Service Bus service
+## Creating an Azure service bus service
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>

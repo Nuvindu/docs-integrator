@@ -8,7 +8,7 @@ description: Overview of observability capabilities for WSO2 Integrator -- metri
 
 Observability is essential for understanding the behavior, performance, and health of your integrations in production. WSO2 Integrator provides built-in support for the three pillars of observability: metrics, logging, and distributed tracing.
 
-## The Three Pillars
+## The three pillars
 
 | Pillar | Purpose | Built-in Support |
 |--------|---------|-----------------|
@@ -16,7 +16,7 @@ Observability is essential for understanding the behavior, performance, and heal
 | **Logging** | Structured event records for debugging and auditing | Ballerina `log` module with configurable levels |
 | **Tracing** | End-to-end request flow across services | OpenTelemetry-based distributed tracing |
 
-## Enabling Observability
+## Enabling observability
 
 Add the observability flag at build time:
 
@@ -60,7 +60,7 @@ flowchart LR
     Logging ----> ELK
 ```
 
-## Supported Integrations
+## Supported integrations
 
 | Tool | Category | Page |
 |------|----------|------|
@@ -75,7 +75,7 @@ flowchart LR
 | OpenSearch | Log aggregation & search | [OpenSearch](opensearch.md) |
 | Moesif | API analytics | [Moesif](moesif.md) |
 
-## Default Metrics
+## Default metrics
 
 When observability is enabled, the following metrics are automatically collected:
 
@@ -88,7 +88,7 @@ When observability is enabled, the following metrics are automatically collected
 | `ballerina_sql_query_duration_seconds` | Histogram | Database query latency |
 | `ballerina_kafka_messages_total` | Counter | Kafka messages produced/consumed |
 
-## Quick Start
+## Quick start
 
 Enable observability with Prometheus and Jaeger in four steps:
 
@@ -129,7 +129,7 @@ Metrics are available at `http://localhost:9797/metrics`.
 
 For Grafana visualization, import dashboard ID **5841** to get pre-built panels for Ballerina metrics.
 
-## What's Next
+## What's next
 
 - [Prometheus](prometheus.md) -- Set up metrics collection
 - [Grafana](grafana.md) -- Visualize metrics with dashboards

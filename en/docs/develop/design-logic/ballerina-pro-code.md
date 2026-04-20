@@ -8,7 +8,7 @@ description: Write integration logic directly in Ballerina with full language ca
 
 For advanced integration scenarios that require the full power of a programming language, you can write Ballerina code directly without the visual flow designer. Pro-code development gives you access to every Ballerina language feature -- concurrency primitives, advanced type system constructs, custom protocols, and complex algorithmic logic. The code you write is the same code the visual designer generates, so you can freely switch between the two approaches.
 
-## When to Use Pro-Code
+## When to use Pro-Code
 
 While the visual flow designer handles most integration patterns, pro-code is the better choice when you need:
 
@@ -19,16 +19,16 @@ While the visual flow designer handles most integration patterns, pro-code is th
 - **Library development** -- Building reusable Ballerina packages for your organization.
 - **Full IDE experience** -- Using code completion, refactoring, and inline documentation.
 
-## Setting Up for Pro-Code Development
+## Setting up for Pro-Code development
 
-### VS Code with the Ballerina Extension
+### VS code with the Ballerina extension
 
 1. Install the [WSO2 Integrator VS Code extension](https://marketplace.visualstudio.com/items?itemName=WSO2.wso2-integrator).
 2. Open your integration project folder.
 3. Switch to **Code** mode using the editor toolbar toggle.
 4. The extension provides syntax highlighting, code completion, error diagnostics, and inline documentation.
 
-### Project Structure
+### Project structure
 
 A standard Ballerina integration project:
 
@@ -51,9 +51,9 @@ my-integration/
     └── openapi.yaml        # API specifications
 ```
 
-## Writing Services
+## Writing services
 
-### HTTP Service
+### HTTP service
 
 ```ballerina
 import ballerina/http;
@@ -103,7 +103,7 @@ service /api/v1 on new http:Listener(servicePort) {
 }
 ```
 
-### GraphQL Service
+### GraphQL service
 
 ```ballerina
 import ballerina/graphql;
@@ -127,7 +127,7 @@ service /graphql on new graphql:Listener(9090) {
 }
 ```
 
-### WebSocket Service
+### WebSocket service
 
 ```ballerina
 import ballerina/websocket;
@@ -164,11 +164,11 @@ service class NotificationService {
 }
 ```
 
-## Type System
+## Type system
 
 Ballerina's structural type system is central to pro-code development.
 
-### Record Types
+### Record types
 
 ```ballerina
 // Closed record -- only listed fields allowed
@@ -193,7 +193,7 @@ type ApiResponse record {
 type OrderStatus "PENDING"|"CONFIRMED"|"SHIPPED"|"DELIVERED"|"CANCELLED";
 ```
 
-### Union Types
+### Union types
 
 ```ballerina
 // A response can be one of several types
@@ -228,7 +228,7 @@ function handleResult(ServiceResponse response) {
 
 ## Concurrency
 
-### Workers for Parallel Execution
+### Workers for parallel execution
 
 ```ballerina
 function enrichOrder(Order 'order) returns EnrichedOrder|error {
@@ -259,7 +259,7 @@ function enrichOrder(Order 'order) returns EnrichedOrder|error {
 }
 ```
 
-### Worker Message Passing
+### Worker message passing
 
 ```ballerina
 function pipeline(json[] records) returns error? {
@@ -295,9 +295,9 @@ function pipeline(json[] records) returns error? {
 }
 ```
 
-## Error Handling Patterns
+## Error handling patterns
 
-### Custom Error Types
+### Custom error types
 
 ```ballerina
 type OrderError distinct error;
@@ -316,7 +316,7 @@ function processOrder(OrderRequest req) returns OrderConfirmation|OrderError {
 }
 ```
 
-### Comprehensive Error Handling
+### Comprehensive error handling
 
 ```ballerina
 function callExternalApi(string path, json payload) returns json|error {
@@ -353,7 +353,7 @@ function callExternalApi(string path, json payload) returns json|error {
 }
 ```
 
-## Database Operations
+## Database operations
 
 ```ballerina
 import ballerina/sql;
@@ -381,7 +381,7 @@ function createOrderWithItems(OrderRequest req) returns string|error {
 }
 ```
 
-## Complete Pro-Code Example
+## Complete Pro-Code example
 
 A full order management integration written entirely in pro-code:
 
@@ -469,7 +469,7 @@ function createOrder(OrderRequest req, decimal total) returns string|error {
 }
 ```
 
-## Switching Between Visual and Pro-Code
+## Switching between visual and Pro-Code
 
 You can combine both approaches in the same project:
 
@@ -479,7 +479,7 @@ You can combine both approaches in the same project:
 
 The bidirectional sync ensures both views always reflect the same underlying code.
 
-## What's Next
+## What's next
 
 - [Java Interoperability](java-interoperability.md) -- Call Java libraries from your Ballerina code
 - [Functions](functions.md) -- Organize pro-code logic into reusable functions

@@ -8,7 +8,7 @@ description: "Overview of the ballerina/grpc module for WSO2 Integrator."
 gRPC is an inter-process communication technology built on HTTP/2 and Protocol Buffers for efficient, strongly-typed remote procedure calls. The Ballerina `ballerina/grpc` connector (v1.14.4) provides a complete framework for building gRPC servers and clients, supporting all four communication patterns — unary, server streaming, client streaming, and bidirectional streaming — with built-in authentication, TLS, deadline propagation, compression, and retry capabilities.
 
 
-## Key Features
+## Key features
 
 - All four gRPC communication patterns: unary (simple RPC), server streaming, client streaming, and bidirectional streaming
 - Auto-generated type-safe client stubs and server skeletons from Protocol Buffer (`.proto`) definitions using the built-in `bal grpc` tool

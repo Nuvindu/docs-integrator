@@ -8,7 +8,7 @@ description: Reference for the Ballerina update tool — manage Ballerina distri
 
 The Ballerina update tool manages Ballerina distribution versions on your system. It allows you to install, switch between, and update Ballerina distributions. The tool itself is separate from the Ballerina distribution, enabling you to manage multiple versions side by side.
 
-## Commands Overview
+## Commands overview
 
 | Command | Description |
 |---------|-------------|
@@ -19,7 +19,7 @@ The Ballerina update tool manages Ballerina distribution versions on your system
 | `bal dist remove` | Remove an installed distribution |
 | `bal update` | Update the Ballerina update tool itself |
 
-## bal dist update
+## Bal dist update
 
 Updates the active Ballerina distribution to the latest patch version within the same minor version.
 
@@ -45,7 +45,7 @@ Downloading ballerina-2201.9.2 100% [====================] 150/150 MB
 Successfully set the distribution to 'ballerina-2201.9.2'.
 ```
 
-## bal dist pull
+## Bal dist pull
 
 Downloads and installs a specific Ballerina distribution version and sets it as the active distribution.
 
@@ -75,7 +75,7 @@ Downloading ballerina-2201.10.0 100% [====================] 155/155 MB
 Successfully set the distribution to 'ballerina-2201.10.0'.
 ```
 
-## bal dist list
+## Bal dist list
 
 Lists all Ballerina distributions, both installed locally and available remotely.
 
@@ -85,7 +85,7 @@ Lists all Ballerina distributions, both installed locally and available remotely
 bal dist list
 ```
 
-### Output Format
+### Output format
 
 ```bash
 $ bal dist list
@@ -109,7 +109,7 @@ Use 'bal dist pull <version>' to download a distribution.
 
 The `*` marker indicates the currently active distribution.
 
-## bal dist use
+## Bal dist use
 
 Switches the active Ballerina distribution to a version that is already installed locally.
 
@@ -137,7 +137,7 @@ $ bal version
 Ballerina 2201.8.6 (Swan Lake Update 8)
 ```
 
-## bal dist remove
+## Bal dist remove
 
 Removes a locally installed Ballerina distribution. The currently active distribution cannot be removed.
 
@@ -165,7 +165,7 @@ $ bal dist remove 2201.9.0
 The active distribution cannot be removed. Use 'bal dist use' to switch first.
 ```
 
-## bal update
+## Bal update
 
 Updates the Ballerina update tool itself to the latest version. This is separate from updating the Ballerina distribution.
 
@@ -184,7 +184,7 @@ Downloading update tool 1.4.2 100% [====================] 15/15 MB
 Update tool updated to version 1.4.2.
 ```
 
-## Distribution Version Scheme
+## Distribution version scheme
 
 | Component | Format | Example | Description |
 |-----------|--------|---------|-------------|
@@ -193,9 +193,9 @@ Update tool updated to version 1.4.2.
 | Patch version | `N` | `2` | Bug fix release |
 | Full version | `YYYY.N.N` | `2201.9.2` | Complete version identifier |
 
-## Common Workflows
+## Common workflows
 
-### Set Up a New Development Environment
+### Set up a new development environment
 
 ```bash
 # Install the update tool (via installer or package manager)
@@ -203,7 +203,7 @@ Update tool updated to version 1.4.2.
 bal dist pull 2201.9.2
 ```
 
-### Pin a Project to a Specific Version
+### Pin a project to a specific version
 
 ```bash
 # Pull and switch to the required version
@@ -214,7 +214,7 @@ bal dist use 2201.9.0
 bal version
 ```
 
-### Keep Up to Date
+### Keep up to date
 
 ```bash
 # Update the tool itself
@@ -224,7 +224,7 @@ bal update
 bal dist update
 ```
 
-### Switch Between Projects with Different Versions
+### Switch between projects with different versions
 
 ```bash
 # Project A requires 2201.8.x
@@ -238,7 +238,7 @@ bal dist use 2201.9.2
 bal build
 ```
 
-## Installation Paths
+## Installation paths
 
 | Platform | Tool location | Distributions location |
 |----------|---------------|----------------------|
@@ -246,7 +246,7 @@ bal build
 | Linux | `/usr/lib/ballerina/bin/bal` | `~/.ballerina/distributions/` |
 | Windows | `C:\Program Files\Ballerina\bin\bal.bat` | `C:\Users\<user>\.ballerina\distributions\` |
 
-## See Also
+## See also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [Installation Guide](/docs/get-started/install) -- Initial installation

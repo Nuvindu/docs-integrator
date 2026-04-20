@@ -17,7 +17,7 @@ Synchronize contacts from HubSpot CRM to Google Contacts automatically. When a n
 - Google Cloud project with the People API enabled and OAuth 2.0 credentials configured
 - A Google Contacts contact group (optional, for organizing synced contacts)
 
-## Quick Run
+## Quick run
 
 ```bash
 # Clone the samples repository
@@ -48,9 +48,9 @@ refreshToken = "<GOOGLE_REFRESH_TOKEN>"
 contactGroupId = "<CONTACT_GROUP_RESOURCE_NAME>"
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Project Structure
+### Project structure
 
 ```
 hubspot-to-google-contacts/
@@ -63,7 +63,7 @@ hubspot-to-google-contacts/
 └── types.bal
 ```
 
-### Defining the Data Types
+### Defining the data types
 
 ```ballerina
 // HubSpot contact record
@@ -108,7 +108,7 @@ type Organization record {|
 |};
 ```
 
-### Fetching Contacts from HubSpot
+### Fetching contacts from HubSpot
 
 ```ballerina
 import ballerina/http;
@@ -158,7 +158,7 @@ function fetchRecentHubSpotContacts() returns HubSpotContact[]|error {
 }
 ```
 
-### Creating or Updating Google Contacts
+### Creating or updating Google contacts
 
 ```ballerina
 import ballerina/http;
@@ -234,7 +234,7 @@ function addToContactGroup(string resourceName, string groupResourceName) return
 }
 ```
 
-### Orchestrating the Sync
+### Orchestrating the sync
 
 ```ballerina
 import ballerina/task;
@@ -275,20 +275,20 @@ function syncContacts() returns error? {
 }
 ```
 
-### Key Points
+### Key points
 
 - **Incremental sync**: Only contacts modified since the last sync cycle are processed, minimizing API calls to both HubSpot and Google.
 - **Create or update**: The integration tracks which HubSpot contacts have already been synced by maintaining a mapping of HubSpot VID to Google resource name.
 - **Contact group support**: Synced contacts can optionally be placed in a designated Google Contacts group for easy organization.
 
-## Customization Notes
+## Customization notes
 
 - **Bi-directional sync**: Extend the integration to also poll Google Contacts for changes and push them back to HubSpot.
 - **Field mapping**: Add additional fields like address, website, or custom HubSpot properties by extending the type definitions and transform function.
 - **Webhook trigger**: Replace polling with HubSpot webhooks for near-real-time sync when contacts are created or updated.
 - **Deduplication**: Before creating a new Google contact, search by email address to prevent duplicates from contacts that were added outside this integration.
 
-## What's Next
+## What's next
 
 - [Shopify to Outlook Welcome Email](shopify-outlook-email.md) -- Send welcome emails on new customer signups
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet rows to CRM

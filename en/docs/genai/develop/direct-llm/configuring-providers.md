@@ -8,7 +8,7 @@ description: Connect to OpenAI, Anthropic, Google, Azure, AWS Bedrock, and Ollam
 
 WSO2 Integrator supports multiple LLM providers, giving you the flexibility to choose the best model for each use case. This page covers how to configure each supported provider, select the right model, and manage configurations across environments.
 
-## Supported Providers
+## Supported providers
 
 | Provider | Module | Models | Best For |
 |----------|--------|--------|----------|
@@ -19,7 +19,7 @@ WSO2 Integrator supports multiple LLM providers, giving you the flexibility to c
 | **AWS Bedrock** | `ballerinax/ai.provider.bedrock` | Claude, Titan, Llama | AWS ecosystem, VPC deployment |
 | **Ollama** | `ballerinax/ai.provider.ollama` | Llama 3, Mistral, Phi-3 | Local/on-premises, no data leaves your network |
 
-## Provider Configuration
+## Provider configuration
 
 ### OpenAI
 
@@ -47,7 +47,7 @@ final anthropic:Client llmClient = check new ({
 });
 ```
 
-### Google Gemini
+### Google gemini
 
 ```ballerina
 import ballerinax/ai.provider.google;
@@ -77,7 +77,7 @@ final azure:Client llmClient = check new ({
 });
 ```
 
-### AWS Bedrock
+### AWS bedrock
 
 ```ballerina
 import ballerinax/ai.provider.bedrock;
@@ -106,7 +106,7 @@ final ollama:Client llmClient = check new ({
 });
 ```
 
-## Model Configuration Options
+## Model configuration options
 
 Every provider supports common parameters that control response behavior.
 
@@ -122,7 +122,7 @@ final openai:Client llmClient = check new ({
 });
 ```
 
-### Temperature Guidelines
+### Temperature guidelines
 
 | Temperature | Behavior | Use Cases |
 |-------------|----------|-----------|
@@ -130,9 +130,9 @@ final openai:Client llmClient = check new ({
 | 0.3 - 0.7 | Balanced creativity and consistency | General chat, summarization, analysis |
 | 0.8 - 1.5 | Creative, varied outputs | Content generation, brainstorming |
 
-## Choosing a Model
+## Choosing a model
 
-### By Use Case
+### By use case
 
 | Use Case | Recommended Model | Why |
 |----------|-------------------|-----|
@@ -144,7 +144,7 @@ final openai:Client llmClient = check new ({
 | On-premises / air-gapped | Ollama (Llama, Mistral) | No external API calls |
 | Enterprise compliance | Azure OpenAI, AWS Bedrock | Data residency, audit logging |
 
-### By Context Window Size
+### By context window size
 
 | Model | Context Window | Notes |
 |-------|---------------|-------|
@@ -154,7 +154,7 @@ final openai:Client llmClient = check new ({
 | Gemini 2.0 Flash | 1M tokens | Fast with very large context |
 | Llama 3 (Ollama) | 8K-128K tokens | Varies by model variant |
 
-## Using Multiple Models
+## Using multiple models
 
 Assign different models to different tasks to optimize cost and capability.
 
@@ -188,7 +188,7 @@ final agent:ChatAgent specialistAgent = check new (
 );
 ```
 
-## Environment-Based Configuration
+## Environment-Based configuration
 
 Use Ballerina's `configurable` variables to switch models across environments.
 
@@ -227,7 +227,7 @@ llmApiKey = "not-needed"
 # llmApiKey = "sk-..."
 ```
 
-## What's Next
+## What's next
 
 - [Constructing Prompts](/docs/genai/develop/direct-llm/constructing-prompts) -- Write effective prompts for your models
 - [Handling Responses](/docs/genai/develop/direct-llm/handling-responses) -- Stream and manage LLM output

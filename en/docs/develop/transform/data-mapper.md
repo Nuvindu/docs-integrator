@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 The visual data mapper lets you transform data between source and target schemas using a drag-and-drop interface in VS Code. It generates type-safe Ballerina code from your visual mappings, keeping the source code as the single source of truth.
 
-## Opening the Data Mapper
+## Opening the data mapper
 
 There are two ways to launch the data mapper from the WSO2 Integrator VS Code extension.
 
@@ -49,7 +49,7 @@ function transform(Input input) returns Output => {
 </TabItem>
 </Tabs>
 
-## Source and Target Schema Definition
+## Source and target schema definition
 
 The data mapper derives its source and target panels from Ballerina record types. Define closed records with explicit field types so the mapper can display all available fields.
 
@@ -96,7 +96,7 @@ type LineItem record {|
 </TabItem>
 </Tabs>
 
-## Field-Level Mapping
+## Field-Level mapping
 
 Click an input field and then click the corresponding output field to create a mapping connection. A solid line appears between compatible fields. If the field types match directly, no additional transformation is needed.
 
@@ -122,7 +122,7 @@ function transform(OrderRequest input) returns InternalOrder => {
 </TabItem>
 </Tabs>
 
-## Conditional Mappings
+## Conditional mappings
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -146,7 +146,7 @@ function mapLineItem(OrderLine line) returns LineItem => {
 </TabItem>
 </Tabs>
 
-## Array and Collection Handling
+## Array and collection handling
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -177,7 +177,7 @@ function transform(OrderRequest input) returns InternalOrder => {
 </TabItem>
 </Tabs>
 
-## Nested Object Mapping
+## Nested object mapping
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -222,7 +222,7 @@ function flatten(SourceCustomer input) returns FlatCustomer => {
 </TabItem>
 </Tabs>
 
-## Custom Transformation Functions
+## Custom transformation functions
 
 You can reference helper functions from within the data mapper. Define reusable transformation logic as separate Ballerina functions and invoke them in mapping expressions.
 
@@ -248,11 +248,11 @@ function formatPhone(string raw) returns string {
 </TabItem>
 </Tabs>
 
-## Generated Code
+## Generated code
 
 Every visual mapping produces a Ballerina expression-bodied function. You can switch freely between the visual mapper and the code editor -- changes in one are reflected in the other. The generated code is the single source of truth and is always committed to version control.
 
-## What's Next
+## What's next
 
 - [AI-Assisted Data Mapping](ai-assisted-mapping.md) -- Let AI suggest mappings
 - [JSON Processing](json.md) -- JSON-specific transformations

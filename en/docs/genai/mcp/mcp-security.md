@@ -10,9 +10,9 @@ MCP servers expose enterprise data and actions to AI assistants, making security
 
 Without proper security, any MCP client could discover and call your tools, potentially accessing sensitive data or triggering unintended actions.
 
-## Authentication Methods
+## Authentication methods
 
-### API Key Authentication
+### API key authentication
 
 The simplest authentication method. Clients include an API key in the connection headers.
 
@@ -53,7 +53,7 @@ Clients connect by including the API key in their configuration:
 }
 ```
 
-### OAuth 2.0 Authentication
+### OAuth 2.0 authentication
 
 For production deployments, use OAuth 2.0 to authenticate MCP clients through an identity provider.
 
@@ -73,7 +73,7 @@ service on new mcp:Listener(new mcp:SseTransport(8090)) {
 }
 ```
 
-#### Token Validation
+#### Token validation
 
 ```ballerina
 import ballerina/oauth2;
@@ -124,7 +124,7 @@ service on new mcp:Listener(new mcp:SseTransport(8090, secureSocket)) {
 }
 ```
 
-#### Client-Side mTLS Configuration
+#### Client-Side mTLS configuration
 
 ```ballerina
 final mcp:Client secureMcp = check new ({
@@ -144,7 +144,7 @@ final mcp:Client secureMcp = check new ({
 
 Authentication verifies who the client is. Authorization controls what they can do.
 
-### Tool-Level Authorization
+### Tool-Level authorization
 
 Restrict which tools a client can access based on their roles or scopes.
 
@@ -172,7 +172,7 @@ isolated function cancelOrder(string orderId, string reason) returns json|error 
 }
 ```
 
-### Role-Based Access Control
+### Role-Based access control
 
 Map client identities to roles and control tool visibility per role.
 
@@ -192,9 +192,9 @@ map<string[]> rolePermissions = {
 };
 ```
 
-## Transport Security
+## Transport security
 
-### TLS Encryption
+### TLS encryption
 
 Always use TLS for remote MCP connections to encrypt data in transit.
 
@@ -214,7 +214,7 @@ service on new mcp:Listener(new mcp:SseTransport(8443, tlsConfig)) {
 }
 ```
 
-### CORS Configuration
+### CORS configuration
 
 Control which origins can connect to your SSE or Streamable HTTP MCP server.
 
@@ -233,7 +233,7 @@ service on new mcp:Listener(new mcp:SseTransport(8090)) {
 }
 ```
 
-## Input Validation
+## Input validation
 
 Validate tool inputs to prevent injection attacks and malformed requests.
 
@@ -263,7 +263,7 @@ isolated function queryDatabase(
 }
 ```
 
-## Rate Limiting
+## Rate limiting
 
 Protect your MCP server from excessive requests.
 
@@ -281,7 +281,7 @@ service on new mcp:Listener(new mcp:SseTransport(8090)) {
 }
 ```
 
-## Audit Logging
+## Audit logging
 
 Log all tool invocations for compliance and debugging.
 
@@ -304,7 +304,7 @@ isolated function getPatientRecord(string patientId) returns json|error {
 }
 ```
 
-## Security Checklist
+## Security checklist
 
 | Item | Description |
 |------|-------------|
@@ -316,7 +316,7 @@ isolated function getPatientRecord(string patientId) returns json|error {
 | **Least privilege** | Expose only the tools each client needs |
 | **Write-action safeguards** | Require elevated scopes for tools that modify data |
 
-## What's Next
+## What's next
 
 - [Exposing MCP Servers](exposing-mcp-servers.md) -- Build MCP servers with WSO2 Integrator
 - [Consuming MCP Tools](consuming-mcp-tools.md) -- Connect to external MCP servers

@@ -35,7 +35,7 @@ function fetchData() returns error? {
 }
 ```
 
-### Worker Message Passing
+### Worker message passing
 
 Workers communicate via asynchronous message channels using the `->` (send) and `<-` (receive) operators.
 
@@ -56,7 +56,7 @@ function pipeline() {
 }
 ```
 
-### Worker Send/Receive Operators
+### Worker Send/Receive operators
 
 | Operator | Syntax | Description |
 |----------|--------|-------------|
@@ -77,7 +77,7 @@ future<int> f = start computeValue(100);
 int result = check wait f;
 ```
 
-### Strand Scheduling
+### Strand scheduling
 
 | Concept | Description |
 |---------|-------------|
@@ -87,7 +87,7 @@ int result = check wait f;
 | `start` expression | Creates a new strand for an async function call |
 | Yield point | Strands yield at I/O operations and explicit `wait` calls |
 
-## Wait Expressions
+## Wait expressions
 
 Wait expressions block the current strand until one or more asynchronous results are available.
 
@@ -106,7 +106,7 @@ function parallelRequests() returns error? {
 }
 ```
 
-### Wait Expression Types
+### Wait expression types
 
 | Form | Syntax | Returns |
 |------|--------|---------|
@@ -172,7 +172,7 @@ function getCounter() returns int {
 }
 ```
 
-### Lock Semantics
+### Lock semantics
 
 | Aspect | Behavior |
 |--------|----------|
@@ -181,7 +181,7 @@ function getCounter() returns int {
 | Nesting | Lock blocks can be nested; deadlock-free by design |
 | Isolation | `isolated` functions and objects enforce lock discipline at compile time |
 
-### Isolated Functions and Objects
+### Isolated functions and objects
 
 Ballerina's `isolated` qualifier enforces that shared state is always accessed within `lock` blocks at compile time.
 
@@ -225,7 +225,7 @@ function transferFunds(string fromAcc, string toAcc, decimal amount) returns err
 }
 ```
 
-### Transaction with Rollback and On-fail
+### Transaction with rollback and on-fail
 
 ```ballerina
 function processOrder(Order order) returns error? {
@@ -245,7 +245,7 @@ function processOrder(Order order) returns error? {
 }
 ```
 
-### Retry Transactions
+### Retry transactions
 
 ```ballerina
 function reliableUpdate(string id, json data) returns error? {
@@ -264,7 +264,7 @@ function retryWithBackoff(string id, json data) returns error? {
 }
 ```
 
-### Transaction Statements Reference
+### Transaction statements reference
 
 | Statement | Description |
 |-----------|-------------|
@@ -275,7 +275,7 @@ function retryWithBackoff(string id, json data) returns error? {
 | `retry<T>(...) transaction { }` | Retry with a custom retry manager type and parameters |
 | `transactional` | Qualifier for functions that participate in the enclosing transaction |
 
-### Transactional Functions
+### Transactional functions
 
 Functions marked `transactional` execute within the calling transaction context.
 
@@ -293,7 +293,7 @@ transactional function credit(string account, decimal amount) returns error? {
 }
 ```
 
-## Concurrency Patterns for Integration
+## Concurrency patterns for integration
 
 ### Scatter-Gather
 
@@ -318,7 +318,7 @@ function scatterGather() returns json|error {
 }
 ```
 
-### Competing Consumers
+### Competing consumers
 
 Process messages from a queue using multiple workers.
 
@@ -340,7 +340,7 @@ function processMessages(kafka:Consumer consumer, int workerId) returns error? {
 }
 ```
 
-## See Also
+## See also
 
 - [Ballerina Syntax Quick Reference](syntax.md) -- Core language syntax
 - [Error Handling](error-handling.md) -- Error handling patterns

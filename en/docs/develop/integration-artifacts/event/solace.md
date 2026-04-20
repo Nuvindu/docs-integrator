@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Solace event integrations consume messages from a Solace PubSub+ queue or topic and trigger event handlers as each message arrives. Use them for high-performance event streaming in financial services, IoT, and real-time analytics workloads that require guaranteed or direct message delivery.
 
-## Creating a Solace Events service
+## Creating a Solace events service
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>

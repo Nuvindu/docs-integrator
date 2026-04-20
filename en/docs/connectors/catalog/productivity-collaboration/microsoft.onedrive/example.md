@@ -26,7 +26,7 @@ flowchart LR
 
 ## Adding the OneDrive connector
 
-### Step 1: Open the Add Connection palette
+### Step 1: Open the add connection palette
 
 Select **+ Add Connection** in the integration design canvas to open the **Add Connection** palette, which shows a grid of pre-built connectors.
 
@@ -63,7 +63,7 @@ Select **Save Connection** to persist the connection. The **Connections** sectio
 
 ## Configuring the OneDrive createChildren operation
 
-### Step 6: Add an Automation entry point
+### Step 6: Add an automation entry point
 
 1. Select **+ Add Artifact** on the design canvas toolbar.
 2. Select **Automation** from the artifacts panel.

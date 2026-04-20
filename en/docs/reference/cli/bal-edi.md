@@ -8,14 +8,14 @@ description: Reference for the bal edi CLI tool — generate Ballerina code for 
 
 The `bal edi` tool generates Ballerina code for processing Electronic Data Interchange (EDI) messages. It converts EDI schema definitions into Ballerina record types and parser/serializer functions, enabling type-safe EDI processing. The tool supports standard EDI formats including X12, EDIFACT, and custom EDI schemas.
 
-## Commands Overview
+## Commands overview
 
 | Command | Description |
 |---------|-------------|
 | `bal edi codegen` | Generate Ballerina code from a single EDI schema |
 | `bal edi libgen` | Generate a complete Ballerina library from a collection of EDI schemas |
 
-## bal edi codegen
+## Bal edi codegen
 
 Generates Ballerina record types and utility functions from a single EDI schema definition file.
 
@@ -43,7 +43,7 @@ bal edi codegen -i schemas/purchase_order.json -o generated/
 bal edi codegen -i schemas/invoice.json -o generated/ -p edi_invoice
 ```
 
-### EDI Schema Format
+### EDI schema format
 
 EDI schemas are defined in JSON format describing segments, elements, and composites:
 
@@ -80,7 +80,7 @@ EDI schemas are defined in JSON format describing segments, elements, and compos
 }
 ```
 
-### Generated Code Usage
+### Generated code usage
 
 ```ballerina
 import myorg/edi_order;
@@ -101,7 +101,7 @@ public function main() returns error? {
 }
 ```
 
-## bal edi libgen
+## Bal edi libgen
 
 Generates a complete Ballerina library package from a collection of EDI schemas. This is useful for creating reusable EDI processing libraries for standard message types.
 
@@ -130,7 +130,7 @@ bal edi libgen -i schemas/ -o edi_library/ -p x12_850 --org myorg
 bal edi libgen -i collection.json -o edi_library/
 ```
 
-### Collection Definition Format
+### Collection definition format
 
 A collection definition file groups multiple EDI schemas into a single library:
 
@@ -156,7 +156,7 @@ A collection definition file groups multiple EDI schemas into a single library:
 }
 ```
 
-### Generated Library Structure
+### Generated library structure
 
 ```
 edi_library/
@@ -168,7 +168,7 @@ edi_library/
   types.bal                  # Shared type definitions
 ```
 
-### Using the Generated Library
+### Using the generated library
 
 ```ballerina
 import myorg/x12_850;
@@ -187,7 +187,7 @@ public function main() returns error? {
 }
 ```
 
-## Supported EDI Standards
+## Supported EDI standards
 
 | Standard | Description | Typical Use |
 |----------|-------------|-------------|
@@ -196,7 +196,7 @@ public function main() returns error? {
 | HL7 | Health Level 7 v2.x | Healthcare messaging |
 | Custom | User-defined schemas | Proprietary EDI formats |
 
-## See Also
+## See also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [EDI Data Transformation](/docs/develop/transform/edi) -- Working with EDI data

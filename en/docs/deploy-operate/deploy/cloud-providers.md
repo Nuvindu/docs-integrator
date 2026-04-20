@@ -8,7 +8,7 @@ description: Deploy integrations to major cloud providers.
 
 Deploy your WSO2 Integrator projects to major cloud providers using container services, Kubernetes, or serverless platforms.
 
-## General Approach
+## General approach
 
 Regardless of the cloud provider, the deployment process follows a common pattern:
 
@@ -29,7 +29,7 @@ tag = "latest"
 
 ## AWS
 
-### ECS Deployment
+### ECS deployment
 
 Amazon Elastic Container Service (ECS) runs your integration as a containerized task. Use Fargate for serverless container execution.
 
@@ -102,7 +102,7 @@ aws ecs create-service \
   --network-configuration "awsvpcConfiguration={subnets=[subnet-abc123],securityGroups=[sg-abc123],assignPublicIp=ENABLED}"
 ```
 
-### EKS Deployment
+### EKS deployment
 
 Amazon Elastic Kubernetes Service (EKS) provides a managed Kubernetes environment. After pushing your image to ECR, apply standard Kubernetes manifests:
 
@@ -115,13 +115,13 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 ```
 
-### Lambda Considerations
+### Lambda considerations
 
 AWS Lambda can run Ballerina integrations for event-driven workloads with low traffic. Package the JAR as a Lambda function using a custom Java 17 runtime. Note that Lambda has a cold start penalty and a 15-minute execution timeout, making it best suited for short-lived, event-triggered integrations rather than long-running HTTP services.
 
 ## Azure
 
-### AKS Deployment
+### AKS deployment
 
 Azure Kubernetes Service (AKS) provides managed Kubernetes. Push your image to Azure Container Registry (ACR) and deploy:
 
@@ -141,7 +141,7 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 ```
 
-### Container Apps
+### Container apps
 
 Azure Container Apps provides a serverless container platform with built-in scaling and ingress:
 
@@ -175,7 +175,7 @@ az containerapp update \
 
 ## GCP
 
-### GKE Deployment
+### GKE deployment
 
 Google Kubernetes Engine (GKE) provides managed Kubernetes. Push to Google Artifact Registry and deploy:
 
@@ -195,7 +195,7 @@ kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 ```
 
-### Cloud Run
+### Cloud run
 
 Google Cloud Run provides a fully managed serverless container platform:
 
@@ -216,7 +216,7 @@ gcloud run deploy wso2-integrator-app \
 
 Cloud Run scales to zero when there is no traffic and scales up automatically based on request concurrency.
 
-## Cloud-Specific Configuration
+## Cloud-Specific configuration
 
 Customize `Cloud.toml` for each provider:
 
@@ -242,9 +242,9 @@ key_ref = "DB_PASSWORD"
 secret_name = "integrator-secrets"
 ```
 
-## Networking and Service Discovery
+## Networking and service discovery
 
-### Service Mesh (Istio)
+### Service mesh (Istio)
 
 In Kubernetes environments, use Istio for traffic management, mutual TLS, and observability:
 
@@ -269,7 +269,7 @@ spec:
         perTryTimeout: 10s
 ```
 
-### DNS-Based Service Discovery
+### DNS-Based service discovery
 
 For non-Kubernetes environments (ECS, VM-based), use cloud-native service discovery:
 
@@ -277,7 +277,7 @@ For non-Kubernetes environments (ECS, VM-based), use cloud-native service discov
 - **Azure**: Use Azure DNS or Traffic Manager
 - **GCP**: Use Cloud DNS or Traffic Director
 
-## What's Next
+## What's next
 
 - [Run Locally](local.md) -- Develop and test before deploying
 - [Deploy to Devant](devant.md) -- Deploy to the WSO2 managed cloud

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 Use built-in expressions and functions to transform data within your integrations. Ballerina provides a rich standard library for string manipulation, date/time processing, math operations, and collection handling.
 
-## Expression Language Overview
+## Expression language overview
 
 Ballerina expressions can be used wherever a value is expected -- in variable assignments, function arguments, record field initializers, query `select` clauses, and data mapper expressions. Common expression forms include:
 
@@ -21,7 +21,7 @@ Ballerina expressions can be used wherever a value is expected -- in variable as
 - **Type test** -- `value is string`
 - **Range expressions** -- `1 ... 10`
 
-## String Functions
+## String functions
 
 The `ballerina/lang.string` module (available as `string:` prefix) provides functions for common text operations.
 
@@ -134,7 +134,7 @@ public function main() {
 </TabItem>
 </Tabs>
 
-## Date and Time Functions
+## Date and time functions
 
 The `ballerina/time` module handles time zones, formatting, parsing, and arithmetic on timestamps.
 
@@ -222,7 +222,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Math Functions
+## Math functions
 
 The `ballerina/lang.int`, `ballerina/lang.float`, and `ballerina/lang.decimal` modules provide numeric operations.
 
@@ -295,7 +295,7 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Collection Functions
+## Collection functions
 
 Ballerina provides functional-style operations on arrays and maps through `ballerina/lang.array` and `ballerina/lang.map`.
 
@@ -394,7 +394,7 @@ public function main() {
 </TabItem>
 </Tabs>
 
-## Writing Custom Functions
+## Writing custom functions
 
 Define reusable transformation functions to keep your integration logic modular.
 
@@ -445,7 +445,7 @@ function decimalRound(decimal val, int places) returns decimal {
 </TabItem>
 </Tabs>
 
-## Using Expressions in the Visual Designer
+## Using expressions in the visual designer
 
 The WSO2 Integrator data mapper provides an inline expression editor for each field mapping. Click the **expression** icon next to a target field to open the editor, where you can write any Ballerina expression including function calls, ternary logic, and string templates.
 
@@ -455,6 +455,6 @@ The expression editor supports:
 - Type checking with inline error indicators.
 - Preview of the generated Ballerina code.
 
-## What's Next
+## What's next
 
 - [AI-Assisted Data Mapping](ai-assisted-mapping.md) -- AI suggestions for transformations

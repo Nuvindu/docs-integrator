@@ -56,7 +56,7 @@ Command-line tools reference:
 - **[ICP API](api/icp-api.md)** — Integration Control Plane API
 - **[Ballerina API Docs](api/ballerina-api-docs.md)** — Standard library API documentation
 
-## Specifications & Formats
+## Specifications & formats
 
 - **[Supported Protocols](protocols.md)** — Complete protocol support table
 - **[Supported Data Formats](data-formats.md)** — Complete data format support table

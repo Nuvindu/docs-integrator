@@ -8,7 +8,7 @@ description: Performance benchmark reports for common WSO2 Integrator scenarios.
 
 This page presents performance benchmark results for common integration scenarios using WSO2 Integrator. Use these reports as a baseline for your own capacity planning.
 
-## Test Environment
+## Test environment
 
 | Component | Specification |
 |-----------|--------------|
@@ -19,13 +19,13 @@ This page presents performance benchmark results for common integration scenario
 | Load Generator | Apache JMeter 5.6.3 running on a separate c5.2xlarge instance |
 | Network | Same VPC, same availability zone |
 
-### JVM Configuration
+### JVM configuration
 
 ```bash
 java -Xms512m -Xmx1024m -XX:+UseG1GC -jar integration.jar
 ```
 
-## Scenario 1: HTTP Passthrough
+## Scenario 1: HTTP passthrough
 
 A simple HTTP proxy that forwards requests to a backend service without transformation.
 
@@ -42,7 +42,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-### Results (1 KB Payload)
+### Results (1 KB payload)
 
 | Concurrent Users | Throughput (RPS) | Avg Latency (ms) | p95 Latency (ms) | p99 Latency (ms) | Error Rate |
 |-----------------|-----------------|-------------------|-------------------|-------------------|------------|
@@ -52,7 +52,7 @@ service /api on new http:Listener(9090) {
 | 500 | 12,800 | 39 | 65 | 95 | 0.01% |
 | 1000 | 13,500 | 74 | 120 | 180 | 0.05% |
 
-### Results (10 KB Payload)
+### Results (10 KB payload)
 
 | Concurrent Users | Throughput (RPS) | Avg Latency (ms) | p95 Latency (ms) | p99 Latency (ms) | Error Rate |
 |-----------------|-----------------|-------------------|-------------------|-------------------|------------|
@@ -61,7 +61,7 @@ service /api on new http:Listener(9090) {
 | 200 | 8,800 | 23 | 40 | 55 | 0.00% |
 | 500 | 10,500 | 48 | 80 | 115 | 0.02% |
 
-## Scenario 2: Content-Based Routing
+## Scenario 2: Content-Based routing
 
 Route requests to different backends based on payload content.
 
@@ -82,7 +82,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-### Results (1 KB Payload)
+### Results (1 KB payload)
 
 | Concurrent Users | Throughput (RPS) | Avg Latency (ms) | p95 Latency (ms) | p99 Latency (ms) | Error Rate |
 |-----------------|-----------------|-------------------|-------------------|-------------------|------------|
@@ -91,7 +91,7 @@ service /api on new http:Listener(9090) {
 | 200 | 9,200 | 22 | 38 | 52 | 0.00% |
 | 500 | 11,500 | 43 | 72 | 105 | 0.01% |
 
-## Scenario 3: Scatter-Gather (3 Backends)
+## Scenario 3: Scatter-Gather (3 backends)
 
 Call three backend services in parallel and aggregate the results.
 
@@ -135,11 +135,11 @@ service /api on new http:Listener(9090) {
 | 200 | 6,200 | 32 | 55 | 78 | 0.01% |
 | 500 | 7,800 | 64 | 105 | 150 | 0.03% |
 
-## Scenario 4: JSON-to-JSON Transformation
+## Scenario 4: JSON-to-JSON transformation
 
 Transform a JSON payload with data mapping.
 
-### Results (5 KB Payload, 20 Fields Mapped)
+### Results (5 KB payload, 20 fields mapped)
 
 | Concurrent Users | Throughput (RPS) | Avg Latency (ms) | p95 Latency (ms) | p99 Latency (ms) | Error Rate |
 |-----------------|-----------------|-------------------|-------------------|-------------------|------------|
@@ -152,7 +152,7 @@ Transform a JSON payload with data mapping.
 
 HTTP service with PostgreSQL database reads and writes.
 
-### Results (Single Row Read)
+### Results (Single row read)
 
 | Concurrent Users | Throughput (RPS) | Avg Latency (ms) | p95 Latency (ms) | p99 Latency (ms) | Error Rate |
 |-----------------|-----------------|-------------------|-------------------|-------------------|------------|
@@ -161,7 +161,7 @@ HTTP service with PostgreSQL database reads and writes.
 | 200 | 7,000 | 28 | 48 | 68 | 0.00% |
 | 500 | 8,200 | 61 | 100 | 145 | 0.02% |
 
-## GraalVM Native Image Comparison
+## GraalVM native image comparison
 
 Comparing JVM vs. GraalVM native image for the HTTP Passthrough scenario (100 concurrent users):
 
@@ -185,7 +185,7 @@ All benchmarks follow this methodology:
 4. **Measurement**: Metrics collected from JMeter and JVM (via JMX).
 5. **Repetition**: Each test repeated 3 times; median values reported.
 
-## What's Next
+## What's next
 
 - [Capacity Planning](overview.md) -- Use these results for sizing your deployments
 - [Scaling & High Availability](../deploy/scaling-ha.md) -- Scale based on throughput requirements

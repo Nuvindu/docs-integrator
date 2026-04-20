@@ -65,7 +65,7 @@ Harden your integrations for production:
 - **[Secrets & Encryption](secure/secrets-encryption.md)** — Keystores, environment variables, vault integration
 - **[Compliance](secure/compliance.md)** — Compliance considerations
 
-## Capacity Planning
+## Capacity planning
 
 - **[Overview & Sizing Guidelines](capacity-planning/overview.md)** — Right-size your deployment
 - **[Performance Reports](capacity-planning/performance-reports.md)** — Benchmarks per scenario

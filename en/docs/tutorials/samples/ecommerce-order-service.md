@@ -9,7 +9,7 @@ description: "Sample project: Event-driven e-commerce order processing."
 
 A complete event-driven order processing service for an e-commerce platform. The service exposes a REST API for placing orders, validates inventory, processes payments, and publishes events to Kafka for downstream consumers (fulfillment, notifications, analytics). It demonstrates production patterns including idempotency, saga-based transactions, and dead-letter queue handling.
 
-## Architecture Diagram
+## Architecture diagram
 
 ```mermaid
 flowchart TD
@@ -32,7 +32,7 @@ flowchart TD
     Kafka ----> Fulfillment & Notification & Analytics
 ```
 
-## Features Demonstrated
+## Features demonstrated
 
 - **REST API** with typed request/response payloads and proper HTTP status codes
 - **Saga pattern** for multi-step order processing with compensation on failure
@@ -48,7 +48,7 @@ flowchart TD
 - Docker and Docker Compose (for Kafka and PostgreSQL)
 - Basic familiarity with REST APIs and event-driven architecture
 
-## Quick Start
+## Quick start
 
 ```bash
 git clone https://github.com/wso2/integrator-samples.git
@@ -85,9 +85,9 @@ curl http://localhost:8090/orders/ORD-001
 curl "http://localhost:8090/orders?customerId=CUST-001"
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Project Structure
+### Project structure
 
 ```
 ecommerce-order-service/
@@ -110,7 +110,7 @@ ecommerce-order-service/
     └── mock_services.bal
 ```
 
-### Order Processing Saga (`order_processor.bal`)
+### Order processing saga (`order_processor.bal`)
 
 The core logic follows the saga pattern -- each step has a compensating action:
 
@@ -141,7 +141,7 @@ function processOrder(OrderRequest req) returns Order|error {
 }
 ```
 
-### Event Publishing (`events.bal`)
+### Event publishing (`events.bal`)
 
 ```ballerina
 import ballerinax/kafka;

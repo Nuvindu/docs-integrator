@@ -17,7 +17,7 @@ WSO2 Integrator projects compile to executable JAR files that run on any JVM, ma
 | Memory | Minimum 512 MB, recommended 1 GB+ per instance |
 | Ballerina | Distribution installed on the build machine |
 
-## Building the Executable JAR
+## Building the executable JAR
 
 Use the `bal build` command to produce a standalone executable JAR.
 
@@ -39,7 +39,7 @@ Run it directly:
 java -jar target/bin/my_integration.jar
 ```
 
-### Build Options
+### Build options
 
 | Flag | Description |
 |------|-------------|
@@ -48,17 +48,17 @@ java -jar target/bin/my_integration.jar
 | `--observability-included` | Bundle observability dependencies |
 | `-DskipTests` | Skip test execution during build |
 
-## Standalone JAR Deployment
+## Standalone JAR deployment
 
 The simplest approach is to copy the JAR to the target VM and run it.
 
-### Step 1 -- Transfer the JAR
+### Step 1 -- transfer the JAR
 
 ```bash
 scp target/bin/my_integration.jar user@production-vm:/opt/integrations/
 ```
 
-### Step 2 -- Configure the Runtime
+### Step 2 -- configure the runtime
 
 Create a `Config.toml` in the same directory as the JAR (or set the `BAL_CONFIG_FILES` environment variable):
 
@@ -73,7 +73,7 @@ username = "svc_user"
 password = "encrypted:xxxxx"
 ```
 
-### Step 3 -- Run as a systemd Service
+### Step 3 -- run as a systemd service
 
 Create a systemd unit file at `/etc/systemd/system/my-integration.service`:
 
@@ -107,17 +107,17 @@ sudo systemctl start my-integration
 sudo systemctl status my-integration
 ```
 
-### Step 4 -- Verify the Deployment
+### Step 4 -- verify the deployment
 
 ```bash
 curl http://localhost:9090/health
 ```
 
-## Consolidated Package Deployment
+## Consolidated package deployment
 
 For organizations running multiple integrations, a consolidated deployment bundles several integration packages into a single runtime.
 
-### Creating a Consolidated Package
+### Creating a consolidated package
 
 1. Create a consolidation project:
 
@@ -155,7 +155,7 @@ version = "2.1.0"
 bal build
 ```
 
-### Running the Consolidated Package
+### Running the consolidated package
 
 ```bash
 java -jar target/bin/consolidated_deploy.jar
@@ -188,7 +188,7 @@ smtpHost = "smtp.example.com"
 smtpPort = 587
 ```
 
-## JVM Tuning for Production
+## JVM tuning for production
 
 Recommended JVM flags for production deployments:
 
@@ -211,7 +211,7 @@ java \
 | `-XX:MaxGCPauseMillis` | Target max GC pause time |
 | `-XX:+HeapDumpOnOutOfMemoryError` | Generate heap dump on OOM |
 
-## Log Management
+## Log management
 
 Direct logs to files with rotation:
 
@@ -226,7 +226,7 @@ Or configure logging in `Config.toml`:
 level = "INFO"
 ```
 
-## Health Checks and Monitoring
+## Health checks and monitoring
 
 Expose a health endpoint for load balancers and monitoring systems:
 
@@ -240,7 +240,7 @@ service /health on new http:Listener(9091) {
 }
 ```
 
-## What's Next
+## What's next
 
 - [Managing Configurations](managing-configurations.md) -- Per-environment configuration strategies
 - [Scaling & High Availability](scaling-ha.md) -- Run multiple instances behind a load balancer
