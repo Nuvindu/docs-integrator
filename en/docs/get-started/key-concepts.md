@@ -77,8 +77,8 @@ A dashboard for monitoring, managing, and troubleshooting running integrations i
 
 ## Ballerina
 
-The programming language powering everything under the hood. You do not need to be a Ballerina expert to use the WSO2 Integrator design view, but knowing the basics unlocks pro-code capabilities.
+The programming language that powers the platform. You do not need prior experience to use the WSO2 Integrator design view, but understanding the basics of [Ballerina](https://ballerina.io/) enables advanced, code-driven capabilities.
 
 ## Low-code and pro-code
 
-Seamless switching between the design view and the code editor in WSO2 Integrator. Changes in one view instantly appear in the other. This is not a code generation tool—it is a bidirectional synchronization.
+Seamless switching between the design view and the code editor in WSO2 Integrator. Changes in one view instantly appear in the other. This is not a code generation tool, and it provides bidirectional synchronization.

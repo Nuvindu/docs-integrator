@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
-title: Integration Tools
+title: Tools
 description: "What CLI tools are available for generating code, schemas, and migrations?"
 ---
 
-# Integration tools
+# Tools
 
 Accelerate integration development with Ballerina CLI tools that generate service stubs, client code, schemas, and data converters from industry-standard specifications. These tools eliminate boilerplate and ensure your integrations conform to API contracts, protocol definitions, and data standards.
 
@@ -12,31 +12,33 @@ In WSO2 Integrator, most tools are accessible both from the command line and fro
 
 ![VS Code command palette showing bal tool commands](/img/develop/tools/overview/command-palette.png)
 
-## Code generation tools
+## Integration tools
 
-Generate Ballerina code from API specifications and protocol definitions.
+Generate Ballerina code from API specifications, protocol definitions, and domain-specific standards.
 
-- [OpenAPI Tool](openapi-tool.md) -- Generate HTTP services and clients from OpenAPI/Swagger specifications
-- [GraphQL Tool](graphql-tool.md) -- Generate GraphQL services and clients from SDL schemas
-- [AsyncAPI Tool](asyncapi-tool.md) -- Generate event-driven services from AsyncAPI specifications
-- [gRPC Tool](grpc-tool.md) -- Generate gRPC services and clients from Protocol Buffer definitions
-- [WSDL Tool](wsdl-tool.md) -- Generate clients for SOAP/WSDL web services
-- [XSD Tool](xsd-tool.md) -- Generate Ballerina record types from XML Schema definitions
-
-## Domain-specific tools
-
-Specialized tools for healthcare and B2B integration domains.
-
-- [Health Tool](health-tool.md) -- Generate FHIR and HL7 integration code for healthcare systems
-- [EDI Tool](edi-tool.md) -- Generate Ballerina code from EDI schema definitions for B2B data exchange
-
-## Code quality tools
-
-- [Scan Tool](scan-tool.md) -- Run static code analysis to detect security, quality, and best practice issues
+- [OpenAPI Tool](integration-tools/openapi-tool.md) -- Generate HTTP services and clients from OpenAPI/Swagger specifications
+- [GraphQL Tool](integration-tools/graphql-tool.md) -- Generate GraphQL services and clients from SDL schemas
+- [AsyncAPI Tool](integration-tools/asyncapi-tool.md) -- Generate event-driven services from AsyncAPI specifications
+- [gRPC Tool](integration-tools/grpc-tool.md) -- Generate gRPC services and clients from Protocol Buffer definitions
+- [Health Tool](integration-tools/health-tool.md) -- Generate FHIR and HL7 integration code for healthcare systems
+- [EDI Tool](integration-tools/edi-tool.md) -- Generate Ballerina code from EDI schema definitions for B2B data exchange
+- [WSDL Tool](integration-tools/wsdl-tool.md) -- Generate clients for SOAP/WSDL web services
+- [XSD Tool](integration-tools/xsd-tool.md) -- Generate Ballerina record types from XML Schema definitions
 
 ## Migration tools
 
-- [Migration Tools](migration-tools.md) -- Migrate integrations from WSO2 MI, MuleSoft, and other platforms
+Migrate existing integrations from other platforms to WSO2 Integrator.
+
+- [Migration Tools Overview](migration-tools/overview.md) -- Shared workflow and command reference
+- [Migrate from WSO2 MI](migration-tools/mi.md) -- Migrate WSO2 MI Synapse XML configurations
+- [Migrate from MuleSoft](migration-tools/mule.md) -- Migrate MuleSoft Anypoint flows
+- [Migrate from TIBCO](migration-tools/tibco.md) -- Migrate TIBCO BusinessWorks processes
+- [Migrate from Azure Logic Apps](migration-tools/azure-logic-apps.md) -- Migrate Azure Logic Apps workflows
+
+## Other tools
+
+- [Scan Tool](other/scan-tool.md) -- Run static code analysis to detect security, quality, and best practice issues
+- [Persist Tool](other/persist-tool.md) -- Generate type-safe data persistence clients for multiple data stores
 
 ## Quick reference
 
@@ -51,7 +53,4 @@ Specialized tools for healthcare and B2B integration domains.
 | Health | `bal health` | FHIR/HL7 profiles | Healthcare types and templates | CLI only |
 | EDI | `bal edi` | EDI schema | EDI parser/generator | CLI only |
 | Scan | `bal scan` | Source code | Analysis report | CLI only |
-
-## What's next
-
-Start with the [OpenAPI Tool](openapi-tool.md) if you are building REST API integrations, or browse the full list to find the tool that matches your specification format.
+| Persist | `bal persist` | Record types | Data store client | CLI only |

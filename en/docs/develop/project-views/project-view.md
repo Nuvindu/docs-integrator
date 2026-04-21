@@ -1,77 +1,75 @@
 ---
 sidebar_position: 1
 title: Project View
-description: Manage multi-package integration workspaces in WSO2 Integrator.
+description: Manage multi-package integration projects in WSO2 Integrator.
 ---
 
 # Project View
 
-The Workspace View lets you organize multiple integration packages into a single workspace, enabling cross-project navigation, dependency management, and visual organization.
+The Project View is the top-level view in WSO2 Integrator. It appears when you open a project that contains multiple integration and library packages, giving you an overview of all packages, deployment options, and project-level actions in one place.
 
-## When to Use Workspaces
+![Project View overview](/img/develop/project-views/project-view/overview.png)
 
-| Scenario | Single Integration | Workspace |
-|---|---|---|
-| Quick one-off integration | ✅ | |
-| Independent service or POC | ✅ | |
-| Multiple related integrations | | ✅ |
-| Shared types across services | | ✅ |
-| Microservice-style architecture | | ✅ |
+## General navigation
 
-## Creating a Workspace
+The general navigation elements in the Project View function the same way as in the Integration View:
 
-### From a New Integration
+- **Activity bar** — Access the file explorer, global search, source control, and extension marketplace.
+- **Project explorer** — View and manage all packages in the project. Unlike the Integration View, the project explorer at the project level displays all packages (integrations and libraries) grouped by name. Each package is expandable to show its own artifact tree (Entry Points, Connections, Types, Data Mappers, Configurations).
 
-1. Open the WSO2 Integrator sidebar.
-2. Click **Create New Integration**.
-3. Fill in the integration name, package name, and file path.
-4. Expand **Optional Configurations**.
-5. Enable **Create Workspace** and set a workspace name.
-6. Click **Create Integration**.
+For more details on these elements, see the [Integration View](integration-view.md) documentation.
 
-### Converting an Existing Integration
+## Project overview canvas
 
-To convert a standalone integration into a workspace:
+The project overview canvas is the central area of the Project View. It displays the project name as a heading and provides a unified dashboard for managing all packages in the project.
 
-1. Open the integration in WSO2 Integrator.
-2. Click the **+** button in the integration panel.
-3. Enter the details for the new integration package.
-4. Both integrations are now part of a workspace.
+### Integrations and libraries
 
-## Workspace Features
+The **Integrations & Libraries** section displays a card grid showing each package in the project. Each card shows:
 
-### Cross-Project Navigation
+- The package name (e.g., "Integration1", "Library1").
+- A type badge for library packages (e.g., "Library") to distinguish them from integrations.
 
-In a workspace, **Go to Definition** works across packages. Click on a type or function reference to jump to its definition in any package within the workspace.
+Click any card to navigate to the [Integration View](integration-view.md) or [Library View](library-view.md) for that package, where you can build and manage its artifacts.
 
-### Dependency Management
+### Generate with AI
 
-Workspace packages can depend on each other. Add a dependency in `Ballerina.toml`:
+Click the **Generate with AI** button at the top of the canvas to create a new integration using AI. Describe what you want in natural language, and WSO2 Integrator generates the integration package with the appropriate entry points, connections, and logic.
 
-```toml
-[[dependency]]
-org = "myorg"
-name = "shared-types"
-version = "1.0.0"
-repository = "local"
-```
+### Add package
 
-### Visual Organization
+Click the **+ Add** button at the top of the canvas to add a new integration or library package to the project. Select the package type, provide a name and configuration, and the new package appears in the card grid and project explorer.
 
-The workspace sidebar groups integrations visually, showing their entry points, connections, and types in a unified tree view.
+## Deployment options panel
 
-## Managing Workspace Integrations
+The deployment options panel appears on the right sidebar and provides shortcuts to deploy your integrations to different environments.
 
-### Adding an Integration
+### Deploy to WSO2 Cloud
 
-Click the **+** button in the workspace panel to add a new package.
+Deploy your integrations to [WSO2 Cloud](/docs/deploy-operate/deploy/devant), a fully managed cloud platform. WSO2 Cloud handles provisioning, scaling, and monitoring so you can focus on building integrations.
 
-### Removing an Integration
+### Deploy with Docker
 
-Hover over an integration name in the workspace panel and click the **delete** icon.
+Package your integrations as [Docker containers](/docs/deploy-operate/deploy/docker-kubernetes) for deployment to any container orchestration platform, including Kubernetes and OpenShift.
 
-## What's Next
+### Deploy on a VM
 
-- [Integration View](integration-view.md) -- The primary development interface
-- [Manage Dependencies](/docs/develop/organize-code/manage-dependencies) -- Handle package dependencies
-- [Workspaces](/docs/develop/organize-code/workspaces) -- Advanced workspace configuration
+Generate runnable artifacts and [deploy them directly on a virtual machine](/docs/deploy-operate/deploy/vm-based) or bare-metal server.
+
+### Integration Control Plane
+
+Connect your integrations to the [Integration Control Plane (ICP)](/docs/deploy-operate/observe/icp) for centralized observability, monitoring, and management across all your deployed integrations.
+
+At the project level, click **Enable ICP for all integrations** to activate ICP monitoring for every integration package in the project at once.
+
+## README section
+
+The README section at the bottom of the Project View displays the contents of your project's `README.md` file. Use it to document the purpose, setup instructions, and usage notes for your project, integrations, and libraries.
+
+Click **Edit** to modify the README directly. If the project does not have a README yet, click **Add a README** to create one.
+
+## What's next
+
+- [Integration View](integration-view.md) — The primary development interface for individual integrations
+- [Library View](library-view.md) — Build and manage reusable library packages
+- [Packages & Modules](/docs/develop/organize-code/packages-modules) — Understand package structure

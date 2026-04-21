@@ -41,7 +41,7 @@ If your code is still on your machine, you're in **Develop**. Once you're pushin
 
 | | |
 |---|---|
-| **[Integration Tools](tools/openapi-tool.md)** | OpenAPI, GraphQL, AsyncAPI, gRPC, WSDL, XSD, EDI, and Health tools |
-| **[Data persistence](tools/data-persistence/overview.md)** | `bal persist` — type-safe CRUD for MySQL, PostgreSQL, MSSQL, SQLite, MongoDB, Redis |
-| **[Migration tools](tools/migration-tools.md)** | Migrate from WSO2 MI, MuleSoft, or TIBCO |
-| **[Scan tool](tools/scan-tool.md)** | Static analysis rules for code quality |
+| **[Integration tools](tools/integration-tools/openapi-tool.md)** | OpenAPI, GraphQL, AsyncAPI, gRPC, WSDL, XSD, EDI, and Health tools |
+| **[Persist tool](tools/other/persist-tool.md)** | `bal persist` — type-safe CRUD for MySQL, PostgreSQL, MSSQL, and more |
+| **[Migration tools](tools/migration-tools/overview.md)** | Migrate from WSO2 MI, MuleSoft, TIBCO, or Azure Logic Apps |
+| **[Scan tool](tools/other/scan-tool.md)** | Static analysis rules for code quality |
