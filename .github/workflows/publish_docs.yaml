@@ -1,4 +1,4 @@
-name: Ballerina Integrator Docs Publish
+name: WSO2 Integrator Docs Publish
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-kola-docs:
+  release-wso2-integrator-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

@@ -2189,6 +2189,18 @@ const sidebars: SidebarsConfig = {
             'reference/api/ballerina-api-docs',
           ],
         },
+        {
+          type: 'category',
+          label: 'Deploying ICP',
+          link: { type: 'doc', id: 'reference/icp/index' },
+          items: [
+            'reference/icp/server-configuration',
+            'reference/icp/database',
+            'reference/icp/authentication',
+            'reference/icp/runtime-connection',
+            'reference/icp/deployment',
+          ],
+        },
         'reference/protocols',
         {
           type: 'category',
