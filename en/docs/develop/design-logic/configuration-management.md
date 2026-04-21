@@ -154,11 +154,11 @@ smtpPort = 587
 
 ## Environment variables
 
-Override any configurable variable with an environment variable using the pattern `BAL_CONFIG_VAR_<name>`:
+Override any configurable variable with an environment variable using the pattern `BAL_CONFIG_VAR_<NAME>`, where `<NAME>` is the variable name in uppercase:
 
 ```bash
-export BAL_CONFIG_VAR_dbHost=db.prod.internal
-export BAL_CONFIG_VAR_dbPassword=prod-encrypted-password
+export BAL_CONFIG_VAR_DBHOST=db.prod.internal
+export BAL_CONFIG_VAR_DBPASSWORD=prod-encrypted-password
 bal run
 ```
 
@@ -174,9 +174,10 @@ When the same variable is defined in more than one place, the runtime resolves i
 
 | Source | Example | Typical use |
 |---|---|---|
+| Individual env vars (`BAL_CONFIG_VAR_*`) | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
 | Command-line arguments | `bal run -- -CdbHost=localhost` | One-off overrides, local testing |
-| Environment variables | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
-| `Config.toml` / `BAL_CONFIG_FILES` | `dbHost = "localhost"` | Per-environment configuration |
+| Inline TOML (`BAL_CONFIG_DATA`) | `BAL_CONFIG_DATA='dbHost="localhost"'` | Containerized runs without a config file |
+| TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"` | Per-environment configuration |
 | Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
 
 ## Per-environment configuration
@@ -233,8 +234,8 @@ configurable string apiSecret = ?;
 ```
 
 ```bash
-export BAL_CONFIG_VAR_dbPassword="$(vault read -field=password secret/db)"
-export BAL_CONFIG_VAR_apiSecret="$(vault read -field=key secret/api)"
+export BAL_CONFIG_VAR_DBPASSWORD="$(vault read -field=password secret/db)"
+export BAL_CONFIG_VAR_APISECRET="$(vault read -field=key secret/api)"
 bal run
 ```
 
@@ -249,10 +250,10 @@ my-integration/
 
 ```bash
 # macOS / Linux
-BAL_CONFIG_FILES=Config.toml:secrets.toml bal run
+BAL_CONFIG_FILES=secrets.toml:Config.toml bal run
 
 # Windows
-set BAL_CONFIG_FILES=Config.toml;secrets.toml && bal run
+set BAL_CONFIG_FILES=secrets.toml;Config.toml && bal run
 ```
 
 ## Complete example
@@ -271,7 +272,6 @@ configurable string dbPassword = ?;
 configurable string dbName = ?;
 
 configurable string crmBaseUrl = ?;
-configurable string crmApiKey = ?;
 
 configurable int servicePort = 8090;
 configurable boolean enableRequestLogging = false;
