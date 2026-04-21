@@ -1201,6 +1201,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/mqtt/setup-guide',
             'connectors/catalog/built-in/mqtt/action-reference',
             'connectors/catalog/built-in/mqtt/trigger-reference',
+            'connectors/catalog/built-in/mqtt/example',
           ],
         },
         {
