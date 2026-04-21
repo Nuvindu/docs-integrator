@@ -16,7 +16,7 @@ The visual designer shows your integration as a flow diagram. Each node represen
 
 ## Low-Code ↔ Pro-Code Switching
 
-Click the toggle button to switch between the visual designer and the Ballerina code editor. Changes made in either view are instantly synced to the other.
+Select the toggle button to switch between the visual designer and the Ballerina code editor. Changes made in either view are instantly synced to the other.
 
 ## Key UI Elements
 
@@ -27,6 +27,6 @@ Click the toggle button to switch between the visual designer and the Ballerina 
 5. **Try-It Tool** — Send test requests to running services
 6. **Data Mapper** — Open the visual data transformation tool
 
-## What's Next
+## Next steps
 
-- [Build an API Integration](quick-start-api.md) — Put the IDE to work
+- [Build an API integration](quick-start-api.md) — Put the IDE to work

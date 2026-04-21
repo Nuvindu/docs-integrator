@@ -1,0 +1,204 @@
+/* ================================================================
+   HAMBURGER TOGGLE — floats just below the navbar, top-left.
+   Visible on every page (homepage opens drawer, docs toggle sidebar).
+   ================================================================ */
+.navToggle {
+  position: fixed;
+  top: calc(var(--ifm-navbar-height) + 0.6rem);
+  left: 0.85rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--ifm-background-surface-color, #FFFFFF);
+  color: var(--wso2-navy, #1B2A49);
+  border: 1px solid var(--ifm-color-emphasis-200, #E2E8F0);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 2px 8px rgba(15, 23, 42, 0.05);
+  transition: all 0.15s ease;
+}
+
+.navToggle:hover {
+  background: var(--ifm-color-emphasis-100, #F8FAFC);
+  border-color: var(--ifm-color-emphasis-300, #CBD5E1);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06), 0 4px 14px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+[data-theme='dark'] .navToggle {
+  background: #151E31;
+  color: #F2F2F2;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='dark'] .navToggle:hover {
+  background: #1B2A49;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Hide on mobile — Docusaurus's native menu toggle takes over there */
+@media (max-width: 996px) {
+  .navToggle {
+    display: none;
+  }
+}
+
+/* ================================================================
+   SLIDE-OUT NAV DRAWER + OVERLAY (homepage only)
+   ================================================================ */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 100;
+}
+
+.drawerOverlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: var(--ifm-navbar-height);
+  left: 0;
+  bottom: 0;
+  width: min(320px, 88vw);
+  background-color: var(--ifm-background-surface-color, #FFFFFF);
+  border-right: 1px solid var(--ifm-color-emphasis-200, #E2E8F0);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  /* Hide from the keyboard-focus order while the drawer is closed —
+     transform alone leaves links focusable. Delay the visibility flip
+     until after the slide-out finishes so the close transition shows. */
+  visibility: hidden;
+  transition:
+    transform 0.28s cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s linear 0.28s;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .drawer {
+  background-color: #151E31;
+  border-right-color: rgba(255, 255, 255, 0.06);
+}
+
+.drawerOpen {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.drawerScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-top: 0.75rem;
+}
+
+/* stylelint-disable selector-pseudo-class-no-unknown -- CSS Modules :global(...) selectors */
+.drawerScroll :global(.menu) {
+  padding-top: 0;
+}
+
+.drawerScroll :global(.menu__list) {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.drawerScroll :global(.menu__list-item:first-child) {
+  margin-top: 0;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
+
+/* ================================================================
+   MI DOCUMENTATION — pinned to drawer footer with distinct style
+   ================================================================ */
+.drawerFooter {
+  border-top: 1px solid var(--ifm-color-emphasis-200, #E2E8F0);
+  padding: 0.75rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 119, 182, 0.05) 100%);
+}
+
+[data-theme='dark'] .drawerFooter {
+  border-top-color: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.08) 100%);
+}
+
+.miDocLink {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1B2A49 0%, #0F172A 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.miDocLink:hover {
+  background: linear-gradient(135deg, #243557 0%, #15213D 100%);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #FFFFFF;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+  transform: translateY(-1px);
+}
+
+.miDocBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #38BDF8;
+  color: #0F172A;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.miDocText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.miDocTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.miDocSubtitle {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0.15rem;
+}
+
+.miDocLink svg {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.45);
+  transition: all 0.2s ease;
+}
+
+.miDocLink:hover svg {
+  color: #38BDF8;
+  transform: translate(2px, -2px);
+}

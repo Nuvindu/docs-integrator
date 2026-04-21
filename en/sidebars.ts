@@ -23,16 +23,16 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Get Started',
+      label: 'Get started',
       collapsed: true,
-      link: { type: 'doc', id: 'get-started/overview-&-architecture' },
+      link: { type: 'doc', id: 'get-started/overview-and-architecture' },
       items: [
-        'get-started/overview-&-architecture',
+        'get-started/overview-and-architecture',
         'get-started/why-wso2-integrator',
         'get-started/key-concepts',
         {
           type: 'category',
-          label: 'Set Up',
+          label: 'Set up',
           items: [
             'get-started/system-requirements',
             'get-started/install',
@@ -42,14 +42,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Quick Starts',
+          label: 'Quick starts',
           items: [
+            'get-started/quick-start-automation',
+            'get-started/quick-start-ai-agent',
             'get-started/quick-start-api',
             'get-started/quick-start-event',
             'get-started/quick-start-file',
-            'get-started/quick-start-automation',
-            'get-started/quick-start-data-service',
-            'get-started/quick-start-ai-agent',
           ],
         },
       ],
@@ -92,7 +91,7 @@ const sidebars: SidebarsConfig = {
         // 6.3 Integration Artifacts
         {
           type: 'category',
-          label: 'Integration Artifacts',
+          label: 'Integration artifacts',
           items: [
             'develop/integration-artifacts/automation',
             {
@@ -108,7 +107,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'Event Integration',
+              type: 'category', label: 'Event-driven integration',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/event/kafka',
@@ -125,7 +124,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'File Integration',
+              type: 'category', label: 'File-driven integration',
               collapsed: true,
               items: [
                 {
@@ -133,18 +132,17 @@ const sidebars: SidebarsConfig = {
                   collapsed: true,
                   link: { type: 'doc', id: 'develop/integration-artifacts/file/ftp-sftp' },
                   items: [
-                    'develop/integration-artifacts/file/csv-fault-tolerance',
+                    'develop/integration-artifacts/file/high-availability',
                     'develop/integration-artifacts/file/file-dependency-triggers',
                     'develop/integration-artifacts/file/streaming-large-files',
-                    'develop/integration-artifacts/file/resiliency',
-                    'develop/integration-artifacts/file/high-availability',
+                    'develop/integration-artifacts/file/csv-fault-tolerance',
                   ],
                 },
                 'develop/integration-artifacts/file/local-files',
               ],
             },
             {
-              type: 'category', label: 'Other Artifacts',
+              type: 'category', label: 'Other artifacts',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/supporting/types',
@@ -159,7 +157,7 @@ const sidebars: SidebarsConfig = {
         // 6.4 Design Integration Logic
         {
           type: 'category',
-          label: 'Design Integration Logic',
+          label: 'Design integration logic',
           items: [
             'develop/design-logic/overview',
             'develop/design-logic/flow-designer',
@@ -193,7 +191,7 @@ const sidebars: SidebarsConfig = {
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'Try & Test',
+          label: 'Try and test',
           items: [
             'develop/test/try-it',
             'develop/test/unit-testing',
@@ -221,7 +219,7 @@ const sidebars: SidebarsConfig = {
         // 6.8 Organize Code
         {
           type: 'category',
-          label: 'Organize Code',
+          label: 'Organize code',
           items: [
             'develop/organize-code/packages-modules',
             'develop/organize-code/package-references',
@@ -237,27 +235,42 @@ const sidebars: SidebarsConfig = {
           label: 'Tools',
           link: { type: 'doc', id: 'develop/tools/overview' },
           items: [
-            'develop/tools/migration-tools',
-            'develop/tools/openapi-tool',
-            'develop/tools/graphql-tool',
-            'develop/tools/asyncapi-tool',
-            'develop/tools/grpc-tool',
-            'develop/tools/health-tool',
-            'develop/tools/edi-tool',
-            'develop/tools/wsdl-tool',
-            'develop/tools/xsd-tool',
             {
-              type: 'category', label: 'Data Persistence',
+              type: 'category',
+              label: 'Integration Tools',
               collapsed: true,
               items: [
-                'develop/tools/data-persistence/overview',
-                'develop/tools/data-persistence/data-model-definition',
-                'develop/tools/data-persistence/client-api',
-                'develop/tools/data-persistence/supported-stores',
-                'develop/tools/data-persistence/database-introspection',
+                'develop/tools/integration-tools/openapi-tool',
+                'develop/tools/integration-tools/graphql-tool',
+                'develop/tools/integration-tools/asyncapi-tool',
+                'develop/tools/integration-tools/grpc-tool',
+                'develop/tools/integration-tools/health-tool',
+                'develop/tools/integration-tools/edi-tool',
+                'develop/tools/integration-tools/wsdl-tool',
+                'develop/tools/integration-tools/xsd-tool',
               ],
             },
-            'develop/tools/scan-tool',
+            {
+              type: 'category',
+              label: 'Migration Tools',
+              link: { type: 'doc', id: 'develop/tools/migration-tools/overview' },
+              collapsed: true,
+              items: [
+                'develop/tools/migration-tools/mi',
+                'develop/tools/migration-tools/mule',
+                'develop/tools/migration-tools/tibco',
+                'develop/tools/migration-tools/azure-logic-apps',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Other',
+              collapsed: true,
+              items: [
+                'develop/tools/other/scan-tool',
+                'develop/tools/other/persist-tool',
+              ],
+            },
           ],
         },
       ],
@@ -276,7 +289,7 @@ const sidebars: SidebarsConfig = {
     // ── Connector Catalog ──
     {
       type: 'category',
-      label: 'Connector Catalog',
+      label: 'Connector catalog',
       collapsed: true,
       link: { type: 'doc', id: 'connectors/catalog/index' },
       items: [
@@ -679,6 +692,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.automation.actions/setup-guide',
             'connectors/catalog/crm-sales/hubspot.automation.actions/action-reference',
+            'connectors/catalog/crm-sales/hubspot.automation.actions/example',
           ],
         },
         {
@@ -688,6 +702,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.associations/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.associations/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.associations/example',
           ],
         },
         {
@@ -697,6 +712,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.associations.schema/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.associations.schema/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.associations.schema/example',
           ],
         },
         {
@@ -706,6 +722,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.carts/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.carts/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.carts/example',
           ],
         },
         {
@@ -715,6 +732,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.discounts/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.discounts/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.discounts/example',
           ],
         },
         {
@@ -724,6 +742,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/example',
           ],
         },
         {
@@ -733,6 +752,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.quotes/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.quotes/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.quotes/example',
           ],
         },
         {
@@ -742,6 +762,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.taxes/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.taxes/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.taxes/example',
           ],
         },
         {
@@ -751,6 +772,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.companies/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.companies/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.companies/example',
           ],
         },
         {
@@ -760,6 +782,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.contacts/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.contacts/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.contacts/example',
           ],
         },
         {
@@ -769,6 +792,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.deals/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.deals/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.deals/example',
           ],
         },
         {
@@ -778,6 +802,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagement.meeting/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagement.meeting/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagement.meeting/example',
           ],
         },
         {
@@ -787,6 +812,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagement.notes/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagement.notes/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagement.notes/example',
           ],
         },
         {
@@ -796,6 +822,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagements.calls/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagements.calls/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagements.calls/example',
           ],
         },
         {
@@ -805,6 +832,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagements.communications/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagements.communications/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagements.communications/example',
           ],
         },
         {
@@ -814,6 +842,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagements.email/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagements.email/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagements.email/example',
           ],
         },
         {
@@ -823,6 +852,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.engagements.tasks/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.engagements.tasks/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.engagements.tasks/example',
           ],
         },
         {
@@ -832,6 +862,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.extensions.timelines/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.extensions.timelines/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.extensions.timelines/example',
           ],
         },
         {
@@ -841,6 +872,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/example',
           ],
         },
         {
@@ -850,6 +882,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.feedback/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.feedback/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.feedback/example',
           ],
         },
         {
@@ -868,6 +901,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.leads/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.leads/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.leads/example',
           ],
         },
         {
@@ -877,6 +911,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.lineitems/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.lineitems/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.lineitems/example',
           ],
         },
         {
@@ -886,6 +921,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.lists/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.lists/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.lists/example',
           ],
         },
         {
@@ -895,6 +931,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.owners/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.owners/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.owners/example',
           ],
         },
         {
@@ -904,6 +941,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.pipelines/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.pipelines/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.pipelines/example',
           ],
         },
         {
@@ -913,6 +951,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.products/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.products/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.products/example',
           ],
         },
         {
@@ -922,6 +961,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.properties/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.properties/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.properties/example',
           ],
         },
         {
@@ -931,6 +971,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.schemas/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.schemas/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.schemas/example',
           ],
         },
         {
@@ -940,6 +981,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.obj.tickets/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.obj.tickets/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.obj.tickets/example',
           ],
         },
         {
@@ -1144,6 +1186,16 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/database/mongodb/setup-guide',
             'connectors/catalog/database/mongodb/action-reference',
             'connectors/catalog/database/mongodb/example',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'MQTT',
+          link: { type: 'doc', id: 'connectors/catalog/built-in/mqtt/overview' },
+          items: [
+            'connectors/catalog/built-in/mqtt/setup-guide',
+            'connectors/catalog/built-in/mqtt/action-reference',
+            'connectors/catalog/built-in/mqtt/trigger-reference',
           ],
         },
         {
@@ -1467,6 +1519,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/crm-sales/salesforce/setup-guide',
             'connectors/catalog/crm-sales/salesforce/action-reference',
             'connectors/catalog/crm-sales/salesforce/trigger-reference',
+            'connectors/catalog/crm-sales/salesforce/example',
           ],
         },
         {
@@ -1661,7 +1714,7 @@ const sidebars: SidebarsConfig = {
     // ── Build Your Own ──
     {
       type: 'category',
-      label: 'Build Your Own',
+      label: 'Build your own',
       link: { type: 'doc', id: 'connectors/build-your-own/index' },
       items: [
         'connectors/build-your-own/create-from-openapi',
@@ -1684,12 +1737,12 @@ const sidebars: SidebarsConfig = {
         // Getting Started
         {
           type: 'category',
-          label: 'Getting Started',
+          label: 'Getting started',
           items: [
             'genai/getting-started/setup',
             {
               type: 'category',
-              label: 'Building Your First AI Integration',
+              label: 'Building your first AI integration',
               items: [
                 'genai/getting-started/smart-calculator',
                 'genai/getting-started/hotel-booking-agent',
@@ -1700,7 +1753,7 @@ const sidebars: SidebarsConfig = {
         // Key Concepts
         {
           type: 'category',
-          label: 'Key Concepts',
+          label: 'Key concepts',
           items: [
             'genai/key-concepts/what-is-llm',
             'genai/key-concepts/what-is-natural-function',
@@ -1714,7 +1767,7 @@ const sidebars: SidebarsConfig = {
         // Develop AI Applications
         {
           type: 'category',
-          label: 'Develop AI Applications',
+          label: 'Develop AI applications',
           items: [
             // Direct LLM Calls
             {
@@ -1852,7 +1905,7 @@ const sidebars: SidebarsConfig = {
         // Quick Starts
         {
           type: 'category',
-          label: 'Quick Starts',
+          label: 'Quick starts',
           items: [
             'genai/quick-starts/build-conversational-agent',
             'genai/quick-starts/build-rag-application',
@@ -1923,7 +1976,7 @@ const sidebars: SidebarsConfig = {
         // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
-          label: 'Enterprise Integration Patterns',
+          label: 'Enterprise integration patterns',
           items: [
             'tutorials/patterns/content-based-router',
             'tutorials/patterns/message-filter',
@@ -1943,7 +1996,7 @@ const sidebars: SidebarsConfig = {
         // Pre-Built Integration Samples
         {
           type: 'category',
-          label: 'Pre-Built Integration Samples',
+          label: 'Pre-built integration samples',
           items: [
             'tutorials/pre-built/overview',
             'tutorials/pre-built/google-sheets-salesforce',
@@ -1961,7 +2014,7 @@ const sidebars: SidebarsConfig = {
         // Sample Projects
         {
           type: 'category',
-          label: 'Sample Projects',
+          label: 'Sample projects',
           items: [
             'tutorials/samples/overview',
             'tutorials/samples/hospital-service',
@@ -1975,7 +2028,7 @@ const sidebars: SidebarsConfig = {
         // Migration Guides
         {
           type: 'category',
-          label: 'Migration Guides',
+          label: 'Migration guides',
           items: [
             'tutorials/migration/from-wso2-mi',
             'tutorials/migration/from-mulesoft',
@@ -1992,7 +2045,7 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Deploy & Operate',
+      label: 'Deploy and operate',
       collapsed: true,
       link: { type: 'doc', id: 'deploy-operate/overview' },
       items: [
@@ -2065,7 +2118,7 @@ const sidebars: SidebarsConfig = {
         // Capacity Planning
         {
           type: 'category',
-          label: 'Capacity Planning',
+          label: 'Capacity planning',
           items: [
             'deploy-operate/capacity-planning/overview',
             'deploy-operate/capacity-planning/performance-reports',
@@ -2139,7 +2192,7 @@ const sidebars: SidebarsConfig = {
         'reference/protocols',
         {
           type: 'category',
-          label: 'Supported Data Formats',
+          label: 'Supported data formats',
           link: { type: 'doc', id: 'reference/data-formats/index' },
           items: [
             'reference/data-formats/avro',

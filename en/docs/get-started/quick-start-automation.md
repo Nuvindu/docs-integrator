@@ -1,13 +1,13 @@
 ---
 sidebar_position: 10
-title: "Quick Start: Build an Automation"
+title: "Quick Start: Automation"
 description: Create a scheduled automation that runs tasks on a timer.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Quick Start: Build an Automation
+# Build an Automation
 
 **Time:** Under 10 minutes | **What you'll build:** A scheduled automation that runs tasks on a timer or manual trigger.
 
@@ -98,8 +98,9 @@ service on timer {
 }
 ```
 
-## What's Next
+## Next steps
 
-- [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Quick Start: Event Integration](quick-start-event.md) -- React to messages from brokers
-- [Quick Start: AI Agent](quick-start-ai-agent.md) -- Build an intelligent agent
+- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
+- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
+- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
+- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories

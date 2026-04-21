@@ -1,13 +1,13 @@
 ---
 sidebar_position: 11
-title: "Quick Start: Build an AI Agent"
-description: Create an intelligent AI agent powered by LLMs with tool calling.
+title: "Quick Start: AI Agent"
+description: Build an intelligent agent using LLMs and tools.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Quick Start: Build an AI Agent
+# Build an AI Agent
 
 **Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to user queries in chat.
 
@@ -94,9 +94,10 @@ sequenceDiagram
     }}
 />
 
-## What's Next
+## Next steps
 
-- [GenAI Overview](/docs/genai/overview) -- Full guide to AI capabilities
-- [Chat Agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
-- [MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
-- [RAG Applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents
+- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
+- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
+- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
+- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories
+- [GenAI overview](/docs/genai/overview) -- Full guide to AI capabilities

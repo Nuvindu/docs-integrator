@@ -58,8 +58,8 @@ Command-line tools reference:
 
 ## Specifications & Formats
 
-- **[Supported Protocols](protocols.md)** — Complete protocol support table
-- **[Supported Data Formats](data-formats.md)** — Complete data format support table
+- **[Supported protocols](protocols.md)** — Complete protocol support table
+- **[Supported data formats](data-formats.md)** — Complete data format support table
 - **[Ballerina by Example](by-example.md)** — 200+ runnable examples
 - **[Ballerina Specifications](specifications.md)** — Language, library, and platform specs
 

@@ -7,7 +7,7 @@ description: Build an HTTP service that calls an external API and returns a gree
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Quick Start: Integration as API
+# Build an API Integration
 
 **Time:** Under 10 minutes | **What you'll build:** An HTTP service that receives requests, calls an external API, and returns the response.
 
@@ -133,9 +133,10 @@ sequenceDiagram
     }}
 />
 
-## What's Next
+## Next steps
 
-- [Quick Start: Automation](quick-start-automation.md) -- Build a scheduled job
-- [Quick Start: AI Agent](quick-start-ai-agent.md) -- Build an intelligent agent
-- [Quick Start: Event Integration](quick-start-event.md) -- React to messages from Kafka or RabbitMQ
+- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
+- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
+- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
+- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories
 - [Tutorials](/docs/tutorials/rest-api-aggregation) -- End-to-end walkthroughs and patterns
