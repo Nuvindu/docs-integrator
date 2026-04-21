@@ -1704,6 +1704,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/websub/setup-guide',
             'connectors/catalog/built-in/websub/action-reference',
             'connectors/catalog/built-in/websub/trigger-reference',
+            'connectors/catalog/built-in/websub/example',
           ],
         },
         {
