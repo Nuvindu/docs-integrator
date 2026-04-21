@@ -24,12 +24,13 @@ Configurable variables defined in your project appear as available values in exp
 
 To declare a configurable variable:
 
-1. In the WSO2 Integrator sidebar, expand **Configurations**.
+1. In the WSO2 Integrator explorer view (LHS), click **Configurations** section.
 2. Click **+** to add a new configurable variable.
 3. Specify the variable name, type, and whether a default value is provided.
-4. The variable is now available in any expression field across your flows.
+4. Click **Save** to add the variable to your integration project.
 
-To supply values, edit the `Config.toml` file in the project root. Variables with no default (initialized with `?`) must be provided at runtime or the program will not start.
+5. To supply values for the declared configurable variables, either use the **Config Editor** UI (low-code) or edit the `Config.toml` file in the project root directly.
+
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -52,7 +53,7 @@ configurable decimal requestTimeoutSeconds = 30.0d;
 configurable boolean enableCaching = true;
 ```
 
-If a required variable (one initialized with `?`) is missing at startup, the program exits with a clear error message.
+Config values must be provided in `Config.toml` for all variables with no default values (initialized with `?`), otherwise the program fails with a runtime error at startup.
 
 </TabItem>
 </Tabs>
@@ -71,9 +72,9 @@ If a required variable (one initialized with `?`) is missing at startup, the pro
 | Records | `configurable DatabaseConfig dbConfig = ?;` |
 | Tables | `configurable table<Employee> key(id) employees = table [];` |
 
-### Record-typed configuration
+### Structured configuration
 
-Group related settings into a record type:
+Group related settings into a structured configuration by declaring a record type:
 
 ```ballerina
 type DatabaseConfig record {|
@@ -171,12 +172,14 @@ BAL_CONFIG_FILES=/etc/myapp/config.toml bal run
 
 ### Priority order
 
-| Priority | Source |
-|---|---|
-| 1 (highest) | Command-line arguments (`-Ckey=value`) |
-| 2 | Environment variables (`BAL_CONFIG_VAR_<NAME>`) |
-| 3 | `Config.toml` (or files listed in `BAL_CONFIG_FILES`) |
-| 4 (lowest) | Default values declared in code |
+When the same variable is defined in more than one place, the runtime resolves it using the first match from the list below (top → bottom, highest to lowest precedence):
+
+| Source | Example | Typical use |
+|---|---|---|
+| Command-line arguments | `bal run -- -CdbHost=localhost` | One-off overrides, local testing |
+| Environment variables | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
+| `Config.toml` / `BAL_CONFIG_FILES` | `dbHost = "localhost"` | Per-environment configuration |
+| Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
 
 ## Per-environment configuration
 
@@ -304,6 +307,6 @@ service /api on httpListener {
 
 ## What's next
 
-- [Functions](functions.md) — Organize configurable logic into reusable functions
+- [Secrets & Encryption](../../deploy-operate/secure/secrets-encryption.md) — Protect API keys, database passwords, and other sensitive configuration values
+- [Managing Configurations](../../deploy-operate/deploy/managing-configurations.md) — Apply per-environment configuration at runtime and deploy time
 - [Connections](connections.md) — Use configurable variables to parameterize connections
-- [Error Handling](error-handling.md) — Handle missing or invalid configuration gracefully
