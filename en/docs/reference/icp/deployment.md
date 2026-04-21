@@ -1,6 +1,6 @@
 ---
 title: Deployment
-description: Docker Compose profiles and distribution build reference for the ICP Server.
+description: Distribution build reference for the ICP Server.
 ---
 
 # Deployment
@@ -21,9 +21,12 @@ Extract and start the server:
 # Extract
 unzip build/distribution/wso2-integration-control-plane-<version>.zip -d build/distribution
 
+# Change into the extracted directory
+cd build/distribution/wso2-integration-control-plane-<version>/bin
+
 # Start — Linux/macOS
-./bin/icp.sh
+./icp.sh
 
 # Start — Windows
-bin\icp.bat
+icp.bat
 ```

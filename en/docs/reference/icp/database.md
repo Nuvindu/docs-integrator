@@ -26,8 +26,8 @@ dbType = "mysql"
 host = "localhost"
 port = 3306
 name = "icp_db"
-username = "root"
-password = "root"
+username = "<DB_USER>"
+password = "<DB_PASSWORD>"
 ```
 
 ### PostgreSQL
@@ -38,8 +38,8 @@ dbType = "postgresql"
 host = "localhost"
 port = 5432
 name = "icp_db"
-username = "postgres"
-password = "postgres"
+username = "<DB_USER>"
+password = "<DB_PASSWORD>"
 ```
 
 ### Microsoft SQL Server
@@ -50,8 +50,8 @@ dbType = "mssql"
 host = "localhost"
 port = 1433
 name = "icp_db"
-username = "SA"
-password = "YourStrong@Passw0rd"
+username = "<DB_USER>"
+password = "<DB_PASSWORD>"
 ```
 
 ### H2 (In-Memory)
@@ -67,7 +67,16 @@ H2 is suitable for development and testing only. Data is not persisted across re
 
 ## Credentials Database
 
-The default authentication backend stores user credentials in a separate database or schema, configured via the flat keys below.
+The default authentication backend stores user credentials in a separate database or schema. These are flat top-level keys in `deployment.toml` (not under any table header).
+
+```toml
+credentialsDbType = "postgresql"   # h2, postgresql, mysql, or mssql
+credentialsDbHost = "localhost"
+credentialsDbPort = 5432
+credentialsDbName = "credentialsdb"
+credentialsDbUser = "icp_user"
+credentialsDbPassword = "icp_password"
+```
 
 | Key                     | Type     | Default           | Description                             |
 | ----------------------- | -------- | ----------------- | --------------------------------------- |
@@ -78,4 +87,4 @@ The default authentication backend stores user credentials in a separate databas
 | `credentialsDbUser`     | `string` | `"icp_user"`      | Database user                           |
 | `credentialsDbPassword` | `string` | —                 | Database password                       |
 
-For PostgreSQL, credentials are stored in a `credentials` schema within the same database. For H2, they are stored in `./database/credentials`.
+For PostgreSQL, credentials are stored in a `credentials` schema within the same database. For H2, they are stored in `<ICP_HOME>/bin/database/credentials`.

@@ -18,7 +18,13 @@ description: Authentication backend modes and full LDAP configuration key refere
 
 ## LDAP Configuration
 
-Set `ldapUserStoreEnabled = true` to activate. All other LDAP keys are optional with defaults.
+Set `ldapUserStoreEnabled = true` to activate. Most LDAP keys have sensible defaults, but the following keys have no default (marked **—** in the tables) and **must** be provided for a functional LDAP setup:
+
+- `ldapConnectionName` — bind DN used to connect to the LDAP server
+- `ldapConnectionPassword` — password for the bind DN
+- `ldapUserSearchBase` — base DN under which users are searched
+
+All remaining keys are optional.
 
 ### Connection
 

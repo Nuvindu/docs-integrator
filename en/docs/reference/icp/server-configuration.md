@@ -1,6 +1,6 @@
 ---
 title: Server Configuration
-description: Complete key reference for ICP Server configuration settings in Config.toml.
+description: Complete key reference for ICP Server configuration settings in deployment.toml.
 ---
 
 # Server Configuration

@@ -216,21 +216,69 @@
 
 ## Standalone Reference Pages
 
-### Page: WSO2 Integration Control Plane (ICP)
+### Section: WSO2 Integration Control Plane (ICP)
 
-**File:** `en/docs/reference/icp.md`
+The ICP reference is split across the following pages under `en/docs/reference/icp/`:
+
+#### Page: Overview
+
+**File:** `en/docs/reference/icp/index.md`
 
 **What to cover:**
 
 - Components: ICP Server, dashboard, database
-- Default ports and endpoint paths
-- All `deployment.toml` server configuration keys (table format)
-- Database configuration for MySQL, PostgreSQL, MSSQL, and H2
-- Credentials database configuration keys
-- Authentication backend modes (Default, LDAP, OIDC, Custom)
-- Full LDAP configuration key reference (connection, user search, group lookup)
-- How to connect an integration runtime to ICP (`Config.toml` and `Ballerina.toml` snippets)
-- Distribution build and start commands
+- Default ports table (9446, 9445, 5173) with protocol and description
+- Endpoint paths table (GraphQL, auth, observability, REST management)
+
+#### Page: Server Configuration
+
+**File:** `en/docs/reference/icp/server-configuration.md`
+
+**What to cover:**
+
+- All `deployment.toml` server settings keys (table format: key, type, default, description)
+- Authentication token settings (JWT secret, expiry times, refresh token rotation)
+
+#### Page: Database Configuration
+
+**File:** `en/docs/reference/icp/database.md`
+
+**What to cover:**
+
+- Main database configuration keys under `[icp_server.storage]` for MySQL, PostgreSQL, MSSQL, and H2 (with copy-paste TOML examples)
+- Credentials database flat keys with copy-paste TOML example
+- Security note: use placeholders / secrets manager for passwords
+
+#### Page: Authentication
+
+**File:** `en/docs/reference/icp/authentication.md`
+
+**What to cover:**
+
+- Authentication backend modes: Default User Store, LDAP, SSO/OIDC, Custom Backend
+- Full LDAP configuration key reference: connection, user search, group/role lookup
+- Required vs optional LDAP keys (flag keys with no default as required)
+
+#### Page: Connecting a Runtime to ICP
+
+**File:** `en/docs/reference/icp/runtime-connection.md`
+
+**What to cover:**
+
+- WSO2 Integrator (BI) runtime: `Config.toml` snippet with `[wso2.icp.runtime.bridge]`, `Ballerina.toml` `remoteManagement = true`, and `import wso2/icp.runtime.bridge as _` in `main.bal`
+- WSO2 Micro Integrator (MI) runtime: `deployment.toml` snippet with `[icp_config]` and `enabled = true`
+- Configuration key tables for both runtimes
+- Port 9445 noted as the runtime communication port
+
+#### Page: Deployment
+
+**File:** `en/docs/reference/icp/deployment.md`
+
+**What to cover:**
+
+- Docker Compose profiles table (local, mysql, postgresql, mssql, observability, test)
+- Distribution build command (`./gradlew build`) and output path
+- Extract, `cd` into the bin directory, and start commands for Linux/macOS and Windows
 
 ---
 
