@@ -61,7 +61,7 @@ password = "<DB_PASSWORD>"
 dbType = "h2"
 ```
 
-H2 is suitable for development and testing only. Data is not persisted across restarts.
+H2 is suitable for development and testing only.
 
 ---
 

@@ -13,7 +13,6 @@ All values are set in `<ICP_HOME>/conf/deployment.toml`. Commented-out keys show
 | ------------------------------------ | --------- | ----------- | --------------------------------------------------------------------- |
 | `serverPort`                         | `int`     | `9446`      | HTTPS port for all ICP endpoints                                      |
 | `serverHost`                         | `string`  | `"0.0.0.0"` | Bind address                                                          |
-| `graphqlPort`                        | `int`     | `9090`      | Internal GraphQL port (overridden by `serverPort` in production)      |
 | `logLevel`                           | `string`  | `"INFO"`    | Log verbosity — `DEBUG`, `INFO`, `WARN`, `ERROR`                      |
 | `enableAuditLogging`                 | `boolean` | `true`      | Enable audit log for authentication and management events             |
 | `enableMetrics`                      | `boolean` | `true`      | Expose Prometheus metrics endpoint                                    |
