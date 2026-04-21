@@ -657,6 +657,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/grpc/action-reference',
             'connectors/catalog/built-in/grpc/trigger-reference',
+            'connectors/catalog/built-in/grpc/example',
           ],
         },
         {
