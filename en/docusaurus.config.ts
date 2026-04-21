@@ -34,6 +34,7 @@ const config: Config = {
   plugins: [
     './src/plugins/connector-versions',
     './plugins/docusaurus-plugin-markdown-export',
+    './src/plugins/expose-sidebars',
   ],
 
   themes: [
@@ -85,7 +86,7 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/get-started/overview-&-architecture',
+          to: '/docs/get-started/overview-and-architecture',
           label: 'Get Started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
@@ -139,7 +140,7 @@ const config: Config = {
         {
           title: 'Get Started',
           items: [
-            { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
+            { label: 'Overview', to: '/docs/get-started/overview-and-architecture' },
             { label: 'Install', to: '/docs/get-started/install' },
             { label: 'Quick Starts', to: '/docs/get-started/quick-start-api' },
           ],

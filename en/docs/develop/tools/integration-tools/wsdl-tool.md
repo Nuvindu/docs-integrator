@@ -26,13 +26,23 @@ bal wsdl --help
 
 1. Click the **+** **Add Artifacts** button in the canvas.
 2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
-3. Select **Import From WSDL** and provide the WSDL file or URL.
+3. Select **Connect Via API Specification** and provide the WSDL file or URL.
 
    ![Import WSDL file](/img/develop/tools/wsdl-tool/step-import-wsdl.png)
 
-4. Configure the client name and SOAP version settings.
-5. Click **Create**.
-6. WSO2 Integrator generates a type-safe SOAP client connector with methods for each WSDL operation, along with request/response record types.
+4. Configure the Specification Type to **WSDL** and click **Next**.
+5. In the **Create Connection** step, configure the connection details. Expand **Advanced Configurations** to set the following optional fields:
+
+   - **Service Url** — Override the default endpoint URL defined in the WSDL.
+   - **HTTP Config** — HTTP configuration settings for the connection.
+   - **Outbound Security** — Web service security configurations for SOAP requests.
+   - **Inbound Security** — Web service security configurations to decrypt and verify SOAP responses.
+
+   ![Connection details configuration](/img/develop/tools/wsdl-tool/step-connection-details.png)
+
+6. Enter a **Connection Name** for the generated client (for example, `orderServiceClient`).
+7. Click **Save Connection**.
+8. WSO2 Integrator generates a type-safe SOAP client connector with methods for each WSDL operation, along with request/response record types.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">

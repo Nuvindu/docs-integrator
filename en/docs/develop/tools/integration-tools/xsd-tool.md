@@ -4,9 +4,6 @@ title: XSD Tool
 description: Generate Ballerina record types from XML Schema Definition (XSD) files.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # XSD tool
 
 The `bal xsd` tool generates Ballerina record types from XML Schema Definition (XSD) files. It maps XSD complex types, simple types, enumerations, and element structures to equivalent Ballerina records with XML annotations, enabling you to serialize and deserialize XML documents with full type safety.
@@ -21,21 +18,9 @@ bal xsd --help
 
 ## Generating record types from XSD
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. Click the **+** **Add Artifacts** button in the canvas.
-2. In the **Artifacts** panel, select **Types** under **Other Artifacts**.
-3. Select **Import From XSD** and provide the `.xsd` file.
-
-   ![Import XSD file](/img/develop/tools/xsd-tool/step-import-xsd.png)
-
-4. Configure the output module and type name prefix.
-5. Click **Generate**.
-6. WSO2 Integrator generates Ballerina record types with XML annotations matching your XSD schema.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
+:::note
+The XSD tool is currently supported only through the Ballerina CLI (pro-code). The Visual Designer supports importing XML files but does not yet support importing XSD files directly.
+:::
 
 ### Basic usage
 
@@ -137,9 +122,6 @@ enum OrderStatus {
     CANCELLED
 }
 ```
-
-</TabItem>
-</Tabs>
 
 ## Using generated types
 

@@ -35,9 +35,6 @@ Create a service skeleton that matches an OpenAPI specification. The generated c
 4. Browse or enter the path to your OpenAPI specification file (YAML or JSON).
 5. Configure the **Service Base Path** and listener settings.
 6. Click **Create**.
-
-   ![Service generation from OpenAPI](/img/develop/tools/openapi-tool/step-service-generation.png)
-
 7. WSO2 Integrator generates the service with resource function stubs, request/response types, and validation constraints matching your OpenAPI specification.
 
 </TabItem>
@@ -132,13 +129,20 @@ Create a type-safe HTTP client that wraps all API operations defined in the spec
 
 1. Click the **+** **Add Artifacts** button in the canvas.
 2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
-3. Select **Import From OpenAPI Specification** and provide the spec file.
+3. Select **Connect Via API Specification** and provide the OpenAPI spec file.
 
    ![Client generation from OpenAPI](/img/develop/tools/openapi-tool/step-client-generation.png)
 
-4. Configure the client name and connection settings.
-5. Click **Create**.
-6. WSO2 Integrator generates a type-safe client connector with methods matching each API operation.
+4. In the **Create Connection** step, configure the connection details. Expand **Advanced Configurations** to set the following optional fields:
+
+   - **Config** — The configurations to use when initializing the connector.
+   - **Service Url** — URL of the target service.
+
+   ![Connection details configuration](/img/develop/tools/openapi-tool/step-connection-details.png)
+
+5. Enter a **Connection Name** for the generated client (for example, `openapiClient`).
+6. Click **Save Connection**.
+7. WSO2 Integrator generates a type-safe client connector with methods matching each API operation.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -198,14 +202,14 @@ Generate an OpenAPI specification from an existing Ballerina HTTP service:
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Open the Ballerina service in the **Service Designer**.
+1. Open the HTTP service in the **Service Designer**.
 2. Click **Export** in the service header toolbar.
 3. Select **Export OpenAPI Specification**.
 
    ![Export OpenAPI from service](/img/develop/tools/openapi-tool/step-export.png)
 
-4. Choose the output location and format (YAML or JSON).
-5. Click **Export**.
+4. Choose the output location.
+5. Click **Select OAS Save Location**.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">

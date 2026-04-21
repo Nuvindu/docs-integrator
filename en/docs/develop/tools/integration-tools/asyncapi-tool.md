@@ -4,9 +4,6 @@ title: AsyncAPI Tool
 description: Generate event-driven Ballerina services from AsyncAPI specifications.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # AsyncAPI tool
 
 The `bal asyncapi` tool generates Ballerina code from AsyncAPI specifications, enabling you to build event-driven integrations that consume and produce messages on Kafka, RabbitMQ, MQTT, WebSocket, and other messaging protocols. The generated code includes listener services, publisher clients, and message types derived from the AsyncAPI schema.
@@ -21,22 +18,9 @@ bal asyncapi --help
 
 ## Generating a service from an AsyncAPI spec
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
-2. In the **Artifacts** panel, select the relevant event handler type (for example, **Kafka**, **RabbitMQ**) under **Event Handlers**.
-3. Select **Import From AsyncAPI Specification** under **Service Contract**.
-
-   ![Import AsyncAPI specification](/img/develop/tools/asyncapi-tool/step-import-spec.png)
-
-4. Browse or enter the path to your AsyncAPI specification file.
-5. Configure the listener settings (bootstrap servers, group ID, etc.).
-6. Click **Create**.
-7. WSO2 Integrator generates the listener service with event handler stubs and message types matching your AsyncAPI specification.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
+:::note
+The AsyncAPI tool is currently supported only through the Ballerina CLI (pro-code). Visual Designer support for AsyncAPI service generation is not yet available.
+:::
 
 ### Basic usage
 
@@ -171,9 +155,6 @@ type OrderStatusEvent record {|
     string timestamp;
 |};
 ```
-
-</TabItem>
-</Tabs>
 
 ## Implementing the event handler
 

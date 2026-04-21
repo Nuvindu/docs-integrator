@@ -33,9 +33,6 @@ bal graphql --help
 4. Browse or enter the path to your GraphQL SDL file.
 5. Configure the **Service Base Path** and listener settings.
 6. Click **Create**.
-
-   ![GraphQL service generation](/img/develop/tools/graphql-tool/step-service-generation.png)
-
 7. WSO2 Integrator generates the service with resolver stubs and record types matching your GraphQL schema.
 
 </TabItem>
@@ -186,18 +183,9 @@ enum OrderStatus {
 
 ## Generating a client from a GraphQL schema
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. Click the **+** **Add Artifacts** button in the canvas.
-2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
-3. Select **Import From GraphQL Schema** and provide the SDL file.
-4. Optionally provide a queries document (`.graphql`) to specify the operations your client needs.
-5. Click **Create**.
-6. WSO2 Integrator generates a type-safe GraphQL client with methods for each operation.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
+:::note
+Client generation from GraphQL schemas is currently supported only through the Ballerina CLI (pro-code). Visual Designer support for GraphQL client generation is not yet available.
+:::
 
 ```bash
 # Generate a GraphQL client
@@ -256,9 +244,6 @@ function createOrder(string customerId, gql:LineItemInput[] items)
     return check orderApi->createOrder(input);
 }
 ```
-
-</TabItem>
-</Tabs>
 
 ## Exporting a GraphQL schema from Ballerina
 

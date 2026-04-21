@@ -164,7 +164,7 @@ Yes. WSO2 provides migration guides and tooling to help transition from other in
 
 ### Can I run WSO2 MI and WSO2 Integrator side by side?
 
-Yes. The two products use different runtimes and can coexist in the same environment. This allows you to adopt WSO2 Integrator for new projects while continuing to run your existing MI deployments. You can also migrate MI integrations incrementally using the [migration tools](/docs/develop/tools/migration-tools). For MI-specific guidance, refer to the [MI documentation](https://mi.docs.wso2.com).
+Yes. The two products use different runtimes and can coexist in the same environment. This allows you to adopt WSO2 Integrator for new projects while continuing to run your existing MI deployments. You can also migrate MI integrations incrementally using the [migration tools](/docs/develop/tools/migration-tools/overview). For MI-specific guidance, refer to the [MI documentation](https://mi.docs.wso2.com).
 
 ## What's Next
 
