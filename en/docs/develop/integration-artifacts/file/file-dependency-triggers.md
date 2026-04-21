@@ -10,8 +10,6 @@ import TabItem from '@theme/TabItem';
 
 By default, an FTP/SFTP listener triggers as soon as it detects a new file. In production, you often need more control: process only `.csv` files, skip files that are still being uploaded, or wait for a companion file (like a `.done` marker) before processing.
 
-These trigger conditions are configured at the service level with `@ftp:ServiceConfig`.
-
 ## File name pattern
 
 The `fileNamePattern` field accepts a regex that filters which files trigger the handler. Files that don't match are ignored.
@@ -19,7 +17,7 @@ The `fileNamePattern` field accepts a regex that filters which files trigger the
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **FTP Integration Configuration** panel, expand **Advanced Configurations** and set the **File Name Pattern** field to a regex (for example, `.*\.csv`).
+On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileNamePattern**, and enter a regex (for example, `.*\.csv`).
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -53,7 +51,7 @@ The `fileAgeFilter` field prevents processing files that are too new (still bein
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **FTP Integration Configuration** panel, expand **Advanced Configurations** and configure the **File Age Filter** with minimum and maximum age values in seconds.
+On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileAgeFilter**, and set **minAge** and/or **maxAge** in seconds.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -89,7 +87,7 @@ The `fileDependencyConditions` field blocks processing until one or more related
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **FTP Integration Configuration** panel, expand **Advanced Configurations** and configure **File Dependency Conditions**. Set the target pattern to match the data file, and add required files that must be present before processing triggers.
+On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileDependencyConditions**, and add an entry. Set the target pattern to match the data file, and list the required files that must be present before processing triggers.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">

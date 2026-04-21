@@ -8,9 +8,9 @@
 
 ---
 
-## Page: Overview & Architecture
+## Page: Overview and architecture
 
-**File:** `en/docs/get-started/overview-&-architecture.md`
+**File:** `en/docs/get-started/overview-and-architecture.md`
 **Status:** EXISTS — review and enhance if needed
 
 **What to cover:**
@@ -63,7 +63,7 @@ Components to cover (in this order):
 
 ---
 
-## Page: System Requirements & Prerequisites
+## Page: System requirements and prerequisites
 
 **File:** `en/docs/get-started/system-requirements.md`
 
@@ -89,7 +89,7 @@ Components to cover (in this order):
 
 ---
 
-## Page: Create Your First Project
+## Page: Create your first project
 
 **File:** `en/docs/get-started/first-project.md`
 
@@ -117,7 +117,29 @@ Components to cover (in this order):
 
 ---
 
-## Page: Quick Start — Build an API Integration
+## Page: Quick start — Build an automation
+
+**File:** `en/docs/get-started/quick-start-automation.md`
+
+**What to cover:**
+- Scheduled task that runs every N minutes
+- Or: one-shot automation triggered by an event
+
+---
+
+## Page: Quick start — Build an AI agent
+
+**File:** `en/docs/get-started/quick-start-ai-agent.md`
+
+**What to cover:**
+- Simple AI agent with one tool
+- Connect to OpenAI or Anthropic
+- Cross-link to GenAI section for deep dive
+- Note: This is a gateway page — detailed AI content lives in GenAI
+
+---
+
+## Page: Quick start — Build an API integration
 
 **File:** `en/docs/get-started/quick-start-api.md`
 **Status:** EXISTS — review
@@ -131,52 +153,19 @@ Components to cover (in this order):
 
 ---
 
-## Page: Quick Start — Build an Event Integration
+## Page: Quick start — Build an event-driven integration
 
 **File:** `en/docs/get-started/quick-start-event.md`
 
-**Same pattern as API quick start but for:**
+**What to cover:**
 - Kafka consumer that processes messages
 - Or: webhook listener that reacts to GitHub events
 
 ---
 
-## Page: Quick Start — Build a File Integration
+## Page: Quick start — Build a file-driven integration
 
 **File:** `en/docs/get-started/quick-start-file.md`
 
-**Same pattern but for:**
+**What to cover:**
 - FTP/SFTP file watcher that processes uploaded files
-
----
-
-## Page: Quick Start — Build an Automation
-
-**File:** `en/docs/get-started/quick-start-automation.md`
-
-**Same pattern but for:**
-- Scheduled task that runs every N minutes
-- Or: one-shot automation triggered by an event
-
----
-
-## Page: Quick Start — Build a Data Service (bal persist)
-
-**File:** `en/docs/get-started/quick-start-data-service.md`
-
-**Same pattern but for:**
-- Type-safe CRUD service using `bal persist`
-- Connect to MySQL/PostgreSQL
-- Generate client API from data model
-
----
-
-## Page: Quick Start — Build an AI Agent
-
-**File:** `en/docs/get-started/quick-start-ai-agent.md`
-
-**Same pattern but for:**
-- Simple AI agent with one tool
-- Connect to OpenAI or Anthropic
-- Cross-link to GenAI section for deep dive
-- Note: This is a gateway page — detailed AI content lives in GenAI

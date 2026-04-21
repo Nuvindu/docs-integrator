@@ -12,9 +12,9 @@ Connect anything, and solve any integration challenge. Connect AI agents, APIs, 
 
 Orchestrate intelligent flows by combining built-in capabilities with a wide array of connectors to seamlessly integrate data, APIs, and Model Context Protocol (MCP) servers.
 
-- AI agents and GenAI applications: Connect AI agents to your preferred models, knowledge bases, and tools to provide access to information and knowledge. Integrate models, knowledge bases, and AI agents into the applications you build.
-- Task automations: Streamline repetitive workflows and improve operational efficiency.
-- Integrations as APIs: Expose your integrations securely to internal and external consumers.
+- Automation: Streamline repetitive workflows and improve operational efficiency.
+- AI agents and GenAI apps: Build AI agents that use tools, maintain memory, and orchestrate multi-step workflows. Connect AI agents to your preferred models, knowledge bases, and tools.
+- Integration as an API: Expose your integrations securely to internal and external consumers.
 - Event-driven integration: React to events in real time across your distributed architecture.
 - File-driven integration: Process batches and large files efficiently and reliably.
 
@@ -64,7 +64,7 @@ Manage zero infrastructure. WSO2 handles provisioning, upgrades, scaling, and av
 - Platform engineers: standardizing integration infrastructure across teams.
 - Teams modernizing from legacy ESBs: looking for a clean break from XML-heavy, proprietary tooling.
 
-## What's next
+## Next steps
 
 - [Key concepts](key-concepts.md): Learn the product vocabulary.
-- [Install WSO2 Integrator IDE](install.md): Get set up in 5 minutes.
+- [Install WSO2 Integrator](install.md): Install and start building in minutes.

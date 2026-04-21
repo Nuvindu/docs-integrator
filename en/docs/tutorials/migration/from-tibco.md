@@ -108,4 +108,4 @@ service /api on new http:Listener(8090) {
 
 - [Coming from WSO2 MI](from-wso2-mi.md) -- For existing WSO2 MI users
 - [Coming from MuleSoft](from-mulesoft.md) -- MuleSoft migration guide
-- [Migration Tools](/docs/develop/tools/migration-tools) -- Automated migration tool reference
+- [Migration Tools](/docs/develop/tools/migration-tools/overview) -- Automated migration tool reference

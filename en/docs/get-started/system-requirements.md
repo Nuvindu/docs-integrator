@@ -1,10 +1,10 @@
 ---
 sidebar_position: 1
-title: System Requirements & Prerequisites
+title: System Requirements and Prerequisites
 description: Hardware, software, and network requirements for WSO2 Integrator development.
 ---
 
-# System Requirements & Prerequisites
+# System Requirements and Prerequisites
 
 Before you install WSO2 Integrator, make sure your development environment meets these requirements.
 
@@ -41,6 +41,36 @@ Any JRE 21 distribution works. Tested distributions:
 | OpenJRE | 21 |
 | Oracle JRE | 21 |
 
+### Java setup
+
+Install a supported JDK/JRE:
+
+```bash
+# macOS (Homebrew)
+brew install openjdk@21
+
+# Ubuntu / Debian
+sudo apt install openjdk-21-jdk
+
+# Windows (winget)
+winget install Microsoft.OpenJDK.21
+```
+
+Verify the installation:
+
+```bash
+java -version
+```
+
+Set `JAVA_HOME` if it's not already configured:
+
+```bash
+# macOS
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+
+# Linux
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+```
 ## Network requirements
 
 The development environment needs internet access for:

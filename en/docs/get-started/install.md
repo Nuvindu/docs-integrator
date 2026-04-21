@@ -68,7 +68,7 @@ After launching WSO2 Integrator:
 2. Create a new project or open an existing one to verify that everything is working.
 3. The IDE displays the visual designer and available tools.
 
-## What's next
+## Next steps
 
 - [Create your first project](first-project.md): Generate a project structure.
 - [Understand the IDE](understand-the-ide.md): Learn the visual designer.
