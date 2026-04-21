@@ -29,7 +29,7 @@ OrderServiceClient client = check new ("http://localhost:9090");
 Order order = check client->GetOrder({order_id: "ORD-001"});
 ```
 
-### Work with protobuf any type
+### Work with protobuf Any type
 
 ```ballerina
 import ballerina/protobuf.types.'any;

@@ -99,7 +99,7 @@ WSO2 Integrator supports three primary integration types:
 - **Automations:** Scheduled or manually triggered jobs that run without an external request (cron-based, interval-based, or one-time)
 - **Event Handlers:** Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, MQTT, or other event sources
 
-### What is the integration control plane (ICP)?
+### What is the Integration Control Plane (ICP)?
 
 The ICP is a monitoring and management dashboard for deployed integrations. It provides:
 

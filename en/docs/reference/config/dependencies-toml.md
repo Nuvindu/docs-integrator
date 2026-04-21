@@ -22,7 +22,7 @@ The `Dependencies.toml` file is an auto-generated lock file that records the exa
 
 The file uses the [TOML](https://toml.io) format and contains the following sections.
 
-### `[Ballerina]`
+### `[ballerina]`
 
 Records the Ballerina distribution version used to resolve the dependencies.
 

@@ -125,7 +125,7 @@ The Avro API is class-based. Create a `Schema` instance, then call its methods t
 | `toAvro` | `toAvro(anydata data) returns byte[]\|Error` | Serialize a Ballerina value to Avro binary format. |
 | `fromAvro` | `fromAvro(byte[] data, typedesc<anydata> targetType = <>) returns targetType\|Error` | Deserialize Avro bytes to a typed Ballerina value. The target type is inferred from the return context. |
 
-## Supported avro types
+## Supported Avro types
 
 | Avro type | Ballerina type |
 |-----------|---------------|

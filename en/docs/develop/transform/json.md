@@ -144,7 +144,8 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Type-safe JSON with `Ballerina/data.jsondata`
+
+## Type-Safe JSON with `ballerina/data.jsondata`
 
 The `ballerina/data.jsondata` module provides type-safe conversion from JSON to Ballerina records. Define a record type matching your expected structure and parse directly into it.
 

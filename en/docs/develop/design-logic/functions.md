@@ -82,7 +82,7 @@ check sendNotification("user@example.com", "Order shipped",
     channel = "sms", urgent = true);
 ```
 
-## REST parameters
+## Rest parameters
 
 Accept a variable number of arguments:
 
