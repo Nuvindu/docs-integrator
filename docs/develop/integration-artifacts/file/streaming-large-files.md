@@ -1,0 +1,82 @@
+---
+title: Streaming Large Files
+---
+
+# Streaming Large Files
+
+By default, a file handler loads the whole file into memory before it runs. For files in the hundreds of megabytes or larger, that can exhaust the integration's memory budget. Turning on **Stream (Large Files)** when you add a handler changes this: the runtime delivers the content to the handler a row (CSV) or chunk (RAW) at a time, so memory use stays flat no matter how big the file is.
+
+## When to stream
+
+| Scenario | What to pick |
+|---|---|
+| Files smaller than ~50 MB | Leave **Stream** off. Simpler handler code, and you get the whole file at once. |
+| CSV files larger than ~50 MB | Tick **Stream**. Define a row schema so each row arrives as a typed record. |
+| Binary files larger than ~50 MB | Pick **RAW** as the File Format and tick **Stream**. Chunks arrive as `byte[]`. |
+
+Streaming is supported on **CSV** and **RAW** handlers only. **JSON** and **XML** are always parsed as a single document — tick **Stream** on those formats and the form ignores it.
+
+## Enabling streaming
+
+On the Add File Handler form:
+
+1. Pick **onCreate** as the handler variant and the appropriate **File Format** — **CSV** or **RAW**.
+2. (CSV only) Click **+ Define Row Schema** and describe each column as a field on a Ballerina record — for example, a row with `orderId` / `quantity` / `unitPrice`. This lets each row arrive as a typed record instead of a raw `string[]`.
+3. Tick **Stream (Large Files)**.
+4. Fill in **After File Processing** and the rest of the form as usual, then click **Save**.
+
+The handler is saved with its `content` parameter wrapped in a stream — `stream<Order, error?>` for a typed CSV, `stream<string[], error?>` if you skipped the row schema, or `stream<byte[], error?>` for RAW.
+
+**Streaming CSV into typed records:**
+
+```ballerina
+type Order record {|
+    string orderId;
+    string customerId;
+    string product;
+    int quantity;
+    decimal unitPrice;
+|};
+
+service on ftpListener {
+
+    @ftp:FunctionConfig {
+        afterProcess: {moveTo: string `/processed`},
+        afterError: {moveTo: string `/errors`}
+    }
+    remote function onFileCsv(stream<Order, error?> content,
+                              ftp:FileInfo fileInfo) returns error? {
+        check content.forEach(function(Order 'order) {
+            log:printInfo(string `Order: ${'order.orderId}, Qty: ${'order.quantity}`);
+        });
+    }
+}
+```
+
+**Streaming raw CSV rows** (skip the row schema — each row is a `string[]`):
+
+```ballerina
+remote function onFileCsv(stream<string[], error?> content,
+                          ftp:FileInfo fileInfo) returns error? {
+    check content.forEach(function(string[] row) {
+        // row[0], row[1], … — positional column access
+    });
+}
+```
+
+**Streaming binary chunks:**
+
+```ballerina
+remote function onFile(stream<byte[], error?> content,
+                       ftp:FileInfo fileInfo) returns error? {
+    check content.forEach(function(byte[] chunk) {
+        // write each chunk to a local file, an outbound HTTP body, etc.
+    });
+}
+```
+
+## What's next
+
+- [FTP / SFTP](ftp-sftp.md) — service, listener, and file-handler reference
+- [CSV fault tolerance](csv-fault-tolerance.md) — skip malformed rows and keep the stream going
+- [File dependency and trigger conditions](file-dependency-triggers.md) — control when files are processed
