@@ -1671,6 +1671,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/udp/action-reference',
             'connectors/catalog/built-in/udp/trigger-reference',
+            'connectors/catalog/built-in/udp/example',
           ],
         },
         {
