@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
 import { useLocation } from '@docusaurus/router';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import DocSidebarDesktop from '@theme/DocSidebar/Desktop';
 import type { PropSidebarItem, PropSidebarItemCategory } from '@docusaurus/plugin-content-docs';
 import { usePluginData } from '@docusaurus/useGlobalData';
@@ -33,8 +34,15 @@ function forceCollapsed(items: PropSidebarItem[]): PropSidebarItem[] {
   });
 }
 
-function isHomepage(pathname: string): boolean {
-  return pathname === '/' || pathname === '';
+/**
+ * Compare against `useBaseUrl('/')` instead of a literal `'/'` so the check
+ * works under non-root deployments (e.g. the GitHub Pages preview at
+ * `wso2.github.io/docs-integrator/`, where `pathname` is `/docs-integrator/`).
+ * Trailing slashes are normalized so `/foo` and `/foo/` both match.
+ */
+function isHomepage(pathname: string, homeUrl: string): boolean {
+  const norm = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+  return norm(pathname) === norm(homeUrl);
 }
 
 function HamburgerIcon(): ReactNode {
@@ -134,7 +142,8 @@ function useIsDesktop(): boolean {
 
 export default function SiteNav(): ReactNode {
   const { pathname } = useLocation();
-  const onHome = isHomepage(pathname);
+  const homeUrl = useBaseUrl('/');
+  const onHome = isHomepage(pathname, homeUrl);
   const isDesktop = useIsDesktop();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
