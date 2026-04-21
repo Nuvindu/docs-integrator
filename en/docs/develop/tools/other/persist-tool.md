@@ -7,7 +7,7 @@ description: Generate type-safe data persistence clients for multiple data store
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Persist tool
+# Persist Tool
 
 The `bal persist` tool generates type-safe client APIs for data persistence across multiple data stores. You define your data model using Ballerina record types, and the tool generates the client code to perform CRUD operations without writing store-specific queries.
 
