@@ -45,7 +45,7 @@ environment = "dev"
 project = "<project name>"
 integration = "<integration name>"
 runtime = "<unique id for the runtime>"
-secret = "eb4134aa.23bd7762-c0f6-4cd8-8fb5-4d5c1c5272ffefc943db-7a93-47a9-b7d9-298340e5168d"
+secret = "<your-secret-here>"
 # serverUrl="https://<hostname>:9445"
 ```
 
@@ -78,6 +78,11 @@ import wso2/icp.runtime.bridge as _;
 
 1. Navigate to `https://localhost:9446` in your browser.
 2. Enter the default username (`admin`) and password (`admin`), then click the **Sign In** button.
+
+   :::caution Security Recommendation
+   Default credentials must be changed before using ICP in production. Update the admin password account through **Profile > Change Password** in the ICP dashboard.
+   :::
+
 3. The project will be displayed on the **Home** page of the ICP dashboard.
 
    ![ICP Projects Dashboard](/img/deploy-operate/observe/icp-projects.png)
