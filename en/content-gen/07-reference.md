@@ -15,6 +15,7 @@
 **File:** `en/docs/reference/language/syntax.md`
 
 **What to cover:**
+
 - Complete syntax reference in table/code-block format
 - Variable declarations, type annotations
 - Function definitions
@@ -28,6 +29,7 @@
 **File:** `en/docs/reference/language/type-system.md`
 
 **What to cover:**
+
 - All Ballerina types in a hierarchy diagram
 - Structural types: record, array, map, tuple, table
 - Behavioral types: object, function, future, stream
@@ -40,6 +42,7 @@
 **File:** `en/docs/reference/language/stdlib.md`
 
 **What to cover:**
+
 - Categorized list of all langlib functions
 - String functions (length, substring, trim, etc.)
 - Array functions (push, pop, filter, map, etc.)
@@ -53,6 +56,7 @@
 **File:** `en/docs/reference/language/query-expressions.md`
 
 **What to cover:**
+
 - Complete query expression syntax
 - All clauses: from, where, let, join, order by, limit, select, collect
 - Supported input types (array, map, stream, table, XML)
@@ -64,6 +68,7 @@
 **File:** `en/docs/reference/language/concurrency.md`
 
 **What to cover:**
+
 - Workers: named workers, worker communication (send/receive)
 - Strands: lightweight threads, strand lifecycle
 - Lock: lock blocks for shared state
@@ -75,6 +80,7 @@
 **File:** `en/docs/reference/language/error-handling.md`
 
 **What to cover:**
+
 - Error type definition
 - Error construction
 - `check` keyword behavior
@@ -90,6 +96,7 @@
 **File:** `en/docs/reference/language/integration-features.md`
 
 **What to cover:**
+
 - Service declaration syntax
 - Resource function syntax (GET, POST, etc.)
 - Client objects (remote methods)
@@ -106,6 +113,7 @@
 **Files:** `en/docs/reference/config/ballerina-toml.md`, `config-toml.md`, `cloud-toml.md`, `dependencies-toml.md`, `environment-variables.md`
 
 **For each config file, cover:**
+
 - Complete key reference (every valid key with description)
 - Format: TOML syntax rules
 - Example file (complete, with comments)
@@ -113,6 +121,7 @@
 - Precedence rules (env vars override Config.toml, etc.)
 
 **Specific focus:**
+
 - **Ballerina.toml** — `[package]`, `[build-options]`, `[platform.java17]` sections
 - **Config.toml** — Configurable variable mapping, secret values, module-qualified keys
 - **Cloud.toml** — `[container.image]`, `[cloud.deployment]`, K8s resource limits
@@ -128,6 +137,7 @@
 **File:** `en/docs/reference/cli/bal-commands.md`
 
 **What to cover:**
+
 - Every `bal` subcommand with flags
 - `bal new`, `bal build`, `bal run`, `bal test`, `bal pack`, `bal push`, `bal pull`
 - `bal dist` for distribution management
@@ -139,6 +149,7 @@
 **Files:** `en/docs/reference/cli/bal-persist.md`, `bal-openapi.md`, `bal-graphql.md`, `bal-grpc.md`, `bal-edi.md`, `bal-health.md`
 
 **For each tool CLI, cover:**
+
 - All subcommands
 - All flags with descriptions
 - Input/output format
@@ -149,6 +160,7 @@
 **File:** `en/docs/reference/cli/update-tool.md`
 
 **What to cover:**
+
 - `bal dist list` — available distributions
 - `bal dist pull` — install specific version
 - `bal dist update` — update to latest
@@ -159,6 +171,7 @@
 **File:** `en/docs/reference/cli/scan-tool.md`
 
 **What to cover:**
+
 - `bal scan` — run static analysis
 - Available rules
 - Custom rule configuration
@@ -173,6 +186,7 @@
 **File:** `en/docs/reference/api/management-api.md`
 
 **What to cover:**
+
 - Runtime management REST API endpoints
 - Deployment info, service listing, health check
 - Authentication for management API
@@ -183,6 +197,7 @@
 **File:** `en/docs/reference/api/icp-api.md`
 
 **What to cover:**
+
 - Integration Control Plane API endpoints
 - Service registration, status reporting, log streaming
 - API authentication
@@ -192,6 +207,7 @@
 **File:** `en/docs/reference/api/ballerina-api-docs.md`
 
 **What to cover:**
+
 - Link to official Ballerina API docs
 - How to navigate module documentation
 - Key modules for integration developers
@@ -200,11 +216,78 @@
 
 ## Standalone Reference Pages
 
+### Section: WSO2 Integration Control Plane (ICP)
+
+The ICP reference is split across the following pages under `en/docs/reference/icp/`:
+
+#### Page: Overview
+
+**File:** `en/docs/reference/icp/index.md`
+
+**What to cover:**
+
+- Components: ICP Server, dashboard, database
+- Default ports table (9446, 9445, 5173) with protocol and description
+- Endpoint paths table (GraphQL, auth, observability, REST management)
+
+#### Page: Server Configuration
+
+**File:** `en/docs/reference/icp/server-configuration.md`
+
+**What to cover:**
+
+- All `deployment.toml` server settings keys (table format: key, type, default, description)
+- Authentication token settings (JWT secret, expiry times, refresh token rotation)
+
+#### Page: Database Configuration
+
+**File:** `en/docs/reference/icp/database.md`
+
+**What to cover:**
+
+- Main database configuration keys under `[icp_server.storage]` for MySQL, PostgreSQL, MSSQL, and H2 (with copy-paste TOML examples)
+- Credentials database flat keys with copy-paste TOML example
+- Security note: use placeholders / secrets manager for passwords
+
+#### Page: Authentication
+
+**File:** `en/docs/reference/icp/authentication.md`
+
+**What to cover:**
+
+- Authentication backend modes: Default User Store, LDAP, SSO/OIDC, Custom Backend
+- Full LDAP configuration key reference: connection, user search, group/role lookup
+- Required vs optional LDAP keys (flag keys with no default as required)
+
+#### Page: Connecting a Runtime to ICP
+
+**File:** `en/docs/reference/icp/runtime-connection.md`
+
+**What to cover:**
+
+- WSO2 Integrator (BI) runtime: `Config.toml` snippet with `[wso2.icp.runtime.bridge]`, `Ballerina.toml` `remoteManagement = true`, and `import wso2/icp.runtime.bridge as _` in `main.bal`
+- WSO2 Micro Integrator (MI) runtime: `deployment.toml` snippet with `[icp_config]` and `enabled = true`
+- Configuration key tables for both runtimes
+- Port 9445 noted as the runtime communication port
+
+#### Page: Deployment
+
+**File:** `en/docs/reference/icp/deployment.md`
+
+**What to cover:**
+
+- Docker Compose profiles table (local, mysql, postgresql, mssql, observability, test)
+- Distribution build command (`./gradlew build`) and output path
+- Extract, `cd` into the bin directory, and start commands for Linux/macOS and Windows
+
+---
+
 ### Page: Supported Protocols Reference
 
 **File:** `en/docs/reference/protocols.md`
 
 **What to cover:**
+
 - Complete table of all supported protocols
 - Columns: Protocol, Module, Listener, Client, Version
 - HTTP/1.1, HTTP/2, WebSocket, gRPC, GraphQL, TCP, UDP, SMTP, POP3, IMAP, FTP, SFTP, Kafka, RabbitMQ, MQTT, NATS, JMS, AMQP
@@ -214,6 +297,7 @@
 **File:** `en/docs/reference/data-formats.md`
 
 **What to cover:**
+
 - Complete table of all supported data formats
 - Columns: Format, Module, Read, Write, Transform
 - JSON, XML, CSV, YAML, TOML, EDI, FHIR, HL7, Protocol Buffers, Avro, Parquet
@@ -223,6 +307,7 @@
 **File:** `en/docs/reference/by-example.md`
 
 **What to cover:**
+
 - Link to Ballerina by Example (200+ examples)
 - Categorized index of most relevant examples for integration developers
 - How to run examples locally
@@ -232,6 +317,7 @@
 **File:** `en/docs/reference/specifications.md`
 
 **What to cover:**
+
 - Link to Ballerina language specification
 - Link to Ballerina library specifications
 - Link to Ballerina platform specification
@@ -245,6 +331,7 @@
 **File:** `en/docs/reference/appendix/system-requirements.md`
 
 **What to cover:**
+
 - Supported OS versions (Windows, macOS, Linux)
 - JDK requirements
 - WSO2 Integrator IDE version requirements
@@ -256,6 +343,7 @@
 **File:** `en/docs/reference/error-codes.md`
 
 **What to cover:**
+
 - Complete list of WSO2 Integrator error codes
 - For each: code, message, cause, resolution
 - Organized by category (build, runtime, deployment)
@@ -265,6 +353,7 @@
 **File:** `en/docs/reference/glossary.md`
 
 **What to cover:**
+
 - Every term used in the documentation, alphabetically
 - Each term: one-paragraph definition, link to relevant page
 - Include both WSO2 Integrator terms and Ballerina terms
@@ -274,6 +363,7 @@
 **File:** `en/docs/reference/faq.md`
 
 **What to cover:**
+
 - Top 20 most frequently asked questions
 - Organized by category: General, Development, Deployment, AI, Connectors
 - Each: question, concise answer, link to detailed page
@@ -283,6 +373,7 @@
 **File:** `en/docs/reference/appendix/troubleshooting.md`
 
 **What to cover:**
+
 - Common issues and solutions, organized by symptom
 - Build errors, runtime errors, deployment errors
 - Strand dump analysis
@@ -294,6 +385,7 @@
 **File:** `en/docs/reference/release-notes.md`
 
 **What to cover:**
+
 - Latest release highlights
 - New features, improvements, bug fixes
 - Breaking changes (if any)
