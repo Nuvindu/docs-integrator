@@ -687,6 +687,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/http/action-reference',
             'connectors/catalog/built-in/http/trigger-reference',
+            'connectors/catalog/built-in/http/example',
           ],
         },
         {
