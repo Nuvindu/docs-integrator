@@ -9,7 +9,9 @@ import TabItem from '@theme/TabItem';
 
 # Configuration Management
 
-Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags. WSO2 Integrator uses Ballerina's built-in configuration system to separate settings from code. You declare configurable variables in your source, provide values in a `Config.toml` file (or environment variables), and the runtime injects them at startup.
+Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags. 
+
+WSO2 Integrator uses Ballerina's built-in configuration system to separate settings from code. You declare configurable variables in your source, provide values in a `Config.toml` file (or environment variables), and the runtime resolves them at startup.
 
 ## Configurable variables
 
@@ -172,8 +174,8 @@ BAL_CONFIG_FILES=/etc/myapp/config.toml bal run
 | Priority | Source |
 |---|---|
 | 1 (highest) | Command-line arguments (`-Ckey=value`) |
-| 2 | Environment variables (`BAL_CONFIG_VAR_<name>`) |
-| 3 | `Config.toml` |
+| 2 | Environment variables (`BAL_CONFIG_VAR_<NAME>`) |
+| 3 | `Config.toml` (or files listed in `BAL_CONFIG_FILES`) |
 | 4 (lowest) | Default values declared in code |
 
 ## Per-environment configuration
@@ -220,7 +222,7 @@ BAL_CONFIG_FILES=config/prod.toml bal run
 
 ## Secrets management
 
-Never store secrets in plain text in `Config.toml` files committed to version control.
+Never store secrets in plain text in `Config.toml` files committed to version control. For detailed information on secrets handling and encryption (Kubernetes Secrets, vault integration, TLS), see [Secrets & Encryption](../../deploy-operate/secure/secrets-encryption.md).
 
 ### Environment variables for secrets
 
@@ -245,7 +247,11 @@ my-integration/
 ```
 
 ```bash
+# macOS / Linux
 BAL_CONFIG_FILES=Config.toml:secrets.toml bal run
+
+# Windows
+set BAL_CONFIG_FILES=Config.toml;secrets.toml && bal run
 ```
 
 ## Complete example
@@ -254,6 +260,8 @@ BAL_CONFIG_FILES=Config.toml:secrets.toml bal run
 import ballerina/http;
 import ballerina/log;
 import ballerinax/mysql;
+import ballerinax/mysql.driver as _;
+import ballerina/sql;
 
 configurable string dbHost = ?;
 configurable int dbPort = 3306;
@@ -274,20 +282,24 @@ final mysql:Client orderDb = check new (
 );
 
 final http:Client crmClient = check new (crmBaseUrl, {
-    httpVersion: http:HTTP_1_1,
-    customHeaders: {"X-API-Key": crmApiKey}
+    httpVersion: http:HTTP_1_1
 });
 
-service /api on new http:Listener(servicePort) {
+listener http:Listener httpListener = check new http:Listener(servicePort);
+
+service /api on httpListener {
 
     resource function get orders() returns json|error {
         if enableRequestLogging {
             log:printInfo("GET /api/orders");
         }
-        stream<record {}, error?> resultStream = orderDb->query(`SELECT * FROM orders`);
-        return resultStream.toArray();
+        stream<record {|anydata...;|}, sql:Error?> resultStream = orderDb->query(`SELECT * FROM orders`);
+        record {|anydata...;|}[] orderList = check from record {|anydata...;|} orderRow in resultStream
+            select orderRow;
+        return orderList.toJson();
     }
 }
+
 ```
 
 ## What's next
