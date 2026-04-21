@@ -23,7 +23,7 @@ MQTT event integrations subscribe to one or more MQTT topics and trigger an `onM
 
    | Field | Description | Default |
    |---|---|---|
-   | **Service URI** | URI of the MQTT broker (e.g., `mqtt://localhost:1883`). | Required |
+   | **Service URI** | URI of the MQTT broker (e.g., `tcp://localhost:1883`). | Required |
    | **Client ID** | Unique identifier for this client as recognised by the MQTT broker. | Required |
    | **Subscriptions** | Topic or topics to subscribe to. | Required |
 
@@ -48,7 +48,7 @@ MQTT event integrations subscribe to one or more MQTT topics and trigger an `onM
 import ballerinax/mqtt;
 import ballerina/log;
 
-configurable string serverUri = "mqtt://localhost:1883";
+configurable string serverUri = "tcp://localhost:1883";
 configurable string clientId = "unique_client_001";
 configurable string subscription = "topic1";
 
@@ -81,7 +81,7 @@ In the **Service Designer**, click the **Configure** icon in the header to open 
 | Field | Description | Default |
 |---|---|---|
 | **Name** | Identifier for the listener. | `mqttListener` |
-| **Server Uri** | URI of the remote MQTT server (e.g., `mqtt://localhost:1883`). | Required |
+| **Server Uri** | URI of the remote MQTT server (e.g., `tcp://localhost:1883`). | Required |
 | **Client Id** | Unique client ID to identify this listener to the broker. | Required |
 | **Subscriptions** | Topics to subscribe to. | Required |
 | **Connection Config** | Additional connection configuration as a record expression (e.g., credentials, keep-alive settings). | `{}` |
@@ -96,7 +96,7 @@ Click **Save Changes** to apply updates.
 
 ```ballerina
 listener mqtt:Listener mqttListener = new (
-    serverUri = "mqtt://localhost:1883",
+    serverUri = "tcp://localhost:1883",
     clientId = "unique_client_001",
     connectionConfig = {
         username: "device",
