@@ -20,7 +20,7 @@ WSO2 Integrator uses Ballerina's built-in configuration system to separate setti
 
 Configurable variables defined in your integration project are accessible across all its flows and nodes.
 
-![Flow canvas showing the Automation where configurable variable values are referenced in node expressions](/img/develop/design-logic/configurations/config-vars.png)
+![Config Editor UI in WSO2 Integrator showing configurable variables for the integration project and the panel for adding a new configurable variable](/img/develop/design-logic/configurations/config-editor-ui.png)
 
 To declare a configurable variable:
 
