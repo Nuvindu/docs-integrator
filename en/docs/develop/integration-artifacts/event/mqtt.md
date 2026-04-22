@@ -139,7 +139,7 @@ type SensorReading record {|
     string timestamp;
 |};
 
-listener mqtt:Listener mqttListener = new ("mqtt://localhost:1883", "unique_client_001", {topic: "sensors/+/readings", qos: 0});
+listener mqtt:Listener mqttListener = new ("tcp://localhost:1883", "unique_client_001", {topic: "sensors/+/readings", qos: 0});
 
 service mqtt:Service on mqttListener {
     remote function onMessage(mqtt:Message message) returns error? {
