@@ -28,11 +28,15 @@ Once installed, the tool provides commands for code generation and schema conver
 
 ## Generating Code from EDI Schemas
 
-The `bal edi` tool reads an EDI schema (in JSON format) and generates Ballerina record types and parser/serializer functions.
+The `bal edi` tool reads an EDI schema (in JSON format) and generates Ballerina record types and parser/serializer functions. Let's add the generated code into a separate library.
+
+1. Click the **Add** icon and select **Add New Library**.
+2. Enter `purchase_order` as the library name and confirm.
+
+Then, from inside the new library directory, run the code generator against your schema.
 
 ```bash
-# Generate Ballerina code from an EDI schema
-bal edi codegen -i order_schema.json -o generated/
+bal edi codegen -i path/to/order_schema.json -o order.bal
 ```
 
 This produces:
