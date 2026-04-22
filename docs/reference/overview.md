@@ -22,35 +22,44 @@ Ballerina language reference for integration developers:
 
 Project and deployment configuration files:
 
-| File | Purpose |
-|---|---|
-| **[Ballerina.toml](config/ballerina-toml.md)** | Project metadata and dependencies |
-| **[Config.toml](config/config-toml.md)** | Runtime configuration values |
-| **[Cloud.toml](config/cloud-toml.md)** | Cloud deployment settings |
-| **[Dependencies.toml](config/dependencies-toml.md)** | Locked dependency versions |
+| File                                                         | Purpose                           |
+| ------------------------------------------------------------ | --------------------------------- |
+| **[Ballerina.toml](config/ballerina-toml.md)**               | Project metadata and dependencies |
+| **[Config.toml](config/config-toml.md)**                     | Runtime configuration values      |
+| **[Cloud.toml](config/cloud-toml.md)**                       | Cloud deployment settings         |
+| **[Dependencies.toml](config/dependencies-toml.md)**         | Locked dependency versions        |
 | **[Environment Variables](config/environment-variables.md)** | Runtime environment configuration |
 
 ## CLI
 
 Command-line tools reference:
 
-| Command | Purpose |
-|---|---|
-| **[bal commands](cli/bal-commands.md)** | Core build, run, test, and package commands |
-| **[bal persist](cli/bal-persist.md)** | Data persistence code generation |
-| **[bal openapi](cli/bal-openapi.md)** | Generate services/clients from OpenAPI specs |
-| **[bal graphql](cli/bal-graphql.md)** | GraphQL schema generation |
-| **[bal grpc](cli/bal-grpc.md)** | Generate code from .proto files |
-| **[bal edi](cli/bal-edi.md)** | EDI schema processing |
-| **[bal health](cli/bal-health.md)** | FHIR/HL7 health tool |
-| **[Update Tool](cli/update-tool.md)** | Manage Ballerina distributions |
-| **[Scan Tool](cli/scan-tool.md)** | Static analysis rules |
+| Command                                 | Purpose                                      |
+| --------------------------------------- | -------------------------------------------- |
+| **[bal commands](cli/bal-commands.md)** | Core build, run, test, and package commands  |
+| **[bal persist](cli/bal-persist.md)**   | Data persistence code generation             |
+| **[bal openapi](cli/bal-openapi.md)**   | Generate services/clients from OpenAPI specs |
+| **[bal graphql](cli/bal-graphql.md)**   | GraphQL schema generation                    |
+| **[bal grpc](cli/bal-grpc.md)**         | Generate code from .proto files              |
+| **[bal edi](cli/bal-edi.md)**           | EDI schema processing                        |
+| **[bal health](cli/bal-health.md)**     | FHIR/HL7 health tool                         |
+| **[Update Tool](cli/update-tool.md)**   | Manage Ballerina distributions               |
+| **[Scan Tool](cli/scan-tool.md)**       | Static analysis rules                        |
 
 ## APIs
 
 - **[Management API](api/management-api.md)** — Runtime management endpoints
 - **[ICP API](api/icp-api.md)** — Integration Control Plane API
 - **[Ballerina API Docs](api/ballerina-api-docs.md)** — Standard library API documentation
+
+## WSO2 Integration Control Plane
+
+- **[Overview](icp/index.md)** — Components, default ports, and endpoints
+- **[Server Configuration](icp/server-configuration.md)** — Server settings and authentication token keys
+- **[Database Configuration](icp/database.md)** — Main database and credentials database setup
+- **[Authentication](icp/authentication.md)** — Authentication backends and LDAP configuration
+- **[Connecting a Runtime](icp/runtime-connection.md)** — Register an integration runtime with ICP
+- **[Deployment](icp/deployment.md)** — Docker Compose profiles and distribution commands
 
 ## Specifications & Formats
 
