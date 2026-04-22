@@ -24,8 +24,8 @@ Build AI-powered integrations with WSO2 Integrator — agents, RAG pipelines, MC
 
 ## Build With AI
 
-- **[AI Agents](agents/agent-architecture-concepts.md)** — Multi-agent orchestration, tool binding, memory
+- **[AI Agents](agents/architecture-concepts.md)** — Multi-agent orchestration, tool binding, memory
 - **[RAG Pipelines](rag/architecture-overview.md)** — Document ingestion, embeddings, vector databases
 - **[MCP Servers](mcp/model-context-protocol-overview.md)** — Expose and consume Model Context Protocol tools
 - **[LLM Connectivity](llm-connectivity/model-selection.md)** — Connect to OpenAI, Anthropic, Azure, and more
-- **[Guardrails](guardrails/inputoutput-guardrails.md)** — Content filtering, token management, responsible AI
+- **[Guardrails](guardrails/inputoutput.md)** — Content filtering, token management, responsible AI

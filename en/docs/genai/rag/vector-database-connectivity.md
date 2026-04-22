@@ -270,5 +270,5 @@ type DocumentChunk record {|
 
 - [Document Ingestion](document-ingestion-pipelines.md) — Build pipelines to populate your vector database
 - [Chunking & Embedding](chunking-embedding-strategies.md) — Optimize how content is vectorized
-- [Building a RAG Service](build-a-rag-service-end-end.md) — End-to-end RAG implementation
+- [Building a RAG Service](build-a-service-end-end.md) — End-to-end RAG implementation
 - [RAG Architecture Overview](architecture-overview.md) — Full pipeline design

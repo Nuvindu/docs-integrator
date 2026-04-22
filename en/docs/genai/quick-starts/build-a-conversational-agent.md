@@ -176,4 +176,4 @@ The memory component keeps track of previous messages so the agent maintains con
 - [Agent Architecture & Concepts](/docs/genai/agents/architecture-concepts) — Understand the full agent loop in depth
 - [Tool Binding](/docs/genai/agents/tool-binding) — Advanced tool patterns and function calling
 - [Memory Configuration](/docs/genai/agents/memory-configuration) — Customize how agents remember context
-- [Build a RAG Application](quick-start-build-a-rag-application.md) — Add knowledge retrieval to your agent
+- [Build a RAG Application](build-a-rag-application.md) — Add knowledge retrieval to your agent

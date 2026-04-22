@@ -217,4 +217,4 @@ The MCP server acts as a bridge between AI assistants and your enterprise system
 - [MCP Overview](/docs/genai/mcp/overview) — Deep dive into the Model Context Protocol
 - [MCP Security](/docs/genai/mcp/mcp-security) — Add authentication and authorization
 - [Consuming MCP Tools](/docs/genai/mcp/consuming-mcp-tools) — Call external MCP servers from your integrations
-- [Build a Conversational Agent](quick-start-build-a-conversational-agent.md) — Create an agent that uses MCP tools internally
+- [Build a Conversational Agent](build-a-conversational-agent.md) — Create an agent that uses MCP tools internally

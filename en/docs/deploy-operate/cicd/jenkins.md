@@ -215,5 +215,5 @@ For teams using feature branches, configure a Jenkins Multibranch Pipeline that 
 ## What's Next
 
 - [GitHub Actions](github-actions.md) -- CI/CD with GitHub-hosted runners
-- [GitLab CI/CD](gitlab-cicd.md) -- Pipeline configuration for GitLab
+- [GitLab CI/CD](gitlab.md) -- Pipeline configuration for GitLab
 - [Azure DevOps](azure-devops.md) -- Pipeline configuration for Azure DevOps

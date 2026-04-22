@@ -136,6 +136,6 @@ In this example, if a user asks "Do you have wireless chargers in stock?", the a
 
 ## Related Patterns
 
-- [RAG Pipeline](rag-pipeline-pattern.md) -- When the agent needs to retrieve knowledge from a vector store before answering.
+- [RAG Pipeline](rag-pipeline.md) -- When the agent needs to retrieve knowledge from a vector store before answering.
 - [Scatter-Gather](scatter-gather.md) -- When you need parallel fan-out without LLM reasoning.
 - [API Gateway & Orchestration](api-gateway-orchestration.md) -- For deterministic multi-service orchestration without an LLM.

@@ -284,5 +284,5 @@ jobs:
 ## What's Next
 
 - [Azure DevOps](azure-devops.md) -- Pipeline configuration for Azure DevOps
-- [GitLab CI/CD](gitlab-cicd.md) -- Pipeline configuration for GitLab
+- [GitLab CI/CD](gitlab.md) -- Pipeline configuration for GitLab
 - [Jenkins](jenkins.md) -- Pipeline configuration for Jenkins

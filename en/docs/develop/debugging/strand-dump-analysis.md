@@ -289,5 +289,5 @@ If the strand dump shows strands in `BLOCKED` or `WAITING` state but no deadlock
 ## What's next
 
 - [Performance Profiling](performance-profiling.md) — Profile execution time to find bottlenecks
-- [Editor Debugging](editor-debugging.md) — Step through concurrency issues in the debugger
-- [Remote Debugging](remote-debugging.md) — Attach to remote services for live diagnosis
+- [Editor Debugging](editor.md) — Step through concurrency issues in the debugger
+- [Remote Debugging](remote.md) — Attach to remote services for live diagnosis

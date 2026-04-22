@@ -37,7 +37,7 @@ Automate your build and deploy pipeline:
 
 - **[GitHub Actions](cicd/github-actions.md)** — Workflows for build, test, and deploy
 - **[Jenkins](cicd/jenkins.md)** — Pipeline configuration
-- **[GitLab CI](cicd/gitlab-cicd.md)** — `.gitlab-ci.yml` setup
+- **[GitLab CI](cicd/gitlab.md)** — `.gitlab-ci.yml` setup
 - **[Azure DevOps](cicd/azure-devops.md)** — Azure Pipelines integration
 
 ## Observe

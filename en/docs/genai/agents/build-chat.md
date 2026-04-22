@@ -254,7 +254,7 @@ type ChatToken record {|
 
 ## What's Next
 
-- [API-Exposed Agents](expose-agents-as-apis.md) — Expose agents as REST or GraphQL APIs
-- [Memory Configuration](configure-agent-memory.md) — Fine-tune how agents remember conversations
+- [API-Exposed Agents](expose-as-apis.md) — Expose agents as REST or GraphQL APIs
+- [Memory Configuration](configure-memory.md) — Fine-tune how agents remember conversations
 - [Tool Binding](tool-binding.md) — Advanced tool patterns and function calling
 - [Agent Tracing](/docs/genai/agent-observability/agent-tracing) — Monitor agent reasoning in production

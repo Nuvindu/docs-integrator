@@ -228,5 +228,5 @@ Alternatively, use the "Run" button on each example page at [ballerina.io/learn/
 ## See Also
 
 - [Ballerina Syntax Quick Reference](/docs/reference/language/syntax) -- Language cheat sheet
-- [Ballerina API Documentation](api/ballerina-api-documentation.md) -- Full API docs
+- [Ballerina API Documentation](api/ballerina-documentation.md) -- Full API docs
 - [Specifications](ballerina-specifications.md) -- Language and platform specifications

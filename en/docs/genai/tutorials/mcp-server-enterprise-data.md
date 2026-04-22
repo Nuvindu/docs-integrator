@@ -298,4 +298,4 @@ You now have an MCP server that:
 - [Exposing MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Advanced MCP server patterns
 - [MCP Security](/docs/genai/mcp/mcp-security) -- OAuth, mTLS, and authorization
 - [Consuming MCP Tools](/docs/genai/mcp/consuming-mcp-tools) -- Use this server from your own agents
-- [AI Customer Support Agent](tutorial-ai-customer-support-agent.md) -- Build an agent that uses MCP tools
+- [AI Customer Support Agent](ai-customer-support-agent.md) -- Build an agent that uses MCP tools

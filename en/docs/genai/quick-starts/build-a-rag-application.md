@@ -258,4 +258,4 @@ The RAG pipeline follows three stages:
 - [RAG Architecture Overview](/docs/genai/rag/architecture-overview) — Understand the full RAG pipeline design
 - [Chunking & Embedding Strategies](/docs/genai/rag/chunking-embedding) — Optimize how you split and vectorize content
 - [Vector Databases](/docs/genai/rag/vector-databases) — Connect to Pinecone, Weaviate, pgvector, and more
-- [Expose Integrations as an MCP Server](quick-start-expose-integrations-as-mcp-server.md) — Make your RAG service available to AI assistants
+- [Expose Integrations as an MCP Server](expose-integrations-as-mcp-server.md) — Make your RAG service available to AI assistants

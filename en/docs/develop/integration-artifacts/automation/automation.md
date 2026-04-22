@@ -50,4 +50,4 @@ Add your integration logic inside the `do` block. The `on fail` block handles an
 ## What's next
 
 - [Integration artifacts overview](../integration-artifacts.md) — understand all available artifact types
-- [HTTP service](../service/http-service.md) — expose your integration as a REST API
+- [HTTP service](../service/http.md) — expose your integration as a REST API

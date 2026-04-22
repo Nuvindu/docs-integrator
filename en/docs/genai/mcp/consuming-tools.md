@@ -252,7 +252,7 @@ final agent:ChatAgent readOnlyAgent = check new (
 
 ## What's Next
 
-- [Exposing MCP Servers](exposing-mcp-servers.md) -- Build your own MCP server
+- [Exposing MCP Servers](exposing-servers.md) -- Build your own MCP server
 - [MCP Security](security.md) -- Authenticate MCP connections
 - [Tool Binding](/docs/genai/agents/tool-binding) -- Advanced tool patterns for agents
 - [Multi-Agent Orchestration](/docs/genai/agents/multi-agent-orchestration) -- Compose MCP tools across agents

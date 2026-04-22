@@ -27,8 +27,8 @@ Collect the following information before investigating an issue. Missing even on
 ## Debugging tools
 
 - [Errors and Stack Traces](errors-and-stack-traces.md) -- Understand error messages, read stack traces, and diagnose common errors
-- [Editor Debugging](editor-debugging.md) -- Set breakpoints, step through code, and inspect variables in WSO2 Integrator
-- [Remote Debugging](remote-debugging.md) -- Attach a debugger to running services in remote environments
+- [Editor Debugging](editor.md) -- Set breakpoints, step through code, and inspect variables in WSO2 Integrator
+- [Remote Debugging](remote.md) -- Attach a debugger to running services in remote environments
 - [Strand Dump Analysis](strand-dump-analysis.md) -- Analyze strand dumps to diagnose concurrency and deadlock issues
 - [Performance Profiling](performance-profiling.md) -- Profile execution time and identify bottlenecks with the Ballerina profiler
 
@@ -38,10 +38,10 @@ Collect the following information before investigating an issue. Missing even on
 |---------|------------|
 | Compiler error message | [Errors and Stack Traces](errors-and-stack-traces.md) -- understand the error format and common fixes |
 | Runtime panic or unexpected crash | [Errors and Stack Traces](errors-and-stack-traces.md) -- learn to read panics and stack traces |
-| Unexpected output or wrong data | [Editor Debugging](editor-debugging.md) -- set breakpoints and inspect variables |
+| Unexpected output or wrong data | [Editor Debugging](editor.md) -- set breakpoints and inspect variables |
 | Service not responding | [Strand Dump Analysis](strand-dump-analysis.md) -- check for blocked strands |
 | Slow response times | [Performance Profiling](performance-profiling.md) -- identify bottlenecks |
-| Works locally, fails in deployment | [Remote Debugging](remote-debugging.md) -- attach to the deployed service |
+| Works locally, fails in deployment | [Remote Debugging](remote.md) -- attach to the deployed service |
 | Intermittent failures | [Strand Dump Analysis](strand-dump-analysis.md) -- look for race conditions |
 | Configurable values not loaded | Check [Top configuration mistakes](#top-configuration-mistakes) below |
 | Dependency or package resolution failure | Delete `Dependencies.toml` and rebuild; check network access |
@@ -211,5 +211,5 @@ public function parsePayload(json raw) returns Order|error {
 ## What's next
 
 - Start with [Errors and Stack Traces](errors-and-stack-traces.md) to learn how to read and diagnose error messages.
-- Use [Editor Debugging](editor-debugging.md) if you are developing locally.
-- Jump to [Remote Debugging](remote-debugging.md) if you need to troubleshoot a deployed service.
+- Use [Editor Debugging](editor.md) if you are developing locally.
+- Jump to [Remote Debugging](remote.md) if you need to troubleshoot a deployed service.

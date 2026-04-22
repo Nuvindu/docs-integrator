@@ -140,6 +140,6 @@ ssh -L 5005:localhost:5005 user@remote-server
 
 ## What's next
 
-- [Editor Debugging](editor-debugging.md) — Local debugging fundamentals
+- [Editor Debugging](editor.md) — Local debugging fundamentals
 - [Strand Dump Analysis](strand-dump-analysis.md) — Diagnose concurrency issues
 - [Performance Profiling](performance-profiling.md) — Identify performance bottlenecks

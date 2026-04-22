@@ -109,5 +109,5 @@ public function main(string param1 = "", int param2 = 0) returns error? {
 ## What's next
 
 - [Integration artifacts overview](integration-artifacts.md) — understand all available artifact types
-- [HTTP service](service/http-service.md) — expose your integration as a REST API
+- [HTTP service](service/http.md) — expose your integration as a REST API
 - [Error handling](../design-logic/error-handling.md) — handle automation failures

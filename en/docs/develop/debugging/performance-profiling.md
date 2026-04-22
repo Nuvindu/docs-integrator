@@ -182,4 +182,4 @@ Use this checklist when profiling reveals performance issues:
 ## What's next
 
 - [Strand Dump Analysis](strand-dump-analysis.md) — Diagnose concurrency issues
-- [Editor Debugging](editor-debugging.md) — Step through slow code paths
+- [Editor Debugging](editor.md) — Step through slow code paths

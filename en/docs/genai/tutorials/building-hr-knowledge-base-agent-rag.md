@@ -491,7 +491,7 @@ You now have an HR knowledge base agent that:
 
 ## What's Next
 
-- [RAG Knowledge Base](tutorial-rag-knowledge-base.md) -- Explore advanced RAG techniques
+- [RAG Knowledge Base](rag-knowledge-base.md) -- Explore advanced RAG techniques
 - [Chunking & Embedding](/docs/genai/rag/chunking-embedding) -- Optimize chunking strategies for policy documents
 - [Memory Configuration](/docs/genai/agents/memory-configuration) -- Configure persistent memory for long conversations
 - [AI Governance and Security](/docs/genai/reference/ai-governance) -- Add governance and audit logging

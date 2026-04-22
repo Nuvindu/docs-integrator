@@ -45,4 +45,4 @@ Common format-to-format transformation patterns supported in WSO2 Integrator:
 - [Data Transformation - XML](/docs/develop/transform/xml) -- XML transformation guide
 - [Data Transformation - CSV](/docs/develop/transform/csv-flat-file) -- CSV processing guide
 - [Data Transformation - EDI](/docs/develop/transform/edi) -- EDI processing guide
-- [Ballerina API Documentation](../api/ballerina-api-documentation.md) -- Full API docs for all modules
+- [Ballerina API Documentation](../api/ballerina-documentation.md) -- Full API docs for all modules

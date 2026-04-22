@@ -39,7 +39,7 @@ WSO2 Integrator includes built-in debugging support. No additional configuration
 The debugger supports three session types:
 - **Program debugging** -- standard application debugging
 - **Test debugging** -- debugging test cases
-- **Remote debugging** -- attaching to running integrations (see [Remote Debugging](remote-debugging.md))
+- **Remote debugging** -- attaching to running integrations (see [Remote Debugging](remote.md))
 
 ## Setting Breakpoints
 
@@ -275,6 +275,6 @@ true
 
 ## What's Next
 
-- [Remote Debugging](remote-debugging.md) -- Debug services running in containers or remote servers
+- [Remote Debugging](remote.md) -- Debug services running in containers or remote servers
 - [Strand Dump Analysis](strand-dump-analysis.md) -- Diagnose concurrency issues
 - [Performance Profiling](performance-profiling.md) -- Find performance bottlenecks

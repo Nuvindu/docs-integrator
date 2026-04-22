@@ -339,7 +339,7 @@ You now have a customer support agent that:
 
 ## What's Next
 
-- [Multi-Agent Workflow](tutorial-multi-agent-workflow.md) -- Split this into specialist agents
-- [RAG Knowledge Base](tutorial-rag-knowledge-base.md) -- Add a knowledge base for FAQ answers
+- [Multi-Agent Workflow](multi-agent-workflow.md) -- Split this into specialist agents
+- [RAG Knowledge Base](rag-knowledge-base.md) -- Add a knowledge base for FAQ answers
 - [Agent Tracing](/docs/genai/agent-observability/agent-tracing) -- Add observability
 - [Content Filtering](/docs/genai/guardrails/content-filtering) -- Add content safety filters

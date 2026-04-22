@@ -288,7 +288,7 @@ To use your MCP server with Claude Desktop, add it to the Claude Desktop configu
 
 ## What's Next
 
-- [Consuming MCP Tools](consuming-mcp-tools.md) -- Use external MCP tools in your agents
+- [Consuming MCP Tools](consuming-tools.md) -- Use external MCP tools in your agents
 - [MCP Security](security.md) -- Secure your MCP endpoints with authentication
 - [MCP Overview](model-context-protocol-overview.md) -- Understand the protocol and transport options
 - [MCP Server for Enterprise Data](/docs/genai/tutorials/mcp-enterprise-data) -- End-to-end tutorial

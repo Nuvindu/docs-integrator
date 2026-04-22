@@ -315,7 +315,7 @@ service /api/v1/support on new http:Listener(8090) {
 
 ## What's Next
 
-- [Chat Agents](build-chat-agents.md) — Core chat agent patterns and configuration
-- [Memory Configuration](configure-agent-memory.md) — Manage conversation state across API calls
+- [Chat Agents](build-chat.md) — Core chat agent patterns and configuration
+- [Memory Configuration](configure-memory.md) — Manage conversation state across API calls
 - [Token & Cost Management](/docs/genai/guardrails/token-cost-management) — Control costs for API-exposed agents
 - [Performance Metrics](/docs/genai/agent-observability/performance-metrics) — Monitor agent API performance

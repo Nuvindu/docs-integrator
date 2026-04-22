@@ -41,28 +41,28 @@ Command-line tools reference:
 | Command                                 | Purpose                                      |
 | --------------------------------------- | -------------------------------------------- |
 | **[bal commands](cli/bal-command-reference.md)** | Core build, run, test, and package commands  |
-| **[bal persist](cli/bal-persist-cli.md)**   | Data persistence code generation             |
-| **[bal openapi](cli/bal-openapi-cli.md)**   | Generate services/clients from OpenAPI specs |
-| **[bal graphql](cli/bal-graphql-cli.md)**   | GraphQL schema generation                    |
-| **[bal grpc](cli/bal-grpc-cli.md)**         | Generate code from .proto files              |
-| **[bal edi](cli/bal-edi-cli.md)**           | EDI schema processing                        |
-| **[bal health](cli/bal-health-cli.md)**     | FHIR/HL7 health tool                         |
+| **[bal persist](cli/bal-persist.md)**   | Data persistence code generation             |
+| **[bal openapi](cli/bal-openapi.md)**   | Generate services/clients from OpenAPI specs |
+| **[bal graphql](cli/bal-graphql.md)**   | GraphQL schema generation                    |
+| **[bal grpc](cli/bal-grpc.md)**         | Generate code from .proto files              |
+| **[bal edi](cli/bal-edi.md)**           | EDI schema processing                        |
+| **[bal health](cli/bal-health.md)**     | FHIR/HL7 health tool                         |
 | **[Update Tool](cli/ballerina-update-tool.md)**   | Manage Ballerina distributions               |
-| **[Scan Tool](cli/bal-scan-cli.md)**       | Static analysis rules                        |
+| **[Scan Tool](cli/bal-scan.md)**       | Static analysis rules                        |
 
 ## APIs
 
-- **[Management API](api/api.md)** — Runtime management endpoints
-- **[ICP API](api/icp-api.md)** — Integration Control Plane API
-- **[Ballerina API Docs](api/ballerina-api-documentation.md)** — Standard library API documentation
+- **[Management API](api/management.md)** — Runtime management endpoints
+- **[ICP API](api/icp.md)** — Integration Control Plane API
+- **[Ballerina API Docs](api/ballerina-documentation.md)** — Standard library API documentation
 
 ## WSO2 Integration Control Plane
 
-- **[Overview](icp/integration-control-plane-icp.md)** — Components, default ports, and endpoints
+- **[Overview](icp/integration-control-plane.md)** — Components, default ports, and endpoints
 - **[Server Configuration](icp/server-configuration.md)** — Server settings and authentication token keys
 - **[Database Configuration](icp/database-configuration.md)** — Main database and credentials database setup
 - **[Authentication](icp/authentication.md)** — Authentication backends and LDAP configuration
-- **[Connecting a Runtime](icp/connecting-a-runtime-icp.md)** — Register an integration runtime with ICP
+- **[Connecting a Runtime](icp/connecting-a-runtime.md)** — Register an integration runtime with ICP
 - **[Deployment](icp/deployment.md)** — Docker Compose profiles and distribution commands
 
 ## Specifications & Formats
@@ -75,7 +75,7 @@ Command-line tools reference:
 ## Appendix
 
 - **[System Requirements](appendix/system-requirements.md)** — Supported platforms and versions
-- **[Error Codes](error-code-reference.md)** — Error code reference
+- **[Error Codes](error-code.md)** — Error code reference
 - **[Glossary](glossary.md)** — Terminology definitions
 - **[FAQ](faq.md)** — Frequently asked questions
 - **[Troubleshooting](appendix/troubleshooting.md)** — Common issues and solutions

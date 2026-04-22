@@ -220,5 +220,5 @@ In the pipeline, pass secrets as environment variables to the container:
 ## What's Next
 
 - [GitHub Actions](github-actions.md) -- CI/CD with GitHub-hosted runners
-- [GitLab CI/CD](gitlab-cicd.md) -- Pipeline configuration for GitLab
+- [GitLab CI/CD](gitlab.md) -- Pipeline configuration for GitLab
 - [Jenkins](jenkins.md) -- Pipeline configuration for Jenkins

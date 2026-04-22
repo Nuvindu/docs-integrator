@@ -136,5 +136,5 @@ Ballerina specifications follow a versioning scheme tied to Swan Lake releases.
 ## See Also
 
 - [Ballerina by Example](ballerina-by-example.md) -- Runnable code examples
-- [Ballerina API Documentation](api/ballerina-api-documentation.md) -- Module API docs
+- [Ballerina API Documentation](api/ballerina-documentation.md) -- Module API docs
 - [Release Notes](release-notes.md) -- Version history and migration notes
