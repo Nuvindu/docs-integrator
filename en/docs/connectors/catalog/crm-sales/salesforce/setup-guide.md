@@ -1,6 +1,10 @@
 ---
-title: Setup Guide
+connector: true
+connector_name: "salesforce"
+title: "Setup Guide"
+description: "How to set up and configure the ballerinax/salesforce connector."
 ---
+
 # Setup Guide
 
 This guide walks you through creating a Salesforce Connected App and obtaining the OAuth 2.0 credentials required to use the Salesforce connector.
@@ -88,3 +92,7 @@ https://your-instance.salesforce.com
 
 You can find it in the token exchange response as `instance_url`, or in Setup under **My Domain**.
 
+## Next steps
+
+- [Action Reference](action-reference.md) - Available operations
+- [Trigger Reference](trigger-reference.md) - Event-driven integration
