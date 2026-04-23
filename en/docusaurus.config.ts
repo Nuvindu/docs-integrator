@@ -168,6 +168,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'WSO2 MI Documentation', href: 'https://mi.docs.wso2.com' },
+            { label: 'WSO2 SI Documentation', href: 'https://si.docs.wso2.com/latest/' },
             { label: 'Ballerina Central', href: 'https://central.ballerina.io' },
             { label: 'Community Forums', href: 'https://discord.com/invite/wso2' },
             { label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/wso2' },
