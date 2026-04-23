@@ -94,8 +94,6 @@ configurable string ftpPassword = "admin";
 configurable string incomingPath = "/incoming";
 configurable string processedPath = "/processed";
 configurable string errorsPath = "/errors";
-
-configurable string errorLogPath = "./logs/inventory-errors.log";
 ```
 
 ## Step 4: Build the FTP listener and service
@@ -149,7 +147,7 @@ service on ftpListener {
     }
     remote function onError(ftp:Error ftpError) returns error? {
         do {
-            log:printError("Failed to parse the file content to the given schema content: " + ftpError.message());
+            log:printError("Failed to parse file content to the target schema: " + ftpError.message());
         } on fail error err {
             log:printError("Failed to handle the error", 'error = err);
             return err;
@@ -182,8 +180,6 @@ ftpPassword = "admin"
 incomingPath = "/incoming"
 processedPath = "/processed"
 errorsPath = "/errors"
-
-errorLogPath = "./logs/inventory-errors.log"
 ```
 
 ## Step 6: Prepare sample data
@@ -294,7 +290,7 @@ curl -T sample-data/bad-inventory.csv ftp://127.0.0.1:2123/incoming/bad-inventor
 Binding to `InventoryRecord[]` fails at the first bad row, so `onFileCsv` is never invoked. The FTP connector calls `onError` instead, which logs the failure and lets `afterProcess` move the file to `/errors`. Expected output:
 
 ```text
-time=... level=ERROR module=.../csv_ftp_processor message="Failed to parse the file content to the given schema content: <binding error detail>"
+time=... level=ERROR module=.../csv_ftp_processor message="Failed to parse file content to the target schema: <binding error detail>"
 ```
 
 Verify the file moved to `/errors` on the FTP server:
