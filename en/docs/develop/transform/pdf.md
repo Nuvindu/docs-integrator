@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: PDF Processing
-description: Render HTML to PDF, extract text, and convert PDF pages to images in Ballerina integrations.
+description: Extract text, convert pages to images, and render HTML to PDF in Ballerina integrations.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,91 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # PDF Processing
 
-Generate PDF documents from HTML, extract text from existing PDFs, and convert PDF pages to images. The `ballerina/pdf` module provides a single-call API for each task — rendering and parsing run locally, with no external service or headless browser required.
-
-## HTML to PDF Rendering
-
-Convert parameterized HTML templates into PDF bytes suitable for download, email attachments, or storage. The rendering engine covers document-style HTML and CSS — tables, inline images, fonts, colored cells, and injected stylesheets — without depending on a headless browser.
-
-### Rendering an HTML String
-
-Read or build an HTML string, then pass it to `pdf:parseHtml` to obtain the PDF bytes.
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. **Add a Variable step for the HTML** — In the flow designer, click **+** and select **Statement** → **Declare Variable**. Set the type to `string` and the name to `html`. Switch the toggle from **Record** to **Expression** and enter the HTML string (use a `string \`...\`` template to interpolate parameters).
-
-2. **Add a Function Call step for rendering** — Click **+** and select **Call Function**. Search for `parseHtml` under **pdf** and configure:
-   - **html***: `html`
-   - **Result***: `pdfBytes`
-   - **Type**: `byte[]`
-
-3. **Add a Function Call step for output** — Click **+** and select **Call Function**. Call `io:fileWriteBytes("./output.pdf", pdfBytes)` to save the PDF to disk, or assign `pdfBytes` to an `http:Response` payload to return it from a service.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-import ballerina/io;
-import ballerina/pdf;
-
-public function main() returns error? {
-    string html = string `<!DOCTYPE html>
-<html>
-  <body style="font-family: 'Liberation Sans'; padding: 24px;">
-    <h1>Invoice #1042</h1>
-    <p>Amount due: $240.00</p>
-  </body>
-</html>`;
-
-    byte[] pdfBytes = check pdf:parseHtml(html);
-    check io:fileWriteBytes("./invoice.pdf", pdfBytes);
-}
-```
-
-</TabItem>
-</Tabs>
-
-### Customizing Page Size, Margins, and Fonts
-
-`parseHtml` accepts a set of named options — page size, margins, a `maxPages` cap, custom fonts for non-Latin scripts, and extra CSS injected into every render.
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. **Add a Variable step for the font bytes (optional)** — If you need to render non-Latin scripts such as Chinese, Japanese, Korean, Arabic, or Devanagari, click **+** and select **Call Function**. Call `io:fileReadBytes("./resources/NotoSansSC.ttf")` and assign the result to a `byte[] & readonly` variable named `fontBytes`.
-
-2. **Add a Function Call step for rendering with options** — Click **+** and select **Call Function**. Search for `parseHtml` under **pdf** and add the named arguments:
-   - **html***: `html`
-   - **pageSize**: `pdf:LETTER`
-   - **margins**: `{top: 36, bottom: 36, left: 40, right: 40}`
-   - **customFonts**: `[{family: "NotoSansSC", content: fontBytes}]`
-   - **maxPages**: `50`
-   - **Result***: `pdfBytes`
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-import ballerina/io;
-import ballerina/pdf;
-
-final byte[] & readonly fontBytes = check io:fileReadBytes("./resources/NotoSansSC.ttf");
-
-public function renderWithOptions(string html) returns byte[]|error {
-    return pdf:parseHtml(html,
-        pageSize = pdf:LETTER,
-        margins = {top: 36, bottom: 36, left: 40, right: 40},
-        customFonts = [{family: "NotoSansSC", content: fontBytes}],
-        maxPages = 50);
-}
-```
-
-</TabItem>
-</Tabs>
-
-For the complete list of options, the `StandardPageSize` enum, the `CustomPageSize` record, and the `Font` record, see the [ballerina/pdf action reference](../../connectors/catalog/built-in/pdf/action-reference.md#conversionoptions).
+Extract text from existing PDFs, convert PDF pages to images, and generate PDF documents from HTML. The `ballerina/pdf` module provides a single-call API for each task — parsing and rendering run locally, with no external service or headless browser required.
 
 ## Text Extraction
 
@@ -208,7 +124,91 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Supported HTML and CSS
+## HTML to PDF Rendering
+
+Convert parameterized HTML templates into PDF bytes suitable for download, email attachments, or storage. The rendering engine covers document-style HTML and CSS — tables, inline images, fonts, colored cells, and injected stylesheets — without depending on a headless browser.
+
+### Rendering an HTML String
+
+Read or build an HTML string, then pass it to `pdf:parseHtml` to obtain the PDF bytes.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the HTML** — In the flow designer, click **+** and select **Statement** → **Declare Variable**. Set the type to `string` and the name to `html`. Switch the toggle from **Record** to **Expression** and enter the HTML string (use a `string \`...\`` template to interpolate parameters).
+
+2. **Add a Function Call step for rendering** — Click **+** and select **Call Function**. Search for `parseHtml` under **pdf** and configure:
+   - **html***: `html`
+   - **Result***: `pdfBytes`
+   - **Type**: `byte[]`
+
+3. **Add a Function Call step for output** — Click **+** and select **Call Function**. Call `io:fileWriteBytes("./output.pdf", pdfBytes)` to save the PDF to disk, or assign `pdfBytes` to an `http:Response` payload to return it from a service.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+```ballerina
+import ballerina/io;
+import ballerina/pdf;
+
+public function main() returns error? {
+    string html = string `<!DOCTYPE html>
+<html>
+  <body style="font-family: 'Liberation Sans'; padding: 24px;">
+    <h1>Invoice #1042</h1>
+    <p>Amount due: $240.00</p>
+  </body>
+</html>`;
+
+    byte[] pdfBytes = check pdf:parseHtml(html);
+    check io:fileWriteBytes("./invoice.pdf", pdfBytes);
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Customizing Page Size, Margins, and Fonts
+
+`parseHtml` accepts a set of named options — page size, margins, a `maxPages` cap, custom fonts for non-Latin scripts, and extra CSS injected into every render.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. **Add a Variable step for the font bytes (optional)** — If you need to render non-Latin scripts such as Chinese, Japanese, Korean, Arabic, or Devanagari, click **+** and select **Call Function**. Call `io:fileReadBytes("./resources/NotoSansSC.ttf")` and assign the result to a `byte[] & readonly` variable named `fontBytes`.
+
+2. **Add a Function Call step for rendering with options** — Click **+** and select **Call Function**. Search for `parseHtml` under **pdf** and add the named arguments:
+   - **html***: `html`
+   - **pageSize**: `pdf:LETTER`
+   - **margins**: `{top: 36, bottom: 36, left: 40, right: 40}`
+   - **customFonts**: `[{family: "NotoSansSC", content: fontBytes}]`
+   - **maxPages**: `50`
+   - **Result***: `pdfBytes`
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+```ballerina
+import ballerina/io;
+import ballerina/pdf;
+
+final byte[] & readonly fontBytes = check io:fileReadBytes("./resources/NotoSansSC.ttf");
+
+public function renderWithOptions(string html) returns byte[]|error {
+    return pdf:parseHtml(html,
+        pageSize = pdf:LETTER,
+        margins = {top: 36, bottom: 36, left: 40, right: 40},
+        customFonts = [{family: "NotoSansSC", content: fontBytes}],
+        maxPages = 50);
+}
+```
+
+</TabItem>
+</Tabs>
+
+For the complete list of options, the `StandardPageSize` enum, the `CustomPageSize` record, and the `Font` record, see the [ballerina/pdf action reference](../../connectors/catalog/built-in/pdf/action-reference.md#conversionoptions).
+
+### Supported HTML and CSS
 
 The renderer covers the subset of HTML and CSS needed for document-style templates — headings, paragraphs, tables with `colspan`, solid borders, background colors, percentage widths, inline images, and embedded data URLs all work as expected. Two bundled fonts, `Liberation Sans` and `Liberation Serif`, cover most Western European scripts. For other scripts, load a font via `customFonts`.
 
@@ -280,14 +280,14 @@ For a full step-by-step walkthrough covering templates, custom fonts for non-Lat
 
 ## Best Practices
 
-- **Parameterize templates with string templates** — use Ballerina's `string \`...\`` syntax for interpolation rather than string concatenation; it is safer and more readable.
-- **Escape untrusted input** — any value that ends up in the HTML must be escaped for angle brackets, quotes, and ampersands. Treat query parameters, form inputs, and user-supplied data as untrusted.
+- **Prefer `file*` and `url*` variants when the input location is fixed** — they skip the intermediate `byte[]` and reduce one step of plumbing.
+- **Parameterize HTML templates with string templates** — use Ballerina's `string \`...\`` syntax for interpolation rather than string concatenation; it is safer and more readable.
+- **Escape untrusted input before rendering** — any value that ends up in the HTML must be escaped for angle brackets, quotes, and ampersands. Treat query parameters, form inputs, and user-supplied data as untrusted.
 - **Load custom fonts once at module level** — font files are several megabytes each. Read them into a `readonly` module-level variable at startup so every render reuses the same bytes.
 - **Set `maxPages` on user-driven renders** — cap the number of pages rendered from any template that takes external input to avoid runaway documents and memory pressure.
-- **Prefer `file*` and `url*` variants when the input location is fixed** — they skip the intermediate `byte[]` and reduce one step of plumbing.
 
 ## What's Next
 
-- [PDF Generation Service](../../tutorials/pdf-generation-service.md) — end-to-end tutorial covering templates, custom fonts, and production considerations.
 - [ballerina/pdf action reference](../../connectors/catalog/built-in/pdf/action-reference.md) — full signatures, supporting records, and error types.
+- [PDF Generation Service](../../tutorials/pdf-generation-service.md) — end-to-end tutorial covering HTML templates, custom fonts, and production considerations.
 - [HTTP Service](../integration-artifacts/service/http-service.md) — return PDFs as binary payloads from an HTTP resource.
