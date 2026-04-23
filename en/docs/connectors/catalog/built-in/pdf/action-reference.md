@@ -34,7 +34,7 @@ Converts an HTML document to PDF bytes. Supports configurable page size, margins
 | `html` | <code>string</code> | Yes | The HTML document to render. Inline CSS and data-URL images are supported. |
 | `options` | <code>*ConversionOptions</code> | No | Included-record options — see the [ConversionOptions](#conversionoptions) record below. |
 
-**Returns:** `byte[]|Error`
+**Returns:** `byte[]|Error` — the rendered PDF as a byte array.
 
 **Sample code:**
 
