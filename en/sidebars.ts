@@ -172,6 +172,7 @@ const sidebars: SidebarsConfig = {
             'develop/transform/xml',
             'develop/transform/csv-flat-file',
             'develop/transform/edi',
+            'develop/transform/pdf',
             'develop/transform/yaml-toml',
             'develop/transform/type-system',
             'develop/transform/query-expressions',
