@@ -88,18 +88,11 @@ remote function onFile(stream<byte[], error?> content,
 </TabItem>
 </Tabs>
 
-## When a row fails to parse
+:::note When a row fails to parse
+A bad row (malformed CSV or wrong type) stops the stream right there, and the file goes to your **After Error** destination. Anything your handler already did for earlier rows — database writes, API calls, published messages — stays. 
 
-By default, if a row can't be parsed (wrong type for a typed schema, malformed CSV), the stream terminates at that row. The handler's `on fail` branch catches the error and the file moves to the **After Error** destination as usual.
-
-The important detail for streaming: **every row delivered before the failing row has already been processed by your handler.** If your handler has side effects — database writes, API calls, message publishes — those are committed for the rows that arrived before the failure. Rows at or after the failure are never delivered.
-
-Retrying a streamed file (a manual re-upload of a corrected file, or rerunning against the original) replays side effects for the already-processed rows. So, handlers that write to downstream state should either:
-
-- **Be idempotent** - Check-then-write patterns so a replayed row doesn't create a duplicate.
-- **Track per-file progress externally** - Store a last-processed offset keyed by filename; on retry, skip rows already recorded.
-
-If you'd rather skip malformed rows and keep the stream going, enable [CSV fault tolerance](csv-fault-tolerance.md) on the listener. This ensures that bad rows are logged and dropped, while valid rows continue to flow through the handler.
+When you retry the file, those rows run again. To stay safe, make your handler idempotent (check before you write) or track which rows you've already processed per file. If you'd rather skip bad rows and keep going, turn on [CSV fault tolerance](csv-fault-tolerance.md).
+:::
 
 ## What's next
 
