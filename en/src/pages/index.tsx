@@ -279,9 +279,9 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  { label: 'Automation', to: '/docs/get-started/build-automation' },
-  { label: 'Build an AI agent', to: '/docs/get-started/build-ai-agent' },
-  { label: 'REST API Integration', to: '/docs/get-started/build-api-integration' },
+  { label: 'Build an Automation', to: '/docs/get-started/build-automation' },
+  { label: 'Build an AI Agent', to: '/docs/get-started/build-ai-agent' },
+  { label: 'Build an API Integration', to: '/docs/get-started/build-api-integration' },
   { label: 'Connector catalog', to: '/docs/connectors' },
 ];
 
