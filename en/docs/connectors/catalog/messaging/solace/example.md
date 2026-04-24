@@ -3,7 +3,7 @@
 - [Solace Producer Example](#solace-producer-example)
 - [Solace Consumer Example](#solace-consumer-example)
 
-### Solace Producer Example
+## Solace Producer Example
 
 #### What you'll build
 
@@ -100,7 +100,7 @@ Try this sample in WSO2 Integration Platform.
 [View source on GitHub](https://github.com/wso2/integration-samples/tree/main/connectors/solace_message_producer_connector_sample)
 
 
-### Solace Consumer Example
+## Solace Consumer Example
 
 #### What you'll build
 
