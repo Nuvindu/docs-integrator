@@ -94,7 +94,7 @@ Try this sample in WSO2 Integration Platform.
 
 ## More code examples
 
-The `OpenAI Audio` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-openai.audio/tree/main/examples/), covering the following use cases:
+The `OpenAI Audio` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-openai.audio/tree/main/examples/), covering the following use cases:
 
 1. [International news translator](https://github.com/ballerina-platform/module-ballerinax-openai.audio/tree/main/examples/international-news-translator) - Converts a text news given in any language to english
 2. [Meeting transcriber and translator](https://github.com/ballerina-platform/module-ballerinax-openai.audio/tree/main/examples/meeting-transcriber-and-translator) - Converts an audio given in a different language into text in input language and english
