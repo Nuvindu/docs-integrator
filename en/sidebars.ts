@@ -1708,89 +1708,65 @@ const sidebars: SidebarsConfig = {
             {
               type: 'category',
               label: 'Direct LLM Calls',
-              link: { type: 'doc', id: 'genai/develop/direct-llm' },
+              link: { type: 'doc', id: 'genai/develop/direct-llm/overview' },
               collapsed: true,
               items: [
-                {
-                  type: 'category',
-                  label: '1. Configuring LLM Providers',
-                  collapsed: true,
-                  items: [
-                    { type: 'link', label: 'Step 1.1: Create an HTTP Service', href: '/docs/genai/develop/direct-llm#step-11-create-an-http-service' },
-                    { type: 'link', label: 'Step 1.2: Define the Request Payload', href: '/docs/genai/develop/direct-llm#step-12-define-the-request-payload' },
-                    { type: 'link', label: 'Step 1.3: Define the Response Type', href: '/docs/genai/develop/direct-llm#step-13-define-the-response-type' },
-                    { type: 'link', label: 'Step 1.4: Add a Model Provider', href: '/docs/genai/develop/direct-llm#step-14-add-a-model-provider' },
-                  ],
-                },
-                {
-                  type: 'category',
-                  label: '2. Constructing Prompts',
-                  collapsed: true,
-                  items: [
-                    { type: 'link', label: 'Step 2.1: Add a generate Node', href: '/docs/genai/develop/direct-llm#step-21-add-a-generate-node' },
-                    { type: 'link', label: 'Step 2.2: Write the Prompt', href: '/docs/genai/develop/direct-llm#step-22-write-the-prompt' },
-                  ],
-                },
-                {
-                  type: 'category',
-                  label: '3. Handling Responses',
-                  collapsed: true,
-                  items: [
-                    { type: 'link', label: 'Step 3.1: Bind the Result and Save', href: '/docs/genai/develop/direct-llm#step-31-bind-the-result-and-save' },
-                    { type: 'link', label: 'Step 3.2: Add a Return Step', href: '/docs/genai/develop/direct-llm#step-32-add-a-return-step' },
-                    { type: 'link', label: 'Step 3.3: Run and Test the Service', href: '/docs/genai/develop/direct-llm#step-33-run-and-test-the-service' },
-                    { type: 'link', label: 'Step 3.4: Read the Output', href: '/docs/genai/develop/direct-llm#step-34-read-the-output' },
-                  ],
-                },
+                'genai/develop/direct-llm/adding-a-model-provider',
+                'genai/develop/direct-llm/the-generate-node',
+                'genai/develop/direct-llm/prompts-and-interpolation',
+                'genai/develop/direct-llm/binding-and-typed-responses',
               ],
             },
             // Natural Functions
             {
               type: 'category',
               label: 'Natural Functions',
+              link: { type: 'doc', id: 'genai/develop/natural-functions/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/natural-functions/defining-natural-functions',
-                'genai/develop/natural-functions/constructing-prompts-natural-functions',
-                'genai/develop/natural-functions/handling-natural-function-responses',
+                'genai/develop/natural-functions/the-natural-block',
+                'genai/develop/natural-functions/typed-return-inference',
+                'genai/develop/natural-functions/calling-from-a-flow',
               ],
             },
             // RAG
             {
               type: 'category',
               label: 'RAG',
+              link: { type: 'doc', id: 'genai/develop/rag/overview' },
+              collapsed: true,
               items: [
-                {
-                  type: 'category',
-                  label: 'RAG Ingestion',
-                  items: [
-                    'genai/develop/rag/chunking-documents',
-                    'genai/develop/rag/generating-embeddings',
-                    'genai/develop/rag/connecting-vector-databases',
-                  ],
-                },
-                'genai/develop/rag/querying',
+                'genai/develop/rag/knowledge-bases',
+                'genai/develop/rag/embedding-providers',
+                'genai/develop/rag/vector-stores',
+                'genai/develop/rag/chunker',
+                'genai/develop/rag/data-loaders',
+                'genai/develop/rag/query-node',
               ],
             },
             // AI Agents
             {
               type: 'category',
               label: 'AI Agents',
+              link: { type: 'doc', id: 'genai/develop/agents/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/agents/ai',
-                'genai/develop/agents/adding-tools',
-                'genai/develop/agents/adding-memory',
-                'genai/develop/agents/advanced-ai-configurations',
-                'genai/develop/agents/ai-observability',
-                'genai/develop/agents/ai-evaluations',
+                'genai/develop/agents/creating-an-agent',
+                'genai/develop/agents/tools',
+                'genai/develop/agents/memory',
+                'genai/develop/agents/observability',
+                'genai/develop/agents/evaluations',
               ],
             },
             // MCP Integration
             {
               type: 'category',
               label: 'MCP Integration',
+              link: { type: 'doc', id: 'genai/develop/mcp/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/mcp/server',
-                'genai/develop/mcp/building-ai-agents-servers',
+                'genai/develop/mcp/exposing-as-mcp',
+                'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
           ],
@@ -1800,6 +1776,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'genai/tutorials/email-generator-direct-llm',
+            'genai/tutorials/review-summarizer-natural-function',
             'genai/tutorials/hr-knowledge-base-rag',
             'genai/tutorials/customer-care-mcp',
             'genai/tutorials/it-helpdesk-chatbot',
