@@ -538,6 +538,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/email/setup-guide',
             'connectors/catalog/built-in/email/action-reference',
             'connectors/catalog/built-in/email/trigger-reference',
+            'connectors/catalog/built-in/email/example',
           ],
         },
         {
@@ -547,6 +548,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/ftp/action-reference',
             'connectors/catalog/built-in/ftp/trigger-reference',
+            'connectors/catalog/built-in/ftp/example',
           ],
         },
         {
@@ -616,6 +618,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/grpc/action-reference',
             'connectors/catalog/built-in/grpc/trigger-reference',
+            'connectors/catalog/built-in/grpc/example',
           ],
         },
         {
@@ -625,6 +628,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/graphql/action-reference',
             'connectors/catalog/built-in/graphql/trigger-reference',
+            'connectors/catalog/built-in/graphql/example',
           ],
         },
         {
@@ -644,6 +648,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/http/action-reference',
             'connectors/catalog/built-in/http/trigger-reference',
+            'connectors/catalog/built-in/http/example',
           ],
         },
         {
@@ -1151,6 +1156,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/mqtt/setup-guide',
             'connectors/catalog/built-in/mqtt/action-reference',
             'connectors/catalog/built-in/mqtt/trigger-reference',
+            'connectors/catalog/built-in/mqtt/example',
           ],
         },
         {
@@ -1533,6 +1539,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/tcp/action-reference',
             'connectors/catalog/built-in/tcp/trigger-reference',
+            'connectors/catalog/built-in/tcp/example',
           ],
         },
         {
@@ -1573,6 +1580,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/udp/action-reference',
             'connectors/catalog/built-in/udp/trigger-reference',
+            'connectors/catalog/built-in/udp/example',
           ],
         },
         {
@@ -1592,6 +1600,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/websocket/action-reference',
             'connectors/catalog/built-in/websocket/trigger-reference',
+            'connectors/catalog/built-in/websocket/example',
           ],
         },
         {
@@ -1602,6 +1611,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/websub/setup-guide',
             'connectors/catalog/built-in/websub/action-reference',
             'connectors/catalog/built-in/websub/trigger-reference',
+            'connectors/catalog/built-in/websub/example',
           ],
         },
         {
