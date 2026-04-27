@@ -17,15 +17,14 @@
 
 ## Per-Connector Page Structure
 
-Every connector gets 1–5 pages depending on complexity. The structure is:
+Every connector gets 2–4 pages depending on complexity. The structure is:
 
 ```
 connectors/catalog/<category>/<connector-name>/
-├── overview.md          (REQUIRED — what it does, when to use it)
-├── setup-guide.md       (REQUIRED — credentials, configuration)
-├── action-reference.md  (If the connector has actions)
-├── triggers.md          (If the connector has triggers)
-└── examples.md          (If there are enough examples to warrant a page)
+├── overview.md           (REQUIRED)
+├── setup-guide.md        (only if the external service requires setup steps)
+├── action-reference.md   (REQUIRED — one per connector)
+└── trigger-reference.md  (only if the connector exposes a Listener/Service)
 ```
 
 ### Template: Connector Overview Page
@@ -33,23 +32,39 @@ connectors/catalog/<category>/<connector-name>/
 **Prompt for AI:**
 
 ```
-Generate a connector overview page for [CONNECTOR_NAME].
+Generate an overview page for the [CONNECTOR_NAME] Ballerina connector.
 
-File: en/docs/connectors/catalog/<category>/<connector-package>/overview.md
+File: en/docs/connectors/catalog/<category>/<connector-slug>/overview.md
+
+Frontmatter (required, exact format):
+---
+connector: true
+connector_name: "<connector-slug>"
+title: "<Connector Display Name>"
+description: "Overview of the <package-name> connector for WSO2 Integrator."
+---
 
 Structure:
-1. Title: "[Service Name] Connector"
-2. One-paragraph description: what the connector does, what service it connects to
-3. "What you can do" section: bullet list of key operations/actions
-4. "Prerequisites" box: account requirements, API keys needed
-5. "Quick Example" section: minimal code showing the most common operation
-6. "What's Next" links: Setup Guide, Action Reference, related tutorials
+1. Opening paragraph (2–3 sentences): what the connector does and what external service it integrates with
+2. "## Key Features" section: 4–8 bullet points, each a short feature phrase
+3. "## Actions" section:
+   - 1–2 sentence intro
+   - Table: | Client | Actions | with one row per client type
+   - Only include clients users instantiate directly — exclude Caller types
+   - Link to action-reference.md
+4. "## Triggers" section (ONLY if the connector has a Listener/Service):
+   - 1–2 sentence intro
+   - Table: | Event | Callback | Description |
+   - Link to trigger-reference.md
+5. "## Documentation" section: bullet links to setup-guide.md (if applicable),
+   action-reference.md, trigger-reference.md (if applicable)
+6. "## How to contribute" section: link to the GitHub repo
 
 Rules:
-- Use the exact Ballerina package name for imports (e.g., `ballerinax/googleapis.gmail`)
-- Show both low-code (describe visual designer steps) and pro-code (Ballerina code)
-- Include the connection configuration in the example
-- The code must be complete and runnable (include all imports)
+- Source all client names and capability descriptions from the GitHub source code,
+  not from Ballerina Central (Central descriptions may be inaccurate)
+- Do NOT include code snippets in the overview
+- Do NOT include Caller types in the clients table
 ```
 
 ### Template: Setup Guide Page
@@ -59,20 +74,30 @@ Rules:
 ```
 Generate a setup guide for the [CONNECTOR_NAME] connector.
 
-File: en/docs/connectors/catalog/<category>/<connector-package>/setup-guide.md
+File: en/docs/connectors/catalog/<category>/<connector-slug>/setup-guide.md
+
+Frontmatter (required, exact format):
+---
+connector: true
+connector_name: "<connector-slug>"
+title: "Setup Guide"
+description: "How to set up and configure the <package-name> connector."
+---
 
 Structure:
-1. Title: "Set Up [Service Name] Connector"
-2. "Get Credentials" section: step-by-step to obtain API keys/OAuth tokens from the service
-3. "Add to Project" section: `bal add <package>` or Ballerina.toml dependency
-4. "Configure Connection" section: Config.toml entries, configurable variables
-5. "Verify Connection" section: simple test to confirm it works
-6. "Troubleshooting" section: common setup issues
+1. Opening sentence: what the setup guide covers
+2. "## Prerequisites" section: one bullet per external prerequisite (accounts, tools) — no Ballerina items
+3. One ## section per setup step (no "Step N:" prefix in the heading):
+   - Service-side steps only: create accounts, generate API keys, configure OAuth apps,
+     set permissions, etc.
+   - Use :::note, :::tip, or :::warning admonitions where helpful
+4. "## Next steps" section: links to action-reference.md and trigger-reference.md (if applicable)
 
 Rules:
-- Include screenshots or links to the service's developer console where applicable
-- Show exact Config.toml format
-- Handle both OAuth and API key auth methods if the service supports both
+- External service configuration ONLY — do NOT include any Ballerina steps
+  (no `bal add`, no Config.toml, no client init code, no `bal run`)
+- Prerequisites must be external accounts or tools only
+- Step headings must not start with "Step N:"
 ```
 
 ### Template: Action Reference Page
@@ -82,45 +107,80 @@ Rules:
 ```
 Generate an action reference for the [CONNECTOR_NAME] connector.
 
-File: en/docs/connectors/catalog/<category>/<connector-package>/action-reference.md
+File: en/docs/connectors/catalog/<category>/<connector-slug>/action-reference.md
+
+Frontmatter (required, exact format):
+---
+connector: true
+connector_name: "<connector-slug>"
+toc_max_heading_level: 4
+---
 
 Structure:
-1. Title: "[Service Name] Action Reference"
-2. For each action/operation:
-   - **Function signature** with parameters and return type
-   - **Description** — what it does (one sentence)
-   - **Parameters table** — name, type, required/optional, description
-   - **Return type** — what it returns, including error types
-   - **Code example** — minimal example calling this action
+1. "# Actions" heading
+2. Package intro: which package(s) expose clients (single or multiple)
+3. Available clients table: | Client | Purpose | — one row per client, linked to its ## section
+   - Exclude Caller types
+4. For each client — a ## section:
+   a. "### Configuration" — config record name + table:
+      | Field | Type | Default | Description |
+      - Required fields: Default = "Required" (plain text, no code wrapping)
+      - Optional fields: Default = <code>value</code>
+      - Type column: always <code>TypeName</code> (not backticks)
+   b. "### Initializing the client" — import + init code block
+   c. "### Operations" — grouped into #### subsections by entity/capability area:
+      Each operation uses a <details><summary>name</summary><div>...</div></details> block containing:
+      - Signature line (resource functions only): `METHOD /path/[param]` — omit for remote functions
+      - One-paragraph description
+      - Parameters table: | Name | Type | Required | Description |
+      - Returns line: `ReturnType|error`
+      - Sample code block (ballerina) — operation call and result assignment only, no io:println()
+      - Sample response block (json) — required for any operation returning data; omit only for error?/()
 
 Rules:
-- Group actions by resource/entity (e.g., Contacts, Deals, Emails)
-- Use Ballerina function signatures
-- Every action gets a code example
-- Document error types that can be returned
+- Operation names: remote functions → exact function name; resource functions → short description
+  from the source code doc comment (NOT from Ballerina Central)
+- Each operation appears exactly once — do not duplicate across groups
+- Every data-returning operation must have a sample response
+- Type values in table cells: use <code>TypeName</code>, not backticks
+- Pipe characters in cells: &#124;  Curly braces: &#123; &#125;
 ```
 
-### Template: Triggers Page
+### Template: Trigger Reference Page
 
 **Prompt for AI:**
 
 ```
-Generate a triggers reference for the [CONNECTOR_NAME] connector.
+Generate a trigger reference for the [CONNECTOR_NAME] connector.
 
-File: en/docs/connectors/catalog/<category>/<connector-package>/triggers.md
+File: en/docs/connectors/catalog/<category>/<connector-slug>/trigger-reference.md
+
+Frontmatter (required, exact format):
+---
+connector: true
+connector_name: "<connector-slug>"
+---
 
 Structure:
-1. Title: "[Service Name] Triggers"
-2. For each trigger event:
-   - **Event type** and description
-   - **Listener configuration** — how to set up the listener
-   - **Event payload** — what data the event carries (record type)
-   - **Code example** — complete listener service
+1. "# Triggers" heading
+2. 1–2 sentence intro
+3. Components table: | Component | Role | — rows for Listener, Service, and Caller (omit Caller row
+   if the connector has no Caller type)
+4. Link to action-reference.md
+5. "## Listener" section:
+   - Config types table: | Config Type | Description |
+   - Config fields table per type: | Field | Type | Default | Description |
+   - "### Initializing the listener" — code block with real examples from the repo's examples/ folder
+6. "## Service" section:
+   - "### Callbacks" table: | Callback | Signature | Description |
+     (exact remote function signatures from the connector source)
+   - "### Full example" — complete service block from the repo's examples/ folder
+7. "## Supporting Types" section: field tables for key event payload record types
 
 Rules:
-- Show the full listener service (not just the handler function)
-- Document how the service handles subscription/verification if applicable
-- Include error handling in examples
+- Use exact callback signatures from the source code
+- Use real examples from the repo's examples/ folder, not invented ones
+- Type values in table cells: use <code>TypeName</code>, not backticks
 ```
 
 ---
