@@ -319,7 +319,7 @@ Select **Run Integration** (▶) in the WSO2 Integrator toolbar to start the lis
 To fire a test event, use one of the following approaches:
 
 1. **Azure Portal** — navigate to your Service Bus namespace, open the queue, select **Service Bus Explorer**, and use **Send messages** to publish a test message directly from the browser.
-2. **Azure CLI** — run `az servicebus message send --resource-group <RG> --namespace-name <NS> --queue-name <QUEUE> --body '{"hello":"world"}'` to send a message from the command line.
+2. **Azure CLI** — use `az rest` to call the Service Bus REST API: `az rest --method POST --uri https://<namespace>.servicebus.windows.net/<queue-name>/messages --auth-type key-auth --resource https://servicebus.azure.net --body '{"hello":"world"}'` to send a message from the command line.
 3. **Azure SDK client** — use the Azure Service Bus SDK for your preferred language (JavaScript, Python, Java, or .NET) to send a message programmatically.
 
 After a message is sent, the console prints output similar to:
