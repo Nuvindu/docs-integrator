@@ -73,7 +73,7 @@ Some connectors also support triggers—inbound events the external service push
 
 Most connectors are action-only. Trigger support is available for select connectors—primarily databases (MySQL, PostgreSQL, MSSQL), messaging systems (Kafka, RabbitMQ), and file storage. See each connector's documentation for what's available.
 
-## Libraries without Client Connectors
+## Libraries without client connectors
 
 In addition to standard connectors that provide client implementations, WSO2 Integrator also includes libraries that do not expose client connectors but still provide useful integration capabilities.
 
