@@ -48,6 +48,7 @@ const config: Config = {
         explicitSearchResultPath: true,
         docsRouteBasePath: '/docs',
         indexBlog: false,
+        indexPages: true,
         searchBarShortcutHint: false,
       },
     ],

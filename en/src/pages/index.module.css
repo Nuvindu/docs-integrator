@@ -9,6 +9,66 @@
  */
 
 /* ================================================================
+   TWO-COLUMN PAGE LAYOUT (sidebar + content)
+   ================================================================ */
+.pageLayout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sidebarCol {
+  width: var(--doc-sidebar-width, 300px);
+  flex-shrink: 0;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  height: calc(100vh - var(--ifm-navbar-height));
+  background-color: var(--wso2-sidebar-bg);
+  border-right: 1px solid var(--wso2-surface-border);
+  z-index: 10;
+  overflow-y: auto;
+}
+
+/* Add a small top padding for a premium, balanced look */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.sidebarCol> :global(div) {
+  padding-top: 1rem !important;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
+
+/* Remove redundant top padding from the internal menu component */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.sidebarCol :global(.menu) {
+  padding-top: 0;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
+
+/* Reset list padding/margin */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.sidebarCol :global(.menu__list) {
+  padding-top: 0;
+  margin-top: 0;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.sidebarCol :global(.menu__list-item:first-child) {
+  margin-top: 0;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .sidebarCol {
+    display: none;
+  }
+}
+
+/* ================================================================
    HERO — Light blue in light theme, dark navy in dark theme
    ================================================================ */
 .heroBanner {
@@ -74,9 +134,11 @@
   .heroBanner {
     padding: 3rem 1.5rem 2.5rem;
   }
+
   .heroBanner h1 {
     font-size: 2rem;
   }
+
   .heroSubtitle {
     font-size: 1rem;
   }
@@ -158,6 +220,20 @@
 
 .searchForm:focus-within .searchIcon {
   color: rgba(255, 255, 255, 0.6);
+}
+
+.searchIconButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.searchIconButton:hover .searchIcon {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .searchInput {
