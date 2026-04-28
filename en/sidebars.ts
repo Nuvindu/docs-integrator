@@ -572,7 +572,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/googleapis.gmail/setup-guide',
             'connectors/catalog/communication/googleapis.gmail/actions',
-            'connectors/catalog/communication/googleapis-gmail/example',
+            'connectors/catalog/communication/googleapis.gmail/example',
           ],
         },
         {
