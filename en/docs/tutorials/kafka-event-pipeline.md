@@ -419,4 +419,4 @@ bal test
 ## Full Source Code
 
 Find the complete working project on GitHub:
-[wso2/integration-samples/integrator-mi-profile/KafkaConsumerAndProducer](https://github.com/wso2/integration-samples/tree/main/integrator-mi-profile/KafkaConsumerAndProducer)
+[wso2/integration-samples/integrator-default-profile/connectors/kafka_consumer_connector_sample](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/kafka_consumer_connector_sample)
