@@ -77,4 +77,4 @@ HubSpot access tokens expire after 6 hours. The connector automatically refreshe
 
 ## Next steps
 
-- [Actions Reference](action-reference.md) - Available operations
+- [Actions Reference](actions.md) - Available operations

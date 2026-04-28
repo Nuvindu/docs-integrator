@@ -174,5 +174,5 @@ For database encryption, configure at the database level:
 ## What's next
 
 - [Authentication](authentication.md) — Secure service endpoints
-- [Compliance](compliance.md) — Audit logging and data protection
+- [Compliance](compliance-considerations.md) — Audit logging and data protection
 - [Runtime Security](runtime-security.md) — Additional runtime security measures
