@@ -17,7 +17,7 @@ The `fileNamePattern` field accepts a regex that filters which files trigger the
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileNamePattern**, and enter a regex (for example, `.*\.csv`).
+On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileNamePattern**, and enter a regex (for example, `.*\.csv`).
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -51,7 +51,7 @@ The `fileAgeFilter` field prevents processing files that are too new (still bein
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileAgeFilter**, and set **minAge** and/or **maxAge** in seconds.
+On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileAgeFilter**, and set **minAge** and/or **maxAge** in seconds.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -87,7 +87,7 @@ The `fileDependencyConditions` field blocks processing until one or more related
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-On the **Service Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileDependencyConditions**, and add an entry. Set the target pattern to match the data file, and list the required files that must be present before processing triggers.
+On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileDependencyConditions**, and add an entry. Set the target pattern to match the data file, and list the required files that must be present before processing triggers.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">

@@ -128,6 +128,9 @@
   border-top: 1px solid var(--ifm-color-emphasis-200, #E2E8F0);
   padding: 0.75rem;
   background: linear-gradient(180deg, transparent 0%, rgba(0, 119, 182, 0.05) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 [data-theme='dark'] .drawerFooter {
@@ -135,7 +138,7 @@
   background: linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.08) 100%);
 }
 
-.miDocLink {
+.externalDocLink {
   display: flex;
   align-items: center;
   gap: 0.7rem;
@@ -148,7 +151,7 @@
   transition: all 0.2s ease;
 }
 
-.miDocLink:hover {
+.externalDocLink:hover {
   background: linear-gradient(135deg, #243557 0%, #15213D 100%);
   border-color: rgba(56, 189, 248, 0.5);
   color: #FFFFFF;
@@ -192,13 +195,28 @@
   margin-top: 0.15rem;
 }
 
-.miDocLink svg {
+.externalDocLink svg {
   flex-shrink: 0;
   color: rgba(255, 255, 255, 0.45);
   transition: all 0.2s ease;
 }
 
-.miDocLink:hover svg {
+.externalDocLink:hover svg {
   color: #38BDF8;
   transform: translate(2px, -2px);
+}
+
+.siDocBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #38BDF8;
+  color: #0F172A;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
 }

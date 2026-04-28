@@ -3,129 +3,11 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from '@docusaurus/Link';
 import { useHistory } from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
-import DocSidebar from '@theme/DocSidebar';
-import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
-
 
 import styles from './index.module.css';
-
-/* ------------------------------------------------------------------ */
-/*  Sidebar items (mirrors mainSidebar from sidebars.ts)               */
-/* ------------------------------------------------------------------ */
-const homeSidebarItems: PropSidebarItem[] = [
-  {
-    type: 'category',
-    label: 'Get Started',
-    collapsed: false,
-    collapsible: true,
-    href: '/docs/get-started/overview-&-architecture',
-    items: [
-      { type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture' },
-      { type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator' },
-      { type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts' },
-      {
-        type: 'category',
-        label: 'Set up',
-        collapsed: true,
-        collapsible: true,
-        items: [
-          { type: 'link', label: 'System Requirements', href: '/docs/get-started/system-requirements' },
-          { type: 'link', label: 'Install', href: '/docs/get-started/install' },
-          { type: 'link', label: 'First Project', href: '/docs/get-started/first-project' },
-          { type: 'link', label: 'Understand the IDE', href: '/docs/get-started/understand-the-ide' },
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Quick Starts',
-        collapsed: false,
-        collapsible: true,
-        items: [
-          { type: 'link', label: 'Build an Automation', href: '/docs/get-started/build-automation' },
-          { type: 'link', label: 'Build an AI Agent', href: '/docs/get-started/build-ai-agent' },
-          { type: 'link', label: 'Build an API Integration', href: '/docs/get-started/build-api-integration' },
-          { type: 'link', label: 'Build an Event-Driven Integration', href: '/docs/get-started/build-event-driven-integration' },
-          { type: 'link', label: 'Build a File-Driven Integration', href: '/docs/get-started/build-file-driven-integration' },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Develop',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/develop/overview',
-    items: [
-      { type: 'link', label: 'Create Integrations', href: '/docs/develop/create-integrations/create-new-integration' },
-      { type: 'link', label: 'Project Views', href: '/docs/develop/project-views/project-view' },
-      { type: 'link', label: 'Integration Artifacts', href: '/docs/develop/integration-artifacts/automation' },
-      { type: 'link', label: 'Design Integration Logic', href: '/docs/develop/design-logic/overview' },
-      { type: 'link', label: 'Transform', href: '/docs/develop/transform/data-mapper' },
-      { type: 'link', label: 'Try & Test', href: '/docs/develop/test/try-it' },
-      { type: 'link', label: 'Debugging & Troubleshooting', href: '/docs/develop/debugging/overview' },
-      { type: 'link', label: 'Organize Code', href: '/docs/develop/organize-code/packages-modules' },
-      { type: 'link', label: 'Tools', href: '/docs/develop/tools/overview' },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Connectors',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/connectors/overview',
-    items: [
-      { type: 'link', label: 'Connector Catalog', href: '/docs/connectors/catalog/index' },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'GenAI',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/genai/overview',
-    items: [
-      { type: 'link', label: 'Getting Started', href: '/docs/genai/getting-started/setup' },
-      { type: 'link', label: 'Key Concepts', href: '/docs/genai/key-concepts/what-is-llm' },
-      { type: 'link', label: 'Develop AI Applications', href: '/docs/genai/overview' },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Tutorials',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/tutorials/overview',
-    items: [
-      { type: 'link', label: 'Integration Patterns', href: '/docs/tutorials/integration-patterns' },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Deploy & Operate',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/deploy-operate/overview',
-    items: [
-      { type: 'link', label: 'Deploy', href: '/docs/deploy-operate/deploy/docker-kubernetes' },
-      { type: 'link', label: 'Security', href: '/docs/deploy-operate/security/security-checklist' },
-      { type: 'link', label: 'Operate', href: '/docs/deploy-operate/operate/observability-and-monitoring' },
-    ],
-  },
-  {
-    type: 'category',
-    label: 'Reference',
-    collapsed: true,
-    collapsible: true,
-    href: '/docs/reference/overview',
-    items: [
-      { type: 'link', label: 'CLI Commands', href: '/docs/reference/cli-commands' },
-      { type: 'link', label: 'API Reference', href: '/docs/reference/api-reference' },
-    ],
-  },
-];
 
 /* ------------------------------------------------------------------ */
 /*  Clean SVG Icon Components                                          */
@@ -213,7 +95,7 @@ const sections: SectionCard[] = [
   {
     title: 'Get started',
     description: 'Install, set up, and build your first integration in under 10 minutes.',
-    link: '/docs/get-started/overview-&-architecture',
+    link: '/docs/get-started/overview-and-architecture',
     icon: <IconGetStarted />,
     iconBg: '#ECFDF5',
     iconBgDark: 'rgba(5, 150, 105, 0.15)',
@@ -290,6 +172,7 @@ const quickLinks = [
 /* ------------------------------------------------------------------ */
 function SearchBar(): ReactNode {
   const history = useHistory();
+  const searchPath = useBaseUrl('/search');
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -330,29 +213,31 @@ function SearchBar(): ReactNode {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query.trim()) {
-        history.push(`/search?q=${encodeURIComponent(query.trim())}`);
+        history.push(`${searchPath}?q=${encodeURIComponent(query.trim())}`);
         setFocused(false);
       }
     },
-    [query, history],
+    [query, history, searchPath],
   );
 
   return (
     <div ref={wrapperRef} className={styles.searchWrapper}>
       <form onSubmit={handleSubmit} className={styles.searchForm}>
-        <svg
-          className={styles.searchIcon}
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
+        <button type="submit" className={styles.searchIconButton} aria-label="Search">
+          <svg
+            className={styles.searchIcon}
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
         <input
           ref={inputRef}
           type="text"
@@ -493,23 +378,11 @@ export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title="Home" description={siteConfig.tagline}>
-      <div className={styles.pageLayout}>
-        <aside className={styles.sidebarCol}>
-          <DocSidebar
-            sidebar={homeSidebarItems}
-            path="/none"
-            onCollapse={() => { }}
-            isHidden={false}
-          />
-        </aside>
-        <div className={styles.mainContent}>
-          <HomepageHeader />
-          <main>
-            <SectionCards />
-            <WhatsNew />
-          </main>
-        </div>
-      </div>
+      <HomepageHeader />
+      <main>
+        <SectionCards />
+        <WhatsNew />
+      </main>
     </Layout>
   );
 }

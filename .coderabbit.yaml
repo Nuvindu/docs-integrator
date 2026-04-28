@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+reviews:
+  # Specific instructions for the AI reviewer
+  instructions: |
+    You are a technical writing expert and code reviewer. Follow repository-wide standards for code quality and documentation consistency.
+
+path_instructions:
+  - path: "**/*.md"
+    instructions: |
+      Follow Microsoft style guidelines for titles and headers:
+      - Use sentence case for all non-H1 titles (H2, H3, H4, etc.).
+      - Only the first word and proper nouns should be capitalized in these headers.
+      - Flag any inconsistencies where title case is used for non-H1 headers.
+
+      Enforce the following URL and Page Title consistency rules:
+      1. **Alignment:** Page titles and URL slugs must use the same primary keywords. Convert spaces in titles to hyphens (-) in URLs.
+      2. **Optimization:** URLs must be shorter and more concise than titles. Remove "filler" words (e.g., 'a', 'an', 'the', 'with', 'on').
+         - Example: "Install WSO2 Integrator on macOS" -> "/install-macos"
+      3. **Hierarchy & Redundancy:** Check the file path/hierarchy. If a keyword exists in the parent directory, do not repeat it in the URL slug.
+         - Example: If the path is `/api/`, the title "Configure API Endpoints" should have the slug `configure-endpoints`, NOT `api-configure-endpoints`.
+      4. **Formatting:** All URLs must be lowercase. No underscores or special characters are allowed except hyphens.
+
+      If a PR introduces a new file or renames one, flag any URL that violates these optimization and hierarchy rules.
+  - path: "**/*.html"
+    instructions: |
+      Enforce the following URL and Page Title consistency rules:
+      1. **Alignment:** Page titles and URL slugs must use the same primary keywords. Convert spaces in titles to hyphens (-) in URLs.
+      2. **Optimization:** URLs must be shorter and more concise than titles. Remove "filler" words (e.g., 'a', 'an', 'the', 'with', 'on').
+         - Example: "Install WSO2 Integrator on macOS" -> "/install-macos"
+      3. **Hierarchy & Redundancy:** Check the file path/hierarchy. If a keyword exists in the parent directory, do not repeat it in the URL slug.
+         - Example: If the path is `/api/`, the title "Configure API Endpoints" should have the slug `configure-endpoints`, NOT `api-configure-endpoints`.
+      4. **Formatting:** All URLs must be lowercase. No underscores or special characters are allowed except hyphens.
+
+      If a PR introduces a new file or renames one, flag any URL that violates these optimization and hierarchy rules.

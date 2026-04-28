@@ -34,6 +34,7 @@ const config: Config = {
   plugins: [
     './src/plugins/connector-versions',
     './plugins/docusaurus-plugin-markdown-export',
+    './src/plugins/expose-sidebars',
   ],
 
   themes: [
@@ -47,6 +48,7 @@ const config: Config = {
         explicitSearchResultPath: true,
         docsRouteBasePath: '/docs',
         indexBlog: false,
+        indexPages: true,
         searchBarShortcutHint: false,
       },
     ],
@@ -85,7 +87,7 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/get-started/overview-&-architecture',
+          to: '/docs/get-started/overview-and-architecture',
           label: 'Get started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
@@ -139,7 +141,7 @@ const config: Config = {
         {
           title: 'Get started',
           items: [
-            { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
+            { label: 'Overview', to: '/docs/get-started/overview-and-architecture' },
             { label: 'Install', to: '/docs/get-started/install' },
             { label: 'Quick starts', to: '/docs/get-started/build-automation' },
           ],
@@ -167,6 +169,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'WSO2 MI Documentation', href: 'https://mi.docs.wso2.com' },
+            { label: 'WSO2 SI Documentation', href: 'https://si.docs.wso2.com/latest/' },
             { label: 'Ballerina Central', href: 'https://central.ballerina.io' },
             { label: 'Community Forums', href: 'https://discord.com/invite/wso2' },
             { label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/wso2' },

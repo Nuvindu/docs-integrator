@@ -22,7 +22,7 @@ The migration wizard guides you through a 3-step process to convert your MuleSof
 
 ### Step 1: Select source project
 
-1. Open WSO2 Integrator and select **Migrate External Integration**.
+1. Open WSO2 Integrator, click **More Actions**, and select **Migrate Integrations from Other Vendors**.
 2. Select **MuleSoft** as the source platform.
 3. Under **Select Your Project Folder**, click **Browse** and select your MuleSoft project's root folder or main configuration XML file.
 4. Under **Configure MuleSoft Settings**, set the following:

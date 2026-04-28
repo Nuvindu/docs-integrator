@@ -182,6 +182,7 @@ const sidebars: SidebarsConfig = {
             'develop/transform/xml',
             'develop/transform/csv-flat-file',
             'develop/transform/edi',
+            'develop/transform/pdf',
             'develop/transform/yaml-toml',
             'develop/transform/type-system',
             'develop/transform/query-expressions',
@@ -305,24 +306,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'AI Devant',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.devant/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.devant/setup-guide',
-            'connectors/catalog/ai-ml/ai.devant/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'AI Memory MSSQL',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.memory.mssql/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.memory.mssql/setup-guide',
-            'connectors/catalog/ai-ml/ai.memory.mssql/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Alfresco',
           link: { type: 'doc', id: 'connectors/catalog/storage-file/alfresco/overview' },
           items: [
@@ -338,15 +321,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/amp/setup-guide',
             'connectors/catalog/developer-tools/amp/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Anthropic LLM',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.anthropic/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.anthropic/setup-guide',
-            'connectors/catalog/ai-ml/ai.anthropic/action-reference',
           ],
         },
         {
@@ -447,6 +421,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/azure.ai.search/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search/action-reference',
+            'connectors/catalog/ai-ml/azure.ai.search/example',
           ],
         },
         {
@@ -456,15 +431,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/azure.ai.search.index/setup-guide',
             'connectors/catalog/ai-ml/azure.ai.search.index/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Azure OpenAI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.azure/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.azure/setup-guide',
-            'connectors/catalog/ai-ml/ai.azure/action-reference',
+            'connectors/catalog/cloud-infrastructure/azure.ai.search.index/example',
           ],
         },
         {
@@ -475,6 +442,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/asb/setup-guide',
             'connectors/catalog/messaging/asb/action-reference',
             'connectors/catalog/messaging/asb/trigger-reference',
+            'connectors/catalog/messaging/asb/example',
           ],
         },
         {
@@ -520,6 +488,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/confluent.cregistry/setup-guide',
             'connectors/catalog/messaging/confluent.cregistry/action-reference',
+            'connectors/catalog/messaging/confluent.cregistry/example',
           ],
         },
         {
@@ -529,15 +498,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/copybook/setup-guide',
             'connectors/catalog/developer-tools/copybook/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'DeepSeek',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.deepseek/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.deepseek/setup-guide',
-            'connectors/catalog/ai-ml/ai.deepseek/action-reference',
           ],
         },
         {
@@ -578,6 +538,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/email/setup-guide',
             'connectors/catalog/built-in/email/action-reference',
             'connectors/catalog/built-in/email/trigger-reference',
+            'connectors/catalog/built-in/email/example',
           ],
         },
         {
@@ -587,6 +548,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/ftp/action-reference',
             'connectors/catalog/built-in/ftp/trigger-reference',
+            'connectors/catalog/built-in/ftp/example',
           ],
         },
         {
@@ -627,6 +589,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/gcloud.pubsub/setup-guide',
             'connectors/catalog/messaging/gcloud.pubsub/action-reference',
             'connectors/catalog/messaging/gcloud.pubsub/trigger-reference',
+            'connectors/catalog/messaging/gcloud.pubsub/example',
           ],
         },
         {
@@ -655,6 +618,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/grpc/action-reference',
             'connectors/catalog/built-in/grpc/trigger-reference',
+            'connectors/catalog/built-in/grpc/example',
           ],
         },
         {
@@ -664,6 +628,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/graphql/action-reference',
             'connectors/catalog/built-in/graphql/trigger-reference',
+            'connectors/catalog/built-in/graphql/example',
           ],
         },
         {
@@ -683,6 +648,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/http/action-reference',
             'connectors/catalog/built-in/http/trigger-reference',
+            'connectors/catalog/built-in/http/example',
           ],
         },
         {
@@ -1070,6 +1036,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/intercom/setup-guide',
             'connectors/catalog/communication/intercom/action-reference',
+            'connectors/catalog/communication/intercom/example',
           ],
         },
         {
@@ -1100,6 +1067,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/java.jms/setup-guide',
             'connectors/catalog/messaging/java.jms/action-reference',
             'connectors/catalog/messaging/java.jms/trigger-reference',
+            'connectors/catalog/messaging/java.jms/example',
           ],
         },
         {
@@ -1158,6 +1126,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/milvus/setup-guide',
             'connectors/catalog/ai-ml/milvus/action-reference',
+            'connectors/catalog/ai-ml/milvus/example',
           ],
         },
         {
@@ -1167,15 +1136,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/mistral/setup-guide',
             'connectors/catalog/ai-ml/mistral/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Mistral AI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.mistral/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.mistral/setup-guide',
-            'connectors/catalog/ai-ml/ai.mistral/action-reference',
+            'connectors/catalog/ai-ml/mistral/example',
           ],
         },
         {
@@ -1196,6 +1157,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/mqtt/setup-guide',
             'connectors/catalog/built-in/mqtt/action-reference',
             'connectors/catalog/built-in/mqtt/trigger-reference',
+            'connectors/catalog/built-in/mqtt/example',
           ],
         },
         {
@@ -1227,24 +1189,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/nats/setup-guide',
             'connectors/catalog/messaging/nats/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'NP',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/np/overview' },
-          items: [
-            'connectors/catalog/ai-ml/np/setup-guide',
-            'connectors/catalog/ai-ml/np/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Ollama',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.ollama/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.ollama/setup-guide',
-            'connectors/catalog/ai-ml/ai.ollama/action-reference',
+            'connectors/catalog/messaging/nats/example',
           ],
         },
         {
@@ -1254,15 +1199,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/openai/setup-guide',
             'connectors/catalog/ai-ml/openai/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'OpenAI (AI)',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.openai/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.openai/setup-guide',
-            'connectors/catalog/ai-ml/ai.openai/action-reference',
+            'connectors/catalog/ai-ml/openai/example',
           ],
         },
         {
@@ -1272,6 +1209,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/openai.audio/setup-guide',
             'connectors/catalog/ai-ml/openai.audio/action-reference',
+            'connectors/catalog/ai-ml/openai.audio/example',
           ],
         },
         {
@@ -1281,6 +1219,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/openai.finetunes/setup-guide',
             'connectors/catalog/ai-ml/openai.finetunes/action-reference',
+            'connectors/catalog/ai-ml/openai.finetunes/example',
           ],
         },
         {
@@ -1353,24 +1292,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'pgvector',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pgvector/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pgvector/setup-guide',
-            'connectors/catalog/ai-ml/ai.pgvector/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Pinecone',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pinecone/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pinecone/setup-guide',
-            'connectors/catalog/ai-ml/ai.pinecone/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'PostgreSQL',
           link: { type: 'doc', id: 'connectors/catalog/database/postgresql/overview' },
           items: [
@@ -1388,6 +1309,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/rabbitmq/setup-guide',
             'connectors/catalog/messaging/rabbitmq/action-reference',
             'connectors/catalog/messaging/rabbitmq/trigger-reference',
+            'connectors/catalog/messaging/rabbitmq/example',
           ],
         },
         {
@@ -1598,6 +1520,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/solace/setup-guide',
             'connectors/catalog/messaging/solace/action-reference',
             'connectors/catalog/messaging/solace/trigger-reference',
+            'connectors/catalog/messaging/solace/example',
           ],
         },
         {
@@ -1617,6 +1540,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/tcp/action-reference',
             'connectors/catalog/built-in/tcp/trigger-reference',
+            'connectors/catalog/built-in/tcp/example',
           ],
         },
         {
@@ -1652,20 +1576,12 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Weaviate',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.weaviate/overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.weaviate/setup-guide',
-            'connectors/catalog/ai-ml/ai.weaviate/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'UDP',
           link: { type: 'doc', id: 'connectors/catalog/built-in/udp/overview' },
           items: [
             'connectors/catalog/built-in/udp/action-reference',
             'connectors/catalog/built-in/udp/trigger-reference',
+            'connectors/catalog/built-in/udp/example',
           ],
         },
         {
@@ -1685,6 +1601,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/websocket/action-reference',
             'connectors/catalog/built-in/websocket/trigger-reference',
+            'connectors/catalog/built-in/websocket/example',
           ],
         },
         {
@@ -1695,6 +1612,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/built-in/websub/setup-guide',
             'connectors/catalog/built-in/websub/action-reference',
             'connectors/catalog/built-in/websub/trigger-reference',
+            'connectors/catalog/built-in/websub/example',
           ],
         },
         {
