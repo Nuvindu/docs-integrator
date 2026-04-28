@@ -31,7 +31,7 @@ flowchart LR
 
 Select the **Add Connection** button (or **+** icon) next to **Connections** in the WSO2 Integrator sidebar to open the connector palette.
 
-![SAP S/4HANA API Sales Quotation Service connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_01_palette.png)
+![SAP S/4HANA API Sales Quotation Service connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_01_palette.png)
 
 ### Step 2: Select the SAP S/4HANA API sales quotation service connector
 
@@ -47,13 +47,13 @@ Enter the connection parameters, binding each field to a configurable variable f
 - **Hostname** : The SAP S/4HANA system hostname or URL
 - **Connection Name** : A name to identify this connection
 
-![SAP S/4HANA API Sales Quotation Service connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_02_connection_form.png)
+![SAP S/4HANA API Sales Quotation Service connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_02_connection_form.png)
 
 ### Step 4: Save the connection
 
 Select **Save** to create the connection. The `apiSalesQuotationSrvClient` entry now appears in the **Connections** panel.
 
-![SAP S/4HANA API Sales Quotation Service Connections panel showing apiSalesQuotationSrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_03_connections_list.png)
+![SAP S/4HANA API Sales Quotation Service Connections panel showing apiSalesQuotationSrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_03_connections_list.png)
 
 ### Step 5: Set actual values for your configurables
 
@@ -75,18 +75,18 @@ Select **Save** to create the connection. The `apiSalesQuotationSrvClient` entry
 
 1. Select the **+** (Add Step) button on the flow canvas, expand the **Connections** section, and select **List A Sales Quotations** from the `apiSalesQuotationSrvClient` connector.
 
-![SAP S/4HANA API Sales Quotation Service connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_04_operations.png)
+![SAP S/4HANA API Sales Quotation Service connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_04_operations.png)
 
 2. In the operation configuration form, set the parameters as follows:
 
 - **$top** : Limits the number of records returned (set to `5`)
 - **Result** : The variable name used to store the operation output
 
-![SAP S/4HANA API Sales Quotation Service listA_SalesQuotations operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_05_operation_form.png)
+![SAP S/4HANA API Sales Quotation Service listA_SalesQuotations operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_05_operation_form.png)
 
 3. Select **Save** to apply the configuration. The completed flow appears with the operation added to the automation sequence.
 
-![Completed SAP S/4HANA API Sales Quotation Service automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/sap_s4hana_apisalesquotationsrv_screenshot_06_completed_flow.png)
+![Completed SAP S/4HANA API Sales Quotation Service automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/sap_s4hana_apisalesquotationsrv_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

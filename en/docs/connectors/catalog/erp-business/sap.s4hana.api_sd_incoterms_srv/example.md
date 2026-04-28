@@ -31,7 +31,7 @@ flowchart LR
 
 Select the **+ Add Connection** button in the Connections section of the left sidebar to open the connector search palette.
 
-![Connector palette open showing search field and available connectors](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_01_palette.png)
+![Connector palette open showing search field and available connectors](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_01_palette.png)
 
 ### Step 2: Search for and select the sap.s4hana.api_sd_incoterms_srv connector
 
@@ -50,13 +50,13 @@ For each non-boolean field visible in the connection configuration form, open it
   - **username** : The SAP system username used to authenticate requests to the Incoterms API
   - **password** : The SAP system password associated with the username for API authentication
 
-![Connection form with all parameters bound to configurable variables before saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_02_connection_form.png)
+![Connection form with all parameters bound to configurable variables before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_02_connection_form.png)
 
 ### Step 4: Save the connection
 
 Select **Save** (or **Add**) to persist the SAP S/4HANA Incoterms connection. The connector entry appears in the Connections panel on the integration design canvas.
 
-![Integration design canvas showing the sap.s4hana.api_sd_incoterms_srv connector entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_03_connections_list.png)
+![Integration design canvas showing the sap.s4hana.api_sd_incoterms_srv connector entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_03_connections_list.png)
 
 ### Step 5: Set actual values for your configurables
 
@@ -79,13 +79,13 @@ In the left panel of WSO2 Integrator, select **Configurations** (listed at the b
 1. Inside the automation body on the canvas, select the **+** (Add Step) button on the flow edge between the Start node and the Error Handler node.
 2. Under **Connections** in the node panel, select the **apiSdIncotermsSrvClient** connection node to expand it and reveal all available operations.
 
-![Connection node expanded in the node panel showing all available SAP Incoterms operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_04_operations_panel.png)
+![Connection node expanded in the node panel showing all available SAP Incoterms operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_04_operations_panel.png)
 
 3. Select **listA_IncotermsClassifications** from the list of available operations, then fill in the operation fields:
    - **Result** : The local variable name to store the operation's return value, set to `result`
 4. Select **Save** to add the operation step to the automation flow.
 
-![Operation configuration form showing all input fields filled and result variable bound](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_05_operation_filled.png)
+![Operation configuration form showing all input fields filled and result variable bound](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_05_operation_filled.png)
 
 ### Step 8: Log the listA_IncotermsClassifications result
 
@@ -94,7 +94,7 @@ In the left panel of WSO2 Integrator, select **Configurations** (listed at the b
 3. Switch the **Msg** field to **Expression** mode and enter `result.toJsonString()`.
 4. Select **Save** to add the Log step to the flow. The new `log : printInfo` node appears between the listA_IncotermsClassifications node and the Error Handler with no error indicator.
 
-![Completed automation flow showing Automation trigger, SAP Incoterms operation node, Log Info node, and Error Handler all connected on canvas](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/sap_s4hana_apisdincotermssrv_screenshot_06_completed_flow.png)
+![Completed automation flow showing Automation trigger, SAP Incoterms operation node, Log Info node, and Error Handler all connected on canvas](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

@@ -31,7 +31,7 @@ flowchart LR
 
 In the WSO2 Integrator sidebar, select **Add Artifact** to open the connector palette.
 
-![SAP S/4HANA connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_01_palette.png)
+![SAP S/4HANA connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_01_palette.png)
 
 ## Configuring the SAP S/4HANA API sales order simulation connection
 
@@ -42,13 +42,13 @@ Search for `sap.s4hana.api_sales_order_simulation_srv` in the connector search b
 - **Config** : The connection configuration record, including the authentication token — set to expression mode using a configurable variable for `auth.token`
 - **Hostname** : The SAP S/4HANA server hostname — bind to a configurable variable
 
-![SAP S/4HANA connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_02_connection_form.png)
+![SAP S/4HANA connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_02_connection_form.png)
 
 ### Step 3: Save the connection
 
 Select **Save** to create the connection. The connector appears as `apiSalesOrderSimulationSrvClient` in the Connections panel.
 
-![SAP S/4HANA Connections panel showing apiSalesOrderSimulationSrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_03_connections_list.png)
+![SAP S/4HANA Connections panel showing apiSalesOrderSimulationSrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_03_connections_list.png)
 
 ### Step 4: Set actual values for your configurables
 
@@ -73,13 +73,13 @@ Select the **+** button in the automation flow to open the node selection panel.
 - **Payload** : The sales order simulation request body — set to expression mode with a valid `CreateA_SalesOrderSimulation` record
 - **Result** : The variable name to store the simulation result
 
-![SAP S/4HANA connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_04_operations.png)
+![SAP S/4HANA connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_04_operations.png)
 
-![SAP S/4HANA Create A Sales Order Simulation operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_05_operation_values.png)
+![SAP S/4HANA Create A Sales Order Simulation operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_05_operation_values.png)
 
 Select **Save** to add the operation to the flow.
 
-![Completed SAP S/4HANA automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/sap_s4hana_apisalesordersimulationsrv_screenshot_06_completed_flow.png)
+![Completed SAP S/4HANA automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/sap_s4hana_apisalesordersimulationsrv_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

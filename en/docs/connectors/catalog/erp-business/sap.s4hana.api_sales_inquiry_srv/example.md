@@ -30,7 +30,7 @@ flowchart LR
 
 Select **Add Connection** in the WSO2 Integrator sidebar to open the connector palette, then search for `api_sales_inquiry_srv` and select the **Api_sales_inquiry_srv** connector card.
 
-![SAP S/4HANA Sales Inquiry Service connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_01_palette.png)
+![SAP S/4HANA Sales Inquiry Service connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_01_palette.png)
 
 ## Configuring the SAP S/4HANA sales inquiry service connection
 
@@ -41,13 +41,13 @@ Enter the connection parameters, binding each field to a configurable variable:
 - **Config** : `ConnectionConfig` record containing basic auth credentials; bind to configurable variables for username and password
 - **Hostname** : SAP S/4HANA server hostname; bind to a configurable variable
 
-![SAP S/4HANA Sales Inquiry Service connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_02_connection_form.png)
+![SAP S/4HANA Sales Inquiry Service connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_02_connection_form.png)
 
 ### Step 3: Save the connection
 
 Select **Save Connection** to persist the configuration and confirm the connector appears in the Connections panel.
 
-![SAP S/4HANA Sales Inquiry Service Connections panel showing apiSalesInquirySrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_03_connection_saved.png)
+![SAP S/4HANA Sales Inquiry Service Connections panel showing apiSalesInquirySrvClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_03_connection_saved.png)
 
 ### Step 4: Set actual values for your configurables
 
@@ -70,7 +70,7 @@ Select **Add Artifact**, then select **Automation** from the artifact types and 
 2. Expand the **apiSalesInquirySrvClient** connection under **Connections**.
 3. Select **List A Sales Inquiries** (`listA_SalesInquiries`).
 
-![SAP S/4HANA Sales Inquiry Service connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_04_operations.png)
+![SAP S/4HANA Sales Inquiry Service connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_04_operations.png)
 
 Configure the operation parameters:
 
@@ -78,11 +78,11 @@ Configure the operation parameters:
 - **$skip** : Start from the beginning of the result set
 - **Result** : Variable name to store the response
 
-![SAP S/4HANA Sales Inquiry Service listA_SalesInquiries operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_05_operation_form.png)
+![SAP S/4HANA Sales Inquiry Service listA_SalesInquiries operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_05_operation_form.png)
 
 Select **Save** to add the operation to the flow.
 
-![Completed SAP S/4HANA Sales Inquiry Service automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/sap_s4hana_apisalesinquirysrv_screenshot_06_completed_flow.png)
+![Completed SAP S/4HANA Sales Inquiry Service automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/sap_s4hana_apisalesinquirysrv_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

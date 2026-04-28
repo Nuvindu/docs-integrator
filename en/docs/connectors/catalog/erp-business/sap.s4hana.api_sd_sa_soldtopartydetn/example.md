@@ -30,7 +30,7 @@ flowchart LR
 
 In the WSO2 Integrator sidebar, select **Add Artifact**, then select **Connector** from the artifact type list. Search for `sap.s4hana.api_sd_sa_soldtopartydetn` in the connector search palette and select the **sap.s4hana.api_sd_sa_soldtopartydetn** connector card to add it to your project.
 
-![SAP S/4HANA connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_01_palette.png)
+![SAP S/4HANA connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_01_palette.png)
 
 ## Configuring the SAP S/4HANA connection
 
@@ -41,13 +41,13 @@ In the sidebar, expand **Connections** and select **+ Add Connection**. Select t
 - **Config** : Authentication object referencing the `sapUsername` and `sapPassword` configurable variables
 - **Hostname** : SAP S/4HANA server hostname, bound to the `hostname` configurable variable
 
-![SAP S/4HANA connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_02_connection_form.png)
+![SAP S/4HANA connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_02_connection_form.png)
 
 ### Step 3: Save the connection
 
 Select **Save** to persist the connection. The new connection `apiSdSaSoldtopartydetnClient` appears in the Connections panel.
 
-![SAP S/4HANA Connections panel showing apiSdSaSoldtopartydetnClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_03_connections_list.png)
+![SAP S/4HANA Connections panel showing apiSdSaSoldtopartydetnClient entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_03_connections_list.png)
 
 ### Step 4: Set actual values for your configurables
 
@@ -67,7 +67,7 @@ Select **Add Artifact**, then select **Automation** from the artifact type list.
 
 On the automation canvas, select the **+** button between the **Start** node and the **Error Handler**. In the node panel, select **Connectors**, choose the `api_sd_sa_soldtopartydetn` connector, and expand the connection node to view available operations.
 
-![SAP S/4HANA connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_04_operations.png)
+![SAP S/4HANA connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_04_operations.png)
 
 Select **List A Deliv Sched Sold To Party Detns** and configure the operation fields:
 
@@ -77,9 +77,9 @@ Select **List A Deliv Sched Sold To Party Detns** and configure the operation fi
 
 Select **Save** to apply the configuration.
 
-![SAP S/4HANA listA_DelivSchedSoldToPartyDetns operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_05_operation_form.png)
+![SAP S/4HANA listA_DelivSchedSoldToPartyDetns operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_05_operation_form.png)
 
-![Completed SAP S/4HANA automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_06_completed_flow.png)
+![Completed SAP S/4HANA automation flow](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/sap_s4hana_apisdsasoldtopartydetn_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

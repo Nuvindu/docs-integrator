@@ -30,7 +30,7 @@ flowchart LR
 
 Select **Add Connection** in the **Connections** section of the sidebar to open the connector palette.
 
-![SAP S/4HANA Sales Area connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_01_palette.png)
+![SAP S/4HANA Sales Area connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_01_palette.png)
 
 ### Step 2: Fill in the connection parameters
 
@@ -39,13 +39,13 @@ Search for `sap.s4hana.salesarea` and select the **Salesarea_0001** connector ca
 - **config** : Authentication credentials record containing `username` and `password` fields
 - **hostname** : SAP S/4HANA system hostname
 
-![SAP S/4HANA Sales Area connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_02_connection_form.png)
+![SAP S/4HANA Sales Area connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_02_connection_form.png)
 
 ### Step 3: Save the connection
 
 Select **Save Connection** to persist the connection. The new connection (for example, `salesarea0001Client`) appears on the project canvas.
 
-![SAP S/4HANA Sales Area Connections panel showing salesarea0001Client entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_03_connection_saved.png)
+![SAP S/4HANA Sales Area Connections panel showing salesarea0001Client entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_03_connection_saved.png)
 
 ## Configuring the SAP S/4HANA sales area connection
 
@@ -71,7 +71,7 @@ Select **Save Connection** to persist the connection. The new connection (for ex
 1. In the automation flow, select the **+** button after the **Start** node.
 2. Expand the **salesarea0001Client** connection to view available operations.
 
-![SAP S/4HANA Sales Area connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_04_operations.png)
+![SAP S/4HANA Sales Area connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_04_operations.png)
 
 3. Select **List Sales Areas** and configure its parameters:
 
@@ -80,9 +80,9 @@ Select **Save Connection** to persist the connection. The new connection (for ex
 
 Select **Save** to apply the configuration.
 
-![SAP S/4HANA Sales Area List Sales Areas operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_05_operation.png)
+![SAP S/4HANA Sales Area List Sales Areas operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_05_operation.png)
 
-![Completed SAP S/4HANA Sales Area automation flow](/img/connectors/catalog/erp-business/sap.s4hana.salesarea-0001/sap_s4hana_salesarea0001_screenshot_06_completed_flow.png)
+![Completed SAP S/4HANA Sales Area automation flow](/img/connectors/catalog/erp-business/sap.s4hana.salesarea_0001/sap_s4hana_salesarea0001_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

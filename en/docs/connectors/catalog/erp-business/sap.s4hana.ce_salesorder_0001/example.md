@@ -31,7 +31,7 @@ flowchart LR
 
 In the project overview canvas, select the **Connectors** section to open the connector palette. In the search box, enter `ce_salesorder_0001` to filter connectors, then select the **sap.s4hana.ce_salesorder_0001** connector card.
 
-![sap.s4hana.ce_salesorder_0001 connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_01_palette.png)
+![sap.s4hana.ce_salesorder_0001 connector palette open with search field before any selection](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_01_palette.png)
 
 ## Configuring the sap.s4hana.ce_salesorder_0001 connection
 
@@ -43,13 +43,13 @@ Configure the connection form by binding each field to a configurable variable:
 - **config** : Set to `{auth: {token: sapAuthToken}}` in Expression mode, referencing the `sapAuthToken` configurable variable
 - **hostname** : Set to `${sapHostname}`, referencing the `sapHostname` configurable variable for the SAP system hostname
 
-![sap.s4hana.ce_salesorder_0001 connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_02_connection_form.png)
+![sap.s4hana.ce_salesorder_0001 connection form fully filled with all parameters before saving](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_02_connection_form.png)
 
 ### Step 3: Save the connection
 
 Select **Save** to create the connection. The canvas updates to show the `ceSalesorder0001Client` connection card in the Connections panel.
 
-![sap.s4hana.ce_salesorder_0001 Connections panel showing ceSalesorder0001Client entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_03_canvas_after_connection.png)
+![sap.s4hana.ce_salesorder_0001 Connections panel showing ceSalesorder0001Client entry after saving](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_03_canvas_after_connection.png)
 
 ### Step 4: Set actual values for your configurables
 
@@ -70,7 +70,7 @@ In the project overview canvas, select **Add Entry Point**, choose **Automation*
 1. Select the **+** button on the **Start** node to add a new step.
 2. In the action panel, expand the **ceSalesorder0001Client** connection to view available operations.
 
-![sap.s4hana.ce_salesorder_0001 connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_04_operations_panel.png)
+![sap.s4hana.ce_salesorder_0001 connection node expanded showing all available operations before selection](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_04_operations_panel.png)
 
 3. Select the **listSalesOrders** operation from the list and configure the following fields:
 
@@ -79,9 +79,9 @@ In the project overview canvas, select **Add Entry Point**, choose **Automation*
 
 Leave the optional query parameters (filter, orderby, select, skip, top) empty. Select **Save** to add the operation to the flow.
 
-![sap.s4hana.ce_salesorder_0001 listSalesOrders operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_05_operation_filled.png)
+![sap.s4hana.ce_salesorder_0001 listSalesOrders operation configuration filled with all values](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_05_operation_filled.png)
 
-![Completed sap.s4hana.ce_salesorder_0001 automation flow](/img/connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/sap_s4hana_sales_order_analytics_screenshot_06_completed_flow.png)
+![Completed sap.s4hana.ce_salesorder_0001 automation flow](/img/connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/sap_s4hana_sales_order_analytics_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 
