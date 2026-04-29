@@ -22,11 +22,11 @@ flowchart LR
 
 ## Setting up the OracleDB integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the OracleDB connector
 
-### Step 1: Open the Add Connection palette
+### Step 1: Open the add connection palette
 
 On the canvas, click **+ Add Connection** (or the **+** button in the Connections panel) to open the Add Connection palette, which shows available connectors.
 

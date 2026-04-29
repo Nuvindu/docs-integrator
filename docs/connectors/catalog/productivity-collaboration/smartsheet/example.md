@@ -22,11 +22,11 @@ flowchart LR
 
 ## Setting up the Smartsheet integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the Smartsheet connector
 
-### Step 1: Open the Add Connection palette
+### Step 1: Open the add connection palette
 
 In the left-hand sidebar tree, expand **Connections**, then select the **+** (Add Connection) button. The Add Connection palette opens on the right.
 
@@ -71,7 +71,7 @@ Select **Save Connection**. WSO2 Integrator saves the connection definition and 
 
 ## Configuring the Smartsheet listSheets operation
 
-### Step 6: Add an Automation entry point
+### Step 6: Add an automation entry point
 
 1. On the integration design canvas, select **+ Add Artifact**.
 2. In the artifact picker, select **Automation**.

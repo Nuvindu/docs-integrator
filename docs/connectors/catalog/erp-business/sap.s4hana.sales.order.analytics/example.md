@@ -23,7 +23,7 @@ flowchart LR
 
 ## Setting up the sap.s4hana.ce_salesorder_0001 integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the sap.s4hana.ce_salesorder_0001 connector
 
@@ -61,7 +61,7 @@ Select **Save** to create the connection. The canvas updates to show the `ceSale
 
 ## Configuring the sap.s4hana.ce_salesorder_0001 listSalesOrders operation
 
-### Step 5: Add an Automation entry point
+### Step 5: Add an automation entry point
 
 In the project overview canvas, select **Add Entry Point**, choose **Automation** as the entry point type, and keep the default name `main`. Select **Save** to create the Automation entry point. The canvas shows an empty automation flow with a **Start** node.
 

@@ -23,11 +23,11 @@ flowchart LR
 
 ## Setting up the Stripe integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the Stripe connector
 
-### Step 1: Open the Add Connection panel
+### Step 1: Open the add connection panel
 
 Open the WSO2 Integrator side panel and hover over the **Connections** tree item, then select the **+** button that appears to open the **Add Connection** palette.
 

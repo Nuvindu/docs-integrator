@@ -23,7 +23,7 @@ flowchart LR
 
 ## Setting up the Gmail integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the Gmail connector
 
@@ -70,7 +70,7 @@ Select **Save** to persist the connection. The **Connections** section in the si
 
 ## Configuring the Gmail sendMessage operation
 
-### Step 5: Add an Automation entry point
+### Step 5: Add an automation entry point
 
 1. In the sidebar, hover over **Entry Points** and select **Add Entry Point** (**+**).
 2. Select **Automation** from the artifacts panel.

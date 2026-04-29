@@ -4,11 +4,11 @@ title: Streaming Large Files
 
 # Streaming Large Files
 
-By default, a file handler loads the whole file into memory before it runs. For files in the hundreds of megabytes or larger, that can exhaust the integration's memory budget. Turning on **Stream (Large Files)** when you add a handler changes this: the runtime delivers the content to the handler a row (CSV) or chunk (RAW) at a time, so memory use stays flat no matter how big the file is.
+By default, a file handler loads the whole file into memory before it runs. For files in the hundreds of megabytes or larger, that can exhaust the integration's memory budget. Enabling **Stream (Large Files)** when configuring a handler changes how files are processed, delivering data row by row (CSV) or in chunks (RAW) so memory usage stays constant regardless of file size.
 
 ## When to stream
 
-| Scenario | What to pick |
+| Scenario | Approach |
 |---|---|
 | Files smaller than ~50 MB | Leave **Stream** off. Simpler handler code, and you get the whole file at once. |
 | CSV files larger than ~50 MB | Tick **Stream**. Define a row schema so each row arrives as a typed record. |
@@ -75,8 +75,13 @@ remote function onFile(stream<byte[], error?> content,
 }
 ```
 
+:::note When a row fails to parse
+A bad row (malformed CSV or wrong type) stops the stream right there, and the file goes to your **After Error** destination. Anything your handler already did for earlier rows — database writes, API calls, published messages — stays.
+
+When you retry the file, those rows run again. To stay safe, make your handler idempotent (check before you write) or track which rows you've already processed per file. If you'd rather skip bad rows and keep going, turn on [CSV fault tolerance](csv-fault-tolerance.md).
+
 ## What's next
 
 - [FTP / SFTP](ftp-sftp.md) — service, listener, and file-handler reference
 - [CSV fault tolerance](csv-fault-tolerance.md) — skip malformed rows and keep the stream going
-- [File dependency and trigger conditions](file-dependency-triggers.md) — control when files are processed
+- [File dependency and trigger conditions](dependency-and-trigger-conditions.md) — control when files are processed

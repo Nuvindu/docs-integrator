@@ -128,7 +128,7 @@ part of the configuration.
    configuration — at minimum a truststore or certificate path so the
    client can verify the server:
 
-   ```
+   ```ballerina
    {
        cert: {path: "/path/to/truststore.jks", password: "changeit"}
    }
@@ -197,18 +197,18 @@ Use this flow for SFTP (FTP over SSH). Default port: `22`. The form collects the
    | **Host** | Hostname or IP address of the remote server (e.g., `sftp.example.com`). |
    | **Port Number** | Port to connect on. Set to `22` for SFTP. |
 
-4. Choose **Certificate Based Authentication** under **authentication method**. This reveals the **Private Key** and **Username** fields.
+4. Choose **Certificate-Based Authentication** under **authentication method**. This reveals the **Private Key** and **Username** fields.
 
 5. Enter the **Private Key** record. Click **Record** on the field and supply:
 
-   ```
+   ```ballerina
    {path: "/path/to/private_key"}
    ```
 
    If the private key is passphrase-protected, include the passphrase
    in the record:
 
-   ```
+   ```ballerina
    {path: "/path/to/private_key", password: "my-passphrase"}
    ```
 
@@ -291,11 +291,15 @@ listener ftp:Listener sftpListener = check new ({
 
 A file handler is a `remote function` that WSO2 Integrator calls each time the listener's polling cycle detects a file event in the monitored directory. A service can declare any combination of the three handler types:
 
-| Handler | Trigger | Required |
-|---|---|---|
-| **onCreate** (`onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` / `onFile`) | A new file matching the service's `fileNamePattern` appears on the remote server. The function name depends on the content type — one variant per file format. | Yes — at least one onCreate variant |
-| **onFileDelete** | A previously seen file is no longer present on the remote server. | No |
-| **onError** | The runtime could not map incoming content to a typed onCreate handler — for example, a JSON handler received malformed JSON. | No |
+| Handler | Trigger |
+|---|---|
+| **onCreate** (`onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` / `onFile`) | A new file matching the service's `fileNamePattern` appears on the remote server. The function name depends on the content type — one variant per file format. |
+| **onFileDelete** | A previously seen file is no longer present on the remote server. |
+| **onError** | The runtime could not map incoming content to a typed onCreate handler — for example, a JSON handler received malformed JSON. |
+
+At least one **onCreate** or **onFileDelete** handler is required — a service with only an `onError` handler is not valid.
+
+`onFileDeleted` is also supported as a legacy/deprecated delete callback. Prefer `onFileDelete` for new services.
 
 ### Adding a file handler
 
@@ -306,7 +310,7 @@ In the **Service Designer**, click **+ Add File Handler** and pick **onCreate**,
 | Field | Description |
 |---|---|
 | **File Format** | (onCreate only) The format of incoming files. Determines the handler function name and the type of the `content` parameter. Options: **TEXT**, **JSON**, **XML**, **CSV**, **RAW**. See [Content types](#content-types). |
-| **Rows** | (CSV only) Content schema contains a row of CSV Row type. |
+| **Rows** | (CSV only) The content schema is defined per row — each CSV row maps to a record type (Row schema). |
 | **Stream (Large Files)** | (CSV and RAW) Process the file content in chunks instead of loading it all into memory. See [Typed content and streaming](#typed-content-and-streaming). |
 | **+ Define Row Schema** | (CSV only) Map CSV rows to a typed record. See [Typed content and streaming](#typed-content-and-streaming). |
 | **+ Define Content Schema** | (JSON, XML only) Map the document to a typed record. See [Typed content and streaming](#typed-content-and-streaming). |
@@ -367,8 +371,8 @@ remote function onFile(byte[] content, ftp:FileInfo fileInfo) returns error? {
 **Delete handler:**
 
 ```ballerina
-remote function onFileDelete(string deleteFiles) returns error? {
-    // deleteFiles is the name of the file that was removed
+remote function onFileDelete(string deletedFile) returns error? {
+    // deletedFile is the name of the file that was removed
 }
 ```
 
@@ -410,7 +414,7 @@ Common combinations:
 
 The choices update the handler's `@ftp:FunctionConfig` annotation as you toggle; switch to the Ballerina Code tab to review the generated annotation.
 
-The form writes an `@ftp:FunctionConfig` annotation on the handler. Each of `afterProcess` and `afterError` takes one of two shapes — a record literal `{ moveTo: <path> }` for move, or the bare constant `ftp:DELETE` for delete:
+The form writes an `@ftp:FunctionConfig` annotation on the handler. Each of `afterProcess` and `afterError` takes one of two values — `ftp:MOVE` (a `ftp:Move` record) for move, or the bare constant `ftp:DELETE` for delete:
 
 ```ballerina
 @ftp:FunctionConfig {
@@ -429,8 +433,8 @@ remote function onFileText(string content, ftp:FileInfo fileInfo) returns error?
 | Field | Type | Description |
 |---|---|---|
 | `fileNamePattern` | `string?` | Regex to filter which files this handler processes. Overrides the service-level pattern for this handler. |
-| `afterProcess` | `{moveTo: string}\|ftp:DELETE?` | Action to take when the handler returns without error. Omit the field to leave the file in place. |
-| `afterError` | `{moveTo: string}\|ftp:DELETE?` | Action to take when the handler returns an error. Same shape as `afterProcess`. |
+| `afterProcess` | `ftp:MOVE\|ftp:DELETE?` | Action to take when the handler returns without error. Omit the field to leave the file in place. For move, use `{ moveTo: <path> }`. |
+| `afterError` | `ftp:MOVE\|ftp:DELETE?` | Action to take when the handler returns an error. Same shape as `afterProcess`. |
 
 ### Typed content and streaming
 
@@ -507,7 +511,7 @@ Each handler receives an `ftp:FileInfo` parameter with metadata about the incomi
 | Field | Type | Description |
 |---|---|---|
 | `name` | `string` | File name without path |
-| `path` | `string` | Full path on the remote server |
+| `path` | `string` | Relative path on the remote server |
 | `pathDecoded` | `string` | Normalized absolute path — use this for all `caller->` operations |
 | `size` | `int` | File size in bytes |
 | `lastModifiedTimestamp` | `int` | Last-modified time as UNIX epoch milliseconds |
@@ -631,7 +635,7 @@ service on primaryListener, backupListener {
 }
 ```
 
-For the general concept, see [Services and listeners](/docs/get-started/key-concepts#services-and-listeners). For the language-level details, see [Integration-specific features](../../../reference/language/integration-features.md).
+For the general concept, see [Services and listeners](/docs/get-started/key-concepts#services-and-listeners). For the language-level details, see [Integration-specific features](../../../reference/language/integration-specific-features.md).
 
 ## Attaching listeners to services
 
@@ -764,8 +768,8 @@ service on ftpListener {
 |---|---|---|---|
 | `path` | `string` | `"/"` | Directory on the remote server to monitor for new files. |
 | `fileNamePattern` | `string?` | — | Regex to filter which files trigger handlers. Only matching files are processed. |
-| `fileAgeFilter` | `FileAgeFilter?` | — | Age bounds to skip files that are too new (still uploading) or too old (stale). See [File dependency and trigger conditions](file-dependency-triggers.md). |
-| `fileDependencyConditions` | `FileDependencyCondition[]?` | — | Conditions that block processing until related files exist. See [File dependency and trigger conditions](file-dependency-triggers.md). |
+| `fileAgeFilter` | `FileAgeFilter?` | — | Age bounds to skip files that are too new (still uploading) or too old (stale). See [File dependency and trigger conditions](dependency-and-trigger-conditions.md). |
+| `fileDependencyConditions` | `FileDependencyCondition[]?` | — | Conditions that block processing until related files exist. See [File dependency and trigger conditions](dependency-and-trigger-conditions.md). |
 
 The **Attached Listeners** list in the left nav pane shows every listener this service is attached to. Click a listener name to edit that listener's configuration inline on the right. To attach another listener, click **+ Attach Listener** at the bottom of the panel — see [Attaching listeners to services](#attaching-listeners-to-services).
 
@@ -790,8 +794,8 @@ The listener controls **how** to connect — protocol, host, authentication, pol
 | **Sftp Compression** | SSH compression algorithms to negotiate with the server (SFTP only). | — |
 | **Sftp Ssh Known Hosts** | Path to an SSH `known_hosts` file (SFTP only). | — |
 | **Csv Fail Safe** | Fail-safe options for CSV content processing. Malformed records are skipped and written to a side file in the working directory. | — |
-| **Retry Config** | Retry configuration for transient failures during polling or file retrieval. For the retry-with-backoff mechanics and field reference, see [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig); for the broader pattern, see the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker.md). | — |
-| **Coordination** | Distributed coordination for multi-instance deployments. See [High availability](high-availability.md). | — |
+| **Retry Config** | Retry configuration for transient failures during polling or file retrieval. For the retry-with-backoff mechanics and field reference, see [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig); for the broader pattern, see the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker-retry.md). | — |
+| **Coordination** | Distributed coordination for multi-instance deployments. See [High availability](high-availability-and-coordination.md). | — |
 
 Listener configuration maps to the `ftp:ListenerConfiguration` record passed when constructing the listener:
 
@@ -819,12 +823,12 @@ listener ftp:Listener ftpListener = new (
 | `connectTimeout` | `decimal` | `30.0` | Connection timeout in seconds. |
 | `socketConfig` | `ftp:SocketConfig?` | — | Socket timeout configuration. See [`ftp:SocketConfig` reference](https://central.ballerina.io/ballerina/ftp/latest#SocketConfig). |
 | `fileTransferMode` | `ftp:FileTransferMode` | `BINARY` | File transfer mode (`BINARY` or `ASCII`). Use `ASCII` only for text-only files on servers that require line-ending conversion. |
-| `retryConfig` | `ftp:RetryConfig?` | — | Retry configuration for failed polling attempts. See [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig) and the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker.md). |
-| `coordination` | `ftp:CoordinationConfig?` | — | Distributed coordination for multi-instance deployments. See [High availability](high-availability.md). |
+| `retryConfig` | `ftp:RetryConfig?` | — | Retry configuration for failed polling attempts. See [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig) and the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker-retry.md). |
+| `coordination` | `ftp:CoordinationConfig?` | — | Distributed coordination for multi-instance deployments. See [High availability](high-availability-and-coordination.md). |
 
 ## What's next
 
 - [Local files](local-files.md) — monitor a local directory instead of a remote server
 - [Connections](../supporting/connections.md) — reuse FTP connection credentials across services
 - [Data Mapper](../supporting/data-mapper.md) — transform incoming file payloads between formats
-- [FTP file processing tutorial](../../../tutorials/walkthroughs/edi-ftp-processing.md) — end-to-end walkthrough for EDI file processing over FTP
+- [FTP file processing tutorial](../../../tutorials/walkthroughs/process-edi-documents-from-ftp.md) — end-to-end walkthrough for EDI file processing over FTP
