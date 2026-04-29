@@ -2043,6 +2043,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Secure',
           items: [
+            'deploy-operate/secure/keystore-truststore',
             'deploy-operate/secure/runtime-security',
             'deploy-operate/secure/authentication',
             'deploy-operate/secure/api-security-rate-limiting',
