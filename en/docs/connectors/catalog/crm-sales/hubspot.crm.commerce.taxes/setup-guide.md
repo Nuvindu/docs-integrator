@@ -88,4 +88,4 @@ Private app tokens provide full access to the scopes you configure. Treat them l
 
 ## Next steps
 
-- [Actions Reference](action-reference.md) - Available operations
+- [Actions Reference](actions.md) - Available operations

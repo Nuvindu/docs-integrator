@@ -87,4 +87,4 @@ Store your API key and OAuth credentials securely. Do not commit them to source 
 
 ## Next steps
 
-- [Actions Reference](action-reference.md) - Available operations
+- [Actions Reference](actions.md) - Available operations

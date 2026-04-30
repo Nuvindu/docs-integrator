@@ -161,9 +161,9 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  { label: 'Quick start: Automation', to: '/docs/get-started/quick-start-automation' },
-  { label: 'Build an AI agent', to: '/docs/get-started/quick-start-ai-agent' },
-  { label: 'Quick start: REST API', to: '/docs/get-started/quick-start-api' },
+  { label: 'Build an Automation', to: '/docs/get-started/build-automation' },
+  { label: 'Build an AI Agent', to: '/docs/get-started/build-ai-agent' },
+  { label: 'Build an API Integration', to: '/docs/get-started/build-api-integration' },
   { label: 'Connector catalog', to: '/docs/connectors' },
 ];
 
@@ -286,7 +286,7 @@ function HomepageHeader(): ReactNode {
         <div className={styles.buttons}>
           <Link
             className={styles.heroBtn}
-            to="/docs/get-started/quick-start-automation">
+            to="/docs/get-started/build-automation">
             Build your first integration
             <svg
               width="16"

@@ -119,7 +119,7 @@ Components to cover (in this order):
 
 ## Page: Quick start — Build an automation
 
-**File:** `en/docs/get-started/quick-start-automation.md`
+**File:** `en/docs/get-started/build-automation.md`
 
 **What to cover:**
 - Scheduled task that runs every N minutes
@@ -129,7 +129,7 @@ Components to cover (in this order):
 
 ## Page: Quick start — Build an AI agent
 
-**File:** `en/docs/get-started/quick-start-ai-agent.md`
+**File:** `en/docs/get-started/build-ai-agent.md`
 
 **What to cover:**
 - Simple AI agent with one tool
@@ -141,7 +141,7 @@ Components to cover (in this order):
 
 ## Page: Quick start — Build an API integration
 
-**File:** `en/docs/get-started/quick-start-api.md`
+**File:** `en/docs/get-started/build-api-integration.md`
 **Status:** EXISTS — review
 
 **What to cover:**
@@ -155,7 +155,7 @@ Components to cover (in this order):
 
 ## Page: Quick start — Build an event-driven integration
 
-**File:** `en/docs/get-started/quick-start-event.md`
+**File:** `en/docs/get-started/build-event-driven-integration.md`
 
 **What to cover:**
 - Kafka consumer that processes messages
@@ -165,7 +165,7 @@ Components to cover (in this order):
 
 ## Page: Quick start — Build a file-driven integration
 
-**File:** `en/docs/get-started/quick-start-file.md`
+**File:** `en/docs/get-started/build-file-driven-integration.md`
 
 **What to cover:**
 - FTP/SFTP file watcher that processes uploaded files

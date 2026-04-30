@@ -408,5 +408,5 @@ public function main() returns error? {
 
 ## What's next
 
-- [JSON Processing](json.md) -- Work with JSON data
-- [CSV & Flat File Processing](csv-flat-file.md) -- Handle tabular data formats
+- [JSON Processing](json-processing.md) -- Work with JSON data
+- [CSV & Flat File Processing](csv-flat-file-processing.md) -- Handle tabular data formats
