@@ -1,10 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 title: Keystores and Truststores
 description: Create, configure, and manage keystores and truststores for TLS, mutual TLS, and secure connections in Ballerina integrations.
 ---
 
-# Keystores and truststores
+# Keystores and Truststores
 
 Keystores and truststores are foundational to securing communication in production deployments. This guide explains what each is, how to create them, and how to configure them in WSO2 Integrator.
 
