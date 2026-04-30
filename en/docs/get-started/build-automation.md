@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
 title: "Build an Automation"
-description: Create an automation that can run on demand or invoked on a schedule from an external system.
+description: Create an automation that can run on demand or be invoked on a schedule from an external system.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -13,10 +13,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Automations are ideal for data synchronization, report generation, and routine maintenance jobs.
 
+## Prerequisites
+
+- Install WSO2 Integrator and complete the required setup by following the [installation guide](install.md).
+
+
 ## Step 1: Create the project
 
 1. Open WSO2 Integrator.
-2. Select **Create**.
+2. Select **Create New Integration**.
 3. Set **Integration Name** to `HelloWorld`.
 4. Set **Project Name** to `QuickStart`.
 5. Select **Browse**.
