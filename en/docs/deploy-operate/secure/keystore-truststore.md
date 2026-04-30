@@ -303,6 +303,5 @@ truststorePassword = "<truststore-password>"
 - [Ballerina HTTP Module — SSL/TLS](https://lib.ballerina.io/ballerina/http/latest)
 - [Ballerina gRPC Module — Secured Communication](https://lib.ballerina.io/ballerina/grpc/latest)
 - [Ballerina Crypto Module](https://central.ballerina.io/ballerina/crypto/latest)
-- [Keystores and certificates](runtime-security#keystores-and-certificates)
 - [Secrets and encryption](secrets-encryption.md)
 - [Java keytool documentation](https://docs.oracle.com/en/java/javase/17/docs/specs/man/keytool.html)
