@@ -38,7 +38,7 @@ java -version
 # Ensure JDK 17.0.x or later with latest patch
 ```
 
-## Keystores and certificates
+## Keystores and truststores
 
 Creating keystores, truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
 
