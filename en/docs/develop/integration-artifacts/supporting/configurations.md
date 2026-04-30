@@ -44,7 +44,7 @@ Declare configurable variables at the module level using the `configurable` keyw
 ```ballerina
 // config.bal
 
-// Required configuration (must be provided in Config.toml)
+// Required configuration -- must be supplied at runtime
 configurable string apiEndpoint = ?;
 configurable string apiKey = ?;
 
@@ -104,45 +104,7 @@ slackEnabled = true
 slackWebhookUrl = "https://hooks.slack.com/services/..."
 ```
 
-Values can also be supplied through environment variables (`BAL_CONFIG_VAR_*`), inline TOML (`BAL_CONFIG_DATA`), or command-line arguments (`-C`). When a variable is defined in more than one source, the runtime applies a fixed priority order. See [Configuration management](../../design-logic/configuration-management.md#environment-variables) for the full source list and priority.
-
-## Configuration types
-
-Configurable variables support primitive types, arrays, maps, records, and tables.
-
-| Type | Example |
-|---|---|
-| `int` | `configurable int port = 8080;` |
-| `float` | `configurable float threshold = 0.75;` |
-| `decimal` | `configurable decimal taxRate = 0.08d;` |
-| `string` | `configurable string apiKey = ?;` |
-| `boolean` | `configurable boolean debug = false;` |
-| Arrays | `configurable string[] allowedOrigins = ["*"];` |
-| `map<string>` | `configurable map<string> headers = {};` |
-| Records | `configurable DatabaseConfig dbConfig = ?;` |
-| Tables | `configurable table<Employee> key(id) employees = table [];` |
-
-Use `?` to declare a variable as required (no default) and a literal value for optional variables.
-
-## Per-environment configuration
-
-Maintain a separate configuration file for each environment and select the active file at startup with the `BAL_CONFIG_FILES` environment variable.
-
-```
-my-integration/
-├── Ballerina.toml
-├── Config.toml              # Local development defaults
-├── config/
-│   ├── dev.toml
-│   ├── staging.toml
-│   └── prod.toml
-└── main.bal
-```
-
-```bash
-BAL_CONFIG_FILES=config/staging.toml bal run
-BAL_CONFIG_FILES=config/prod.toml bal run
-```
+For the full list of supported types, alternative value sources (environment variables, CLI arguments, inline TOML), and resolution priority, see [Configuration management](../../design-logic/configuration-management.md). To target different environments, point `BAL_CONFIG_FILES` at a per-environment file — see [Per-environment configuration](../../design-logic/configuration-management.md#per-environment-configuration).
 
 ## Best practices
 
