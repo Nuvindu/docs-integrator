@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
 title: "Build an Automation"
-description: Create a scheduled automation that runs tasks on a timer.
+description: Create an automation that can run on demand or invoked on a schedule from an external system.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -9,13 +9,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Build an Automation
 
-**Time:** Under 10 minutes | **What you'll build:** A scheduled automation that runs tasks on a timer or manual trigger.
+**Time:** Under 10 minutes | **What you'll build:** An automation that can run on demand or configured for periodic invocation from external systems.
 
 Automations are ideal for data synchronization, report generation, and routine maintenance jobs.
-
-## Prerequisites
-
-- [WSO2 Integrator extension installed](install.md)
 
 ## Step 1: Create the project
 
@@ -82,21 +78,12 @@ Automations are ideal for data synchronization, report generation, and routine m
 
 ## Scheduling automations
 
-For production use, configure a cron schedule to trigger the automation periodically:
+Periodic invocation is configured in an external system once the automation is deployed. Available options include:
 
-```ballerina
-import ballerina/task;
-
-listener task:Listener timer = new ({
-    intervalInMillis: 60000  // Run every 60 seconds
-});
-
-service on timer {
-    remote function onTrigger() {
-        // Your automation logic here
-    }
-}
-```
+- **Cron job** — schedule the automation from a `cron` entry on a Unix or Linux host.
+- **Kubernetes** — define a `CronJob` resource to run the automation on a recurring schedule.
+- **VM** — use a host scheduler such as Windows Task Scheduler or `systemd` timers.
+- **WSO2 Cloud** — configure the schedule in WSO2 Cloud when the integration is pushed to the cloud.
 
 ## What's next
 
