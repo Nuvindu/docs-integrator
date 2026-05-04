@@ -431,4 +431,4 @@ resource function get orders/[string id]() returns Order|http:NotFound {
 
 - [gRPC Service](grpc.md) — define services using Protocol Buffers
 - [Connections](../supporting/connections.md) — configure HTTP client connections to call external services
-- [Data Mapper](../supporting/data-mapper.md) — transform request/response payloads between formats
+- [Data Mapper](../supporting/data-mapper/data-mapper.md) — transform request/response payloads between formats

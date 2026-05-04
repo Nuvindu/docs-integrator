@@ -33,13 +33,13 @@ When the input and output array types are identical, use **Assign as is** to ass
 
 ## Nested iterate
 
-To iterate a second array on each iteration of an outer array, first map the outer array using **Map Each Element**. From the focused view, select the second array and map it to the target — the data mapper offers the **Nested Iterate** option to wrap it in an inner query.
+To iterate a second array on each iteration of an outer array, first map the outer array using **Map Each Element**. From the focused view, select the second array and map it to the target. The data mapper offers the **Nested Iterate** option to wrap it in an inner query.
 
 ![Nested Iterate prompt when mapping a second array inside the focused view](/img/develop/integration-artifacts/supporting/data-mapper/nested-iterate.gif)
 
 ## Join with condition
 
-To join two arrays on a condition, map the first array with **Map Each Element** to enter the focused view. Then map the second array onto the target header — the data mapper offers **Join with Condition**. Define the join condition in the side panel.
+To join two arrays on a condition, map the first array with **Map Each Element** to enter the focused view. Then map the second array onto the target header. The data mapper offers **Join with Condition**. Define the join condition in the side panel.
 
 ![Join with Condition prompt and side panel for defining the join expression](/img/develop/integration-artifacts/supporting/data-mapper/join-with-condition.gif)
 

@@ -21,7 +21,7 @@ Combine multiple input fields into a single output field. Connect each input to 
 
 ## Expression editor
 
-For outputs that need custom logic, click the output field to open the expression editor. The editor provides completion support — start typing a field reference or function name, and use the suggestions to compose the expression. To insert an input value, click the corresponding input field while the editor is active.
+For outputs that need custom logic, click the output field to open the expression editor. The editor provides completion support. Start typing a field reference or function name, and use the suggestions to compose the expression. To insert an input value, click the corresponding input field while the editor is active.
 
 ![Expression editor opened on an output field with completion suggestions](/img/develop/integration-artifacts/supporting/data-mapper/expression-editor.gif)
 
