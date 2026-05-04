@@ -1241,14 +1241,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'PDF',
-          link: { type: 'doc', id: 'connectors/catalog/built-in/pdf/pdf' },
-          items: [
-            'connectors/catalog/built-in/pdf/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'PayPal Invoices',
           link: { type: 'doc', id: 'connectors/catalog/finance-accounting/paypal.invoices/paypal-invoices-connector-overview' },
           items: [
