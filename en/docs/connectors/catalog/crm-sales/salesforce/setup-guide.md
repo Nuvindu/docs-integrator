@@ -94,5 +94,5 @@ You can find it in the token exchange response as `instance_url`, or in Setup un
 
 ## Next steps
 
-- [Action Reference](action-reference.md) - Available operations
-- [Trigger Reference](trigger-reference.md) - Event-driven integration
+- [Action Reference](actions.md) - Available operations
+- [Trigger Reference](triggers.md) - Event-driven integration

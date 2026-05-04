@@ -357,11 +357,6 @@ check from record {} item in results
 
 Returns a list of all available Salesforce REST API versions.
 
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-
 **Returns:** `Version[]|error`
 
 **Sample code:**
@@ -416,11 +411,6 @@ map<string> resources = check salesforceClient->getResources("v59");
 
 Returns the API limits information for your organization.
 
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-
 **Returns:** `map<Limit>|error`
 
 **Sample code:**
@@ -444,11 +434,6 @@ map<salesforce:Limit> limits = check salesforceClient->getLimits();
 <div>
 
 Retrieves metadata about the current Salesforce org.
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
 
 **Returns:** `OrganizationMetadata|error`
 
@@ -533,11 +518,6 @@ salesforce:SObjectMetaData meta = check salesforceClient->describe("Account");
 <div>
 
 Queries for actions displayed in the UI, given a user, a context, device format, and a record ID.
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
 
 **Returns:** `SObjectBasicInfo|error`
 
@@ -642,11 +622,6 @@ salesforce:UpdatedRecordsResults updated = check salesforceClient->getUpdatedRec
 <div>
 
 Returns a list of all reports available in the org.
-
-**Parameters:**
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
 
 **Returns:** `Report[]|error`
 
