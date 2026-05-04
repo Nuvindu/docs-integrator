@@ -20,7 +20,7 @@ Every top-level section answers one developer question. If content doesn't clear
 | Developer asks... | Section |
 |---|---|
 | "I'm new — what is this?" | Get Started |
-| "How do I build and test X?" | Develop |
+| "How do I build, transform and test X?" | Develop |
 | "Can I connect to Y?" | Connectors |
 | "How do I build AI agents, RAG, or MCP?" | GenAI |
 | "Show me a complete, real example" | Tutorials |
@@ -73,6 +73,7 @@ Every page MUST follow this structure:
 ---
 title: "<Page Title>"
 description: "<One sentence — what and when>"
+keywords: [wso2 integrator, <topic>, <subtopic>]
 ---
 
 # <Page Title>
@@ -134,6 +135,34 @@ service /hello on new http:Listener(8080) {
 
 ---
 
+## Microsoft Style Guide (mandatory)
+
+All new and modified content must comply with the [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/):
+
+- Active voice, present tense.
+- **Sentence case for headings** (capitalize only first word and proper nouns).
+- No decorative symbols (¶, →, ») in headings or text.
+- Numbered lists for sequential tasks, bulleted for non-sequential.
+- **Bold** for UI labels and button names (e.g., **Create**).
+- Backticks for code elements, file paths, and URLs in prose.
+- Descriptive link text — never raw URLs.
+- Plain language; avoid jargon and ambiguous pronouns.
+
+Scope: 100% compliance for new pages. For existing pages, apply rules only to lines you add or modify.
+
+
+### Em dash usage
+ 
+Avoid em dashes (—). They are a strong signal of AI-generated text and make prose feel unnatural. Use shorter sentences, commas, or periods instead.
+ 
+| Instead of | Write |
+|---|---|
+| The connector compiles — but fails at runtime. | The connector compiles, but fails at runtime. |
+| Use record types — they are the most flexible option. | Use record types. They are the most flexible option. |
+| Configure the base URL — this is required. | Configure the base URL. This field is required. |
+ 
+The only accepted exception is the **What's next** section, where em dashes separate a link from its description as a consistent formatting convention across all pages.
+
 ## Code Example Standards
 
 - Every code example must be **complete and runnable** — not snippets
@@ -158,3 +187,75 @@ service /hello on new http:Listener(8080) {
 - Keep paragraphs short (3–4 sentences max)
 - Use bullet lists for 3+ items, inline for 2
 - Heading hierarchy: `##` for main sections, `###` for subsections, `####` rarely
+
+
+## Visual Media Standards
+
+### Screenshots
+
+Use screenshots **only when configuration or UI state is non-obvious** and cannot be adequately described in text. Do not repeat the same screenshot across multiple pages.
+
+| Rule | Detail |
+|---|---|
+| **Capture area** | Full WSO2 Integrator IDE window — no partial crops |
+| **Theme** | Light Modern (default) |
+| **Highlights** | Use red boxes and arrows to mark specific areas of focus |
+| **Format** | PNG, compressed without quality loss before committing |
+| **Repetition** | The same screenshot must not appear on more than one page — link to the source page instead |
+
+### Screencasts (Animated GIFs)
+
+Use GIFs **only when a single action triggers multiple sequential screen changes** (e.g., the Try-it feature, drag-and-drop flows). Do not use GIFs for static configuration steps.
+
+| Rule | Detail |
+|---|---|
+| **Capture area** | Full WSO2 Integrator IDE window — no partial crops |
+| **Theme** | Light Modern (default) |
+| **Format** | Compressed GIF — minimize file size without visible quality loss |
+| **File picker usage** | If the GIF involves a folder selection dialog, ensure the folder structure shown is clean and realistic (no personal or test clutter) |
+
+### When to Use Each
+
+| Situation | Use |
+|---|---|
+| Non-obvious UI configuration | Screenshot |
+| Multi-step action with screen transitions | GIF |
+| Simple setting or field description | Neither — use text |
+| Step already shown on another page | Neither — cross-link instead |
+
+## Page Title and URL Rules
+ 
+URLs are permanent. A wrong URL is a broken link — in third-party sites, search indexes, and bookmarks — that cannot be fixed without a redirect. Get the URL right before merging.
+ 
+### The Two-Step Rule
+ 
+1. **Start from the title.** Convert spaces to hyphens, lowercase everything.
+2. **Then optimize the URL** — shorten it, remove words already implied by the hierarchy, and eliminate redundancy. The title stays human-readable; the URL stays lean.
+The title and URL must use the same core words. They should never describe different things.
+ 
+### Rules
+ 
+- **Lowercase, hyphen-separated.** No underscores, no camelCase, no special characters.
+- **Remove filler words from URLs** — omit articles (`a`, `an`, `the`) and prepositions (`on`, `for`, `with`) unless they change meaning.
+- **Let the path carry context.** If the parent path already says `get-started/install/`, the slug does not need to repeat `install`.
+- **Never optimize a title to match a short URL.** Titles are for humans — keep them clear and complete. Optimize the URL independently.
+- **Lock URLs before publishing.** Once a page is live, the URL must not change. If a rename is unavoidable, add a redirect.
+### Examples
+ 
+| Page Title | URL | Notes |
+|---|---|---|
+| Install WSO2 Integrator | `/install-wso2-integrator` | Exact match — title is already concise |
+| Install WSO2 Integrator on macOS | `/install-macos` | Remove redundant words implied by context |
+| Configure API Endpoints | `/api/configure-endpoints` | Parent path carries `api` — no need to repeat |
+| Add Error Handling to Your Integration | `/error-handling` | Strip filler; topic is clear from the slug |
+| WSO2 Integrator IDE Overview | `/ide-overview` | Product name dropped — implied by the site |
+ 
+### What to Avoid
+ 
+| Avoid | Why |
+|---|---|
+| `/getting-started-with-wso2-integrator-installation` | Too long — redundant words, already in breadcrumb |
+| `/page1` or `/untitled` | Non-descriptive — breaks search and cross-linking |
+| `/Install_MacOS` or `/installMacOS` | Wrong case and separator style |
+| `/install-wso2-integrator-on-macos-operating-system` | Over-specified — `macos` alone is sufficient |
+| Changing a URL post-launch without a redirect | Breaks all external links permanently |
