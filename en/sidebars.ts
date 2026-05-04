@@ -173,7 +173,7 @@ const sidebars: SidebarsConfig = {
                       link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-mappings' },
                       items: [
                         'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-array',
-                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-singleton',
+                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-single-value',
                       ],
                     },
                     'develop/integration-artifacts/supporting/data-mapper/generic-type-mappings',

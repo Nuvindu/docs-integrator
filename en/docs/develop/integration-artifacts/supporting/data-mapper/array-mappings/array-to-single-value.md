@@ -1,17 +1,17 @@
 ---
-title: Array to singleton
+title: Array to single value
 description: Reduce an array to a single value by extracting one element or by aggregating across the array.
 ---
 
-# Array to singleton
+# Array to single value
 
 When the input is an array and the target output is a single value, the data mapper offers two options depending on whether you want one element from the array or a value computed across the array.
 
 ## Extract single element
 
-To pull a single value out of an array, use **Extract Single Element**. This option appears whenever you map an array onto a singleton output (a dimension mismatch).
+To pull a single value out of an array, use **Extract Single Element**. This option appears whenever you map an array onto a single-value output (a dimension mismatch).
 
-![Extract Single Element option appearing on a singleton output mapped from an array](/img/develop/integration-artifacts/supporting/data-mapper/extract-single-element.gif)
+![Extract Single Element option appearing on a single-value output mapped from an array](/img/develop/integration-artifacts/supporting/data-mapper/extract-single-element.gif)
 
 ## Aggregate and map
 

@@ -45,6 +45,6 @@ To join two arrays on a condition, map the first array with **Map Each Element**
 
 ## What's next
 
-- [Array to singleton](./array-to-singleton.md) — Reduce an array to a single value.
+- [Array to single value](./array-to-single-value.md) — Reduce an array to a single value.
 - [Generic type mappings](../generic-type-mappings.md) — Generate types from a sample JSON or XML payload.
 - [Submappings](../submappings.md) — Reuse mapping logic across multiple output fields.
