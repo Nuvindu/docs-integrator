@@ -1,21 +1,29 @@
 ---
-title: Build an Automation
+title: Build an automation
 ---
 
-# Build an Automation
+# Build an automation
 
-**Time:** Under 10 minutes | **What you'll build:** A scheduled automation that runs tasks on a timer or manual trigger.
+**Time:** Under 10 minutes | **What you'll build:** An automation that can run on demand or be configured for periodic invocation from external systems.
 
 Automations are ideal for data synchronization, report generation, and routine maintenance jobs.
 
+<ThemedImage
+    alt="Automation diagram"
+    sources={{
+        light: useBaseUrl('/img/get-started/build-automation/automation-diagram-light.svg'),
+        dark: useBaseUrl('/img/get-started/build-automation/automation-diagram-dark.svg'),
+    }}
+/>
+
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- Install WSO2 Integrator and complete the required setup by following the [installation guide](install.md).
 
 ## Step 1: Create the project
 
 1. Open WSO2 Integrator.
-2. Select **Create**.
+2. Select **Create New Integration**.
 3. Set **Integration Name** to `HelloWorld`.
 4. Set **Project Name** to `QuickStart`.
 5. Select **Browse**.
@@ -77,25 +85,16 @@ Automations are ideal for data synchronization, report generation, and routine m
 
 ## Scheduling automations
 
-For production use, configure a cron schedule to trigger the automation periodically:
+Periodic invocation is configured in an external system once the automation is deployed. Available options include:
 
-```ballerina
-import ballerina/task;
-
-listener task:Listener timer = new ({
-    intervalInMillis: 60000  // Run every 60 seconds
-});
-
-service on timer {
-    remote function onTrigger() {
-        // Your automation logic here
-    }
-}
-```
+- **Cron job**: schedule the automation from a `cron` entry on a Unix or Linux host.
+- **Kubernetes**: define a `CronJob` resource to run the automation on a recurring schedule.
+- **VM**: use a host scheduler such as Windows Task Scheduler or `systemd` timers.
+- **WSO2 Integration Platform**: configure the schedule in the WSO2 Integration Platform when the integration is pushed to the cloud.
 
 ## What's next
 
-- [AI agent](build-ai-agent.md) -- Build an intelligent agent
-- [Integration as API](build-api-integration.md) -- Build an HTTP service
-- [Event-driven integration](build-event-driven-integration.md) -- React to messages from brokers
-- [File-driven integration](build-file-driven-integration.md) -- Process files from FTP or local directories
+- [AI agent](build-ai-agent.md) — Build an intelligent agent
+- [Integration as API](build-api-integration.md) — Build an HTTP service
+- [Event-driven integration](build-event-driven-integration.md) — React to messages from brokers
+- [File-driven integration](build-file-driven-integration.md) — Process files from FTP or local directories
