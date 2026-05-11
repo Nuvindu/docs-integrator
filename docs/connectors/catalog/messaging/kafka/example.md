@@ -1,3 +1,7 @@
+---
+title: Example
+---
+
 # Example
 
 ## Table of contents
@@ -249,7 +253,7 @@ flowchart LR
 
 ### Setting up the Kafka integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the trigger.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the trigger.
 
 ### Adding the Kafka trigger
 

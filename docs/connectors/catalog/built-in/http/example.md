@@ -9,7 +9,7 @@
 
 ### What you'll build
 
-Build an HTTP GET integration using the `ballerinax/http` HTTP Client connector in WSO2 Integrator's low-code canvas. The integration sends an outbound GET request to a configurable URL and captures the HTTP response. The flow runs as an Automation entry point named `main`.
+Build an HTTP GET integration using the `ballerina/http` HTTP Client connector in WSO2 Integrator's low-code canvas. The integration sends an outbound GET request to a configurable URL and captures the HTTP response. The flow runs as an Automation entry point named `main`.
 
 **Operations used:**
 - **get** : Sends an HTTP GET request to a specified path and returns the HTTP response.
@@ -25,7 +25,7 @@ flowchart LR
 
 ### Setting up the HTTP integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ### Adding the HTTP connector
 
@@ -110,7 +110,7 @@ flowchart LR
 
 ### Setting up the HTTP Service integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the trigger.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the trigger.
 
 ### Adding the HTTP Service trigger
 
@@ -189,3 +189,23 @@ Select the back arrow in the canvas header (or re-select the **HTTP Service** en
    - The `curl` command-line tool: send a GET request to the configured endpoint using `curl -X GET http://<host>:<httpListenerPort>/messages`, replacing `<host>` and `<httpListenerPort>` with the values you set in the **Configurations** panel.
    - A GUI HTTP client such as **Postman** or **Insomnia**—send a GET request to the configured endpoint.
 3. Observe the integration's log output—the payload JSON string (for example, `{"message":"Hello from HTTP listener","path":"/messages"}`) should appear printed by `log:printInfo`, confirming the handler received and processed the incoming HTTP request.
+
+### Try it yourself
+
+Try this sample in WSO2 Integration Platform.
+
+[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/http_trigger_sample)
+
+[View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/http_trigger_sample)
+
+## More code examples
+
+The `HTTP` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerina-http/tree/master/examples), covering HTTP services, clients, security, REST API design, and streaming use cases.
+
+1. [Ballerina Secure Token Service (STS)](https://github.com/ballerina-platform/module-ballerina-http/tree/master/examples/ballerina-sts) - Implement a secure token service that demonstrates HTTP service security and token-based access flows.
+
+2. [Pet Clinic REST API](https://github.com/ballerina-platform/module-ballerina-http/tree/master/examples/petclinic) - Build a REST API for a pet clinic application using HTTP services, resources, and data persistence.
+
+3. [Server-sent events](https://github.com/ballerina-platform/module-ballerina-http/tree/master/examples/server-sent-events) - Explore server-sent event examples for streaming updates from an HTTP service to clients.
+
+4. [Snowpeak REST API](https://github.com/ballerina-platform/module-ballerina-http/tree/master/examples/snowpeak) - Learn REST API design patterns using an HTTP service and client implementation.

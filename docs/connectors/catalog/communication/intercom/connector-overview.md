@@ -1,8 +1,8 @@
 ---
-title: Intercom Connector Overview
+title: Overview
 ---
 
-# Intercom Connector Overview
+# Overview
 
 Intercom is a customer messaging platform that enables businesses to communicate with customers through chat, email, and automated workflows. The Ballerina `ballerinax/intercom` connector (v0.1.0) provides programmatic access to the Intercom REST API (v2.15), enabling you to manage contacts, conversations, tickets, articles, tags, and companies within your integration flows.
 
@@ -49,4 +49,4 @@ Check the issue tracker for open issues that interest you. We look forward to re
 
 - [Setup guide](setup-guide.md) — Create an Intercom app and obtain your access token
 - [Action reference](action-reference.md) — Browse all available operations and sample code
-- [Connectors overview](../../overview.md) — Explore other available connectors
+- [Connectors overview](../../../overview.md) — Explore other available connectors

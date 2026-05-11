@@ -22,7 +22,7 @@ flowchart LR
 
 ## Setting up the Email SMTP integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the Email SMTP connector
 
@@ -98,3 +98,9 @@ Try this sample in WSO2 Integration Platform.
 [![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/email_connector_sample)
 
 [View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/email_connector_sample)
+
+## More code examples
+
+The `Email` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerina-email/tree/master/examples), covering SMTP email sending and message configuration use cases.
+
+1. [Gmail SMTP client](https://github.com/ballerina-platform/module-ballerina-email/tree/master/examples/gmail-smtp-client) - Send email through Gmail SMTP using the Ballerina Email connector.

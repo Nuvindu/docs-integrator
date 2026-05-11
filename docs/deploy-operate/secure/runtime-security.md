@@ -4,7 +4,11 @@ title: Runtime Security
 
 # Runtime Security
 
-Securing your Ballerina integrations at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
+Securing integrations in WSO2 Integrator at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
+
+:::info Prerequisites
+- WSO2 Integrator installed and a working integration ([Install guide](../../get-started/install.md))
+- A target environment: Linux VM, Docker, or Kubernetes cluster
 
 ## JVM hardening
 
@@ -38,15 +42,15 @@ java -version
 # Ensure JDK 17.0.x or later with latest patch
 ```
 
-## Keystores and truststores
+## Keystores and Truststores
 
-Creating keystores, truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
+Creating keystores and truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
 
 - Generating keystores and truststores using `keytool`
 - Configuring TLS and mutual TLS for HTTP and gRPC services
 - Keeping certificate paths and passwords out of source code using `Config.toml` and environment variables
 
-## Non-Root execution
+## Non-root execution
 
 ### Linux
 
@@ -182,7 +186,7 @@ spec:
 
 ## What's next
 
-- [Keystores and Truststores](keystore-truststore.md) -- Create and configure TLS certificates, keystores, and truststores
-- [Secrets & Encryption](secrets-encryption.md) -- Manage secrets and encryption
-- [Authentication](authentication.md) -- Configure authentication for services
-- [API Security](api-security-rate-limiting.md) -- Secure your API endpoints
+- [Keystores and Truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
+- [Authentication](authentication.md) — Configure authentication for services
+- [API Security and Rate Limiting](api-security-rate-limiting.md) — Secure your API endpoints
+- [Secrets and Encryption](secrets-encryption.md) — Manage secrets and encryption
