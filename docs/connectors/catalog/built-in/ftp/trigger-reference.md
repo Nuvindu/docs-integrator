@@ -47,7 +47,7 @@ The listener supports the following connection strategy:
 | `csvFailSafe` | <code>FailSafeOptions</code> | `()` | Fail-safe CSV processing for `onFileCsv`. When set, malformed rows are skipped and logged to a separate file in the current working directory instead of failing the handler. |
 | `coordination` | <code>CoordinationConfig</code> | `()` | Distributed task coordination. When set, multiple listener members coordinate so that only one polls at a time and the others act as warm standby. |
 
-The deprecated fields `path`, `fileNamePattern`, `fileAgeFilter`, and `fileDependencyConditions` still exist on `ListenerConfiguration` but should not be used in new code. Configure these on the service via `@ftp:ServiceConfig` instead, see [File Dependency and Trigger Conditions](dependency-and-trigger-conditions.md).
+The deprecated fields `path`, `fileNamePattern`, `fileAgeFilter`, and `fileDependencyConditions` still exist on `ListenerConfiguration` but should not be used in new code. Configure these on the service via `@ftp:ServiceConfig` instead, see [File Dependency and Trigger Conditions](../../../../develop/integration-artifacts/file/dependency-and-trigger-conditions.md).
 
 ### Initializing the listener
 
@@ -123,7 +123,7 @@ An `ftp:Service` is a Ballerina service attached to an `ftp:Listener`. It monito
 | `onFileDelete` | <code>remote function onFileDelete(string deletedFile, ftp:Caller caller) returns error?</code> | Invoked once per file detected as deleted in a polling cycle, receiving the deleted file's path. `caller` is optional. |
 | `onError` | <code>remote function onError(ftp:Error err, ftp:Caller caller) returns error?</code> | Invoked when the runtime cannot bind a file's content to the typed parameter of a format-specific handler. For example, an `onFileJson` handler receiving malformed JSON. `caller` is optional. |
 
-The `|` in the content parameter lists the supported alternative types. The parameter should only be decalred with **one** of them. For example, `onFile` can be declared with `byte[]` *or* `stream<byte[], error?>`, not both at once.
+The `|` in the content parameter lists the supported alternative types. The parameter should only be declared with **one** of them. For example, `onFile` can be declared with `byte[]` *or* `stream<byte[], error?>`, not both at once.
 
 Multiple format-specific handlers (`onFile`, `onFileText`, `onFileJson`, `onFileXml`, `onFileCsv`) can coexist on the same service to route different file types to different methods using `@ftp:FunctionConfig`'s `fileNamePattern`. `onFileDelete` and `onError`can be added alongside any of them.
 
@@ -189,7 +189,7 @@ service "FileProcessor" on sftpListener {
 }
 ```
 
-Use the `@ftp:ServiceConfig` annotation to specify the `path` to monitor and an optional `fileNamePattern` regex to filter files. You can also use `@ftp:FunctionConfig` on individual callbacks to set per-function file patterns and post-processing actions (`afterProcess` and `afterError` — `MOVE` or `DELETE`).
+Use the `@ftp:ServiceConfig` annotation to specify the `path` to monitor and an optional `fileNamePattern` regex to filter files. You can also use `@ftp:FunctionConfig` on individual callbacks to set per-function file patterns and post-processing actions (`afterProcess` and `afterError`, which can be `MOVE` or `DELETE`).
 
 ### Post-processing for `onError`
 

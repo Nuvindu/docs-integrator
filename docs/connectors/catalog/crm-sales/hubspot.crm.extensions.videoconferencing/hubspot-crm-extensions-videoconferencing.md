@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Extensions Videoconferencing
+title: Overview
 ---
 
-HubSpot CRM Extensions Videoconferencing is an API that lets you register and manage external video conferencing application settings within HubSpot. The Ballerina `ballerinax/hubspot.crm.extensions.videoconferencing` connector (v2.0.0) provides programmatic access to these settings through the HubSpot REST API, enabling you to create, retrieve, update, and delete videoconferencing webhook URLs for your HubSpot app.
+# Overview
+
+HubSpot CRM Extensions Videoconferencing is an API that lets you register and manage external video conferencing application settings within HubSpot. The `ballerinax/hubspot.crm.extensions.videoconferencing` connector (v2.0.0) provides programmatic access to these settings through the HubSpot REST API, enabling you to create, retrieve, update, and delete videoconferencing webhook URLs for your HubSpot app.
 
 ## Key features
 
@@ -14,11 +16,11 @@ HubSpot CRM Extensions Videoconferencing is an API that lets you register and ma
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — saving, retrieving, updating, or deleting video conferencing application settings. The connector exposes a single client:
+Actions are operations you invoke on HubSpot from your integration: saving, retrieving, updating, or deleting video conferencing application settings. The connector exposes a single client:
 
 | Client | Actions |
 |--------|---------|
-| `Client` | Video conferencing settings CRUD — save, retrieve, update, and delete webhook URLs |
+| `Client` | Video conferencing settings CRUD: save, retrieve, update, and delete webhook URLs |
 
 See the **[Action Reference](actions.md)** for the full list of operations, parameters, and sample code for each client.
 
@@ -26,7 +28,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot developer app and obtaining the API key required to use the HubSpot CRM Extensions Videoconferencing connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Extensions Videoconferencing** connector, including connection setup, operation configuration, and execution flow.
 

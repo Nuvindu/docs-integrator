@@ -22,7 +22,7 @@ The form provides **Add Else IF Block** and **Add Else Block** to extend the bra
 
 ## Match
 
-Matches a value against one or more patterns and runs the steps under the first matching pattern. Use **Match** instead of a chain of **If/Else If** blocks when dispatching on a finite set of values or shapes.
+Matches a value against one or more patterns and runs the steps under the first matching pattern. Use `Match` instead of a chain of `If`/`Else If` blocks when dispatching on a finite set of values or shapes.
 
 ![Match button in the Control section](/img/develop/flow-design-elements/match-node.png)
 
@@ -75,7 +75,7 @@ Ends the current function or service flow and produces a value to the caller. Th
 
 ## What's next
 
-- [Statement](./statement) — Variables, function calls, and data mapping.
-- [Error handling](./error-handling) — Catch errors and raise failures inside branches.
-- [Concurrency](./concurrency) — Fork, wait, and lock for parallel work.
-- [Expression editor](../expression-editor) — Author Ballerina expressions with autocomplete and validation.
+- [Statement](./statement.md) — Variables, function calls, and data mapping.
+- [Error handling](./error-handling.md) — Catch errors and raise failures inside branches.
+- [Concurrency](./concurrency.md) — Fork, wait, and lock for parallel work.
+- [Expression editor](../expression-editor.md) — Author Ballerina expressions with autocomplete and validation.

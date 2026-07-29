@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Commerce Discounts
+title: Overview
 ---
 
-HubSpot CRM Commerce Discounts is part of HubSpot's CRM platform, enabling management of discount objects used in commerce workflows such as quotes and invoices. The Ballerina `ballerinax/hubspot.crm.commerce.discounts` connector (v2.0.0) provides programmatic access to HubSpot's Discounts API, allowing you to create, read, update, delete, batch process, and search discount records from your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Commerce Discounts is part of HubSpot's CRM platform, enabling management of discount objects used in commerce workflows such as quotes and invoices. The `ballerinax/hubspot.crm.commerce.discounts` connector (v2.0.0) provides programmatic access to HubSpot's Discounts API, allowing you to create, read, update, delete, batch process, and search discount records from your integration flows.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM Commerce Discounts is part of HubSpot's CRM platform, enabling manag
 
 ## Actions
 
-Actions are operations you invoke on HubSpot to manage discount records — creating discounts, reading them individually or in batches, updating properties, searching, and archiving. The connector exposes a single client:
+Actions are operations you invoke on HubSpot to manage discount records: creating discounts, reading them individually or in batches, updating properties, searching, and archiving. The connector exposes a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot private app or OAuth app and obtaining the credentials required to use the HubSpot CRM Commerce Discounts connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Commerce Discounts** connector, including connection setup, operation configuration, and execution flow.
 

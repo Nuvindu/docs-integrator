@@ -1,8 +1,8 @@
 ---
-title: Build a sentiment analyzer
+title: Build a Sentiment Analyzer
 ---
 
-# Build a sentiment analyzer
+# Build a Sentiment Analyzer
 
 **Time:** Under 10 minutes | **What you'll build:** An HTTP service that listens on `POST /analyze`, sends a customer review to an LLM, and returns the sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
@@ -10,7 +10,7 @@ A direct LLM call is the simplest way to use AI in an integration: you send a pr
 
 :::info Prerequisites
 
-- [WSO2 Integrator set up for AI](setting-up-ai.md)
+- [Model Providers for LLMs](../develop/components/model-providers.md)
 - A project to work in. If you do not have one, see [Create a new integration](../../develop/create-integrations/create-a-new-integration.md).
 
 ## Step 1: Add an HTTP service
@@ -52,8 +52,18 @@ The LLM call returns one of three values. Define an enum so Ballerina can enforc
 1. In the HTTP Service Design editor, select **+ Add Resource**.
 2. Select **POST**.
 3. Set **Resource Path** to `analyze`.
-4. Select **+ Define Payload**, set the name to `AnalyzePayload`, and add a single field `text` of type `string`.
-5. Select **Save** on the payload panel, then **Save** on the resource.
+4. Select **+ Define Payload**.
+5. In the popup, select **Create Type Schema**, set the name to `AnalyzePayload`, and add a single field `text` of type `string`.
+
+<ThemedImage
+    alt="Define Payload popup with Create Type Schema selected, name set to AnalyzePayload, and a text field of type string"
+    sources={{
+        light: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/define-payload-popup.png'),
+        dark: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/define-payload-popup.png'),
+    }}
+/>
+
+6. Select **Save** on the payload panel, then **Save** on the resource.
 
 <ThemedImage
     alt="POST analyze resource configured with the AnalyzePayload request body"
@@ -175,6 +185,6 @@ This is what differentiates a direct LLM call from a raw chat completion: you wr
 
 ## What's next
 
-- [Build a Hotel Availability Agent](build-a-hotel-availability-agent.md) — Add custom tools and session-scoped memory
-- [What is an AI Agent?](/docs/genai/key-concepts/what-is-ai-agent) — Understand the agent architecture
-- [What are Tools?](/docs/genai/key-concepts/what-are-tools) — Learn tool design patterns
+- [Build a Hotel Finder Agent](build-a-hotel-finder-agent.md) — Add custom tools and session-scoped memory
+- [What is an AI Agent?](../develop/agents/overview.md) — Understand the agent architecture
+- [What are Tools?](../develop/agents/tools.md) — Learn tool design patterns

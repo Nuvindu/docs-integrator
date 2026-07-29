@@ -4,43 +4,30 @@ title: AI Integrations Overview
 
 # AI Integrations
 
-Build AI-powered integrations with WSO2 Integrator — direct LLM calls, natural functions, RAG pipelines, AI agents, and MCP servers — all from a single `ballerina/ai` abstraction that works with any LLM provider.
+WSO2 Integrator lets you build AI-powered integrations, including direct LLM calls, RAG pipelines, AI agents, and MCP servers.
 
 ## Getting started
 
-- **[Setting Up WSO2 Integrator](getting-started/setup.md)** — Install and configure your first AI-ready project
-- **[Build a sentiment analyzer](getting-started/build-a-sentiment-analyzer.md)** — Your first AI integration with a direct LLM call
-- **[Build a Sample Hotel Booking Agent](getting-started/hotel-booking-agent.md)** — Conversational agent with memory and a chat endpoint
+- **[Build a Sentiment Analyzer](getting-started/build-a-sentiment-analyzer.md):** Your first AI integration with a direct LLM call.
+- **[Build a Hotel Finder Agent](getting-started/build-a-hotel-finder-agent.md):** An agent with two custom tools and session-scoped memory.
 
-## Key concepts
+## Develop AI applications
 
-- **[What is an LLM?](key-concepts/what-is-llm.md)**
-- **[What is a Natural Function?](key-concepts/what-is-natural-function.md)**
-- **[What is an AI Agent?](key-concepts/what-is-ai-agent.md)**
-- **[What are Tools?](key-concepts/what-are-tools.md)**
-- **[What is AI Agent Memory?](key-concepts/what-is-agent-memory.md)**
-- **[What is MCP?](key-concepts/what-is-mcp.md)**
-- **[What is RAG?](key-concepts/what-is-rag.md)**
-
-## Develop AI Applications
-
-- **[Direct LLM Calls](develop/direct-llm/overview.md)** — Model providers, the `generate` node, prompts, and typed responses
-- **[Natural Functions](develop/natural-functions/overview.md)** — Typed Ballerina functions whose body is plain English
-- **[RAG](develop/rag/overview.md)** — Knowledge bases, chunkers, embeddings, vector stores, and query nodes
-- **[AI Agents](develop/agents/overview.md)** — The AI Chat Agent Wizard, tools, memory, observability, and evaluations
-- **[MCP Integration](develop/mcp/overview.md)** — Expose services as MCP servers or consume MCP tools from an agent
+- **[Direct LLM calls](develop/direct-llm/overview.md):** The simplest AI block. Send a prompt and bind the response to a typed value, in a single round-trip.
+- **[RAG](develop/rag/overview.md):** Retrieval-augmented generation that grounds LLM responses in your own documents by retrieving relevant content at query time and injecting it into the prompt.
+- **[AI agents](develop/agents/overview.md):** Autonomous LLM-driven agents that reason over a system prompt, call tools, and maintain conversation state across turns.
+- **[MCP integration](develop/mcp/overview.md):** Expose your integrations as MCP tools for AI assistants, or use external MCP tools with your agents.
+- **[Natural functions](develop/natural-functions/overview.md):** (Experimental) Write the function body in plain English. The LLM returns a value that conforms to your declared return type.
+- **[Model providers](develop/components/model-providers.md):** Connect to OpenAI, Anthropic, Azure OpenAI, Google Vertex, Mistral, and others through one consistent interface.
+- **[Embedding providers](develop/components/embedding-providers.md):** Turn text into semantic vectors used on both ingest and query for similarity search.
+- **[Vector stores](develop/components/vector-stores.md):** Persist embeddings and run similarity search across in-memory, Pinecone, pgvector, Weaviate, or Milvus vector databases.
+- **[Knowledge bases](develop/components/knowledge-bases.md):** The indexable document store RAG reads from and writes to, composed of a vector store, embedding provider, and chunker.
+- **[Chunkers](develop/components/chunkers.md):** Split documents into chunks before embedding. Smaller chunks improve retrieval precision. Larger chunks preserve more surrounding context.
 
 ## Tutorials
 
 - **[Email Generator with Direct LLM](tutorials/email-generator-direct-llm.md)**
-- **[Review Summarizer with Natural Function](tutorials/review-summarizer-natural-function.md)**
-- **[Building an HR Knowledge Base with RAG](tutorials/building-hr-knowledge-base-rag.md)**
-- **[Customer Care Agent with MCP](tutorials/customer-care-mcp.md)**
-- **[IT Helpdesk Chatbot with Persistent Memory](tutorials/it-helpdesk-chatbot.md)**
-- **[Legal Document Q&A with MCP and RAG](tutorials/legal-doc-qa.md)**
-
-## Reference
-
-- **[Ballerina Copilot Setup and Usage](reference/copilot-guide.md)**
-- **[AI Governance and Security](reference/ai-governance.md)**
-- **[Troubleshooting and Common Issues](reference/troubleshooting.md)**
+- **[Customer review analyzer with Natural Function](tutorials/review-summarizer-natural-function.md)**
+- **[Building an HR knowledge base with RAG](tutorials/building-hr-knowledge-base-rag.md)**
+- **[Build a customer care agent with MCP](tutorials/building-a-customer-care-agent-mcp.md)**
+- **[Building an IT Helpdesk AI Agent with Persistent Memory](tutorials/it-helpdesk-chatbot.md)**

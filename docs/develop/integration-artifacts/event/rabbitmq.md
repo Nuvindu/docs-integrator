@@ -16,15 +16,10 @@ RabbitMQ event integrations consume messages from a RabbitMQ queue and trigger e
 
    | Field | Description | Default |
    |---|---|---|
-   | **Queue Name** | Name of the RabbitMQ queue to listen to. | Required |
+   | **Listener Name** | Identifier for the listener created with this service. | `rabbitmqListener` |
    | **Host** | Hostname or IP address of the RabbitMQ broker. | `localhost` |
    | **Port** | Port used to connect to the broker. | `5672` |
-
-   Expand **Advanced Configurations** to set the listener name.
-
-   | Field | Description | Default |
-   |---|---|---|
-   | **Listener Name** | Identifier for the listener created with this service. | `rabbitmqListener` |
+   | **Queue Name** | Name of the RabbitMQ queue to listen to. | `myQueue` |
 
 4. Click **Create**.
 
@@ -83,6 +78,7 @@ service on rabbitmqListener {
 | Field | Type | Default | Description |
 |---|---|---|---|
 | `queueName` | `string` | Required | Name of the queue to consume from |
+| `config` | `QueueConfig?` | `()` | Optional queue configuration; the queue is declared if it does not exist. Defaults to `durable: true`, `exclusive: false`, `autoDelete: false`. |
 | `autoAck` | `boolean` | `true` | When `false`, messages must be manually acknowledged using `rabbitmq:Caller` |
 
 ## Listener configuration
@@ -109,8 +105,6 @@ In the **RabbitMQ Event Integration Configuration** panel, select **rabbitmqList
 | **Validation** | Enable constraint validation on incoming message content. | — |
 | **Secure Socket** | SSL/TLS configuration for secure connections (certificate path and password). | — |
 | **Auth** | Authentication record with `username` and `password` fields. | — |
-
-Click **+ Attach Listener** to attach an additional listener to the same service.
 
 Click **Save Changes** to apply updates.
 

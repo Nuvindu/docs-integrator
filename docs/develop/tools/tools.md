@@ -22,13 +22,13 @@ Generate Ballerina code from API specifications, protocol definitions, and domai
 - [EDI Tool](integration-tools/edi-tool.md) -- Generate Ballerina code from EDI schema definitions for B2B data exchange
 - [WSDL Tool](integration-tools/wsdl-tool.md) -- Generate clients for SOAP/WSDL web services
 - [XSD Tool](integration-tools/xsd-tool.md) -- Generate Ballerina record types from XML Schema definitions
+- [Connector Tool](integration-tools/connector-tool.md) -- Generate production-ready Ballerina connectors from OpenAPI specifications using an AI-assisted pipeline
 
 ## Migration tools
 
 Migrate existing integrations from other platforms to WSO2 Integrator.
 
 - [Migration Tools Overview](migration-tools/migration-tools.md) -- Shared workflow and command reference
-- [Migrate from WSO2 MI](migration-tools/migrate-from-mi.md) -- Migrate WSO2 MI Synapse XML configurations
 - [Migrate from MuleSoft](migration-tools/migrate-from-mulesoft.md) -- Migrate MuleSoft Anypoint flows
 - [Migrate from TIBCO](migration-tools/migrate-from-tibco-businessworks.md) -- Migrate TIBCO BusinessWorks processes
 - [Migrate from Azure Logic Apps](migration-tools/migrate-from-azure-logic-apps.md) -- Migrate Azure Logic Apps workflows
@@ -36,7 +36,7 @@ Migrate existing integrations from other platforms to WSO2 Integrator.
 ## Other tools
 
 - [Scan Tool](other/scan-tool.md) -- Run static code analysis to detect security, quality, and best practice issues
-- [Persist Tool](other/persist-tool.md) -- Generate type-safe data persistence clients for multiple data stores
+- [Persist Tool](integration-tools/persist-tool.md) -- Generate type-safe data persistence clients for multiple data stores
 
 ## Quick reference
 
@@ -52,3 +52,4 @@ Migrate existing integrations from other platforms to WSO2 Integrator.
 | EDI | `bal edi` | EDI schema | EDI parser/generator | CLI only |
 | Scan | `bal scan` | Source code | Analysis report | CLI only |
 | Persist | `bal persist` | Record types | Data store client | CLI only |
+| Connector | `bal connector` | OpenAPI YAML/JSON | Full connector package (client, tests, examples, docs) | CLI only |

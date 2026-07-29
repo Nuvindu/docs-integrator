@@ -42,7 +42,7 @@ Select **+ Add Artifact** on the canvas and select **Automation**. In the **Crea
 
 Enter the connection details by binding each field to a configurable variable. In the **Configure Lineitems** form, set the following parameters:
 
-- **Config** : A `ConnectionConfig` record containing the Bearer token for HubSpot API authentication — bind to a configurable variable (for example, `hubspotToken`)
+- **Config** : A `ConnectionConfig` record containing the Bearer token for HubSpot API authentication: bind to a configurable variable (for example, `hubspotToken`)
 - **Connection Name** : A name to identify this connection (for example, `lineitemsClient`)
 
 ![HubSpot CRM Line Items connection form fully filled with all parameters before saving](/img/connectors/catalog/crm-sales/hubspot.crm.obj.lineitems/hubspot_crm_obj_lineitems_screenshot_02_connection_form.png)
@@ -72,7 +72,7 @@ In the Automation flow view, select the **+** button between the **Start** and *
 
 Select **Create** to add the create line item operation. In the **Create** operation form, configure the following parameters:
 
-- **Payload** : A record containing the line item properties — set `associations` to an empty array and `properties` to include fields such as `hs_product_id`, `quantity`, `price`, and `name`
+- **Payload** : A record containing the line item properties; set `associations` to an empty array and `properties` to include fields such as `hs_product_id`, `quantity`, `price`, and `name`
 - **Result** : The variable name to store the response (for example, `result`)
 
 ![HubSpot CRM Line Items create operation configuration filled with all values](/img/connectors/catalog/crm-sales/hubspot.crm.obj.lineitems/hubspot_crm_obj_lineitems_screenshot_05_create_operation.png)
@@ -91,7 +91,7 @@ Try this sample in WSO2 Integration Platform.
 
 ## More code examples
 
-The `Ballerina HubSpot CRM Lineitems Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.object.lineitems/tree/main/examples/), covering the following use cases:
+The `Ballerina HubSpot CRM Lineitems Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.obj.lineitems/tree/main/examples/), covering the following use cases:
 
-1. [Customer Order fulfillment](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.object.lineitems/tree/main/examples/customer-order-fulfillment) - Manage customer orders in a warehouse system
-2. [Inventory management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.object.lineitems/tree/main/examples/inventory-management) - Manage inventory for an operational deal in an E-commerce platform
+1. [Customer Order fulfillment](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.obj.lineitems/tree/main/examples/customer-order-fulfillment) - Manage customer orders in a warehouse system
+2. [Inventory management](https://github.com/ballerina-platform/module-ballerinax-hubspot.crm.obj.lineitems/tree/main/examples/inventory-management) - Manage inventory for an operational deal in an E-commerce platform

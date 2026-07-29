@@ -4,12 +4,12 @@ title: Overview
 
 # Overview
 
-HubSpot CRM is a cloud-based customer relationship management platform that helps businesses manage contacts, deals, and marketing pipelines. The Ballerina `ballerinax/hubspot.crm.obj.contacts` connector (v1.0.0) provides programmatic access to the HubSpot CRM Contacts API, enabling you to create, read, update, search, merge, and bulk-manage contact records from your Ballerina integration flows.
+HubSpot CRM Contacts is part of HubSpot's CRM platform, enabling management of contact records, properties, and associations at scale. The `ballerinax/hubspot.crm.obj.contacts` connector (v1.0.0) provides programmatic access to the HubSpot CRM Contacts API, enabling you to create, read, update, search, merge, and bulk-manage contact records from your integration flows.
 
 ## Key features
 
-- Full CRUD operations on individual HubSpot contacts — create, read, update, and archive by contact ID
-- Batch operations for high-volume workflows — batch read, create, update, upsert, and archive in a single API call
+- Full CRUD operations on individual HubSpot contacts: create, read, update, and archive by contact ID
+- Batch operations for high-volume workflows: batch read, create, update, upsert, and archive in a single API call
 - Flexible contact search using filter groups, property filters, sorting, and pagination
 - Upsert support to create-or-update contacts based on unique property identifiers
 - Contact merge to combine duplicate contact records
@@ -19,7 +19,7 @@ HubSpot CRM is a cloud-based customer relationship management platform that help
 
 ## Actions
 
-Actions are operations you invoke on HubSpot CRM from your integration — listing contacts, creating records, running searches, executing batch jobs, and more. All actions are exposed through a single `Client`:
+Actions are operations you invoke on HubSpot CRM from your integration: listing contacts, creating records, running searches, executing batch jobs, and more. All actions are exposed through a single `Client`:
 
 | Client | Actions |
 |--------|---------|
@@ -31,7 +31,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot private app and obtaining the access token required to authenticate the HubSpot CRM Contacts connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Contacts** connector, including connection setup, operation configuration, and execution flow.
 

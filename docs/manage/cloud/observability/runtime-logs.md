@@ -2,7 +2,7 @@
 title: Runtime Logs
 ---
 
-# Runtime logs
+# Runtime Logs
 
 Runtime logs provide insights into application and gateway activity for integrations deployed on WSO2 Cloud - Integration Platform. They centralize diverse log sources to streamline debugging and troubleshooting across environments.
 
@@ -18,7 +18,7 @@ Depending on the integration type, you can also access runtime logs from the Int
 
 - **Automations** — Each execution in the environment card has a **View Logs** button that opens logs scoped to that specific run.
 - **Event and file integrations** — Latest logs are visible directly on the environment card without navigating to the Observability section.
-- **Integrations as API and AI Agents** - Each environment card has a **View Logs** button that opens logs filtered to that specific environment and integration version.
+- **Integration as APIs and AI Agents** - Each environment card has a **View Logs** button that opens logs filtered to that specific environment and integration version.
 
 ## Understand runtime logs
 

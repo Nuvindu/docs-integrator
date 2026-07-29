@@ -2,41 +2,20 @@
 title: gRPC Tool
 ---
 
-# gRPC tool
+# gRPC Tool
 
 The `bal grpc` tool generates Ballerina code from Protocol Buffer (`.proto`) files. It creates service stubs with RPC method signatures, client connectors for calling gRPC services, and Ballerina record types that correspond to protobuf message definitions. This lets you integrate with gRPC-based microservices using idiomatic Ballerina code.
 
-## Prerequisites
+gRPC code generation is not available through the Visual Designer. The **+ Add Artifact** menu does not include a gRPC option. Use the integrated terminal in your project to run `bal grpc` commands directly.
 
-The gRPC tool is included with the Ballerina distribution:
+---
 
-```bash
-bal grpc --help
-```
+## Example proto file
 
-## Generating code from a proto file
-
-The gRPC tool is currently supported only through the Ballerina CLI (pro-code). Visual Designer support for gRPC code generation is not yet available.
-
-### Basic usage
-
-```bash
-# Generate both service stub and client
-bal grpc --input order_service.proto
-
-# Generate service stub only
-bal grpc --input order_service.proto --mode service
-
-# Generate client only
-bal grpc --input order_service.proto --mode client
-
-# Specify output directory
-bal grpc --input order_service.proto --output generated/
-```
-
-### Example proto file
+The examples throughout this page use the following proto file:
 
 ```protobuf
+
 syntax = "proto3";
 
 package orders;
@@ -45,7 +24,7 @@ service OrderService {
     rpc GetOrder (GetOrderRequest) returns (Order);
     rpc CreateOrder (CreateOrderRequest) returns (Order);
     rpc ListOrders (ListOrdersRequest) returns (stream Order);
-    rpc StreamUpdates (stream OrderUpdate) returns (stream OrderStatus);
+    rpc StreamUpdates (stream OrderUpdate) returns (stream StatusUpdate);
 }
 
 message GetOrderRequest {
@@ -76,6 +55,16 @@ message OrderUpdate {
     OrderStatus new_status = 2;
 }
 
+message StatusUpdate {
+    string order_id = 1;
+    OrderStatus status = 2;
+}
+
+message ListOrdersRequest {
+    string customer_id = 1;
+    int32 limit = 2;
+}
+
 enum OrderStatus {
     PENDING = 0;
     CONFIRMED = 1;
@@ -83,27 +72,59 @@ enum OrderStatus {
     DELIVERED = 3;
     CANCELLED = 4;
 }
-
-message ListOrdersRequest {
-    string customer_id = 1;
-    int32 limit = 2;
-}
 ```
 
-### Generated files
+---
 
-The tool produces:
+## Generating a service stub from a proto file
+
+Use this when you want to **expose** a gRPC service from your integrator project.
+
+### Step 1: Place the proto file in your project
+
+Copy your `.proto` file into a `resources/` folder inside your integrator project:
 
 ```
-generated/
+my-integration/
+├── Ballerina.toml
+├── main.bal
+└── resources/
+    └── order_service.proto
+```
+
+### Step 2: Open the terminal at the project root
+
+In the IDE, open the integrated terminal (`` Ctrl+` ``) and confirm you are in the project root, the directory that contains `Ballerina.toml`:
+
+```bash
+ls Ballerina.toml
+```
+
+### Step 3: Run the tool
+
+```bash
+bal grpc --input resources/order_service.proto --mode service --output .
+```
+
+### Step 4: Verify generated files
+
+The tool places two files in the project root:
+
+```
+my-integration/
+├── Ballerina.toml
+├── main.bal
+├── resources/
+│   └── order_service.proto
 ├── order_service_pb.bal          # Message types (records)
-├── order_service_service.bal     # Service stub
-└── order_service_client.bal      # Client connector
+└── order_service_service.bal     # Service stub with empty RPC methods
 ```
 
-## Generated service stub
+Both files are compiled automatically as part of the project package, with no extra imports or configuration needed.
 
-The service stub provides empty RPC method implementations that you fill in with your logic:
+### Step 5: Implement the service
+
+Open `order_service_service.bal` and fill in the generated stub methods with your integration logic:
 
 ```ballerina
 import ballerina/grpc;
@@ -121,79 +142,108 @@ service "OrderService" on ep {
         // TODO: Implement
     }
 
-    // Server streaming -- returns a stream of orders
-    remote function ListOrders(ListOrdersRequest request)
-            returns stream<Order, error?>|error {
+    remote function ListOrders(ListOrdersRequest request) returns stream<Order, error?>|error {
         // TODO: Implement
     }
 
-    // Bidirectional streaming
-    remote function StreamUpdates(stream<OrderUpdate, error?> clientStream)
-            returns stream<OrderStatus, error?>|error {
+    remote function StreamUpdates(stream<OrderUpdate, grpc:Error?> clientStream) returns stream<StatusUpdate, error?>|error {
         // TODO: Implement
     }
 }
+
 ```
 
-## Generated client
+---
 
-The client provides type-safe methods for each RPC operation:
+## Generating a client from a proto file
 
-```ballerina
-import ballerina/grpc;
+Use this when you want to **call** an external gRPC service from your integrator project.
 
-public isolated client class OrderServiceClient {
-    *grpc:AbstractClientEndpoint;
+### Step 1: Place the proto file in your project
 
-    public isolated function init(string url, *grpc:ClientConfiguration config)
-            returns grpc:Error? {
-        // ...
-    }
-
-    remote function GetOrder(GetOrderRequest request)
-            returns Order|grpc:Error { ... }
-
-    remote function CreateOrder(CreateOrderRequest request)
-            returns Order|grpc:Error { ... }
-
-    remote function ListOrders(ListOrdersRequest request)
-            returns stream<Order, grpc:Error?>|grpc:Error { ... }
-
-    remote function StreamUpdates()
-            returns StreamUpdatesStreamingClient|grpc:Error { ... }
-}
+```
+my-integration/
+├── Ballerina.toml
+├── main.bal
+└── resources/
+    └── order_service.proto
 ```
 
-## Using the generated client
+### Step 2: Open the terminal at the project root
 
-### Unary RPC
+```bash
+ls Ballerina.toml
+```
+
+### Step 3: Run the tool
+
+```bash
+bal grpc --input resources/order_service.proto --mode client --output .
+```
+
+### Step 4: Verify generated files
+
+```
+my-integration/
+├── Ballerina.toml
+├── main.bal
+├── resources/
+│   └── order_service.proto
+├── order_service_pb.bal          # Message types (records)
+└── order_service_client.bal      # Type-safe client connector
+```
+
+### Step 5: Use the client in your integration
+
+Open the existing `connections.bal` file in your project root and add the client initialisation. This makes the client available as a module-level variable across all flows and artifacts:
+
+```
+my-integration/
+├── Ballerina.toml
+├── main.bal
+├── connections.bal                ← open this file
+├── resources/
+│   └── order_service.proto
+├── order_service_pb.bal
+└── order_service_client.bal
+```
+
+In `connections.bal`:
 
 ```ballerina
 configurable string orderServiceUrl = ?;
 
 final OrderServiceClient orderClient = check new (orderServiceUrl);
+```
 
+Add the service URL to your `Config.toml`:
+
+```toml
+orderServiceUrl = "http://localhost:9090"
+```
+
+**Unary RPC:**
+
+```ballerina
 function getOrder(string orderId) returns Order|error {
-    GetOrderRequest request = {order_id: orderId};
-    return check orderClient->GetOrder(request);
+    return check orderClient->GetOrder({order_id: orderId});
 }
 
 function createOrder(string customerId, LineItem[] items) returns Order|error {
-    CreateOrderRequest request = {
+    return check orderClient->CreateOrder({
         customer_id: customerId,
         items: items
-    };
-    return check orderClient->CreateOrder(request);
+    });
 }
 ```
 
-### Server streaming
+**Server streaming:**
 
 ```ballerina
 function listCustomerOrders(string customerId) returns Order[]|error {
-    ListOrdersRequest request = {customer_id: customerId, 'limit: 50};
-    stream<Order, error?> orderStream = check orderClient->ListOrders(request);
-
+    stream<Order, error?> orderStream = check orderClient->ListOrders(
+        {customer_id: customerId, 'limit: 50}
+    );
     Order[] orders = [];
     check orderStream.forEach(function(Order 'order) {
         orders.push('order);
@@ -202,19 +252,16 @@ function listCustomerOrders(string customerId) returns Order[]|error {
 }
 ```
 
-### Bidirectional streaming
+**Bidirectional streaming:**
 
 ```ballerina
 function streamOrderUpdates(OrderUpdate[] updates) returns OrderStatus[]|error {
     StreamUpdatesStreamingClient streamClient = check orderClient->StreamUpdates();
-
-    // Send updates
     foreach OrderUpdate update in updates {
         check streamClient->sendOrderUpdate(update);
     }
     check streamClient->complete();
 
-    // Receive responses
     OrderStatus[] statuses = [];
     OrderStatus|error? response = streamClient->receiveOrderStatus();
     while response is OrderStatus {
@@ -225,78 +272,88 @@ function streamOrderUpdates(OrderUpdate[] updates) returns OrderStatus[]|error {
 }
 ```
 
-## Implementing the service
+---
 
-Fill in the generated service stub with your integration logic:
+## Generating only the stub file
 
-```ballerina
-import ballerina/grpc;
-import ballerinax/mysql;
-import ballerina/log;
+Omit `--mode` to generate only the stub file:
 
-configurable string dbHost = ?;
-configurable string dbUser = ?;
-configurable string dbPassword = ?;
-
-final mysql:Client db = check new (host = dbHost, user = dbUser,
-    password = dbPassword, database = "orders");
-
-@grpc:Descriptor {value: ORDER_SERVICE_DESC}
-service "OrderService" on new grpc:Listener(9090) {
-
-    remote function GetOrder(GetOrderRequest request) returns Order|error {
-        return db->queryRow(
-            `SELECT id, customer_id, total, status FROM orders
-             WHERE id = ${request.order_id}`
-        );
-    }
-
-    remote function CreateOrder(CreateOrderRequest request) returns Order|error {
-        decimal total = 0d;
-        foreach LineItem item in request.items {
-            total += <decimal>item.unit_price * <decimal>item.quantity;
-        }
-
-        sql:ExecutionResult result = check db->execute(
-            `INSERT INTO orders (customer_id, total, status)
-             VALUES (${request.customer_id}, ${total}, 'PENDING')`
-        );
-
-        string orderId = (<int>result.lastInsertId).toString();
-        log:printInfo("Order created", orderId = orderId);
-
-        return {
-            id: orderId,
-            customer_id: request.customer_id,
-            items: request.items,
-            total: <float>total,
-            status: PENDING
-        };
-    }
-}
+```bash
+bal grpc --input resources/order_service.proto --output .
 ```
+
+This produces `order_service_pb.bal` file.
+
+---
 
 ## Proto import paths
 
-For proto files that import other proto files, specify the import paths:
+If your proto file imports other proto files, add `--proto_path` for each import directory:
 
 ```bash
-# Include directory for proto imports
-bal grpc --input order_service.proto --proto_path ./protos/ --proto_path ./third_party/
+bal grpc --input resources/order_service.proto \
+  --proto_path ./resources/ \
+  --proto_path ./third_party/ \
+  --output .
 ```
+
+---
+
+## Regenerating after proto changes
+
+Re-run the same command whenever the `.proto` file changes. The generated files are overwritten automatically.
+
+> Do not edit `order_service_pb.bal` directly. It is always overwritten on regeneration. Put all custom logic in separate files.
+
+---
 
 ## Command reference
 
-| Command | Description |
+```bash
+bal grpc --input <proto-file> [options]
+```
+
+| Flag | Alias | Required | Default | Description |
+|------|-------|----------|---------|-------------|
+| `--input` | `-i` | Yes | — | Path to the `.proto` file |
+| `--output` | `-o` | No | Current directory | Output directory for generated files |
+| `--mode` | — | No | Both | Generation mode: `client`, `service`, or omit for both |
+| `--proto-path` | — | No | — | Path to a directory containing imported `.proto` files |
+
+## Protobuf to Ballerina type mapping
+
+| Protobuf type | Ballerina type |
 |---|---|
-| `bal grpc --input <file.proto>` | Generate service and client |
-| `--mode service` | Generate service stub only |
-| `--mode client` | Generate client only |
-| `--output <dir>` | Output directory |
-| `--proto_path <dir>` | Additional proto import paths |
+| `double` | `float` |
+| `float` | `float` |
+| `int32`, `sint32`, `sfixed32` | `int` |
+| `int64`, `sint64`, `sfixed64` | `int` |
+| `uint32`, `fixed32` | `int` |
+| `uint64`, `fixed64` | `int` |
+| `bool` | `boolean` |
+| `string` | `string` |
+| `bytes` | `byte[]` |
+| `enum` | `enum` |
+| `message` | `record {}` |
+| `repeated T` | `T[]` |
+| `map<K, V>` | `map` |
+| `oneof` | Union type |
+| `google.protobuf.Any` | `anydata` |
+| `google.protobuf.Timestamp` | `time:Utc` |
+| `google.protobuf.Duration` | `decimal` |
+| `google.protobuf.Struct` | `map<anydata>` |
+
+## gRPC communication patterns
+
+| Pattern | Proto definition | Ballerina signature |
+|---|---|---|
+| Unary | `rpc Method(Req) returns (Res)` | `remote function Method(Req) returns Res\|error` |
+| Server streaming | `rpc Method(Req) returns (stream Res)` | `remote function Method(Req) returns stream<Res, error?>\|error` |
+| Client streaming | `rpc Method(stream Req) returns (Res)` | `remote function Method(stream<Req, error?>) returns Res\|error` |
+| Bidirectional | `rpc Method(stream Req) returns (stream Res)` | `remote function Method(stream<Req, error?>) returns stream<Res, error?>\|error` |
 
 ## What's next
 
-- [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
-- [WSDL Tool](wsdl-tool.md) -- Generate SOAP clients from WSDL files
-- [Error Handling](/docs/develop/design-logic/error-handling) -- Handle gRPC errors and deadlines
+- [OpenAPI Tool](openapi-tool.md) — Generate REST services and clients
+- [WSDL Tool](wsdl-tool.md) — Generate SOAP clients from WSDL files
+- [Error Handling](../../understand-ide/editors/flow-diagram-editor/error-handling.md) — Handle gRPC errors and deadlines

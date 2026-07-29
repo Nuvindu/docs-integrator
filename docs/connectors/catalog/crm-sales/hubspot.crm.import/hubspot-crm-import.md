@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Import
+title: Overview
 ---
 
-HubSpot CRM Import allows you to bulk-import contacts, companies, deals, and other CRM objects from CSV files into HubSpot. The Ballerina `ballerinax/hubspot.crm.import` connector (v4.0.0) provides programmatic access to the HubSpot CRM Imports API, enabling you to start imports, monitor their progress, retrieve errors, and cancel active imports from your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Import allows you to bulk-import contacts, companies, deals, and other CRM objects from CSV files into HubSpot. The `ballerinax/hubspot.crm.import` connector (v4.0.0) provides programmatic access to the HubSpot CRM Imports API, enabling you to start imports, monitor their progress, retrieve errors, and cancel active imports from your integration flows.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM Import allows you to bulk-import contacts, companies, deals, and oth
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — starting imports, checking their status, retrieving errors, and canceling active imports. The HubSpot CRM Import connector exposes actions through a single client:
+Actions are operations you invoke on HubSpot from your integration: starting imports, checking their status, retrieving errors, and canceling active imports. The HubSpot CRM Import connector exposes actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot app and obtaining the OAuth 2.0 credentials required to use the HubSpot CRM Import connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 ## How to contribute
 

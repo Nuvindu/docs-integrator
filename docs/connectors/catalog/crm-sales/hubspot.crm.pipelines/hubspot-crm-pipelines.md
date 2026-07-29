@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Pipelines
+title: Overview
 ---
 
-HubSpot CRM Pipelines is a feature of the HubSpot CRM platform that lets you define and manage sales, support, and order pipelines with configurable stages. The Ballerina `ballerinax/hubspot.crm.pipelines` connector (v2.0.0) provides programmatic access to the HubSpot Pipelines API, enabling you to create, read, update, delete, and audit pipelines and their stages from your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Pipelines is a feature of the HubSpot CRM platform that lets you define and manage sales, support, and order pipelines with configurable stages. The `ballerinax/hubspot.crm.pipelines` connector (v2.0.0) provides programmatic access to the HubSpot Pipelines API, enabling you to create, read, update, delete, and audit pipelines and their stages from your integration flows.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM Pipelines is a feature of the HubSpot CRM platform that lets you def
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — managing pipelines, creating stages, retrieving audit logs, and more. The connector exposes all actions through a single client:
+Actions are operations you invoke on HubSpot from your integration, including managing pipelines, creating stages, retrieving audit logs, and more. The connector exposes all actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot developer app and obtaining the OAuth 2.0 credentials required to use the HubSpot CRM Pipelines connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Pipelines** connector, including connection setup, operation configuration, and execution flow.
 

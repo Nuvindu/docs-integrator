@@ -1,8 +1,8 @@
 ---
-title: Import an integration to WSO2 Cloud
+title: Import an Integration to WSO2 Cloud
 ---
 
-# Import an integration
+# Import an Integration
 
 If your integration is already in a Git repository, you can import it directly into WSO2 Cloud without going through the WSO2 Integrator IDE. WSO2 Cloud automatically builds and deploys the integration to the Development environment once the import is complete.
 
@@ -19,6 +19,10 @@ If your integration is already in a Git repository, you can import it directly i
 2. On the project home page, click **Import an Integration** and select your Git provider. Alternatively, click your Git provider's icon directly on the home page to authorize it with WSO2 Cloud.
 
     ![Project Home in WSO2 Cloud](/img/deploy/cloud/import-integration/project-home.png)
+
+    :::warning
+    One-click OAuth2 authorization is only available for GitHub. To use Bitbucket, GitLab, or Azure DevOps, you must first add your credentials at the organization level. See [Connect a Git repository](../../manage/cloud/cicd/connect-git-repository.md) for instructions.
+    :::
 
 3. Complete the authorization flow in the browser and return to WSO2 Cloud.
 
@@ -37,7 +41,7 @@ WSO2 Cloud starts the build immediately. Once the build completes, the integrati
 
 ## What's next
 
-- [View integrations](/docs/manage/cloud/integrations/viewing-deployed.md) — Inspect build status, deployment status, and configuration for your deployed integrations.
-- [Runtime configurations](/docs/manage/cloud/configurations/runtime-configurations.md) — Set configurable values per environment and manage reusable configuration groups.
-- [Security configurations](/docs/manage/cloud/configurations/security-configurations.md) — Secure your integration endpoints with API Key or OAuth2 authentication.
-- [Endpoint configurations](/docs/manage/cloud/configurations/endpoint-configurations.md) — Control endpoint visibility levels for integrations deployed as Integration as APIs.
+- [View and manage integrations](../../manage/cloud/integrations.md) — Inspect build status, deployment status, and manage the lifecycle of your deployed integrations.
+- [Runtime configurations](../../manage/cloud/configurations/runtime-configurations.md) — Set configurable values per environment and manage reusable configuration groups.
+- [Security configurations](../../manage/cloud/configurations/security-configurations.md) — Secure your integration endpoints with API Key or OAuth2 authentication.
+- [Endpoint configurations](../../manage/cloud/configurations/endpoint-configurations.md) — Control endpoint visibility levels for integrations deployed as Integration as APIs.

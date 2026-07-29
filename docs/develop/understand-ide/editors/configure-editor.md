@@ -1,8 +1,8 @@
 ---
-title: Configure editor
+title: Configure Editor
 ---
 
-# Configure editor
+# Configure Editor
 
 The Configure editor is the side panel you open whenever you select **Configure** in the IDE. It groups the settings that apply to the current artifact (an integration, a service, or a function) into a single form, so you can review and update them without editing source code. The editor adapts its content to the level you opened it from.
 
@@ -55,6 +55,5 @@ The editor stages your edits until you select **Save Changes** at the top right.
 
 ## What's next
 
-- [Service Design editor](service-design-editor.md): open the service-level configuration from the service designer.
+- [Service Design editor](service-design-editor.md): return to the service designer to manage resources and handlers.
 - [Expression editor](expression-editor.md): use configurable variables in expressions.
-- [Integration artifacts](/docs/develop/integration-artifacts): see which configuration options each artifact type supports.

@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Commerce Taxes
+title: Overview
 ---
 
-HubSpot CRM Commerce Taxes is part of HubSpot's CRM Commerce API suite, providing programmatic management of tax objects used in quotes, invoices, and other commerce documents. The Ballerina `ballerinax/hubspot.crm.commerce.taxes` connector (v2.0.0) enables you to create, read, update, archive, search, and batch-manage tax records through the HubSpot REST API.
+# Overview
+
+HubSpot CRM Commerce Taxes is part of HubSpot's CRM Commerce API suite, providing programmatic management of tax objects used in quotes, invoices, and other commerce documents. The `ballerinax/hubspot.crm.commerce.taxes` connector (v2.0.0) enables you to create, read, update, archive, search, and batch-manage tax records through the HubSpot REST API.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM Commerce Taxes is part of HubSpot's CRM Commerce API suite, providin
 
 ## Actions
 
-Actions are operations you invoke on HubSpot to manage commerce tax objects — listing, creating, updating, searching, and batch-processing tax records. The connector exposes actions through a single client:
+Actions are operations you invoke on HubSpot to manage commerce tax objects: listing, creating, updating, searching, and batch-processing tax records. The connector exposes actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot private app or OAuth app and obtaining the credentials required to use the HubSpot CRM Commerce Taxes connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Commerce Taxes** connector, including connection setup, operation configuration, and execution flow.
 

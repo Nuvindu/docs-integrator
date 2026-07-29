@@ -15,9 +15,9 @@ This guide walks you through setting up AWS IAM credentials with the necessary p
 
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/).
 2. Navigate to **IAM** (Identity and Access Management).
-3. In the left sidebar, click **Users**, then click **Create user**.
+3. In the left sidebar, select **Users**, then select **Create user**.
 4. Enter a **User name** (e.g., `ballerina-secrets-connector`).
-5. Click **Next**.
+5. Select **Next**.
 
 ## Step 2: Attach permissions for secrets manager
 
@@ -26,17 +26,17 @@ This guide walks you through setting up AWS IAM credentials with the necessary p
     - `secretsmanager:DescribeSecret`
     - `secretsmanager:GetSecretValue`
     - `secretsmanager:BatchGetSecretValue`
-3. Click **Next**, review the configuration, and click **Create user**.
+3. Select **Next**, review the configuration, and select **Create user**.
 
 For production use, follow the principle of least privilege and grant only the specific permissions your integration requires.
 
 ## Step 3: Generate access keys
 
-1. From the **Users** list, click on the user you just created.
+1. From the **Users** list, select on the user you just created.
 2. Go to the **Security credentials** tab.
-3. Under **Access keys**, click **Create access key**.
+3. Under **Access keys**, select **Create access key**.
 4. Select **Application running outside AWS** as the use case.
-5. Click **Next**, then **Create access key**.
+5. Select **Next**, then **Create access key**.
 6. Copy the **Access key ID** and **Secret access key**.
 
 The secret access key is shown only once. Store it securely immediately. If lost, you must create a new access key pair.
@@ -55,13 +55,17 @@ Common regions include:
 - `EU_WEST_1` (Ireland)
 - `AP_SOUTHEAST_1` (Singapore)
 
-## Step 5: Alternative — use EC2 IAM role or default credentials
+## Step 5: Alternative: use EC2 IAM role or default credentials
 
 If your Ballerina application runs on an EC2 instance or another AWS compute service, you
 can use IAM role-based authentication instead of static access keys:
 
 1. Create an IAM role with the required Secrets Manager permissions.
 2. Attach the role to your EC2 instance (or ECS task, Lambda function, etc.).
-3. Use `EC2_IAM_ROLE` or `DEFAULT_CREDENTIALS` as the `auth` value when initializing the connector — no access keys needed.
+3. Use `EC2_IAM_ROLE` or `DEFAULT_CREDENTIALS` as the `auth` value when initializing the connector, with no access keys needed.
 
 IAM role-based auth and default credentials are recommended for production workloads running on AWS, as they eliminate the need to manage static credentials.
+
+## What's next
+
+- [Action reference](actions.md): Available operations

@@ -1,8 +1,8 @@
 ---
-title: Reusable data mapper
+title: Reusable Data Mapper
 ---
 
-# Reusable data mapper
+# Reusable Data Mapper
 
 Create a reusable data mapper from the **Artifacts** page or the left sidebar. Configure the inputs and the output type, then open the data mapper view.
 
@@ -25,8 +25,10 @@ Create a reusable data mapper from the **Artifacts** page or the left sidebar. C
 
    ![Data mapper canvas with input record on the left and output record on the right](/img/develop/integration-artifacts/supporting/data-mapper/datamapper-view.png)
 
+4. Use the data mapper canvas to map fields. See [Mapping capabilities](../mapping-capabilities.md) for connecting fields, writing expressions, and AI-assisted mapping.
+
 ## What's next
 
-- [Inline data mapper](./inline.md) — Open the data mapper from a **Declare Variable** or **Update Variable** node.
+- [Inline data mapper](./inline.md) — Open the data mapper from a **Declare Variable** node.
 - [Mapping capabilities](../mapping-capabilities.md) — Connect fields, write expressions, and use AI-assisted mapping.
 - [Array mappings](../array-mappings/array-mappings.md) — Map between arrays using iteration, joins, and aggregation.

@@ -2,7 +2,7 @@
 title: Observability Overview
 ---
 
-# Observability overview
+# Observability Overview
 
 WSO2 Cloud - Integration Platform provides a built-in observability dashboard to help you monitor and diagnose integrations in production. You can track request throughput, latencies, resource consumption, and runtime logs from a single interface, all scoped to the environment you're investigating.
 
@@ -18,6 +18,6 @@ The observability features lets you:
 
 ## What's next
 
-- [Runtime logs](./runtime-logs) — Search, filter, and analyze runtime log output.
-- [Metrics](./metrics) — Monitor request throughput, latency, and resource usage over time.
-- [Anomaly detection and alerts](./anomaly-detection-alerts) — Configure alerts to get notified when metrics exceed defined thresholds.
+- [Runtime logs](./runtime-logs.md) — Search, filter, and analyze runtime log output.
+- [Metrics](./metrics.md) — Monitor request throughput, latency, and resource usage over time.
+- [Anomaly detection and alerts](./anomaly-detection-alerts.md) — Configure alerts to get notified when metrics exceed defined thresholds.

@@ -1,57 +1,18 @@
 ---
-title: Project view
+title: Project View
 ---
 
-# Project view
+# Project View
 
 The Project view is the top-level view in WSO2 Integrator. It appears when you open a project that contains multiple integrations or libraries, giving you an overview of everything in the project, deployment options, and project-level actions in one place.
 
 ![Project view overview](/img/develop/understand-ide/views/project-view/overview.png)
 
-The Project view, [Integrator view](integration-view.md), and [Library view](library-view.md) share the same UI chrome: activity bar, project explorer, editor toolbar, and deployment options panel. These elements are described once here and behave the same across all three views.
-
-## Activity bar
-
-The activity bar is the narrow vertical strip on the far-left edge of the WSO2 Integrator IDE. Each icon opens a different panel or tool.
-
-| Name | Description |
-|---|---|
-| **Explorer** | Opens the file explorer for browsing project files. |
-| **WSO2 Integrator** | Opens the project explorer for the current view. |
-| **Source Control** | Opens the Git source control panel. |
-| **Run and Debug** | Opens the debug panel for setting breakpoints and inspecting variables. |
-| **Testing** | Opens the test explorer to view, run, and debug the test cases defined for your integration. |
-
-Click the **WSO2 Integrator** icon to return to the Project view at any time.
-
-![Activity bar](/img/develop/understand-ide/views/project-view/activity-bar.png)
-
-## Project explorer
-
-The project explorer is the left sidebar that organizes the contents of your project into a structured tree.
-
-- At the **project level**, the project explorer lists all integrations and libraries in the project, grouped by name. Each entry is expandable to reveal its own artifact tree.
-- Inside an **integration or library**, the project explorer organizes its components into sections by artifact type, making it easy to locate and manage the building blocks of your integration.
-
-![Project explorer](/img/develop/understand-ide/views/project-view/project-explorer.png)
-
-When an integration or library is open, the project explorer groups its artifacts into the following sections. Click an artifact name to open it in its dedicated view, or click the **+** icon next to a section to add a new one.
-
-| Section | What it shows |
-|---|---|
-| **Entry points** | HTTP services, GraphQL services, automations, and event listeners that trigger your integration. |
-| **Listeners** | Protocol-specific configurations (host, port) that entry points bind to. |
-| **Connections** | Configured links to external systems such as databases, HTTP APIs, and message brokers. |
-| **Types** | Custom records, enums, arrays, service classes and unions used in your integration. |
-| **Functions** | Reusable logic blocks callable from entry points or other functions. |
-| **Data mappers** | Visual transformations between source and target types. |
-| **Configurations** | Variables sourced from `Config.toml` at runtime. |
-
-For details on each artifact type, see [Integration artifacts](/docs/develop/integration-artifacts).
-
 ## Project overview canvas
 
 The project overview canvas is the central area of the Project view. It displays the project name as a heading and provides a unified dashboard for managing all integrations and libraries in the project.
+
+![Project overview canvas](/img/develop/understand-ide/views/project-view/project-overview-canvas.png)
 
 ### Integrations and libraries
 
@@ -64,24 +25,11 @@ Click any card to navigate to the [Integrator view](integration-view.md) or [Lib
 
 ### Generate with AI
 
-Click the **Generate with AI** button at the top of the canvas to create a new integration using AI. Describe what you want in natural language, and WSO2 Integrator generates the integration with the appropriate entry points, connections, and logic.
+Click the **Generate with AI** button at the top of the canvas to open the [WSO2 Integrator Copilot](../../copilot/getting-started.md). Describe what you want in natural language, and WSO2 Integrator Copilot generates the integration with the appropriate entry points, connections, and logic.
 
 ### Add integration or library
 
 Click the **+ Add** button at the top of the canvas to add a new integration or library to the project. Select the type, provide a name and configuration, and the new entry appears in the card grid and project explorer.
-
-## Editor toolbar
-
-The editor toolbar appears on the right side of the editor tab bar. It provides quick actions for the active integration.
-
-![Editor toolbar](/img/develop/understand-ide/views/project-view/editor-toolbar.png)
-
-| Action | Description |
-|---|---|
-| **WSO2 Integrator Copilot** | Opens the WSO2 Integrator Copilot chat panel to get AI-powered assistance for building and troubleshooting your integration. |
-| **Run** | Builds and runs the integration locally, starting all services and displaying output in the terminal. |
-| **Debug** | Launches the integration with the debugger attached so you can set breakpoints and inspect variables. |
-| **Show Source** | Switches to the Ballerina source code view for direct code editing. |
 
 ## Deployment options panel
 
@@ -91,10 +39,10 @@ The deployment options panel appears on the right sidebar and provides shortcuts
 
 | Option | Target |
 |---|---|
-| [**Deploy to WSO2 Integration Platform**](/docs/deploy-operate/deploy/devant) | Fully managed cloud platform. |
-| [**Deploy with Docker**](/docs/deploy-operate/deploy/docker-kubernetes) | Container orchestration platforms such as Kubernetes and OpenShift. |
-| [**Deploy on a VM**](/docs/deploy-operate/deploy/vm-based) | Virtual machines or bare-metal servers. |
-| [**Integration Control Plane (ICP)**](/docs/deploy-operate/observe/icp) | Centralized observability and management for deployed integrations. |
+| [**Deploy to WSO2 Cloud**](../../../deploy/cloud/overview.md) | Fully managed cloud platform for hosting and running integrations. |
+| [**Containerized Deployment**](../../../deploy/self-hosted/containerized-deployment.md) | Build Docker images and deploy integrations to Docker, Kubernetes, or OpenShift. |
+| [**VM Deployment**](../../../deploy/self-hosted/vm-deployment.md) | Deploy integrations as standalone JAR files on virtual machines. |
+| [**Integration Control Plane (ICP)**](../../../deploy-operate/observe/integration-control-plane-icp.md) | Monitor and manage running integrations from a centralized dashboard. |
 
 At the project level, click **Enable ICP for all integrations** to activate ICP monitoring for every integration in the project at once.
 
@@ -108,5 +56,5 @@ Click **Edit** to modify the README directly. If the project does not have a REA
 
 ## What's next
 
-- [Integrator view](integration-view.md): the primary development interface for individual integrations.
-- [Library view](library-view.md): build and manage reusable libraries.
+- [Integrator view](integration-view.md) — The primary development interface for individual integrations.
+- [Library view](library-view.md) — Build and manage reusable libraries.

@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Engagements Calls
+title: Overview
 ---
 
-HubSpot CRM Engagements Calls is part of HubSpot's CRM platform, enabling tracking and management of call engagements associated with contacts, companies, and deals. The Ballerina `ballerinax/hubspot.crm.engagements.calls` connector (v2.0.0) provides programmatic access to the HubSpot Calls API v3, allowing you to create, retrieve, update, archive, and search call records within your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Engagements Calls is part of HubSpot's CRM platform, enabling tracking and management of call engagements associated with contacts, companies, and deals. The `ballerinax/hubspot.crm.engagements.calls` connector (v2.0.0) provides programmatic access to the HubSpot Calls API v3, allowing you to create, retrieve, update, archive, and search call records within your integration flows.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM Engagements Calls is part of HubSpot's CRM platform, enabling tracki
 
 ## Actions
 
-Actions are operations you invoke on HubSpot to manage call engagement records — creating calls, retrieving call details, updating properties, performing batch operations, and searching across call records.
+Actions are operations you invoke on HubSpot to manage call engagement records: creating calls, retrieving call details, updating properties, performing batch operations, and searching across call records.
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot developer app and obtaining the OAuth 2.0 credentials required to use the HubSpot CRM Engagements Calls connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Engagements Calls** connector, including connection setup, operation configuration, and execution flow.
 

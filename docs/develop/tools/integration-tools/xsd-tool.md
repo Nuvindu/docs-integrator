@@ -2,7 +2,7 @@
 title: XSD Tool
 ---
 
-# XSD tool
+# XSD Tool
 
 The `bal xsd` tool generates Ballerina record types from XML Schema Definition (XSD) files. It maps XSD complex types, simple types, enumerations, and element structures to equivalent Ballerina records with XML annotations, enabling you to serialize and deserialize XML documents with full type safety.
 
@@ -211,4 +211,4 @@ The tool maps XSD types to Ballerina types as follows:
 
 - [WSDL Tool](wsdl-tool.md) -- Generate SOAP clients that use these XML types
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
-- [Data Transformation](/docs/develop/transform/xml) -- Transform XML data with Ballerina
+- [Data Transformation](../../transform/xml.md) -- Transform XML data with Ballerina

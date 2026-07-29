@@ -4,7 +4,7 @@ title: Overview
 
 # Overview
 
-HubSpot CRM is a cloud-based customer relationship management platform that tracks meetings, contacts, deals, and other engagement activities. The Ballerina `ballerinax/hubspot.crm.engagement.meeting` connector (v1.0.0) provides programmatic access to the HubSpot Meetings API v3, enabling you to create, read, update, delete, batch-manage, and search meeting engagements within your HubSpot CRM from Ballerina integration flows.
+HubSpot CRM Engagement Meeting is part of HubSpot's CRM platform, enabling tracking and management of meeting engagements associated with contacts, companies, and deals. The `ballerinax/hubspot.crm.engagement.meeting` connector (v1.0.0) provides programmatic access to the HubSpot Meetings API v3, enabling you to create, read, update, delete, batch-manage, and search meeting engagements within your HubSpot CRM from integration flows.
 
 ## Key features
 
@@ -17,7 +17,7 @@ HubSpot CRM is a cloud-based customer relationship management platform that trac
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — creating meetings, listing engagements, performing batch operations, and searching. The connector exposes actions through a single client:
+Actions are operations you invoke on HubSpot from your integration: creating meetings, listing engagements, performing batch operations, and searching. The connector exposes actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -29,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot developer app and obtaining the OAuth 2.0 credentials required to use the HubSpot CRM Engagement Meeting connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Engagement Meeting** connector, including connection setup, operation configuration, and execution flow.
 

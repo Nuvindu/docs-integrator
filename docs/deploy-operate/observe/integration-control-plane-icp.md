@@ -1,8 +1,8 @@
 ---
-title: Integration Control Plane (ICP)
+title: Integration Control Plane
 ---
 
-# Integration Control Plane (ICP)
+# Integration Control Plane
 
 The Integration Control Plane (ICP) is a centralized dashboard for monitoring, managing, and troubleshooting running WSO2 Integrator integrations.
 
@@ -21,7 +21,7 @@ Key capabilities:
 
 ### Configuring the integration node with ICP
 
-ICP allows you to connect BI and MI runtimes to the ICP server for centralized management and monitoring.
+ICP allows you to connect Ballerina and MI runtimes to the ICP server for centralized management and monitoring.
 This guide will walk you through the steps to connect your integration runtime to the ICP server.
 
 1. Navigate to the home view of WSO2 Integrator.
@@ -80,6 +80,7 @@ import wso2/icp.runtime.bridge as _;
 
 ## What's next
 
-- [Logging](logging.md) -- Configure structured logging
-- [Metrics](metrics.md) -- Prometheus metrics and Grafana dashboards
-- [Distributed Tracing](tracing.md) -- Trace requests across services
+- [Logging](logging-overview.md) — Configure structured logging
+- [Metrics](metrics-overview.md) — Prometheus metrics and Grafana dashboards
+- [Jaeger](jaeger-distributed-tracing.md) — Distributed tracing with Jaeger
+- [Observability Setup](../../manage/icp/observability-setup.md) — Set up centralized logs and metrics monitoring

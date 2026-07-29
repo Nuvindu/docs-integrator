@@ -4,14 +4,14 @@ title: Email Generator with Direct LLM
 
 # Email Generator with Direct LLM
 
-This tutorial walks through building an **HTTP service that generates professional emails using an LLM**. It's a complete, end-to-end scenario that exercises the [Direct LLM Calls](/docs/genai/develop/direct-llm/overview) feature surface.
+This tutorial walks through building an **HTTP service that generates professional emails using an LLM**. It's a complete, end-to-end scenario that exercises the [Direct LLM Calls](../develop/direct-llm/overview.md) feature surface.
 
 By the end you will have a `POST /emails/generate` endpoint that takes recipient details and a meeting intent, and returns a fully written, structured email, subject and body, produced by an LLM.
 
 ## What you'll build
 
 1. **Create the HTTP service** with typed request and response payloads.
-2. **Add a [model provider](/docs/genai/develop/components/model-providers)** as the connection to the LLM.
+2. **Add a [model provider](../develop/components/model-providers.md)** as the connection to the LLM.
 3. **Add a `generate` node** with a prompt that writes the email.
 4. **Bind the response** to the structured response type.
 5. **Run and test** the service end to end.
@@ -95,7 +95,7 @@ Click **Default Model Provider (WSO2)**. In the configuration form:
 
 ![Model Provider configuration with name emailGenerator.](/img/genai/develop/direct-llm/07-model-provider-config.png)
 
-> **Tip:** The Default WSO2 Model Provider does not require an API key. For a different provider see [AI Connections and Stores → Model Providers](/docs/genai/develop/components/model-providers).
+> **Tip:** The Default WSO2 Model Provider does not require an API key. For a different provider see [AI Connections and Stores → Model Providers](../develop/components/model-providers.md).
 
 ---
 
@@ -123,7 +123,7 @@ The prompt has three natural parts:
 | **Inputs** | `${senderName}`, `${recipientName}`, `${intent}`, `${timeSlots}` — pulled in from `EmailGeneratePayload`. |
 | **Task** | *"Write a short email… ask them to pick one… polite, professional tone."* |
 
-> **Why no "return JSON" instruction?** The **Expected Type** field on the next step handles that for you — see [Typed Responses → Don't Put the Schema in the Prompt](/docs/genai/key-concepts/typed-responses#dont-put-the-schema-in-the-prompt).
+> **Why no "return JSON" instruction?** The **Expected Type** field on the next step handles that for you — you don't have to put the schema in the prompt.
 
 ### Step 3.2: Bind the result and save
 
@@ -138,7 +138,7 @@ Click **Save**.
 
 ![emailGenerator > generate form with prompt, Result generatedEmail, and Expected Type EmailGenerateResponse.](/img/genai/develop/direct-llm/10-generate-config.png)
 
-The Expected Type is what makes the response come back structured. Without it you'd get a string and have to parse JSON yourself; with it, you get a typed `EmailGenerateResponse` directly. (See [Typed Responses](/docs/genai/key-concepts/typed-responses) for more.)
+The Expected Type is what makes the response come back structured. Without it you'd get a string and have to parse JSON yourself; with it, you get a typed `EmailGenerateResponse` directly.
 
 ### Step 3.3: Add a return step
 
@@ -198,5 +198,5 @@ The LLM produced a complete, professionally written email — subject and body �
 
 ## What's next
 
-- **[Direct LLM Calls reference](/docs/genai/develop/direct-llm/overview)** -- the single-page feature reference covering the `generate` node, prompt editor, and typed responses.
-- **[Model Providers](/docs/genai/develop/components/model-providers)** -- switch the LLM provider for production (init params, supported models, advanced HTTP configs for OpenAI, Azure, Anthropic, Vertex, Mistral, DeepSeek, Ollama, OpenRouter).
+- **[Direct LLM Calls reference](../develop/direct-llm/overview.md)** -- the single-page feature reference covering the `generate` node, prompt editor, and typed responses.
+- **[Model Providers](../develop/components/model-providers.md)** -- switch the LLM provider for production (init params, supported models, advanced HTTP configs for OpenAI, Azure, Anthropic, Vertex, Mistral, DeepSeek, Ollama, OpenRouter).

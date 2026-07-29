@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Lists
+title: Overview
 ---
 
-HubSpot CRM Lists allows you to create, manage, and segment lists of CRM records such as contacts, companies, deals, and tickets. The Ballerina `ballerinax/hubspot.crm.lists` connector (v1.0.0) provides programmatic access to the HubSpot Lists API v3, enabling you to create dynamic and manual lists, manage list memberships, organize lists into folders, and search across lists from your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Lists allows you to create, manage, and segment lists of CRM records such as contacts, companies, deals, and tickets. The `ballerinax/hubspot.crm.lists` connector (v1.0.0) provides programmatic access to the HubSpot Lists API v3, enabling you to create dynamic and manual lists, manage list memberships, organize lists into folders, and search across lists from your integration flows.
 
 ## Key features
 
@@ -16,7 +18,7 @@ HubSpot CRM Lists allows you to create, manage, and segment lists of CRM records
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — creating lists, managing memberships, organizing folders, and more. The HubSpot CRM Lists connector exposes all actions through a single client:
+Actions are operations you invoke on HubSpot from your integration: creating lists, managing memberships, organizing folders, and more. The HubSpot CRM Lists connector exposes all actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -28,7 +30,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot app and obtaining the OAuth 2.0 credentials required to use the HubSpot CRM Lists connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Lists** connector, including connection setup, operation configuration, and execution flow.
 

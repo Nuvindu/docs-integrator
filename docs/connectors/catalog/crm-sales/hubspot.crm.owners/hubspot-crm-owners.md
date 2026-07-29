@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Owners
+title: Overview
 ---
 
-HubSpot CRM uses owners to assign CRM objects to specific people in your organization. The Ballerina `ballerinax/hubspot.crm.owners` connector (v2.0.0) provides programmatic access to the HubSpot Owners API, enabling you to retrieve owner details, list owners with filtering and pagination, and identify team assignments within your HubSpot account.
+# Overview
+
+HubSpot CRM uses owners to assign CRM objects to specific people in your organization. The `ballerinax/hubspot.crm.owners` connector (v2.0.0) provides programmatic access to the HubSpot Owners API, enabling you to retrieve owner details, list owners with filtering and pagination, and identify team assignments within your HubSpot account.
 
 ## Key features
 
@@ -15,7 +17,7 @@ HubSpot CRM uses owners to assign CRM objects to specific people in your organiz
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — listing owners, retrieving owner details, and filtering by email. The connector exposes a single client:
+Actions are operations you invoke on HubSpot from your integration, including listing owners, retrieving owner details, and filtering by email. The connector exposes a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -27,7 +29,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot Private App or OAuth app and obtaining the credentials required to use the HubSpot CRM Owners connector.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Owners** connector, including connection setup, operation configuration, and execution flow.
 

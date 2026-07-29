@@ -1,8 +1,8 @@
 ---
-title: Cloud setup
+title: Cloud Setup
 ---
 
-# Use WSO2 Integrator in the cloud
+# Use WSO2 Integrator in the Cloud
 
 WSO2 Integration Platform lets you launch WSO2 Integrator directly in the cloud, so you can build integrations without installing anything locally. This page walks you through opening the cloud editor from the project overview page.
 
@@ -25,5 +25,6 @@ To work on a different project, go to the organization overview page by clicking
 
 ## What's next
 
-- [Create your first project](../create-project.md) — Start building your first integration
-- [Local setup](local-setup.md) — Prefer working on your own machine instead
+- [Deploy from cloud editor](../../deploy/cloud/deploy-from-cloud-editor.md) — Start building your first integration
+- [Key concepts](../concepts/overview.md) — Learn the building blocks of WSO2 Integration Platform
+- [Manage integrations](../../manage/cloud/overview.md) — Manage integrations on WSO2 Cloud

@@ -1,8 +1,10 @@
 ---
-title: HubSpot CRM Associations
+title: Overview
 ---
 
-HubSpot CRM Associations is the HubSpot API for creating, reading, and managing relationships between CRM objects such as contacts, companies, deals, and tickets. The Ballerina `ballerinax/hubspot.crm.associations` connector (v2.0.0) provides programmatic access to HubSpot's Associations v4 API, enabling you to define both default HubSpot-defined and custom labeled associations between any two CRM object types within your Ballerina integration flows.
+# Overview
+
+HubSpot CRM Associations is the HubSpot API for creating, reading, and managing relationships between CRM objects such as contacts, companies, deals, and tickets. The `ballerinax/hubspot.crm.associations` connector (v2.0.0) provides programmatic access to HubSpot's Associations v4 API, enabling you to define both default HubSpot-defined and custom labeled associations between any two CRM object types within your integration flows.
 
 ## Key features
 
@@ -18,7 +20,7 @@ HubSpot CRM Associations is the HubSpot API for creating, reading, and managing 
 
 ## Actions
 
-Actions are operations you invoke on HubSpot from your integration — reading associations, creating labeled relationships, performing bulk operations, and generating usage reports. The HubSpot CRM Associations connector exposes all actions through a single client:
+Actions are operations you invoke on HubSpot from your integration: reading associations, creating labeled relationships, performing bulk operations, and generating usage reports. The HubSpot CRM Associations connector exposes all actions through a single client:
 
 | Client | Actions |
 |--------|---------|
@@ -30,7 +32,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a HubSpot app and obtaining the OAuth 2.0 credentials required to authenticate with the HubSpot CRM Associations API.
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Example](example.md)**: Learn how to build and configure an integration using the **HubSpot CRM Associations** connector, including connection setup, operation configuration, and execution flow.
 

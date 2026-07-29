@@ -2,7 +2,7 @@
 title: WSDL Tool
 ---
 
-# WSDL tool
+# WSDL Tool
 
 The `bal wsdl` tool generates Ballerina client code from Web Services Description Language (WSDL) files. It creates type-safe SOAP client connectors, request/response record types, and XML serialization logic, enabling you to call legacy SOAP web services from your Ballerina integrations without manually constructing XML envelopes.
 
@@ -25,10 +25,10 @@ bal wsdl --help
 4. Configure the Specification Type to **WSDL** and click **Next**.
 5. In the **Create Connection** step, configure the connection details. Expand **Advanced Configurations** to set the following optional fields:
 
-   - **Service Url** — Override the default endpoint URL defined in the WSDL.
-   - **HTTP Config** — HTTP configuration settings for the connection.
-   - **Outbound Security** — Web service security configurations for SOAP requests.
-   - **Inbound Security** — Web service security configurations to decrypt and verify SOAP responses.
+   - **Service Url**: Override the default endpoint URL defined in the WSDL.
+   - **HTTP Config**: HTTP configuration settings for the connection.
+   - **Outbound Security**: Web service security configurations for SOAP requests.
+   - **Inbound Security**: Web service security configurations to decrypt and verify SOAP responses.
 
    ![Connection details configuration](/img/develop/tools/wsdl-tool/step-connection-details.png)
 
@@ -260,4 +260,4 @@ bal wsdl -i service.wsdl --soap-version 1.2
 
 - [XSD Tool](xsd-tool.md) -- Generate record types from XML Schema definitions
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
-- [Configuration Management](/docs/develop/design-logic/configuration-management) -- Manage SOAP endpoint configuration per environment
+- [Configuration Management](../../../reference/config/configuration-management.md) -- Manage SOAP endpoint configuration per environment

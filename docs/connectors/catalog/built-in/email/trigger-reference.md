@@ -63,7 +63,7 @@ configurable string imapHost = ?;
 configurable string username = ?;
 configurable string password = ?;
 
-listener email:ImapListener imapListener = new ({
+listener email:ImapListener imapListener = check new ({
     host: imapHost,
     username: username,
     password: password,
@@ -80,7 +80,7 @@ configurable string popHost = ?;
 configurable string username = ?;
 configurable string password = ?;
 
-listener email:PopListener popListener = new ({
+listener email:PopListener popListener = check new ({
     host: popHost,
     username: username,
     password: password,
@@ -102,7 +102,7 @@ An `email:Service` is a Ballerina service attached to an `email:ImapListener` or
 | `onError` | <code>remote function onError(email:Error emailError)</code> | Invoked when an error occurs during email polling. Optional. |
 | `onClose` | <code>remote function onClose(email:Error? closeError)</code> | Invoked when the listener connection is closed. Optional. |
 
-You must implement the `onMessage` callback. The `onError` and `onClose` callbacks are optional — implement only the ones relevant to your use case.
+You must implement the `onMessage` callback. The `onError` and `onClose` callbacks are optional: implement only the ones relevant to your use case.
 
 ### Full usage example
 
@@ -114,7 +114,7 @@ configurable string imapHost = ?;
 configurable string username = ?;
 configurable string password = ?;
 
-listener email:ImapListener imapListener = new ({
+listener email:ImapListener imapListener = check new ({
     host: imapHost,
     username: username,
     password: password,

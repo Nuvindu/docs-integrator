@@ -1,8 +1,8 @@
 ---
-title: Choosing a control plane
+title: Choosing a Control Plane
 ---
 
-# Choosing a control plane
+# Choosing a Control Plane
 
 WSO2 Integrator supports two control planes for managing deployed integrations: **WSO2 Cloud - Integration Platform** and the **Integration Control Plane (ICP)**. Both let you organize integrations into projects and environments, monitor runtime state, and manage access. However, they differ in where they run, how much infrastructure you manage, and what runtime types they support.
 
@@ -41,5 +41,6 @@ ICP is a self-hosted management server you install on your own infrastructure. I
 
 ## What's next
 
-- [WSO2 Cloud overview](./cloud/overview.md)
-- [Integration Control Plane (ICP)](./icp/integration-control-plane.md)
+- [Install ICP](./icp/install-icp.md) — set up the self-hosted Integration Control Plane
+- [WSO2 Cloud - Integration Platform](./cloud/overview.md) — fully managed SaaS control plane
+- [Integration Control Plane (ICP)](./icp/integration-control-plane.md) — self-hosted control plane setup and usage

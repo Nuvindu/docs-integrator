@@ -1,14 +1,12 @@
 ---
-title: Integrator view
+title: Integrator View
 ---
 
-# Integrator view
+# Integrator View
 
 The Integrator view is the primary development interface in WSO2 Integrator. Use it to build, test, and deploy a single integration. It combines a project explorer, a visual design canvas, and deployment options in one unified workspace.
 
 ![Integrator view overview](/img/develop/understand-ide/views/integration-view/overview.png)
-
-The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project view](project-view.md). See that page for details. This page covers what's specific to a single integration: the design canvas and toolbar.
 
 ## Design canvas
 
@@ -39,9 +37,7 @@ You can also scroll to zoom and drag to pan across the canvas.
 
 ### Generate with AI
 
-Click the **Generate** button at the top of the canvas to create integration logic using AI. Describe what you want in natural language, and WSO2 Integrator generates the entry points, connections, and logic for you.
-
-The AI generation creates a working starting point that you can refine in the visual designer or code editor.
+Click the **Generate with AI** button at the top of the canvas to open the [WSO2 Integrator Copilot](../../copilot/getting-started.md). Describe what you want in natural language, and WSO2 Integrator Copilot generates the integration with the appropriate entry points, connections, and logic.
 
 ### Add artifact
 
@@ -67,6 +63,21 @@ The toolbar sits at the top of the Integrator view and provides quick access to 
 | **Run** | Builds and runs your integration locally. WSO2 Integrator compiles the Ballerina code, starts the services, and displays the output in the terminal panel. |
 | **Debug** | Starts a debug session with the debugger attached. Set breakpoints, step through execution, inspect variables and payloads, and evaluate expressions at runtime. |
 
+## Deployment options panel
+
+The deployment options panel appears on the right sidebar and provides shortcuts to deploy the integration to different environments.
+
+![Deployment options](/img/develop/understand-ide/views/integration-view/deployment-options.png)
+
+| Option | Target |
+|---|---|
+| [**Deploy to WSO2 Cloud**](../../../deploy/cloud/overview.md) | Fully managed cloud platform for hosting and running integrations. |
+| [**Containerized Deployment**](../../../deploy/self-hosted/containerized-deployment.md) | Build Docker images and deploy integrations to Docker, Kubernetes, or OpenShift. |
+| [**VM Deployment**](../../../deploy/self-hosted/vm-deployment.md) | Deploy integrations as standalone JAR files on virtual machines. |
+| [**Integration Control Plane (ICP)**](../../../deploy-operate/observe/integration-control-plane-icp.md) | Monitor and manage running integrations from a centralized dashboard. |
+
+Select **Enable ICP monitoring** to activate ICP for this integration, or expand **Publish to local ICP** to push the integration to a local Integration Control Plane instance.
+
 ## README section
 
 The README section at the bottom of the Integrator view displays the contents of your project's `README.md` file. Use it to document the purpose, setup instructions, and usage notes for your integration.
@@ -77,6 +88,6 @@ Click **Edit** to modify the README directly. You can also click **Generate with
 
 ## What's next
 
-- [Design integration logic](/docs/develop/design-logic/overview): build logic using the visual designer.
-- [Integration artifacts](/docs/develop/integration-artifacts): learn about artifact types and their configuration.
-- [Deploy to WSO2 Integration Platform](/docs/deploy-operate/deploy/devant): deploy your integration to the cloud.
+- [Flow Diagram editor](../editors/flow-diagram-editor/flow-diagram-editor.md) — Build logic using the visual designer.
+- [Integration artifacts](../../integration-artifacts/integration-artifacts.md) — Learn about artifact types and their configuration.
+- [Deploy to WSO2 Cloud](../../../deploy/cloud/overview.md) — Deploy your integration to the cloud.

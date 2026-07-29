@@ -18,24 +18,104 @@ Provides operations to interact with a Redis server or cluster for data storage 
 
 ### Configuration
 
+The client is configured with a `ConnectionConfig` record.
+
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `connection` | `ConnectionUri\|ConnectionParams` | `"redis://localhost:6379"` | Redis connection URI string or a `ConnectionParams` record with host, port, username, password, and options. |
 | `connectionPooling` | `boolean` | `false` | Whether to enable connection pooling. |
 | `isClusterConnection` | `boolean` | `false` | Whether this is a Redis cluster connection. |
-| `secureSocket` | `SecureSocket` | `()` | SSL/TLS configuration for encrypted connections. |
+| `secureSocket` | `SecureSocket?` | `()` | SSL/TLS configuration for encrypted connections. |
+
+### Configuration types
+
+#### `ConnectionUri`
+
+A Redis connection URI string. Aliases `string`.
+
+Format: `redis://[username:password@]host[:port][/database]` for unencrypted, or `rediss://...` for TLS.
+
+#### `ConnectionParams`
+
+Field-based connection configuration.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `host` | `string` | `"localhost"` | Host address of the Redis database. |
+| `port` | `int` | `6379` | Port of the Redis database. |
+| `username` | `string?` | `()` | Username for the Redis database (Redis 6.0+ ACL). |
+| `password` | `string?` | `()` | Password for the Redis database. |
+| `options` | `Options` | `{}` | Additional connection options. |
+
+#### `Options`
+
+Connection options.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `clientName` | `string?` | `()` | Name of the client. |
+| `database` | `int` | `0` | Database index the client should interact with. Not applicable for cluster connections. |
+| `connectionTimeout` | `int` | `60` | Connection timeout in seconds. |
+| `keepAlive` | `KeepAliveConfig?` | `()` | TCP keep-alive configuration for detecting stale connections. Set to `()` to disable. |
+
+#### `KeepAliveConfig`
+
+TCP keep-alive parameters.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `idle` | `int` | `7200` | Time in seconds the connection must be idle before the first keep-alive probe is sent. |
+| `interval` | `int` | `75` | Time in seconds between individual keep-alive probes. |
+| `count` | `int` | `9` | Maximum number of keep-alive probes before the connection is considered dead. |
+
+#### `SecureSocket`
+
+SSL/TLS configuration.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `cert` | `crypto:TrustStore\|string?` | `()` | A `crypto:TrustStore` record (`{path, password}`) or a path to a single certificate file the client trusts. |
+| `key` | `crypto:KeyStore\|CertKey?` | `()` | A `crypto:KeyStore` record (`{path, password}`) or a `CertKey` value (used for mutual TLS). |
+| `protocols` | `string[]?` | `()` | List of protocols used for the connection, such as `TLSv1.2`, `TLSv1.1`, `TLSv1`. |
+| `ciphers` | `string[]?` | `()` | List of ciphers to be used for SSL connections. |
+| `verifyMode` | `SslVerifyMode` | `FULL` | Server-certificate verification mode. |
+| `startTls` | `boolean` | `false` | Whether StartTLS is enabled. |
+
+#### `CertKey`
+
+Client certificate and private key (used for mutual TLS).
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `certFile` | `string` | Required | Path to the certificate file. |
+| `keyFile` | `string` | Required | Path to the private key file in PKCS8 format. |
+| `keyPassword` | `string?` | `()` | Password of the private key, if encrypted. |
+
+#### `SslVerifyMode`
+
+Enum of TLS verification modes:
+
+- `NONE`: No verification.
+- `CA`: Verify the server's certificate against the provided CA certificates.
+- `FULL`: Verify the server's certificate against the provided CA certificates and also verify the server's hostname.
 
 ### Initializing the client
+
+Using a connection URI:
 
 ```ballerina
 import ballerinax/redis;
 
-// Using a connection URI
 redis:Client redis = check new ({
     connection: "redis://localhost:6379"
 });
+```
 
-// Or using connection parameters with authentication
+Or using connection parameters with authentication:
+
+```ballerina
+import ballerinax/redis;
+
 redis:Client redis = check new ({
     connection: {
         host: "localhost",
@@ -61,7 +141,7 @@ Parameters:
 | `key` | `string` | Yes | The key to set. |
 | `value` | `string` | Yes | The value to set. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -88,7 +168,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key to retrieve. |
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -116,7 +196,7 @@ Parameters:
 | `key` | `string` | Yes | The key to append to. |
 | `value` | `string` | Yes | The value to append. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -143,7 +223,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key to increment. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -171,7 +251,7 @@ Parameters:
 | `key` | `string` | Yes | The key to increment. |
 | `value` | `int` | Yes | The increment amount. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -199,7 +279,7 @@ Parameters:
 | `key` | `string` | Yes | The key to increment. |
 | `value` | `float` | Yes | The float increment amount. |
 
-Returns: `float|error`
+Returns: `float|redis:Error`
 
 Sample code:
 
@@ -226,7 +306,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key to decrement. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -254,7 +334,7 @@ Parameters:
 | `key` | `string` | Yes | The key to decrement. |
 | `value` | `int` | Yes | The decrement amount. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -281,7 +361,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keyValueMap` | `map<any>` | Yes | A map of key-value pairs to set. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -312,7 +392,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | Array of keys to retrieve. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -339,7 +419,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keyValueMap` | `map<any>` | Yes | A map of key-value pairs to set. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -368,7 +448,7 @@ Parameters:
 | `value` | `string` | Yes | The value to set. |
 | `expirationTime` | `int` | Yes | Expiration time in seconds. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -397,7 +477,7 @@ Parameters:
 | `value` | `string` | Yes | The value to set. |
 | `expirationTime` | `int` | Yes | Expiration time in milliseconds. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -425,7 +505,7 @@ Parameters:
 | `key` | `string` | Yes | The key to set. |
 | `value` | `string` | Yes | The value to set. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -453,7 +533,7 @@ Parameters:
 | `key` | `string` | Yes | The key to set. |
 | `value` | `string` | Yes | The new value. |
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -482,7 +562,7 @@ Parameters:
 | `startPos` | `int` | Yes | Start offset (inclusive). |
 | `end` | `int` | Yes | End offset (inclusive). |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -511,7 +591,7 @@ Parameters:
 | `offset` | `int` | Yes | The byte offset to start overwriting at. |
 | `value` | `string` | Yes | The value to write. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -538,7 +618,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -565,7 +645,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -594,7 +674,7 @@ Parameters:
 | `value` | `int` | Yes | The bit value (0 or 1). |
 | `offset` | `int` | Yes | The bit offset. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -622,7 +702,7 @@ Parameters:
 | `key` | `string` | Yes | The key. |
 | `offset` | `int` | Yes | The bit offset. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -650,7 +730,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The source keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -678,7 +758,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The source keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -706,7 +786,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `key` | `string` | Yes | The source key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -734,7 +814,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The source keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -764,7 +844,7 @@ Parameters:
 | `key` | `string` | Yes | The list key. |
 | `values` | `string[]` | Yes | The values to prepend. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -792,7 +872,7 @@ Parameters:
 | `key` | `string` | Yes | The list key. |
 | `values` | `string[]` | Yes | The values to append. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -819,7 +899,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The list key. |
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -846,7 +926,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The list key. |
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -874,7 +954,7 @@ Parameters:
 | `key` | `string` | Yes | The list key. |
 | `values` | `string[]` | Yes | The values to prepend. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -902,7 +982,7 @@ Parameters:
 | `key` | `string` | Yes | The list key. |
 | `values` | `string[]` | Yes | The values to append. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -930,7 +1010,7 @@ Parameters:
 | `timeOut` | `int` | Yes | Timeout in seconds (0 to block indefinitely). |
 | `keys` | `string[]` | Yes | The list keys to pop from. |
 
-Returns: `map<any>|error`
+Returns: `map<any>|redis:Error`
 
 Sample code:
 
@@ -958,7 +1038,7 @@ Parameters:
 | `timeout` | `int` | Yes | Timeout in seconds (0 to block indefinitely). |
 | `keys` | `string[]` | Yes | The list keys to pop from. |
 
-Returns: `map<any>|error`
+Returns: `map<any>|redis:Error`
 
 Sample code:
 
@@ -986,7 +1066,7 @@ Parameters:
 | `key` | `string` | Yes | The list key. |
 | `index` | `int` | Yes | Zero-based index (negative indices count from the end). |
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -1016,7 +1096,7 @@ Parameters:
 | `pivot` | `string` | Yes | The reference element. |
 | `value` | `string` | Yes | The value to insert. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1043,7 +1123,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The list key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1072,7 +1152,7 @@ Parameters:
 | `startPos` | `int` | Yes | Start index (inclusive). |
 | `stopPos` | `int` | Yes | Stop index (inclusive). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1101,7 +1181,7 @@ Parameters:
 | `count` | `int` | Yes | Number of occurrences to remove (0 = all, positive = from head, negative = from tail). |
 | `value` | `string` | Yes | The value to remove. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1130,7 +1210,7 @@ Parameters:
 | `index` | `int` | Yes | The index of the element. |
 | `value` | `string` | Yes | The new value. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -1159,7 +1239,7 @@ Parameters:
 | `startPos` | `int` | Yes | Start index (inclusive). |
 | `stopPos` | `int` | Yes | Stop index (inclusive). |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -1187,7 +1267,7 @@ Parameters:
 | `src` | `string` | Yes | The source list key. |
 | `destination` | `string` | Yes | The destination list key. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -1217,7 +1297,7 @@ Parameters:
 | `key` | `string` | Yes | The set key. |
 | `values` | `string[]` | Yes | The members to add. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1244,7 +1324,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The set key. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1271,7 +1351,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The set key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1299,7 +1379,7 @@ Parameters:
 | `key` | `string` | Yes | The set key. |
 | `value` | `string` | Yes | The value to check. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -1327,7 +1407,7 @@ Parameters:
 | `key` | `string` | Yes | The set key. |
 | `members` | `string[]` | Yes | The members to remove. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1355,7 +1435,7 @@ Parameters:
 | `key` | `string` | Yes | The set key. |
 | `count` | `int` | Yes | Number of members to pop. |
 
-Returns: `string[]|error?`
+Returns: `string[]|redis:Error?`
 
 Sample code:
 
@@ -1383,7 +1463,7 @@ Parameters:
 | `key` | `string` | Yes | The set key. |
 | `count` | `int` | Yes | Number of random members to return. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1412,7 +1492,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination set key. |
 | `member` | `string` | Yes | The member to move. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -1439,7 +1519,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1467,7 +1547,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1494,7 +1574,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1522,7 +1602,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1549,7 +1629,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1577,7 +1657,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The set keys. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1607,7 +1687,7 @@ Parameters:
 | `key` | `string` | Yes | The sorted set key. |
 | `memberScoreMap` | `map<any>` | Yes | A map of member names to their scores. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1640,7 +1720,7 @@ Parameters:
 | `min` | `int` | Yes | Start index (inclusive). |
 | `max` | `int` | Yes | Stop index (inclusive). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1669,7 +1749,7 @@ Parameters:
 | `min` | `int` | Yes | Start index (inclusive). |
 | `max` | `int` | Yes | Stop index (inclusive). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1698,7 +1778,7 @@ Parameters:
 | `min` | `float` | Yes | Minimum score (inclusive). |
 | `max` | `float` | Yes | Maximum score (inclusive). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1727,7 +1807,7 @@ Parameters:
 | `min` | `float` | Yes | Minimum score (inclusive). |
 | `max` | `float` | Yes | Maximum score (inclusive). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1756,7 +1836,7 @@ Parameters:
 | `min` | `string` | Yes | Minimum lex bound (e.g., `[a` or `-`). |
 | `max` | `string` | Yes | Maximum lex bound (e.g., `[z` or `+`). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1785,7 +1865,7 @@ Parameters:
 | `min` | `string` | Yes | Minimum lex bound. |
 | `max` | `string` | Yes | Maximum lex bound. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -1813,7 +1893,7 @@ Parameters:
 | `key` | `string` | Yes | The sorted set key. |
 | `member` | `string` | Yes | The member name. |
 
-Returns: `float|error`
+Returns: `float|redis:Error`
 
 Sample code:
 
@@ -1841,7 +1921,7 @@ Parameters:
 | `key` | `string` | Yes | The sorted set key. |
 | `member` | `string` | Yes | The member name. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1869,7 +1949,7 @@ Parameters:
 | `key` | `string` | Yes | The sorted set key. |
 | `member` | `string` | Yes | The member name. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1896,7 +1976,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The sorted set key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1925,7 +2005,7 @@ Parameters:
 | `min` | `float` | Yes | Minimum score (inclusive). |
 | `max` | `float` | Yes | Maximum score (inclusive). |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1954,7 +2034,7 @@ Parameters:
 | `min` | `string` | Yes | Minimum lex bound. |
 | `max` | `string` | Yes | Maximum lex bound. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -1983,7 +2063,7 @@ Parameters:
 | `amount` | `float` | Yes | The increment amount. |
 | `member` | `string` | Yes | The member name. |
 
-Returns: `float|error`
+Returns: `float|redis:Error`
 
 Sample code:
 
@@ -2011,7 +2091,7 @@ Parameters:
 | `key` | `string` | Yes | The sorted set key. |
 | `members` | `string[]` | Yes | The members to remove. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2040,7 +2120,7 @@ Parameters:
 | `min` | `int` | Yes | Start index. |
 | `max` | `int` | Yes | Stop index. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2069,7 +2149,7 @@ Parameters:
 | `min` | `float` | Yes | Minimum score. |
 | `max` | `float` | Yes | Maximum score. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2098,7 +2178,7 @@ Parameters:
 | `min` | `string` | Yes | Minimum lex bound. |
 | `max` | `string` | Yes | Maximum lex bound. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2126,7 +2206,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The sorted set keys to intersect. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2154,7 +2234,7 @@ Parameters:
 | `destination` | `string` | Yes | The destination key. |
 | `keys` | `string[]` | Yes | The sorted set keys to union. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2185,7 +2265,7 @@ Parameters:
 | `field` | `string` | Yes | The field name. |
 | `value` | `string` | Yes | The field value. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2213,7 +2293,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `field` | `string` | Yes | The field name. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -2240,7 +2320,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The hash key. |
 
-Returns: `map<any>|error`
+Returns: `map<any>|redis:Error`
 
 Sample code:
 
@@ -2268,7 +2348,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `fieldValueMap` | `map<any>` | Yes | A map of field names to values. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -2300,7 +2380,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `fields` | `string[]` | Yes | The field names to retrieve. |
 
-Returns: `map<any>|error`
+Returns: `map<any>|redis:Error`
 
 Sample code:
 
@@ -2328,7 +2408,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `fields` | `string[]` | Yes | The field names to delete. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2356,7 +2436,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `field` | `string` | Yes | The field name. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2385,7 +2465,7 @@ Parameters:
 | `field` | `string` | Yes | The field name. |
 | `value` | `string` | Yes | The field value. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2412,7 +2492,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The hash key. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -2439,7 +2519,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The hash key. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -2466,7 +2546,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The hash key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2495,7 +2575,7 @@ Parameters:
 | `field` | `string` | Yes | The field name. |
 | `amount` | `int` | Yes | The increment amount. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2524,7 +2604,7 @@ Parameters:
 | `field` | `string` | Yes | The field name. |
 | `amount` | `float` | Yes | The float increment amount. |
 
-Returns: `float|error`
+Returns: `float|redis:Error`
 
 Sample code:
 
@@ -2552,7 +2632,7 @@ Parameters:
 | `key` | `string` | Yes | The hash key. |
 | `field` | `string` | Yes | The field name. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2581,7 +2661,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | The keys to delete. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2608,7 +2688,7 @@ Parameters:
 |------|------|----------|-------------|
 | `keys` | `string[]` | Yes | The keys to check. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2636,7 +2716,7 @@ Parameters:
 | `key` | `string` | Yes | The key. |
 | `seconds` | `int` | Yes | Expiration time in seconds. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2664,7 +2744,7 @@ Parameters:
 | `key` | `string` | Yes | The key. |
 | `expirationTime` | `int` | Yes | Expiration time in milliseconds. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2691,7 +2771,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2718,7 +2798,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key. |
 
-Returns: `int|error`
+Returns: `int|redis:Error`
 
 Sample code:
 
@@ -2745,7 +2825,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2772,7 +2852,7 @@ Parameters:
 |------|------|----------|-------------|
 | `pattern` | `string` | Yes | The glob-style pattern to match (e.g., `user:*`). |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -2800,7 +2880,7 @@ Parameters:
 | `key` | `string` | Yes | The current key name. |
 | `newName` | `string` | Yes | The new key name. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -2828,7 +2908,7 @@ Parameters:
 | `key` | `string` | Yes | The current key name. |
 | `newName` | `string` | Yes | The new key name. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2856,7 +2936,7 @@ Parameters:
 | `key` | `string` | Yes | The key to move. |
 | `database` | `int` | Yes | The target database index. |
 
-Returns: `boolean|error`
+Returns: `boolean|redis:Error`
 
 Sample code:
 
@@ -2883,7 +2963,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key to sort. |
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
@@ -2904,7 +2984,7 @@ Sample response:
 
 Return a random key from the keyspace.
 
-Returns: `string|error?`
+Returns: `string|redis:Error?`
 
 Sample code:
 
@@ -2931,7 +3011,7 @@ Parameters:
 |------|------|----------|-------------|
 | `key` | `string` | Yes | The key to inspect. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -2954,7 +3034,7 @@ Sample response:
 
 Ping the server to test connectivity.
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -2981,7 +3061,7 @@ Parameters:
 |------|------|----------|-------------|
 | `password` | `string` | Yes | The authentication password. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -3008,7 +3088,7 @@ Parameters:
 |------|------|----------|-------------|
 | `message` | `string` | Yes | The message to echo. |
 
-Returns: `string|error`
+Returns: `string|redis:Error`
 
 Sample code:
 
@@ -3029,12 +3109,12 @@ Sample response:
 
 Close the connection to the Redis server.
 
-Returns: `error?`
+Returns: `redis:Error?`
 
 Sample code:
 
 ```ballerina
-check redis->close();
+check redis.close();
 ```
 
 </details>
@@ -3046,7 +3126,7 @@ check redis->close();
 
 Retrieve information and statistics about the Redis cluster.
 
-Returns: `string[]|error`
+Returns: `string[]|redis:Error`
 
 Sample code:
 
